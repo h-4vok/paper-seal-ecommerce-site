@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.bun/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.crt
+
+# Build output and local tooling
+dist/
+.astro/
+.netlify/
+.vercel/
+coverage/
+playwright-report/
+test-results/
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
