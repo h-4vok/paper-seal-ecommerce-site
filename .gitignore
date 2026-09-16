@@ -18,6 +18,7 @@ dist/
 .vercel/
 storybook-build/
 storybook-static/
+visual-evidence/
 coverage/
 playwright-report/
 test-results/

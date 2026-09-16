@@ -21,6 +21,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build --output-dir storybook-build",
     "sync:shopify": "tsx scripts/sync-shopify.ts",
+    "capture:visual": "tsx scripts/capture-visual-evidence.ts",
     "prepare": "husky",
     "validate": "bun run lint && bun run format && bun run typecheck && bun run test && bun run build"
   },

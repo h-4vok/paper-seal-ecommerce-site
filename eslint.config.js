@@ -5,7 +5,7 @@ import react from 'eslint-plugin-react';
 import hooks from 'eslint-plugin-react-hooks';
 
 export default [
-  { ignores: ['dist/**', '.astro/**', 'coverage/**', 'storybook-static/**'] },
+  { ignores: ['dist/**', '.astro/**', 'coverage/**', 'storybook-static/**', 'storybook-build/**'] },
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: { parser: tsParser },
