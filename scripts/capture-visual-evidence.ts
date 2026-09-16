@@ -11,4 +11,8 @@ const page = await browser.newPage({
 await mkdir(output, { recursive: true });
 await page.goto(baseURL, { waitUntil: 'networkidle' });
 await page.screenshot({ path: `${output}/coming-soon.png`, fullPage: true });
+if (process.env.STORYBOOK_URL) {
+  await page.goto(process.env.STORYBOOK_URL, { waitUntil: 'networkidle' });
+  await page.screenshot({ path: `${output}/storybook-index.png`, fullPage: true });
+}
 await browser.close();
