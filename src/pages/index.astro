@@ -1,20 +1,14 @@
 ---
 import '../styles/global.scss';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
 const title = 'The Paper Seal Studio — Coming soon';
+const description = 'Paperseal is preparing something beautiful for your walls.';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Paperseal is preparing something beautiful for your walls." />
-    <title>{title}</title>
-  </head>
-  <body>
-    <main class="coming-soon" data-testid="coming-soon">
-      <p class="eyebrow">Paperseal</p>
-      <h1>Something beautiful is coming soon.</h1>
-      <p>Artful pieces for considered spaces. Our collection is taking shape.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout {title} {description}>
+  <main class="coming-soon" data-testid="coming-soon">
+    <p class="eyebrow">Paperseal</p>
+    <h1>Something beautiful is coming soon.</h1>
+    <p>Artful pieces for considered spaces. Our collection is taking shape.</p>
+  </main>
+</BaseLayout>

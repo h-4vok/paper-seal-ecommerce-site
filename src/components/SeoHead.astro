@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  indexable?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  image,
+  indexable = true,
+} = Astro.props;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+{image && <meta property="og:image" content={image} />}
+<meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{!indexable && <meta name="robots" content="noindex, nofollow" />}

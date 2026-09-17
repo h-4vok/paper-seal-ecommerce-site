@@ -1,0 +1,27 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  indexable?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, canonical, image, indexable, structuredData } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <SeoHead {title} {description} {canonical} {image} {indexable} />
+    {structuredData && <JsonLd data={structuredData} />}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
