@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderPage from '../components/PlaceholderPage.astro';
+
+const title = 'Online shop coming soon — Paperseal';
+const description = 'Paperseal online shopping and checkout are coming soon.';
+---
+<BaseLayout {title} {description} indexable={false}>
+  <PlaceholderPage
+    eyebrow="Your cart"
+    heading="Online shop coming soon."
+    description="There is no pretend basket here: purchasing will open when Paperseal's Shopify connection is ready and properly tested."
+  />
+</BaseLayout>

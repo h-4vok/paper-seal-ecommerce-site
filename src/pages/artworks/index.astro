@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlaceholderPage from '../../components/PlaceholderPage.astro';
+
+const title = 'Artworks coming soon — Paperseal';
+const description = 'Paperseal is preparing its first collection of East Sussex art prints.';
+---
+<BaseLayout {title} {description} indexable={false}>
+  <PlaceholderPage
+    eyebrow="The Paperseal collection"
+    heading="The prints are nearly ready."
+    description="Our first collection is being mounted, measured and prepared for browsing. Online shopping will follow in the next alpha slice."
+  />
+</BaseLayout>

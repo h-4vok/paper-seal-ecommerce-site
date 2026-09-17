@@ -1,6 +1,9 @@
 ---
 import SeoHead from '../components/SeoHead.astro';
 import JsonLd from '../components/JsonLd.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.scss';
 
 interface Props {
   title: string;
@@ -9,19 +12,34 @@ interface Props {
   image?: string;
   indexable?: boolean;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  bodyClass?: string;
+  showChrome?: boolean;
 }
 
-const { title, description, canonical, image, indexable, structuredData } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  image,
+  indexable,
+  structuredData,
+  bodyClass,
+  showChrome = true,
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
     <SeoHead {title} {description} {canonical} {image} {indexable} />
     {structuredData && <JsonLd data={structuredData} />}
   </head>
-  <body>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {showChrome && <SiteHeader currentPath={Astro.url.pathname} />}
     <slot />
+    {showChrome && <SiteFooter />}
   </body>
 </html>

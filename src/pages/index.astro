@@ -1,14 +1,184 @@
 ---
-import '../styles/global.scss';
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImage from '../assets/home/hero-eastbourne-flower-bed.jpg';
+import sevenSistersImage from '../assets/home/current-seven-sisters.jpg';
+import harbourImage from '../assets/home/current-sovereign-harbour.jpg';
+import '../styles/home.scss';
 
-const title = 'The Paper Seal Studio — Coming soon';
-const description = 'Paperseal is preparing something beautiful for your walls.';
+const title = 'Paperseal — Art prints inspired by East Sussex';
+const description =
+  'Warm, characterful art prints inspired by Eastbourne and East Sussex, made to help your home feel more like yours.';
+const canonical = new URL('/', Astro.site ?? Astro.url.origin).href;
+const socialImage = new URL(heroImage.src, Astro.site ?? Astro.url.origin).href;
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Paperseal',
+    url: canonical,
+    description,
+    areaServed: 'United Kingdom',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Paperseal',
+    url: canonical,
+    inLanguage: 'en-GB',
+  },
+];
 ---
-<BaseLayout {title} {description}>
-  <main class="coming-soon" data-testid="coming-soon">
-    <p class="eyebrow">Paperseal</p>
-    <h1>Something beautiful is coming soon.</h1>
-    <p>Artful pieces for considered spaces. Our collection is taking shape.</p>
+<BaseLayout
+  {title}
+  {description}
+  {canonical}
+  image={socialImage}
+  {structuredData}
+  bodyClass="home-page"
+>
+  <main id="main-content">
+    <section class="home-hero" aria-labelledby="home-hero-title">
+      <div class="home-hero__copy">
+        <p class="eyebrow">Art prints for a brighter everyday</p>
+        <h1 id="home-hero-title">Make home feel more like yours.</h1>
+        <p class="home-hero__intro">
+          Art prints inspired by East Sussex — coastal paths, garden colour and the small,
+          beautiful things that make a place home.
+        </p>
+        <a class="button-link" href="/artworks">
+          Explore prints <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <figure class="home-hero__art">
+        <Picture
+          src={heroImage}
+          widths={[480, 768, 1024, 1484]}
+          sizes="(min-width: 64rem) 68vw, 100vw"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          alt="Eastbourne's pier and flower beds presented as a framed Paperseal print in a warm home interior"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <figcaption>Eastbourne New Flower Bed · East Sussex</figcaption>
+      </figure>
+
+      <p class="home-hero__note" aria-hidden="true">Homes are happier with art.</p>
+    </section>
+
+    <section class="promise-strip" aria-label="What makes Paperseal different">
+      <article>
+        <span class="promise-strip__icon" aria-hidden="true">⌁</span>
+        <div><h2>Locally inspired</h2><p>East Sussex places and stories</p></div>
+      </article>
+      <article>
+        <span class="promise-strip__icon" aria-hidden="true">♡</span>
+        <div><h2>Independent</h2><p>A small studio, a bigger why</p></div>
+      </article>
+      <article>
+        <span class="promise-strip__icon" aria-hidden="true">✦</span>
+        <div><h2>Thoughtfully made</h2><p>For a kinder, brighter home</p></div>
+      </article>
+      <article>
+        <span class="promise-strip__icon" aria-hidden="true">≈</span>
+        <div><h2>Made to live with</h2><p>Art for everyday life</p></div>
+      </article>
+    </section>
+
+    <section class="manifesto section-shell" aria-labelledby="manifesto-title">
+      <div class="manifesto__heading">
+        <p class="eyebrow">Paperseal, East Sussex</p>
+        <h2 id="manifesto-title">For familiar places that stay with you.</h2>
+      </div>
+      <div class="manifesto__copy">
+        <p>
+          There is beauty in the places we pass every day: the pier in changing light, chalk
+          cliffs after rain, a harbour settling into evening. Paperseal turns those moments into
+          prints with colour, warmth and a little wonder.
+        </p>
+        <p>
+          Made for rooms that are collected rather than styled, each piece is a small reminder
+          that good art and meaningful places belong in everyday homes.
+        </p>
+      </div>
+      <div class="manifesto__stamp" aria-hidden="true">
+        <span class="manifesto__stamp-name">Paperseal</span><span>Always a good idea</span>
+      </div>
+    </section>
+
+    <section class="current-collection section-shell" aria-labelledby="collection-title">
+      <header class="section-heading">
+        <div>
+          <p class="eyebrow">The current collection</p>
+          <h2 id="collection-title">Places you know.<br />Seen a little differently.</h2>
+        </div>
+        <p>
+          A first gathering of gardens, harbours and coastal walks — drawn from the character
+          of Eastbourne and the South Downs.
+        </p>
+      </header>
+
+      <div class="collection-grid">
+        <a class="artwork-feature" href="/artworks" aria-label="Explore Seven Sisters from the Gardens">
+          <Picture
+            src={sevenSistersImage}
+            widths={[480, 720, 960, 1484]}
+            sizes="(min-width: 48rem) 50vw, 100vw"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            alt="Seven Sisters from the Gardens shown as a framed print on a warm textured wall"
+            loading="lazy"
+          />
+          <span class="artwork-feature__caption">
+            <span><strong>Seven Sisters from the Gardens</strong><small>Eastbourne · East Sussex</small></span>
+            <span aria-hidden="true">View print →</span>
+          </span>
+        </a>
+
+        <a class="artwork-feature" href="/artworks" aria-label="Explore Sovereign Harbour">
+          <Picture
+            src={harbourImage}
+            widths={[480, 720, 960, 1484]}
+            sizes="(min-width: 48rem) 50vw, 100vw"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            alt="Sovereign Harbour at sunset shown as a framed Paperseal print above a wooden sideboard"
+            loading="lazy"
+          />
+          <span class="artwork-feature__caption">
+            <span><strong>Sovereign Harbour</strong><small>Eastbourne · East Sussex</small></span>
+            <span aria-hidden="true">View print →</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="browse-callout section-shell" aria-labelledby="browse-title">
+      <p class="eyebrow">Find your place</p>
+      <h2 id="browse-title">A wall can hold a view,<br />a memory, a bit of home.</h2>
+      <a class="button-link button-link--navy" href="/artworks">
+        Browse all artworks <span aria-hidden="true">→</span>
+      </a>
+      <p class="browse-callout__annotation" aria-hidden="true">Local places.<br />Brighter rooms.</p>
+    </section>
+
+    <section class="process section-shell" aria-labelledby="process-title">
+      <div class="process__intro">
+        <p class="eyebrow">Made by people, not a product machine</p>
+        <h2 id="process-title">From a local moment to a print worth keeping.</h2>
+        <p class="process__body">
+          Paperseal begins with looking carefully: at a familiar place, an unexpected colour,
+          or the way a season changes a walk you know by heart.
+        </p>
+        <a class="text-link" href="/our-story">Meet Paperseal <span aria-hidden="true">→</span></a>
+      </div>
+      <ol class="process__steps">
+        <li><span class="process__number">01</span><div><h3>Notice</h3><p class="process__description">A local scene catches the eye and earns another look.</p></div></li>
+        <li><span class="process__number">02</span><div><h3>Make</h3><p class="process__description">Colour, atmosphere and small details turn a view into a story.</p></div></li>
+        <li><span class="process__number">03</span><div><h3>Print</h3><p class="process__description">The final piece is prepared with care for a crisp, lasting result.</p></div></li>
+      </ol>
+    </section>
   </main>
 </BaseLayout>

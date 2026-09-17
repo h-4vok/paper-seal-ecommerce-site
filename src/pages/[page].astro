@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PlaceholderPage from '../components/PlaceholderPage.astro';
+
+export function getStaticPaths() {
+  return [
+    ['our-story', 'Our story', 'A small studio with a local point of view.', 'The fuller story of Paperseal, its process and the places behind the prints is coming soon.'],
+    ['east-sussex', 'East Sussex', 'Places worth another look.', 'A guide to the coast, gardens and downland that inspire the Paperseal collection is coming soon.'],
+    ['journal', 'Journal', 'Notes from brighter places.', 'Studio notes, local walks and stories behind the artwork are coming soon.'],
+    ['delivery', 'Delivery', 'Carefully packed. Thoughtfully sent.', 'Full UK delivery information will be published before online shopping opens.'],
+    ['returns', 'Returns', 'Clear, human help when you need it.', 'The complete returns and damaged-item policy will be published before online shopping opens.'],
+    ['contact', 'Contact', 'Come and say hello soon.', 'The studio contact channel is being prepared and will be published here when confirmed.'],
+    ['privacy', 'Privacy', 'Straightforward privacy information.', 'The final privacy notice will be published before the public launch.'],
+    ['terms', 'Terms', 'The small print, written clearly.', 'The final website and shop terms will be published before online shopping opens.'],
+  ].map(([page, eyebrow, heading, description]) => ({
+    params: { page },
+    props: { eyebrow, heading, description },
+  }));
+}
+
+const { eyebrow, heading, description } = Astro.props;
+const title = `${heading} — Paperseal`;
+---
+<BaseLayout {title} {description} indexable={false}>
+  <PlaceholderPage {eyebrow} {heading} {description} />
+</BaseLayout>
