@@ -16,6 +16,9 @@ dist/
 .astro/
 .netlify/
 .vercel/
+storybook-build/
+storybook-static/
+visual-evidence/
 coverage/
 playwright-report/
 test-results/
