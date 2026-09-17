@@ -12,3 +12,7 @@
 - Build or update Storybook stories for design-system components and capture relevant visual evidence for review.
 - Never add secrets, real environment values, or human-approved coverage exclusions to the repository.
 - Keep CSS mobile-first, tokenized with meaningful functional names, no more than three nesting levels, and no `!important`.
+- Treat WCAG 2.2 AA as an implementation and verification requirement. Use semantic HTML and native controls by default.
+- For every interactive component, implement and verify keyboard access, visible focus, logical focus order, focus restoration, accessible names, correct ARIA state, dynamic announcements, reduced-motion behaviour, and sufficient contrast.
+- Add unit tests for state/semantics, Storybook states for relevant UI, and Playwright coverage for real keyboard/focus interaction. Run automated axe checks on representative pages.
+- Do not mark an accessibility exception as accepted or add an exclusion without explicit human approval; Codex may report and suggest exceptions only.
