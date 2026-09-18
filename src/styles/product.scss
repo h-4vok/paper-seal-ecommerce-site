@@ -46,20 +46,21 @@
 
 .product-gallery__stage {
   position: relative;
+  aspect-ratio: 7 / 5;
   min-height: 18rem;
-  max-height: 76vh;
   overflow: hidden;
   background: #d2c3b2;
 }
 
 .product-gallery__slide {
   display: grid;
-  min-height: 18rem;
+  height: 100%;
   place-items: center;
 }
 
 .product-gallery__slide picture {
   display: grid;
+  height: 100%;
   width: 100%;
   place-items: center;
 }
@@ -73,7 +74,7 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 76vh;
+  max-height: 100%;
   object-fit: contain;
 }
 
