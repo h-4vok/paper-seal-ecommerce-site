@@ -187,6 +187,15 @@ test.describe('product detail', () => {
     await page.keyboard.press('Escape');
     await expect(page.locator('[data-lightbox]')).not.toBeVisible();
   });
+
+  test('closes a portrait lightbox when clicking its surface outside the artwork', async ({ page }) => {
+    await page.goto('/artworks/beachy-head-ps-004');
+    await page.getByRole('button', { name: /Open .* full screen/ }).click();
+    const surface = page.locator('[data-lightbox-surface]');
+    await expect(surface).toBeVisible();
+    await surface.click({ position: { x: 8, y: 8 } });
+    await expect(page.locator('[data-lightbox]')).not.toBeVisible();
+  });
 });
 
 test.describe('cart and institutional routes', () => {

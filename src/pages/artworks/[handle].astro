@@ -101,6 +101,7 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
   const slides = [...(gallery?.querySelectorAll<HTMLElement>('[data-slide]') ?? [])];
   const controls = [...(gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-dot], [data-gallery-thumbnail]') ?? [])];
   const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const lightboxSurface = lightbox?.querySelector<HTMLElement>('[data-lightbox-surface]');
   const lightboxImage = lightbox?.querySelector<HTMLImageElement>('[data-lightbox-image]');
   let current = 0;
   let touchStart = 0;
@@ -118,7 +119,9 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
   }
   function closeLightbox() { if (lightbox?.open) lightbox.close(); }
   gallery?.querySelectorAll<HTMLElement>('[data-gallery-zoom]').forEach((trigger) => trigger.addEventListener('click', () => openLightbox(trigger.closest<HTMLElement>('[data-slide]')!)));
-  lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox || event.target === lightboxSurface) closeLightbox();
+  });
   lightbox?.addEventListener('cancel', (event) => { event.preventDefault(); closeLightbox(); });
   controls.forEach((control) => control.addEventListener('click', () => showSlide(Number(control.dataset.galleryDot ?? control.dataset.galleryThumbnail))));
   gallery?.querySelector('[data-gallery-previous]')?.addEventListener('click', () => showSlide(galleryIndex(current, slides.length, -1)));
