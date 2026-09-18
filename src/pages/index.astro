@@ -5,10 +5,12 @@ import heroImage from '../assets/home/hero-eastbourne-flower-bed.jpg';
 import beachHutsImage from '../assets/home/current-beach-huts.jpg';
 import harbourImage from '../assets/home/current-sovereign-harbour.jpg';
 import '../styles/home.scss';
+import { copy } from '../content/copy';
 
-const title = 'Paperseal — Art prints inspired by East Sussex';
-const description =
-  'Warm, characterful art prints inspired by Eastbourne and East Sussex, made to help your home feel more like yours.';
+const home = copy.home as any;
+
+const title = home.seo.title;
+const description = home.seo.description;
 const canonical = new URL('/', Astro.site ?? Astro.url.origin).href;
 const socialImage = new URL(heroImage.src, Astro.site ?? Astro.url.origin).href;
 const structuredData = [
@@ -40,14 +42,11 @@ const structuredData = [
   <main id="main-content">
     <section class="home-hero" aria-labelledby="home-hero-title">
       <div class="home-hero__copy">
-        <p class="eyebrow">Art prints for a brighter everyday</p>
-        <h1 id="home-hero-title">Make home feel more like yours.</h1>
-        <p class="home-hero__intro">
-          Art prints inspired by East Sussex — coastal paths, garden colour and the small,
-          beautiful things that make a place home.
-        </p>
+        <p class="eyebrow">{home.hero.eyebrow}</p>
+        <h1 id="home-hero-title">{home.hero.heading}</h1>
+        <p class="home-hero__intro">{home.hero.intro}</p>
         <a class="button-link" href="/artworks">
-          Explore prints <span aria-hidden="true">→</span>
+          {home.hero.cta} <span aria-hidden="true">→</span>
         </a>
       </div>
 
@@ -58,33 +57,21 @@ const structuredData = [
           sizes="(min-width: 64rem) 68vw, 100vw"
           formats={['avif', 'webp']}
           fallbackFormat="jpg"
-          alt="Eastbourne's pier and flower beds presented as a framed Paperseal print in a warm home interior"
+          alt={home.hero.imageAlt}
           loading="eager"
           fetchpriority="high"
         />
-        <figcaption>Eastbourne New Flower Bed · East Sussex</figcaption>
+        <figcaption>{home.hero.caption}</figcaption>
       </figure>
 
-      <p class="home-hero__note" aria-hidden="true">Homes are happier with art.</p>
+      <p class="home-hero__note" aria-hidden="true">{home.hero.note}</p>
     </section>
 
-    <section class="promise-strip" aria-label="What makes Paperseal different">
-      <article>
-        <span class="promise-strip__icon" aria-hidden="true">⌁</span>
-        <div><h2>Locally inspired</h2><p>East Sussex places and stories</p></div>
-      </article>
-      <article>
-        <span class="promise-strip__icon" aria-hidden="true">♡</span>
-        <div><h2>Independent</h2><p>A small studio, a bigger why</p></div>
-      </article>
-      <article>
-        <span class="promise-strip__icon" aria-hidden="true">✦</span>
-        <div><h2>Thoughtfully made</h2><p>For a kinder, brighter home</p></div>
-      </article>
-      <article>
-        <span class="promise-strip__icon" aria-hidden="true">≈</span>
-        <div><h2>Made to live with</h2><p>Art for everyday life</p></div>
-      </article>
+    <section class="promise-strip" aria-label={home.promise.label}>
+      {home.promise.items.map((item: { icon: string; heading: string; body: string }) => <article>
+        <span class="promise-strip__icon" aria-hidden="true">{item.icon}</span>
+        <div><h2>{item.heading}</h2><p>{item.body}</p></div>
+      </article>)}
     </section>
 
     <section class="manifesto section-shell" aria-labelledby="manifesto-title">
