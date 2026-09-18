@@ -77,6 +77,10 @@
   animation: lightbox-in 180ms ease-out;
 }
 
+dialog.product-lightbox {
+  background: transparent;
+}
+
 .product-lightbox::backdrop {
   background: rgb(9 22 38 / 78%);
   backdrop-filter: blur(0.2rem);
@@ -97,22 +101,6 @@
   border-radius: 0.15rem;
   box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 48%);
   object-fit: contain;
-}
-
-.product-lightbox__close {
-  position: absolute;
-  z-index: 1;
-  top: 0.4rem;
-  right: 0.7rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 0;
-  color: var(--color-ink);
-  background: var(--color-paper-light);
-  border-radius: 50%;
-  box-shadow: var(--shadow-soft);
-  cursor: pointer;
-  font-size: 1.6rem;
 }
 
 @keyframes lightbox-in {

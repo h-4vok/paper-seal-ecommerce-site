@@ -87,7 +87,6 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
       </article>
     </section>
     <dialog class="product-lightbox" data-lightbox aria-label="Expanded artwork image">
-      <button class="product-lightbox__close" type="button" aria-label="Close expanded image" data-lightbox-close>×</button>
       <div class="product-lightbox__surface" data-lightbox-surface>
         <img data-lightbox-image alt="" />
       </div>
@@ -119,7 +118,6 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
   }
   function closeLightbox() { if (lightbox?.open) lightbox.close(); }
   gallery?.querySelectorAll<HTMLElement>('[data-gallery-zoom]').forEach((trigger) => trigger.addEventListener('click', () => openLightbox(trigger.closest<HTMLElement>('[data-slide]')!)));
-  lightbox?.querySelector('[data-lightbox-close]')?.addEventListener('click', closeLightbox);
   lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
   lightbox?.addEventListener('cancel', (event) => { event.preventDefault(); closeLightbox(); });
   controls.forEach((control) => control.addEventListener('click', () => showSlide(Number(control.dataset.galleryDot ?? control.dataset.galleryThumbnail))));
