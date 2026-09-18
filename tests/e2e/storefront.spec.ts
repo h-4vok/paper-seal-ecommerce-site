@@ -188,7 +188,9 @@ test.describe('product detail', () => {
     await expect(page.locator('[data-lightbox]')).not.toBeVisible();
   });
 
-  test('closes a portrait lightbox when clicking its surface outside the artwork', async ({ page }) => {
+  test('closes a portrait lightbox when clicking its surface outside the artwork', async ({
+    page,
+  }) => {
     await page.goto('/artworks/beachy-head-ps-004');
     await page.getByRole('button', { name: /Open .* full screen/ }).click();
     const surface = page.locator('[data-lightbox-surface]');
