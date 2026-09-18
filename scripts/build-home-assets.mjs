@@ -24,10 +24,21 @@ for (const scene of manifest.scenes) {
   await mkdir(path.dirname(outputPath), { recursive: true });
 
   const { left, top, width, height } = scene.placement;
-  const artwork = await sharp(masterPath)
-    .resize({ width, height, fit: 'contain', background: '#e7e5e0' })
+  const artworkPipeline = sharp(masterPath);
+  const artwork = await (
+    scene.placement.preserveAspectRatio
+      ? artworkPipeline.resize({ width, withoutEnlargement: true })
+      : artworkPipeline.resize({ width, height, fit: 'contain', background: '#e7e5e0' })
+  )
     .jpeg({ quality: 92, mozjpeg: true })
     .toBuffer();
+
+  const artworkMetadata = await sharp(artwork).metadata();
+  if (scene.placement.preserveAspectRatio && artworkMetadata.height !== height) {
+    throw new Error(
+      `${scene.id} expected a ${width}×${height} proportional artwork, received ${artworkMetadata.width}×${artworkMetadata.height}.`,
+    );
+  }
 
   await sharp(scenePath)
     .composite([{ input: artwork, left, top }])
