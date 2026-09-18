@@ -19,13 +19,7 @@ const Picture = ({
 
 const galleryKinds: GalleryKind[] = ['room', 'room'];
 
-const ProductGalleryPreview = ({
-  count,
-  focused = false,
-}: {
-  count: 1 | 2;
-  focused?: boolean;
-}) => {
+const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focused?: boolean }) => {
   const images = galleryKinds.slice(0, count);
   return (
     <div className="product-gallery" aria-label={`${count}-image gallery example`}>
@@ -221,7 +215,7 @@ export const ProductGalleryFiveImages: Story = {
 export const ProductShareFallbackAndFocus: Story = {
   render: () => (
     <main className="product-layout">
-        <ProductGalleryPreview count={2} focused />
+      <ProductGalleryPreview count={2} focused />
       <article className="product-information">
         <p className="eyebrow">Share fallback · focused gallery</p>
         <h1>Seven Sisters from the Gardens</h1>

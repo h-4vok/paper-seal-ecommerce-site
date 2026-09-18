@@ -18,9 +18,7 @@ if (!masterDirectory) {
   throw new Error('Set PAPERSEAL_MASTER_DIR to the approved local master directory.');
 }
 
-const formats = [
-  ['jpg', 'jpeg', { quality: 94, mozjpeg: true }],
-];
+const formats = [['jpg', 'jpeg', { quality: 94, mozjpeg: true }]];
 
 async function writeDerivative(image, outputPath, format, options) {
   let lastError;

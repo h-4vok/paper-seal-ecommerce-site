@@ -93,9 +93,7 @@ describe('catalogue model', () => {
   it('accepts variable local gallery lengths', () => {
     expect(validateCatalogue([{ ...artworks[0], gallery: ['room'] }])[0].gallery).toHaveLength(1);
     expect(
-      validateCatalogue([
-        { ...artworks[0], gallery: ['room', 'flat', 'room'] },
-      ])[0].gallery,
+      validateCatalogue([{ ...artworks[0], gallery: ['room', 'flat', 'room'] }])[0].gallery,
     ).toHaveLength(3);
   });
 });

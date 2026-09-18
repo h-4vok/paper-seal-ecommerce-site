@@ -25,7 +25,9 @@ test.describe('catalogue discovery', () => {
     await search.fill('');
     await page.locator('[data-place]').selectOption('Sovereign Harbour');
     await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(2);
-    await expect(page.getByRole('heading', { name: 'Sovereign Harbour', exact: true })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'Sovereign Harbour', exact: true }),
+    ).toBeVisible();
 
     await page.locator('[data-place]').selectOption('all');
     await page.locator('[data-sort]').selectOption('title');
@@ -44,9 +46,7 @@ test.describe('catalogue discovery', () => {
     await target.scrollIntoViewIfNeeded();
     const previousScroll = await page.evaluate(() => window.scrollY);
     await target.click();
-    await expect(
-      page.getByRole('heading', { level: 1, name: 'South Downs I' }),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: 'South Downs I' })).toBeVisible();
     await page.goBack();
     await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
     await expect
