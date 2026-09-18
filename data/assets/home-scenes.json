@@ -4,7 +4,7 @@
   "scenes": [
     {
       "id": "home-hero-flower-bed",
-      "scene": "scripts/asset-sources/home-scenes/hero-scene-v2.jpg",
+      "scene": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
       "masterFile": "flower-bed.png",
       "masterTitle": "Eastbourne New Flower Bed",
       "masterDriveId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
@@ -19,24 +19,36 @@
       "prompt": "Wide British editorial interior; large front-facing light-oak frame with an exact landscape opening, narrow warm-white passepartout, warm ivory limewash, old wooden console, clothbound books, stoneware and restrained garden foliage; soft late-morning light; no artwork, people, logos or readable text."
     },
     {
-      "id": "home-current-seven-sisters",
-      "scene": "scripts/asset-sources/home-scenes/seven-sisters-scene.jpg",
-      "masterFile": "seven-sisters.png",
-      "masterTitle": "Seven Sisters from the Gardens",
-      "masterDriveId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
-      "output": "src/assets/home/current-seven-sisters.jpg",
-      "placement": { "left": 368, "top": 249, "width": 746, "height": 492 },
-      "prompt": "Tactile British home interior; front-facing pale-oak frame and blank landscape opening, warm putty wall, aged shelf, olive foliage, clothbound books and chalk stone; quiet overcast daylight; no artwork, people, logos or readable text."
+      "id": "home-current-beach-huts",
+      "scene": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
+      "masterFile": "beach-huts.png",
+      "masterTitle": "Beach Huts, Eastbourne",
+      "masterDriveId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
+      "output": "src/assets/home/current-beach-huts.jpg",
+      "placement": {
+        "left": 313,
+        "top": 190,
+        "width": 860,
+        "height": 611,
+        "preserveAspectRatio": true
+      },
+      "prompt": "Tactile British home interior; front-facing pale-oak frame with an exact landscape opening and narrow warm-white passepartout, warm putty wall, aged shelf, olive foliage, clothbound books and chalk stone; quiet overcast daylight; no artwork, people, logos or readable text."
     },
     {
       "id": "home-current-sovereign-harbour",
-      "scene": "scripts/asset-sources/home-scenes/sovereign-harbour-scene.jpg",
+      "scene": "scripts/asset-sources/home-scenes/templates/collection-dark-oak-landscape.jpg",
       "masterFile": "sovereign-harbour.png",
       "masterTitle": "Sovereign Harbour",
       "masterDriveId": "1ogcwYqFkL1KAAzc9zrbr8MNXdXmavLu4",
       "output": "src/assets/home/current-sovereign-harbour.jpg",
-      "placement": { "left": 592, "top": 210, "width": 578, "height": 359 },
-      "prompt": "Warm British editorial home scene; front-facing dark-stained frame and blank landscape opening, ivory plaster, walnut sideboard, books, stoneware, garden branch and deckled paper; gentle late-afternoon light; no artwork, people, logos or readable text."
+      "placement": {
+        "left": 532,
+        "top": 143,
+        "width": 696,
+        "height": 495,
+        "preserveAspectRatio": true
+      },
+      "prompt": "Warm British editorial home scene; front-facing dark-stained frame with an exact landscape opening and narrow warm-white passepartout, ivory plaster, walnut sideboard, books, stoneware, garden branch and deckled paper; gentle late-afternoon light; no artwork, people, logos or readable text."
     }
   ]
 }

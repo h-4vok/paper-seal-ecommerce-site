@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import heroImage from '../assets/home/hero-eastbourne-flower-bed.jpg';
-import sevenSistersImage from '../assets/home/current-seven-sisters.jpg';
+import beachHutsImage from '../assets/home/current-beach-huts.jpg';
 import harbourImage from '../assets/home/current-sovereign-harbour.jpg';
 import '../styles/home.scss';
 
@@ -121,23 +121,23 @@ const structuredData = [
       </header>
 
       <div class="collection-grid">
-        <a class="artwork-feature" href="/artworks" aria-label="Explore Seven Sisters from the Gardens">
+        <a class="artwork-feature" href="/artworks/beach-huts-eastbourne-ps-007" aria-label="Explore Beach Huts, Eastbourne">
           <Picture
-            src={sevenSistersImage}
+            src={beachHutsImage}
             widths={[480, 720, 960, 1484]}
             sizes="(min-width: 48rem) 50vw, 100vw"
             formats={['avif', 'webp']}
             fallbackFormat="jpg"
-            alt="Seven Sisters from the Gardens shown as a framed print on a warm textured wall"
+            alt="Beach Huts, Eastbourne shown as a framed print on a warm textured wall"
             loading="lazy"
           />
           <span class="artwork-feature__caption">
-            <span><strong>Seven Sisters from the Gardens</strong><small>Eastbourne · East Sussex</small></span>
+            <span><strong>Beach Huts, Eastbourne</strong><small>Eastbourne · East Sussex</small></span>
             <span aria-hidden="true">View print →</span>
           </span>
         </a>
 
-        <a class="artwork-feature" href="/artworks" aria-label="Explore Sovereign Harbour">
+        <a class="artwork-feature" href="/artworks/sovereign-harbour-ps-003" aria-label="Explore Sovereign Harbour">
           <Picture
             src={harbourImage}
             widths={[480, 720, 960, 1484]}
