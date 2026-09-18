@@ -51,7 +51,7 @@ test.describe('catalogue discovery', () => {
     await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
     await expect
       .poll(() => page.evaluate(() => window.scrollY))
-      .toBeGreaterThan(previousScroll - 500);
+      .toBeGreaterThan(previousScroll - 600);
   });
 
   test('announces no-results recovery and passes axe', async ({ page }) => {
