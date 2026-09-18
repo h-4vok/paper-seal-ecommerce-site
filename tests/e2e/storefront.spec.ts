@@ -182,6 +182,8 @@ test.describe('product detail', () => {
     await page.getByRole('button', { name: /Open .* full screen/ }).click();
     await expect(page.locator('[data-lightbox]')).toBeVisible();
     await expect(page.locator('[data-lightbox-image]')).toBeVisible();
+    const imageBounds = await page.locator('[data-lightbox-image]').boundingBox();
+    expect(imageBounds?.height).toBeLessThanOrEqual(844);
     await page.keyboard.press('Escape');
     await expect(page.locator('[data-lightbox]')).not.toBeVisible();
   });
