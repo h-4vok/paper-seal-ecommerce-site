@@ -5,43 +5,78 @@
       "assetBase": "flower-bed",
       "masterFile": "flower-bed.png",
       "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
-      "orientation": "landscape"
+      "orientation": "landscape",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": { "left": 546, "top": 154, "width": 764, "height": 543 }
+      }
     },
     {
       "assetBase": "seven-sisters",
       "masterFile": "seven-sisters.png",
       "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
-      "orientation": "landscape"
+      "orientation": "landscape",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": { "left": 546, "top": 154, "width": 764, "height": 543 }
+      }
     },
     {
       "assetBase": "sovereign-harbour",
       "masterFile": "sovereign-harbour.png",
       "driveFileId": "1ogcwYqFkL1KAAzc9zrbr8MNXdXmavLu4",
-      "orientation": "landscape"
+      "orientation": "landscape",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": { "left": 546, "top": 154, "width": 764, "height": 543 }
+      }
     },
     {
       "assetBase": "beachy-head",
       "masterFile": "beachy-head.png",
       "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
-      "orientation": "portrait"
+      "orientation": "portrait",
+      "roomScene": {
+        "template": "scripts/asset-sources/artwork-scenes/pale-oak-portrait.jpg",
+        "fit": "cover",
+        "placement": { "left": 506, "top": 137, "width": 458, "height": 641 }
+      }
     },
     {
       "assetBase": "meet-me-eastbourne",
       "masterFile": "meet-me-eastbourne.png",
       "driveFileId": "1SbtW06ZUnQtbKqcJ948nlUZSFW-vOVqO",
-      "orientation": "landscape"
+      "orientation": "landscape",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": { "left": 546, "top": 154, "width": 764, "height": 543 }
+      }
     },
     {
       "assetBase": "eastbourne-pier",
       "masterFile": "eastbourne-pier.png",
       "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
-      "orientation": "landscape"
+      "orientation": "landscape",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": { "left": 313, "top": 190, "width": 860, "height": 611 }
+      }
     },
     {
       "assetBase": "beach-huts",
       "masterFile": "beach-huts.png",
       "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
-      "orientation": "landscape"
+      "orientation": "landscape",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": { "left": 313, "top": 190, "width": 860, "height": 611 }
+      }
     }
   ]
 }

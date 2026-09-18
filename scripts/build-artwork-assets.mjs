@@ -40,9 +40,38 @@ const shadowSvg = (width, height, radius = 30) =>
   Buffer.from(`
   <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><defs><filter id="s" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="26" stdDeviation="${radius}" flood-color="#241d17" flood-opacity=".28"/></filter></defs><rect x="55" y="35" width="${width - 110}" height="${height - 120}" rx="5" fill="#f7f1e7" filter="url(#s)"/></svg>`);
 
-async function compose(masterPath, kind, orientation) {
+async function composeRoomScene(masterPath, roomScene) {
+  const scenePath = path.join(projectRoot, roomScene.template);
+  await access(scenePath);
+  const artwork = await sharp(masterPath)
+    .resize({
+      width: roomScene.placement.width,
+      height: roomScene.placement.height,
+      fit: roomScene.fit,
+      position: roomScene.position ?? 'centre',
+    })
+    .jpeg({ quality: 94, mozjpeg: true })
+    .toBuffer();
+
+  return sharp(scenePath)
+    .composite([
+      {
+        input: artwork,
+        left: roomScene.placement.left,
+        top: roomScene.placement.top,
+      },
+    ])
+    .jpeg({ quality: 92, mozjpeg: true })
+    .toBuffer();
+}
+
+async function compose(masterPath, kind, artwork) {
+  if (kind === 'room' && artwork.roomScene) {
+    return composeRoomScene(masterPath, artwork.roomScene);
+  }
+
   const canvas = { width: 1600, height: 1200 };
-  const portrait = orientation === 'portrait';
+  const portrait = artwork.orientation === 'portrait';
   const artBox =
     kind === 'detail'
       ? { width: portrait ? 610 : 1120, height: portrait ? 930 : 720 }
@@ -104,7 +133,7 @@ for (const artwork of manifest.artworks) {
   await mkdir(outputDirectory, { recursive: true });
 
   for (const kind of ['room', 'mounted', 'detail']) {
-    const composite = await compose(masterPath, kind, artwork.orientation);
+    const composite = await compose(masterPath, kind, artwork);
     for (const width of [720, 1440]) {
       for (const [extension, method, options] of formats) {
         const outputPath = path.join(outputDirectory, `${kind}-${width}.${extension}`);
