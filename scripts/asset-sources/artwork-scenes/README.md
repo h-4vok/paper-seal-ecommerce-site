@@ -1,7 +1,9 @@
 # Artwork scene templates
 
 These artwork-free, versioned templates are reusable sources for catalogue cards and product galleries.
-The artwork mapping and exact placement coordinates live in `data/assets/artworks.json`.
+The generated artwork mapping and exact placement coordinates live in `data/assets/artworks.json`.
+Edit `content/artworks.yaml` instead of editing the generated JSON manually, then run
+`bun run content:build:metadata` before generating derivatives.
 
 Approved production masters remain outside the repository. Regenerate responsive derivatives with:
 

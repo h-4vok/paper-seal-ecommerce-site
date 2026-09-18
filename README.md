@@ -16,3 +16,20 @@ bun run dev
 Before opening a PR, run `bun run validate` and `bun run test:e2e`. Feature pull requests target `staging`; `main` is reserved for releases.
 
 Read [`AGENTS.md`](./AGENTS.md) and [`CONTEXT.md`](./CONTEXT.md) before making project changes.
+
+## Artwork content workflow
+
+See [`content/WORKFLOW.md`](./content/WORKFLOW.md) for the full content and asset pipeline,
+including the Mermaid diagram.
+
+Edit `content/artworks.yaml` as the single source of truth for editorial artwork data and
+the internal asset-generation configuration. Generated JSON files in `src/data/` and
+`data/assets/` are committed build outputs and must not be edited manually.
+
+```sh
+bun run content:build:metadata
+PAPERSEAL_MASTER_DIR=/path/to/approved-masters bun run content:build:assets
+```
+
+`bun run content:build` runs both commands in that order. Production masters remain local
+or in approved storage; only public display derivatives are written to `public/images/`.

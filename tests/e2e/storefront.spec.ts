@@ -8,9 +8,9 @@ test.describe('catalogue discovery', () => {
     const response = await page.goto('/artworks');
     expect(response?.status()).toBe(200);
     const html = await response?.text();
-    expect(html?.match(/href="\/artworks\/[^"]+"/g)?.length).toBe(7);
+    expect(html?.match(/href="\/artworks\/[^"]+"/g)?.length).toBe(17);
     await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
-    await expect(page.locator('[data-artwork-card]')).toHaveCount(7);
+    await expect(page.locator('[data-artwork-card]')).toHaveCount(17);
     await expect(page.getByRole('button', { name: /Availability/ })).toHaveAttribute(
       'aria-disabled',
       'true',
@@ -24,14 +24,14 @@ test.describe('catalogue discovery', () => {
 
     await search.fill('');
     await page.locator('[data-place]').selectOption('Sovereign Harbour');
-    await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(1);
-    await expect(page.getByRole('heading', { name: 'Sovereign Harbour' })).toBeVisible();
+    await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(2);
+    await expect(page.getByRole('heading', { name: 'Sovereign Harbour', exact: true })).toBeVisible();
 
     await page.locator('[data-place]').selectOption('all');
     await page.locator('[data-sort]').selectOption('title');
     await expect(
       page.locator('[data-artwork-card]:visible').first().getByRole('heading'),
-    ).toHaveText('Beach Huts, Eastbourne');
+    ).toHaveText('Battle Abbey');
   });
 
   test('progressively reveals the complete index and restores practical back position', async ({
@@ -39,13 +39,13 @@ test.describe('catalogue discovery', () => {
   }) => {
     await page.goto('/artworks');
     await page.locator('[data-sentinel]').scrollIntoViewIfNeeded();
-    await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(7);
-    const target = page.getByRole('link', { name: /View Beach Huts, Eastbourne/ });
+    await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(8);
+    const target = page.getByRole('link', { name: /View South Downs I/ });
     await target.scrollIntoViewIfNeeded();
     const previousScroll = await page.evaluate(() => window.scrollY);
     await target.click();
     await expect(
-      page.getByRole('heading', { level: 1, name: 'Beach Huts, Eastbourne' }),
+      page.getByRole('heading', { level: 1, name: 'South Downs I' }),
     ).toBeVisible();
     await page.goBack();
     await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
@@ -65,7 +65,7 @@ test.describe('catalogue discovery', () => {
     await expect(page.locator('[data-result-count]')).toHaveText('0 artworks');
     await page.getByRole('button', { name: 'Reset catalogue' }).click();
     await expect(page.getByRole('searchbox', { name: 'Search artworks and places' })).toBeFocused();
-    await expect(page.locator('[data-result-count]')).toHaveText('7 artworks');
+    await expect(page.locator('[data-result-count]')).toHaveText('17 artworks');
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });
@@ -140,7 +140,7 @@ test.describe('product detail', () => {
     const stage = page.locator('[data-gallery-stage]');
     await stage.focus();
     await page.keyboard.press('ArrowRight');
-    await expect(page.getByRole('button', { name: /Show image 3:/ }).first()).toHaveAttribute(
+    await expect(page.getByRole('button', { name: /Show image 1:/ }).first()).toHaveAttribute(
       'aria-pressed',
       'true',
     );
@@ -172,7 +172,7 @@ test.describe('product detail', () => {
       Object.defineProperty(end, 'changedTouches', { value: [{ clientX: 160 }] });
       stage.dispatchEvent(end);
     });
-    await expect(page.locator('[data-slide="2"]')).toBeVisible();
+    await expect(page.locator('[data-slide="0"]')).toBeVisible();
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });

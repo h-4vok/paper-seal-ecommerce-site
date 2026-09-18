@@ -24,8 +24,6 @@ const structuredData = [
 const galleryLabels = {
   flat: (title: string) => `${title} artwork image`,
   room: (title: string) => `${title} presented in a room setting`,
-  mounted: (title: string) => `${title} shown as a mounted print`,
-  detail: (title: string) => `Paper and artwork detail from ${title}`,
 };
 const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
 ---
