@@ -1,0 +1,11 @@
+{
+  "source": {
+    "driveFileId": "1CaH-VC5tqqipAud3c_EMxyV8LB8gF0Xi",
+    "name": "logo_300px_transparent_reducedsize.png",
+    "dimensions": "300x300"
+  },
+  "webAsset": "src/assets/brand/paperseal-seal.png",
+  "favicon": "public/favicon.png",
+  "primaryNavy": "#0b2541",
+  "notes": "Official transparent seal supplied by the brand owner. The reduced-size source is visually equivalent to the standard 300 px export and is used to avoid unnecessary payload. The primary navy is sampled from the most frequent opaque logo pixels."
+}

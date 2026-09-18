@@ -1,0 +1,49 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+import JsonLd from '../components/JsonLd.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.scss';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  imageAlt?: string;
+  indexable?: boolean;
+  ogType?: 'website' | 'product';
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  bodyClass?: string;
+  showChrome?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  indexable,
+  ogType,
+  structuredData,
+  bodyClass,
+  showChrome = true,
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <SeoHead {title} {description} {canonical} {image} {imageAlt} {indexable} {ogType} />
+    {structuredData && <JsonLd data={structuredData} />}
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {showChrome && <SiteHeader currentPath={Astro.url.pathname} />}
+    <slot />
+    {showChrome && <SiteFooter />}
+  </body>
+</html>

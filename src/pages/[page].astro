@@ -1,0 +1,23 @@
+---
+import InstitutionalPage from '../components/InstitutionalPage.astro';
+import { institutionalPages, type InstitutionalPage as Page } from '../domain/institutional';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/institutional.scss';
+
+export function getStaticPaths() {
+  return institutionalPages.map((page) => ({ params: { page: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props as { page: Page };
+const canonical = `/${page.slug}`;
+const title = `${page.eyebrow} — Paperseal`;
+const structuredData = [
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
+    { '@type': 'ListItem', position: 2, name: page.eyebrow, item: `https://paperseal.co.uk${canonical}` },
+  ] },
+];
+---
+<BaseLayout {title} description={page.description} {canonical} indexable={page.indexable} {structuredData}>
+  <InstitutionalPage {page} />
+</BaseLayout>

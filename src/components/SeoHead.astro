@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  imageAlt?: string;
+  indexable?: boolean;
+  ogType?: 'website' | 'product';
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  image,
+  imageAlt = 'Paperseal art prints inspired by East Sussex',
+  indexable = true,
+  ogType = 'website',
+} = Astro.props;
+
+const resolvedCanonical = new URL(canonical, Astro.site ?? Astro.url.origin).href;
+const resolvedImage = image ? new URL(image, Astro.site ?? Astro.url.origin).href : undefined;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={resolvedCanonical} />
+<meta name="theme-color" content="#f3ede2" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={resolvedCanonical} />
+<meta property="og:site_name" content="Paperseal" />
+{resolvedImage && <meta property="og:image" content={resolvedImage} />}
+{resolvedImage && <meta property="og:image:alt" content={imageAlt} />}
+<meta name="twitter:card" content={resolvedImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{resolvedImage && <meta name="twitter:image" content={resolvedImage} />}
+{resolvedImage && <meta name="twitter:image:alt" content={imageAlt} />}
+{!indexable && <meta name="robots" content="noindex, nofollow" />}

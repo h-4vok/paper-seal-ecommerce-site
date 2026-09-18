@@ -1,0 +1,280 @@
+{
+  "generated": true,
+  "source": "content/artworks.yaml",
+  "generator": "content:build:metadata",
+  "provenance": "Display-only composites generated from approved Google Drive masters. Production masters are never committed or served.",
+  "artworks": [
+    {
+      "orientation": "landscape",
+      "assetBase": "flower-bed",
+      "masterFile": "flower-bed.png",
+      "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "seven-sisters",
+      "masterFile": "seven-sisters.png",
+      "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "portrait",
+      "assetBase": "beachy-head",
+      "masterFile": "beachy-head.png",
+      "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
+      "roomScene": {
+        "template": "scripts/asset-sources/artwork-scenes/pale-oak-portrait.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 506,
+          "top": 137,
+          "width": 458,
+          "height": 641
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "meet-me-eastbourne",
+      "masterFile": "meet-me-eastbourne.png",
+      "driveFileId": "1SbtW06ZUnQtbKqcJ948nlUZSFW-vOVqO",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "eastbourne-pier",
+      "masterFile": "eastbourne-pier.png",
+      "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 313,
+          "top": 190,
+          "width": 860,
+          "height": 611
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "beach-huts",
+      "masterFile": "beach-huts.png",
+      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 313,
+          "top": 190,
+          "width": 860,
+          "height": 611
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "south-downs-1",
+      "masterFile": "south-downs-1.png",
+      "driveFileId": "11ghqYTjjogWachHOW2EmnXSpVe4dMJmn",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "battle-abbey",
+      "masterFile": "battle-abbey.png",
+      "driveFileId": "15S4jRQMCVgRIyEIu9uUbtqpes7qatdeu",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "sovereign-harbour-waterfront",
+      "masterFile": "sovereign-harbour-waterfront.png",
+      "driveFileId": "1DaJd8VMFSNSG207bMTiJM7ksoDdYV3S-",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "long-man",
+      "masterFile": "long-man.png",
+      "driveFileId": "1EXlV-GfTOigNwuX9Sn1OV8dropkpvkI0",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "eastbourne-sunset",
+      "masterFile": "eastbourne-sunset.png",
+      "driveFileId": "1Fl-4xj-nHMqDzx-YycYfxjHF8pajjgvS",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 313,
+          "top": 190,
+          "width": 860,
+          "height": 611
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "martello-66",
+      "masterFile": "martello-66.png",
+      "driveFileId": "1LbKstBbKrXIEAF4MyA9X9PN8tRefzb9M",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "portrait",
+      "assetBase": "south-downs-cat-sunrise",
+      "masterFile": "south-downs-cat-sunrise.png",
+      "driveFileId": "1N05g-Y06lu5fd1Ihrldig3s3E8FUycSJ",
+      "roomScene": {
+        "template": "scripts/asset-sources/artwork-scenes/pale-oak-portrait.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 506,
+          "top": 137,
+          "width": 458,
+          "height": 641
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "devils-dyke",
+      "masterFile": "devils-dyke.png",
+      "driveFileId": "1OZno2NSnheCNBJ5WB4NU6MIImYT7dedO",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "portrait",
+      "assetBase": "parapente-south-downs",
+      "masterFile": "parapente-south-downs.png",
+      "driveFileId": "1W-0e0QJZhYlmC8qZsdpLXcEFMBF9SFFI",
+      "roomScene": {
+        "template": "scripts/asset-sources/artwork-scenes/pale-oak-portrait.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 506,
+          "top": 137,
+          "width": 458,
+          "height": 641
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "sovereign-harbour-high-res",
+      "masterFile": "sovereign-harbour-high-res.png",
+      "driveFileId": "1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    },
+    {
+      "orientation": "landscape",
+      "assetBase": "south-downs-jeeps-bike",
+      "masterFile": "south-downs-jeeps-bike.png",
+      "driveFileId": "1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz",
+      "roomScene": {
+        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+        "fit": "cover",
+        "placement": {
+          "left": 546,
+          "top": 154,
+          "width": 764,
+          "height": 543
+        }
+      }
+    }
+  ]
+}
