@@ -33,3 +33,7 @@ PAPERSEAL_MASTER_DIR=/path/to/approved-masters bun run content:build:assets
 
 `bun run content:build` runs both commands in that order. Production masters remain local
 or in approved storage; only public display derivatives are written to `public/images/`.
+
+# Content editing
+
+Editable page and interface copy is stored in `content/copy/en-GB`. See [`content/WORKFLOW.md`](content/WORKFLOW.md) for the editing, preview and validation workflow. Product/artwork data remains separate from editorial copy.

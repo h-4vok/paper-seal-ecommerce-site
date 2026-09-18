@@ -1,33 +1,35 @@
 ---
+import { copy, copyText } from '../content/copy';
+const shared = copy.shared as any;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="site-footer__lead">
-    <p class="eyebrow">Paperseal · East Sussex</p>
-    <p class="site-footer__statement">Places worth keeping.<br />Prints made to live with.</p>
+    <p class="eyebrow">{shared.footer.eyebrow}</p>
+    <p class="site-footer__statement">{shared.footer.statement}</p>
   </div>
   <div class="site-footer__columns">
     <nav aria-label="Explore">
-      <p>Explore</p>
-      <a href="/artworks">All artworks</a>
-      <a href="/our-story">Our story</a>
-      <a href="/east-sussex">East Sussex</a>
-      <a href="/journal">Journal</a>
+      <p>{shared.footer.explore}</p>
+      <a href="/artworks">{shared.footer.allArtworks}</a>
+      <a href="/our-story">{shared.footer.ourStory}</a>
+      <a href="/east-sussex">{shared.navigation.items[2].label}</a>
+      <a href="/journal">{shared.navigation.items[3].label}</a>
     </nav>
     <nav aria-label="Customer information">
-      <p>Good to know</p>
-      <a href="/delivery">Delivery</a>
-      <a href="/returns">Returns</a>
-      <a href="/contact">Contact</a>
+      <p>{shared.footer.goodToKnow}</p>
+      <a href="/delivery">{shared.footer.delivery}</a>
+      <a href="/returns">{shared.footer.returns}</a>
+      <a href="/contact">{shared.footer.contact}</a>
     </nav>
     <nav aria-label="Legal information">
-      <p>Small print</p>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
+      <p>{shared.footer.smallPrint}</p>
+      <a href="/privacy">{shared.footer.privacy}</a>
+      <a href="/terms">{shared.footer.terms}</a>
     </nav>
   </div>
   <div class="site-footer__base">
-    <p>© {year} Paperseal</p>
-    <p>Independent art from the Sussex coast.</p>
+    <p>{copyText(shared.footer.copyright, { year })}</p>
+    <p>{shared.footer.strapline}</p>
   </div>
 </footer>
