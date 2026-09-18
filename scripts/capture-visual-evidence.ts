@@ -5,7 +5,7 @@ const baseURL = process.env.DEPLOY_PRIME_URL ?? 'http://127.0.0.1:4321';
 const output = process.env.VISUAL_OUTPUT ?? 'visual-evidence';
 const browser = await chromium.launch();
 const loadPageImages = async (page: import('@playwright/test').Page) => {
-  for (const image of await page.locator('main img').all()) {
+  for (const image of await page.locator('main img:visible').all()) {
     await image.scrollIntoViewIfNeeded();
     await image.evaluate((element) => {
       if (element instanceof HTMLImageElement && !element.complete) {
