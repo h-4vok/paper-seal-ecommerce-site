@@ -8,7 +8,7 @@ const { artwork, eager = false } = Astro.props;
 <article class:list={['artwork-card', `artwork-card--${artwork.orientation}`]} data-artwork-card data-handle={artwork.handle}>
   <a href={`/artworks/${artwork.handle}`} aria-label={`View ${artwork.title}, ${artwork.placeName}`}>
     <div class="artwork-card__media">
-      <ArtworkPicture assetBase={artwork.assetBase} alt={`${artwork.alt}, presented as a mounted Paperseal print`} {eager} />
+      <ArtworkPicture assetBase={artwork.assetBase} kind="flat" alt={artwork.alt} {eager} />
     </div>
     <div class="artwork-card__caption">
       <div><h2>{artwork.title}</h2><p>{artwork.placeName} · {artwork.artworkCode}</p></div>

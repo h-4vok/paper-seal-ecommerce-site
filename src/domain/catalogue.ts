@@ -1,7 +1,7 @@
 import rawArtworks from '../data/artworks.json';
 
 export type Orientation = 'landscape' | 'portrait';
-export type GalleryKind = 'room' | 'mounted' | 'detail';
+export type GalleryKind = 'flat' | 'room' | 'mounted' | 'detail';
 
 export interface Artwork {
   artworkCode: string;
@@ -85,7 +85,7 @@ export function validateCatalogue(input: unknown): Artwork[] {
     if (
       !Array.isArray(item.gallery) ||
       item.gallery.length === 0 ||
-      item.gallery.some((kind) => !['room', 'mounted', 'detail'].includes(String(kind)))
+      item.gallery.some((kind) => !['flat', 'room', 'mounted', 'detail'].includes(String(kind)))
     ) {
       throw new Error(`Artwork ${index + 1} has an invalid gallery.`);
     }

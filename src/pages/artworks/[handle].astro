@@ -22,11 +22,12 @@ const structuredData = [
   ] },
 ];
 const galleryLabels = {
+  flat: (title: string) => `${title} artwork image`,
   room: (title: string) => `${title} presented in a room setting`,
   mounted: (title: string) => `${title} shown as a mounted print`,
   detail: (title: string) => `Paper and artwork detail from ${title}`,
 };
-const gallery = artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }));
+const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
 ---
 <BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a Paperseal print`} ogType="product" {structuredData} bodyClass="product-body">
   <main id="main-content" class="product-page" data-product-page>
@@ -36,7 +37,9 @@ const gallery = artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind
         <div class="product-gallery__stage" data-gallery-stage tabindex="0" aria-roledescription="carousel">
           {gallery.map((image, index) => (
             <div class="product-gallery__slide" data-slide={index} hidden={index !== 0}>
-              <ArtworkPicture assetBase={artwork.assetBase} kind={image.kind} alt={image.label} sizes="(min-width: 64rem) 62vw, 100vw" eager={index === 0} />
+              <button class="product-gallery__zoom-trigger" type="button" aria-label={`Open ${image.label} full screen`} data-gallery-zoom>
+                <ArtworkPicture assetBase={artwork.assetBase} kind={image.kind} alt={image.label} sizes="(min-width: 64rem) 62vw, 100vw" eager={index === 0} />
+              </button>
             </div>
           ))}
           {gallery.length > 1 && <button class="gallery-arrow gallery-arrow--previous" type="button" aria-label="Previous image" data-gallery-previous>←</button>}
@@ -83,6 +86,12 @@ const gallery = artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind
         <p class="product-policy-links"><a href="/delivery">Delivery notes</a> · <a href="/returns">Returns information</a></p>
       </article>
     </section>
+    <dialog class="product-lightbox" data-lightbox aria-label="Expanded artwork image">
+      <button class="product-lightbox__close" type="button" aria-label="Close expanded image" data-lightbox-close>×</button>
+      <div class="product-lightbox__surface" data-lightbox-surface>
+        <img data-lightbox-image alt="" />
+      </div>
+    </dialog>
   </main>
 </BaseLayout>
 
@@ -92,6 +101,8 @@ const gallery = artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind
   const stage = gallery?.querySelector('[data-gallery-stage]');
   const slides = [...(gallery?.querySelectorAll<HTMLElement>('[data-slide]') ?? [])];
   const controls = [...(gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-dot], [data-gallery-thumbnail]') ?? [])];
+  const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>('[data-lightbox-image]');
   let current = 0;
   let touchStart = 0;
   function showSlide(index: number) {
@@ -99,6 +110,18 @@ const gallery = artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind
     slides.forEach((slide, slideIndex) => { slide.hidden = slideIndex !== current; });
     controls.forEach((control) => { const controlIndex = Number(control.dataset.galleryDot ?? control.dataset.galleryThumbnail); control.setAttribute('aria-pressed', String(controlIndex === current)); });
   }
+  function openLightbox(slide: HTMLElement) {
+    const image = slide.querySelector<HTMLImageElement>('img');
+    if (!image || !lightbox || !lightboxImage) return;
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt;
+    lightbox.showModal();
+  }
+  function closeLightbox() { if (lightbox?.open) lightbox.close(); }
+  gallery?.querySelectorAll<HTMLElement>('[data-gallery-zoom]').forEach((trigger) => trigger.addEventListener('click', () => openLightbox(trigger.closest<HTMLElement>('[data-slide]')!)));
+  lightbox?.querySelector('[data-lightbox-close]')?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+  lightbox?.addEventListener('cancel', (event) => { event.preventDefault(); closeLightbox(); });
   controls.forEach((control) => control.addEventListener('click', () => showSlide(Number(control.dataset.galleryDot ?? control.dataset.galleryThumbnail))));
   gallery?.querySelector('[data-gallery-previous]')?.addEventListener('click', () => showSlide(galleryIndex(current, slides.length, -1)));
   gallery?.querySelector('[data-gallery-next]')?.addEventListener('click', () => showSlide(galleryIndex(current, slides.length, 1)));

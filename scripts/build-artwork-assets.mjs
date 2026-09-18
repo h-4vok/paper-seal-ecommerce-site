@@ -66,6 +66,12 @@ async function composeRoomScene(masterPath, roomScene) {
 }
 
 async function compose(masterPath, kind, artwork) {
+  if (kind === 'flat') {
+    return sharp(masterPath)
+      .resize({ width: 2400, withoutEnlargement: true })
+      .jpeg({ quality: 90, mozjpeg: true })
+      .toBuffer();
+  }
   if (kind === 'room' && artwork.roomScene) {
     return composeRoomScene(masterPath, artwork.roomScene);
   }
@@ -132,7 +138,7 @@ for (const artwork of manifest.artworks) {
   const outputDirectory = path.join(projectRoot, 'public', 'images', 'artworks', artwork.assetBase);
   await mkdir(outputDirectory, { recursive: true });
 
-  for (const kind of ['room', 'mounted', 'detail']) {
+  for (const kind of ['flat', 'room', 'mounted', 'detail']) {
     const composite = await compose(masterPath, kind, artwork);
     for (const width of [720, 1440]) {
       for (const [extension, method, options] of formats) {

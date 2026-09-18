@@ -176,6 +176,15 @@ test.describe('product detail', () => {
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });
+
+  test('opens and closes the active gallery image in an accessible lightbox', async ({ page }) => {
+    await page.goto(productPath);
+    await page.getByRole('button', { name: /Open .* full screen/ }).click();
+    await expect(page.locator('[data-lightbox]')).toBeVisible();
+    await expect(page.locator('[data-lightbox-image]')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('[data-lightbox]')).not.toBeVisible();
+  });
 });
 
 test.describe('cart and institutional routes', () => {
