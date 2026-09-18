@@ -7,17 +7,32 @@ const projectRoot = path.resolve(import.meta.dirname, '..');
 const manifest = JSON.parse(
   await readFile(path.join(projectRoot, 'data', 'assets', 'artworks.json'), 'utf8'),
 );
+if (manifest.generated !== true || !Array.isArray(manifest.artworks)) {
+  throw new Error(
+    'Asset metadata is generated and must be rebuilt with `bun run content:build:metadata`.',
+  );
+}
 const masterDirectory = process.env.PAPERSEAL_MASTER_DIR;
 
 if (!masterDirectory) {
   throw new Error('Set PAPERSEAL_MASTER_DIR to the approved local master directory.');
 }
 
-const formats = [
-  ['jpg', 'jpeg', { quality: 86, mozjpeg: true }],
-  ['webp', 'webp', { quality: 84, effort: 5 }],
-  ['avif', 'avif', { quality: 62, effort: 5 }],
-];
+const formats = [['jpg', 'jpeg', { quality: 94, mozjpeg: true }]];
+
+async function writeDerivative(image, outputPath, format, options) {
+  let lastError;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      await image.clone()[format](options).toFile(outputPath);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, 250 * attempt));
+    }
+  }
+  throw lastError;
+}
 
 const textureSvg = (width, height, tone) =>
   Buffer.from(`
@@ -138,15 +153,17 @@ for (const artwork of manifest.artworks) {
   const outputDirectory = path.join(projectRoot, 'public', 'images', 'artworks', artwork.assetBase);
   await mkdir(outputDirectory, { recursive: true });
 
-  for (const kind of ['flat', 'room', 'mounted', 'detail']) {
+  for (const kind of ['flat', 'room']) {
     const composite = await compose(masterPath, kind, artwork);
     for (const width of [720, 1440]) {
       for (const [extension, method, options] of formats) {
         const outputPath = path.join(outputDirectory, `${kind}-${width}.${extension}`);
-        await sharp(composite)
-          .resize({ width, withoutEnlargement: true })
-          [method](options)
-          .toFile(outputPath);
+        await writeDerivative(
+          sharp(composite).resize({ width, withoutEnlargement: true }),
+          outputPath,
+          method,
+          options,
+        );
       }
     }
   }

@@ -14,8 +14,8 @@ import {
 
 describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
-    expect(artworks).toHaveLength(7);
-    expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(7);
+    expect(artworks).toHaveLength(17);
+    expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(17);
     expect(PRINT_SIZES.map(({ dimensions }) => dimensions)).toEqual([
       '17.8 × 12.7 cm · 7 × 5 in',
       '21 × 29.7 cm · 8.27 × 11.69 in',
@@ -56,12 +56,13 @@ describe('catalogue model', () => {
     });
     expect(eastbourne.map(({ title }) => title)).toEqual([
       'Beach Huts, Eastbourne',
+      'Eastbourne Sunset',
       'Flower Bed',
       'Meet Me in Eastbourne',
     ]);
     expect(filterCatalogue(artworks, { query: 'zzzz', place: 'all', sort: 'newest' })).toEqual([]);
     expect(filterCatalogue(artworks, { query: '', place: 'all', sort: 'newest' })[0].title).toBe(
-      'Flower Bed',
+      'South Downs I',
     );
     const tied = [
       { ...artworks[0], artworkCode: 'PS-020', publishedOrder: 1 },
@@ -92,9 +93,7 @@ describe('catalogue model', () => {
   it('accepts variable local gallery lengths', () => {
     expect(validateCatalogue([{ ...artworks[0], gallery: ['room'] }])[0].gallery).toHaveLength(1);
     expect(
-      validateCatalogue([
-        { ...artworks[0], gallery: ['room', 'mounted', 'detail', 'mounted', 'detail'] },
-      ])[0].gallery,
-    ).toHaveLength(5);
+      validateCatalogue([{ ...artworks[0], gallery: ['room', 'flat', 'room'] }])[0].gallery,
+    ).toHaveLength(3);
   });
 });

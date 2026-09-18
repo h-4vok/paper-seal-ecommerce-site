@@ -113,7 +113,7 @@ test('catalogue and cart destinations are honest and SEO files are crawlable', a
   await page.goto('/artworks');
   await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
-  await expect(page.locator('[data-artwork-card]')).toHaveCount(7);
+  await expect(page.locator('[data-artwork-card]')).toHaveCount(17);
 
   await page.goto('/cart');
   await expect(

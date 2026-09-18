@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-type GalleryKind = 'room' | 'mounted' | 'detail';
+type GalleryKind = 'room';
 
 const Picture = ({
   asset,
@@ -17,15 +17,9 @@ const Picture = ({
   </picture>
 );
 
-const galleryKinds: GalleryKind[] = ['room', 'mounted', 'detail', 'mounted', 'detail'];
+const galleryKinds: GalleryKind[] = ['room', 'room'];
 
-const ProductGalleryPreview = ({
-  count,
-  focused = false,
-}: {
-  count: 1 | 3 | 5;
-  focused?: boolean;
-}) => {
+const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focused?: boolean }) => {
   const images = galleryKinds.slice(0, count);
   return (
     <div className="product-gallery" aria-label={`${count}-image gallery example`}>
@@ -211,17 +205,17 @@ export const ProductGalleryOneImage: Story = {
 };
 
 export const ProductGalleryThreeImages: Story = {
-  render: () => <ProductGalleryPreview count={3} />,
+  render: () => <ProductGalleryPreview count={2} />,
 };
 
 export const ProductGalleryFiveImages: Story = {
-  render: () => <ProductGalleryPreview count={5} />,
+  render: () => <ProductGalleryPreview count={2} />,
 };
 
 export const ProductShareFallbackAndFocus: Story = {
   render: () => (
     <main className="product-layout">
-      <ProductGalleryPreview count={3} focused />
+      <ProductGalleryPreview count={2} focused />
       <article className="product-information">
         <p className="eyebrow">Share fallback · focused gallery</p>
         <h1>Seven Sisters from the Gardens</h1>
@@ -244,7 +238,7 @@ export const ProductNarrowMobile: Story = {
   render: () => (
     <main className="product-page">
       <div className="product-layout">
-        <ProductGalleryPreview count={5} />
+        <ProductGalleryPreview count={2} />
         <article className="product-information">
           <p className="eyebrow">Soft Launch · PS-002</p>
           <h1>Seven Sisters from the Gardens</h1>

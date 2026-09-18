@@ -1,7 +1,7 @@
 ---
 interface Props {
   assetBase: string;
-  kind?: 'flat' | 'room' | 'mounted' | 'detail';
+  kind?: 'flat' | 'room';
   alt: string;
   sizes?: string;
   eager?: boolean;
@@ -16,10 +16,7 @@ const {
 } = Astro.props;
 const base = `/images/artworks/${assetBase}/${kind}`;
 ---
-<picture>
-  <source type="image/avif" srcset={`${base}-720.avif 720w, ${base}-1440.avif 1440w`} {sizes} />
-  <source type="image/webp" srcset={`${base}-720.webp 720w, ${base}-1440.webp 1440w`} {sizes} />
-  <img
+<img
     src={`${base}-1440.jpg`}
     srcset={`${base}-720.jpg 720w, ${base}-1440.jpg 1440w`}
     {sizes}
@@ -30,4 +27,3 @@ const base = `/images/artworks/${assetBase}/${kind}`;
     decoding="async"
     fetchpriority={eager ? 'high' : 'auto'}
   />
-</picture>

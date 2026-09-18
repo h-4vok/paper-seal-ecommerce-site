@@ -24,6 +24,9 @@
     "capture:visual": "tsx scripts/capture-visual-evidence.ts",
     "assets:home": "node scripts/build-home-assets.mjs",
     "assets:artworks": "node scripts/build-artwork-assets.mjs",
+    "content:build:metadata": "node scripts/build-content-metadata.mjs",
+    "content:build:assets": "node scripts/build-artwork-assets.mjs",
+    "content:build": "bun run content:build:metadata && bun run content:build:assets",
     "prepare": "husky",
     "validate": "bun run lint && bun run format && bun run typecheck && bun run test && bun run build",
     "check": "npm run validate && npm run test:e2e && npm run build-storybook"
@@ -33,6 +36,7 @@
     "astro": "^5.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "yaml": "^2.9.1",
     "zod": "^4.1.0"
   },
   "devDependencies": {
