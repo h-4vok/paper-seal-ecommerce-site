@@ -39,9 +39,19 @@ browse:
 process:
   eyebrow: Made by people, not a product machine
   heading: From a local moment to a print worth keeping.
-  body: "Paperseal begins with looking carefully: at a familiar place, an unexpected colour, or the way a season changes a walk you know by heart."
+  body: 'Paperseal begins with looking carefully: at a familiar place, an unexpected colour, or the way a season changes a walk you know by heart.'
   cta: Meet Paperseal
   steps:
     - { number: '01', heading: Notice, body: A local scene catches the eye and earns another look. }
-    - { number: '02', heading: Make, body: Colour, atmosphere and small details turn a view into a story. }
-    - { number: '03', heading: Print, body: The final piece is prepared with care for a crisp, lasting result. }
+    - {
+        number: '02',
+        heading: Make,
+        body: Colour,
+        atmosphere and small details turn a view into a story.,
+      }
+    - {
+        number: '03',
+        heading: Print,
+        body: The final piece is prepared with care for a crisp,
+        lasting result.,
+      }

@@ -74,6 +74,7 @@ does not replace the requirement for enough free disk space and memory.
 
 The current catalogue contains 17 artworks. Editorial titles, descriptions, and ordering
 can be refined later by editing only `artworks.yaml` and rerunning the metadata build.
+
 # Editorial copy workflow
 
 Page and interface copy lives in `content/copy/en-GB`. The locale directory is explicit: there is no implicit fallback, and a future locale must provide its own validated files.

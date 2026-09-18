@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { copy, copyLines, copyText, loadCopy } from './copy';
 
-type LoadedCopy = { shared: { navigation: { items: unknown[] } }; home: { seo: { title: string } } };
+type LoadedCopy = {
+  shared: { navigation: { items: unknown[] } };
+  home: { seo: { title: string } };
+};
 
 describe('editorial copy', () => {
   it('loads the declared locale without a fallback', () => {
