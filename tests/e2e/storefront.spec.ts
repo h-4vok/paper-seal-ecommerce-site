@@ -102,9 +102,9 @@ test.describe('product detail', () => {
     ).toHaveCount(1);
     await expect(page.getByText('Seven Sisters, East Sussex')).toBeVisible();
     await expect(page.getByRole('radio')).toHaveCount(5);
-    await expect(page.getByText(/17\.8 × 12\.7 cm · 7 × 5 in/)).toBeVisible();
-    await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/)).toBeVisible();
-    await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/)).toBeVisible();
+    await expect(page.getByText(/17\.8 × 12\.7 cm · 7 × 5 in/).first()).toBeVisible();
+    await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/).first()).toBeVisible();
+    await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/).first()).toBeVisible();
     expect(await page.locator('main').innerText()).not.toMatch(
       /\b(?:A5|A2|review|In stock|Add to cart)\b/i,
     );
