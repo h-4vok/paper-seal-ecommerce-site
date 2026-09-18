@@ -62,14 +62,14 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
         <h1>{artwork.title}</h1>
         <a class="product-place" href={`/artworks?place=${encodeURIComponent(artwork.placeName)}`}>{artwork.placeName}, East Sussex</a>
         <p class="product-description">{artwork.description}</p>
-        <form class="product-options" data-product-options>
+    <form class="product-options" data-product-options>
           <fieldset><legend>Select size</legend><div class="option-grid option-grid--three">
             {PRINT_SIZES.map((size, index) => <label><input type="radio" name="size" value={size.id} checked={index === 0} /><span><strong>{size.label}</strong><small>{size.dimensions}</small></span></label>)}
           </div></fieldset>
           <fieldset><legend>Framing</legend><div class="option-grid option-grid--two">
             {FRAMING_OPTIONS.map((frame, index) => <label><input type="radio" name="framing" value={frame.id} checked={index === 0} /><span><strong>{frame.label}</strong><small>{index === 0 ? 'Print only' : 'One frame style'}</small></span></label>)}
           </div></fieldset>
-          <p class="option-announcement" aria-live="polite" data-option-announcement>Small, 7 × 5, Unframed selected.</p>
+          <p class="option-announcement" aria-live="polite" data-option-announcement>Small, 17.8 × 12.7 cm · 7 × 5 in, Unframed selected.</p>
         </form>
         <section class="commerce-coming-soon" aria-labelledby="commerce-title">
           <p class="eyebrow" id="commerce-title">Alpha preview</p>
@@ -135,7 +135,11 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
   optionForm?.addEventListener('change', () => {
     if (!(optionForm instanceof HTMLFormElement) || !(optionAnnouncement instanceof HTMLElement)) return;
     const data = new FormData(optionForm);
-    const size = { small: 'Small, 7 × 5', medium: 'Medium, A4', large: 'Large, A3' }[String(data.get('size')) as 'small' | 'medium' | 'large'] ?? '';
+    const size = {
+      small: 'Small, 17.8 × 12.7 cm · 7 × 5 in',
+      medium: 'Medium, 21 × 29.7 cm · 8.27 × 11.69 in',
+      large: 'Large, 29.7 × 42 cm · 11.69 × 16.54 in',
+    }[String(data.get('size')) as 'small' | 'medium' | 'large'] ?? '';
     const frame = data.get('framing') === 'framed' ? 'Framed' : 'Unframed';
     optionAnnouncement.textContent = `${size}, ${frame} selected. This does not reserve stock.`;
   });

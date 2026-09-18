@@ -102,9 +102,9 @@ test.describe('product detail', () => {
     ).toHaveCount(1);
     await expect(page.getByText('Seven Sisters, East Sussex')).toBeVisible();
     await expect(page.getByRole('radio')).toHaveCount(5);
-    await expect(page.getByText('7 × 5', { exact: true })).toBeVisible();
-    await expect(page.getByText('A4', { exact: true })).toBeVisible();
-    await expect(page.getByText('A3', { exact: true })).toBeVisible();
+    await expect(page.getByText(/17\.8 × 12\.7 cm · 7 × 5 in/)).toBeVisible();
+    await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/)).toBeVisible();
+    await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/)).toBeVisible();
     expect(await page.locator('main').innerText()).not.toMatch(
       /\b(?:A5|A2|review|In stock|Add to cart)\b/i,
     );
@@ -148,7 +148,7 @@ test.describe('product detail', () => {
     await page.getByRole('radio', { name: /Medium/ }).check();
     await page.getByRole('radio', { name: /Framed/ }).check();
     await expect(page.locator('[data-option-announcement]')).toContainText(
-      'Medium, A4, Framed selected',
+      'Medium, 21 × 29.7 cm · 8.27 × 11.69 in, Framed selected',
     );
     await page.getByRole('button', { name: 'Copy link' }).click();
     await expect(page.locator('[data-share-status]')).toHaveText('Link copied to clipboard.');
