@@ -1,0 +1,155 @@
+---
+import ArtworkPicture from '../../components/ArtworkPicture.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { FRAMING_OPTIONS, PRINT_SIZES, artworks, productStructuredData, type Artwork } from '../../domain/catalogue';
+import '../../styles/product.scss';
+
+export function getStaticPaths() {
+  return artworks.map((artwork) => ({ params: { handle: artwork.handle }, props: { artwork } }));
+}
+
+const { artwork } = Astro.props as { artwork: Artwork };
+const canonical = `/artworks/${artwork.handle}`;
+const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
+const title = `${artwork.title} — East Sussex art print | Paperseal`;
+const description = `${artwork.description} Explore this Paperseal print inspired by ${artwork.placeName}.`;
+const structuredData = [
+  productStructuredData(artwork, `https://paperseal.co.uk${canonical}`, `https://paperseal.co.uk${shareImage}`),
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
+    { '@type': 'ListItem', position: 2, name: 'Artworks', item: 'https://paperseal.co.uk/artworks' },
+    { '@type': 'ListItem', position: 3, name: artwork.title, item: `https://paperseal.co.uk${canonical}` },
+  ] },
+];
+const galleryLabels = {
+  flat: (title: string) => `${title} artwork image`,
+  room: (title: string) => `${title} presented in a room setting`,
+  mounted: (title: string) => `${title} shown as a mounted print`,
+  detail: (title: string) => `Paper and artwork detail from ${title}`,
+};
+const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
+---
+<BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a Paperseal print`} ogType="product" {structuredData} bodyClass="product-body">
+  <main id="main-content" class="product-page" data-product-page>
+    <nav class="product-breadcrumbs" aria-label="Breadcrumb"><a href="/artworks">Artworks</a><span aria-hidden="true">/</span><span aria-current="page">{artwork.title}</span></nav>
+    <section class="product-layout">
+      <div class="product-gallery" data-gallery aria-label={`${artwork.title} image gallery`}>
+        <div class="product-gallery__stage" data-gallery-stage tabindex="0" aria-roledescription="carousel">
+          {gallery.map((image, index) => (
+            <div class="product-gallery__slide" data-slide={index} hidden={index !== 0}>
+              <button class="product-gallery__zoom-trigger" type="button" aria-label={`Open ${image.label} full screen`} data-gallery-zoom>
+                <ArtworkPicture assetBase={artwork.assetBase} kind={image.kind} alt={image.label} sizes="(min-width: 64rem) 62vw, 100vw" eager={index === 0} />
+              </button>
+            </div>
+          ))}
+          {gallery.length > 1 && <button class="gallery-arrow gallery-arrow--previous" type="button" aria-label="Previous image" data-gallery-previous>←</button>}
+          {gallery.length > 1 && <button class="gallery-arrow gallery-arrow--next" type="button" aria-label="Next image" data-gallery-next>→</button>}
+        </div>
+        {gallery.length > 1 && <div class="product-gallery__dots" aria-label="Choose gallery image">
+          {gallery.map((image, index) => <button type="button" aria-label={`Show image ${index + 1}: ${image.label}`} aria-pressed={index === 0 ? 'true' : 'false'} data-gallery-dot={index}><span class="visually-hidden">{image.label}</span></button>)}
+        </div>}
+        {gallery.length > 1 && <div class="product-gallery__thumbs">
+          {gallery.map((image, index) => (
+            <button type="button" class="product-gallery__thumbnail" aria-label={`Show image ${index + 1}: ${image.label}`} aria-pressed={index === 0 ? 'true' : 'false'} data-gallery-thumbnail={index}>
+              <ArtworkPicture assetBase={artwork.assetBase} kind={image.kind} alt="" sizes="8rem" />
+            </button>
+          ))}
+        </div>}
+      </div>
+
+      <article class="product-information">
+        <p class="eyebrow">{artwork.collections[0]} · {artwork.artworkCode}</p>
+        <h1>{artwork.title}</h1>
+        <a class="product-place" href={`/artworks?place=${encodeURIComponent(artwork.placeName)}`}>{artwork.placeName}, East Sussex</a>
+        <p class="product-description">{artwork.description}</p>
+    <form class="product-options" data-product-options>
+          <fieldset><legend>Select size</legend><div class="option-grid option-grid--three">
+            {PRINT_SIZES.map((size, index) => <label><input type="radio" name="size" value={size.id} checked={index === 0} /><span><strong>{size.label}</strong><small>{size.dimensions}</small></span></label>)}
+          </div></fieldset>
+          <fieldset><legend>Framing</legend><div class="option-grid option-grid--two">
+            {FRAMING_OPTIONS.map((frame, index) => <label><input type="radio" name="framing" value={frame.id} checked={index === 0} /><span><strong>{frame.label}</strong><small>{index === 0 ? 'Print only' : 'One frame style'}</small></span></label>)}
+          </div></fieldset>
+          <p class="option-announcement" aria-live="polite" data-option-announcement>Small, 17.8 × 12.7 cm · 7 × 5 in, Unframed selected.</p>
+        </form>
+        <section class="commerce-coming-soon" aria-labelledby="commerce-title">
+          <p class="eyebrow" id="commerce-title">Alpha preview</p>
+          <p class="commerce-coming-soon__title" tabindex="0">Online shop coming soon</p>
+          <p>Explore the artwork, sizes and framing now. Purchasing and live availability will open after the Shopify connection is ready and tested.</p>
+        </section>
+        <div class="product-actions" aria-label="Share this artwork">
+          <button class="text-link" type="button" data-share>Share artwork</button><button class="text-link" type="button" data-copy-link>Copy link</button>
+          <p class="visually-hidden" aria-live="polite" data-share-status></p>
+        </div>
+        <dl class="product-trust">
+          <div><dt>Print sizes</dt><dd>7 × 5, A4 and A3</dd></div><div><dt>Presentation</dt><dd>Framed or unframed</dd></div><div><dt>Online ordering</dt><dd>Coming soon</dd></div>
+        </dl>
+        <p class="product-policy-links"><a href="/delivery">Delivery notes</a> · <a href="/returns">Returns information</a></p>
+      </article>
+    </section>
+    <dialog class="product-lightbox" data-lightbox aria-label="Expanded artwork image">
+      <div class="product-lightbox__surface" data-lightbox-surface>
+        <img data-lightbox-image alt="" />
+      </div>
+    </dialog>
+  </main>
+</BaseLayout>
+
+<script>
+  import { galleryIndex } from '../../domain/catalogue';
+  const gallery = document.querySelector('[data-gallery]');
+  const stage = gallery?.querySelector('[data-gallery-stage]');
+  const slides = [...(gallery?.querySelectorAll<HTMLElement>('[data-slide]') ?? [])];
+  const controls = [...(gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-dot], [data-gallery-thumbnail]') ?? [])];
+  const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const lightboxSurface = lightbox?.querySelector<HTMLElement>('[data-lightbox-surface]');
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+  let current = 0;
+  let touchStart = 0;
+  function showSlide(index: number) {
+    current = index;
+    slides.forEach((slide, slideIndex) => { slide.hidden = slideIndex !== current; });
+    controls.forEach((control) => { const controlIndex = Number(control.dataset.galleryDot ?? control.dataset.galleryThumbnail); control.setAttribute('aria-pressed', String(controlIndex === current)); });
+  }
+  function openLightbox(slide: HTMLElement) {
+    const image = slide.querySelector<HTMLImageElement>('img');
+    if (!image || !lightbox || !lightboxImage) return;
+    lightboxImage.src = image.currentSrc || image.src;
+    lightboxImage.alt = image.alt;
+    lightbox.showModal();
+  }
+  function closeLightbox() { if (lightbox?.open) lightbox.close(); }
+  gallery?.querySelectorAll<HTMLElement>('[data-gallery-zoom]').forEach((trigger) => trigger.addEventListener('click', () => openLightbox(trigger.closest<HTMLElement>('[data-slide]')!)));
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox || event.target === lightboxSurface) closeLightbox();
+  });
+  lightbox?.addEventListener('cancel', (event) => { event.preventDefault(); closeLightbox(); });
+  controls.forEach((control) => control.addEventListener('click', () => showSlide(Number(control.dataset.galleryDot ?? control.dataset.galleryThumbnail))));
+  gallery?.querySelector('[data-gallery-previous]')?.addEventListener('click', () => showSlide(galleryIndex(current, slides.length, -1)));
+  gallery?.querySelector('[data-gallery-next]')?.addEventListener('click', () => showSlide(galleryIndex(current, slides.length, 1)));
+  stage?.addEventListener('keydown', (event) => { const key = (event as KeyboardEvent).key; if (key === 'ArrowLeft') showSlide(galleryIndex(current, slides.length, -1)); if (key === 'ArrowRight') showSlide(galleryIndex(current, slides.length, 1)); });
+  stage?.addEventListener('touchstart', (event) => { touchStart = (event as TouchEvent).touches[0]?.clientX ?? 0; }, { passive: true });
+  stage?.addEventListener('touchend', (event) => { const distance = ((event as TouchEvent).changedTouches[0]?.clientX ?? touchStart) - touchStart; if (Math.abs(distance) > 45) showSlide(galleryIndex(current, slides.length, distance < 0 ? 1 : -1)); }, { passive: true });
+
+  const optionForm = document.querySelector('[data-product-options]');
+  const optionAnnouncement = optionForm?.querySelector('[data-option-announcement]');
+  optionForm?.addEventListener('change', () => {
+    if (!(optionForm instanceof HTMLFormElement) || !(optionAnnouncement instanceof HTMLElement)) return;
+    const data = new FormData(optionForm);
+    const size = {
+      small: 'Small, 17.8 × 12.7 cm · 7 × 5 in',
+      medium: 'Medium, 21 × 29.7 cm · 8.27 × 11.69 in',
+      large: 'Large, 29.7 × 42 cm · 11.69 × 16.54 in',
+    }[String(data.get('size')) as 'small' | 'medium' | 'large'] ?? '';
+    const frame = data.get('framing') === 'framed' ? 'Framed' : 'Unframed';
+    optionAnnouncement.textContent = `${size}, ${frame} selected. This does not reserve stock.`;
+  });
+  const shareStatus = document.querySelector('[data-share-status]');
+  async function copyLink() { await navigator.clipboard.writeText(location.href); if (shareStatus instanceof HTMLElement) shareStatus.textContent = 'Link copied to clipboard.'; }
+  document.querySelector('[data-copy-link]')?.addEventListener('click', () => void copyLink());
+  document.querySelector('[data-share]')?.addEventListener('click', async () => {
+    if (navigator.share) {
+      try { await navigator.share({ title: document.title, url: location.href }); if (shareStatus instanceof HTMLElement) shareStatus.textContent = 'Share sheet opened.'; }
+      catch (error) { if (error instanceof DOMException && error.name === 'AbortError') return; await copyLink(); }
+    } else await copyLink();
+  });
+</script>

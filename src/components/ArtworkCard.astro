@@ -1,0 +1,19 @@
+---
+import type { Artwork } from '../domain/catalogue';
+import ArtworkPicture from './ArtworkPicture.astro';
+
+interface Props { artwork: Artwork; eager?: boolean }
+const { artwork, eager = false } = Astro.props;
+---
+<article class:list={['artwork-card', `artwork-card--${artwork.orientation}`]} data-artwork-card data-handle={artwork.handle}>
+  <a href={`/artworks/${artwork.handle}`} aria-label={`View ${artwork.title}, ${artwork.placeName}`}>
+    <div class="artwork-card__media">
+      <ArtworkPicture assetBase={artwork.assetBase} kind="flat" alt={artwork.alt} {eager} />
+    </div>
+    <div class="artwork-card__caption">
+      <div><h2>{artwork.title}</h2><p>{artwork.placeName} · {artwork.artworkCode}</p></div>
+      <p class="artwork-card__description">{artwork.description}</p>
+      <span class="artwork-card__link" aria-hidden="true">View print →</span>
+    </div>
+  </a>
+</article>

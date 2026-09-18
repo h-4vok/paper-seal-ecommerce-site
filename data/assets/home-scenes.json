@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "generatedWith": "OpenAI ImageGen built-in tool and deterministic Sharp compositing",
+  "scenes": [
+    {
+      "id": "home-hero-flower-bed",
+      "scene": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+      "masterFile": "flower-bed.png",
+      "masterTitle": "Eastbourne New Flower Bed",
+      "masterDriveId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
+      "output": "src/assets/home/hero-eastbourne-flower-bed.jpg",
+      "placement": {
+        "left": 546,
+        "top": 154,
+        "width": 764,
+        "height": 543,
+        "preserveAspectRatio": true
+      },
+      "prompt": "Wide British editorial interior; large front-facing light-oak frame with an exact landscape opening, narrow warm-white passepartout, warm ivory limewash, old wooden console, clothbound books, stoneware and restrained garden foliage; soft late-morning light; no artwork, people, logos or readable text."
+    },
+    {
+      "id": "home-current-beach-huts",
+      "scene": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
+      "masterFile": "beach-huts.png",
+      "masterTitle": "Beach Huts, Eastbourne",
+      "masterDriveId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
+      "output": "src/assets/home/current-beach-huts.jpg",
+      "placement": {
+        "left": 313,
+        "top": 190,
+        "width": 860,
+        "height": 611,
+        "preserveAspectRatio": true
+      },
+      "prompt": "Tactile British home interior; front-facing pale-oak frame with an exact landscape opening and narrow warm-white passepartout, warm putty wall, aged shelf, olive foliage, clothbound books and chalk stone; quiet overcast daylight; no artwork, people, logos or readable text."
+    },
+    {
+      "id": "home-current-sovereign-harbour",
+      "scene": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
+      "masterFile": "sovereign-harbour.png",
+      "masterTitle": "Sovereign Harbour",
+      "masterDriveId": "1ogcwYqFkL1KAAzc9zrbr8MNXdXmavLu4",
+      "output": "src/assets/home/current-sovereign-harbour.jpg",
+      "placement": {
+        "left": 546,
+        "top": 154,
+        "width": 764,
+        "height": 543,
+        "preserveAspectRatio": true
+      },
+      "prompt": "Warm British editorial home scene; front-facing dark-stained frame with an exact landscape opening and narrow warm-white passepartout, ivory plaster, walnut sideboard, books, stoneware, garden branch and deckled paper; gentle late-afternoon light; no artwork, people, logos or readable text."
+    }
+  ]
+}

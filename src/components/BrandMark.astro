@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import seal from '../assets/brand/paperseal-seal.png';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+<span
+  class:list={['brand-mark', { 'brand-mark--compact': compact }]}
+>
+  <Image
+    class="brand-mark__seal"
+    src={seal}
+    widths={[64, 96, 128]}
+    sizes="64px"
+    alt=""
+    loading="eager"
+  />
+  <span class="brand-mark__type">
+    <span class="brand-mark__name">Paperseal</span>
+    <span class="brand-mark__descriptor">Art prints · East Sussex</span>
+  </span>
+</span>

@@ -1,0 +1,32 @@
+---
+import ArtworkPicture from '../components/ArtworkPicture.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/institutional.scss';
+
+const title = 'Cart — Online shop coming soon | Paperseal';
+const description = 'The Paperseal online shop and checkout are coming soon. Browse the artwork collection in the meantime.';
+const structuredData = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
+    { '@type': 'ListItem', position: 2, name: 'Cart', item: 'https://paperseal.co.uk/cart' },
+  ],
+};
+---
+<BaseLayout {title} {description} canonical="/cart" indexable={false} {structuredData} bodyClass="cart-body">
+  <main id="main-content" class="cart-page">
+    <section class="cart-paper" aria-labelledby="cart-title">
+      <div class="cart-paper__header"><p class="eyebrow">Paperseal · Alpha</p><span aria-hidden="true">0 items</span></div>
+      <h1 id="cart-title">Your cart is waiting for the shop.</h1>
+      <div class="cart-empty-state">
+        <p class="cart-empty-state__title">Online shop and checkout coming soon.</p>
+        <p class="cart-empty-state__copy">There is no pretend basket here. Live products, availability and Shopify-hosted checkout will appear only when the commerce connection is ready and properly tested.</p>
+        <a class="button-link button-link--navy" href="/artworks">Continue browsing artworks <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <aside class="cart-brand-scene" aria-label="A Paperseal print inspired by the Seven Sisters">
+      <div class="cart-brand-scene__tear" aria-hidden="true"></div>
+      <ArtworkPicture assetBase="seven-sisters" kind="room" alt="Seven Sisters print presented on a warm paper surface" sizes="(min-width: 56rem) 44vw, 100vw" />
+      <div><p class="cart-brand-scene__script">Art for a brighter East Sussex.</p><p>Prints inspired by coastline, countryside and the everyday beauty around us.</p></div>
+    </aside>
+  </main>
+</BaseLayout>
