@@ -51,9 +51,10 @@
 }
 
 .product-gallery__slide img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .product-gallery__zoom-trigger {
