@@ -1,14 +1,143 @@
 ---
+import ArtworkCard from '../../components/ArtworkCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PlaceholderPage from '../../components/PlaceholderPage.astro';
+import { artworks } from '../../domain/catalogue';
+import '../../styles/catalogue.scss';
 
-const title = 'Artworks coming soon — Paperseal';
-const description = 'Paperseal is preparing its first collection of East Sussex art prints.';
+const title = 'Artworks — East Sussex art prints by Paperseal';
+const description = 'Browse Paperseal art prints inspired by Eastbourne, the Seven Sisters and familiar places across East Sussex.';
+const places = [...new Set(artworks.map(({ placeName }) => placeName))].sort((a, b) => a.localeCompare(b, 'en-GB'));
+const structuredData = [
+  {
+    '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Paperseal artworks', description,
+    url: 'https://paperseal.co.uk/artworks',
+    mainEntity: { '@type': 'ItemList', itemListElement: artworks.map((artwork, index) => ({
+      '@type': 'ListItem', position: index + 1, name: artwork.title,
+      url: `https://paperseal.co.uk/artworks/${artwork.handle}`,
+    })) },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
+      { '@type': 'ListItem', position: 2, name: 'Artworks', item: 'https://paperseal.co.uk/artworks' },
+    ],
+  },
+];
 ---
-<BaseLayout {title} {description} indexable={false}>
-  <PlaceholderPage
-    eyebrow="The Paperseal collection"
-    heading="The prints are nearly ready."
-    description="Our first collection is being mounted, measured and prepared for browsing. Online shopping will follow in the next alpha slice."
-  />
+<BaseLayout {title} {description} canonical="/artworks" image="/images/artworks/flower-bed/room-1440.jpg" {structuredData}>
+  <main id="main-content" class="catalogue-page" data-catalogue>
+    <aside class="catalogue-aside" aria-label="Curated catalogue paths">
+      <nav>
+        <a href="/artworks" aria-current="page">All artworks</a>
+        <a href="/artworks?q=Soft+Launch">Soft Launch</a>
+        <a href="/artworks?place=Eastbourne">Eastbourne</a>
+      </nav>
+      <div class="catalogue-aside__sketch" aria-hidden="true">⌁ 〰 ⌁</div>
+      <p class="eyebrow">Local places.<br />Lasting prints.</p>
+      <blockquote>“For the towns, coasts and stillness that stay with you.”</blockquote>
+      <div class="catalogue-aside__seal" aria-hidden="true">
+        <span>Paperseal · Eastbourne</span>
+        Fine art prints<br />Locally curated<br />Always meaningful
+      </div>
+    </aside>
+
+    <section class="catalogue-main" aria-labelledby="catalogue-title">
+      <header class="catalogue-intro">
+        <div><h1 id="catalogue-title">Artworks</h1><p class="eyebrow">A curated selection of local art prints</p></div>
+        <p>Original scenes. Lasting impressions. Fine-art prints inspired by real places — from Eastbourne and beyond.</p>
+      </header>
+
+      <form class="catalogue-toolbar" role="search" data-catalogue-controls>
+        <label class="catalogue-search">
+          <span class="visually-hidden">Search artworks and places</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m15 15 5 5" stroke="currentColor" stroke-width="1.7"/></svg>
+          <input type="search" name="q" autocomplete="off" placeholder="Search artworks, places, or themes…" data-search />
+        </label>
+        <label><span class="catalogue-toolbar__label">Place</span><select name="place" aria-label="Place" data-place><option value="all">All places</option>{places.map((place) => <option value={place}>{place}</option>)}</select></label>
+        <button class="catalogue-availability" type="button" aria-disabled="true" aria-describedby="availability-note">Availability <span class="catalogue-availability__badge">Coming soon</span></button>
+        <span id="availability-note" class="visually-hidden">Live availability will appear when the online shop opens.</span>
+        <label><span class="catalogue-toolbar__label">Sort</span><select name="sort" aria-label="Sort" data-sort><option value="newest">Newest first</option><option value="title">Title A–Z</option></select></label>
+      </form>
+
+      <div class="catalogue-results-heading"><p class="eyebrow">The collection</p><p aria-live="polite" aria-atomic="true" data-result-count>{artworks.length} artworks</p></div>
+      <div class="artwork-grid" data-artwork-grid>{artworks.map((artwork, index) => <ArtworkCard {artwork} eager={index < 2} />)}</div>
+      <div class="catalogue-empty" hidden data-empty-state>
+        <p class="eyebrow">No artworks found</p><h2>Try another place or a broader search.</h2>
+        <button class="button-link button-link--navy" type="button" data-reset>Reset catalogue</button>
+      </div>
+      <div class="catalogue-sentinel" aria-hidden="true" data-sentinel></div>
+    </section>
+  </main>
 </BaseLayout>
+
+<script>
+  import { artworks, filterCatalogue, nextVisibleCount, type CatalogueState } from '../../domain/catalogue';
+
+  const root = document.querySelector('[data-catalogue]');
+  const form = root?.querySelector('[data-catalogue-controls]');
+  const search = root?.querySelector('[data-search]');
+  const place = root?.querySelector('[data-place]');
+  const sort = root?.querySelector('[data-sort]');
+  const grid = root?.querySelector('[data-artwork-grid]');
+  const count = root?.querySelector('[data-result-count]');
+  const empty = root?.querySelector('[data-empty-state]');
+  const reset = root?.querySelector('[data-reset]');
+  const sentinel = root?.querySelector('[data-sentinel]');
+  const cardMap = new Map([...(grid?.querySelectorAll<HTMLElement>('[data-artwork-card]') ?? [])].map((card) => [card.dataset.handle ?? '', card]));
+  let visibleCount = 4;
+  let currentMatches = artworks;
+  const controlsReady = form instanceof HTMLFormElement && search instanceof HTMLInputElement && place instanceof HTMLSelectElement && sort instanceof HTMLSelectElement && grid instanceof HTMLElement && count instanceof HTMLElement && empty instanceof HTMLElement;
+
+  function readState(): CatalogueState {
+    return {
+      query: search instanceof HTMLInputElement ? search.value : '',
+      place: place instanceof HTMLSelectElement ? place.value : 'all',
+      sort: sort instanceof HTMLSelectElement && sort.value === 'title' ? 'title' : 'newest',
+    };
+  }
+  function updateUrl(state: CatalogueState) {
+    const params = new URLSearchParams();
+    if (state.query) params.set('q', state.query);
+    if (state.place !== 'all') params.set('place', state.place);
+    if (state.sort !== 'newest') params.set('sort', state.sort);
+    history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}`);
+  }
+  function render({ announce = true } = {}) {
+    if (!controlsReady) return;
+    const state = readState();
+    currentMatches = filterCatalogue(artworks, state);
+    currentMatches.forEach((artwork) => { const card = cardMap.get(artwork.handle); if (card) grid.append(card); });
+    const matchedHandles = new Set(currentMatches.map(({ handle }) => handle));
+    for (const [handle, card] of cardMap) {
+      const resultIndex = currentMatches.findIndex((artwork) => artwork.handle === handle);
+      card.hidden = !matchedHandles.has(handle) || resultIndex >= visibleCount;
+    }
+    count.textContent = `${currentMatches.length} ${currentMatches.length === 1 ? 'artwork' : 'artworks'}`;
+    count.setAttribute('aria-live', announce ? 'polite' : 'off');
+    empty.hidden = currentMatches.length !== 0;
+    if (sentinel instanceof HTMLElement) sentinel.hidden = currentMatches.length <= visibleCount;
+    updateUrl(state);
+  }
+  if (controlsReady) {
+    const params = new URLSearchParams(location.search);
+    search.value = params.get('q') ?? '';
+    const requestedPlace = params.get('place') ?? 'all';
+    place.value = [...place.options].some(({ value }) => value === requestedPlace) ? requestedPlace : 'all';
+    sort.value = params.get('sort') === 'title' ? 'title' : 'newest';
+    render({ announce: false });
+    const update = () => { visibleCount = 4; render(); };
+    form.addEventListener('input', update);
+    form.addEventListener('change', update);
+    form.addEventListener('submit', (event) => event.preventDefault());
+    reset?.addEventListener('click', () => { form.reset(); visibleCount = 4; render(); search.focus(); });
+    if (sentinel && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some(({ isIntersecting }) => isIntersecting) && visibleCount < currentMatches.length) {
+          visibleCount = nextVisibleCount(visibleCount, currentMatches.length); render({ announce: false });
+        }
+      }, { rootMargin: '400px 0px' });
+      observer.observe(sentinel);
+    }
+    history.scrollRestoration = 'auto';
+  }
+</script>

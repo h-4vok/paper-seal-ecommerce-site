@@ -106,21 +106,20 @@ test.describe('mobile navigation', () => {
   });
 });
 
-test('alpha destinations are honest noindex placeholders and SEO files are crawlable', async ({
+test('catalogue and cart destinations are honest and SEO files are crawlable', async ({
   page,
   request,
 }) => {
   await page.goto('/artworks');
-  await expect(
-    page.getByRole('heading', { level: 1, name: 'The prints are nearly ready.' }),
-  ).toBeVisible();
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
-  await expect(page.getByText('This part of Paperseal is coming soon.')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+  await expect(page.locator('[data-artwork-card]')).toHaveCount(7);
 
   await page.goto('/cart');
   await expect(
-    page.getByRole('heading', { level: 1, name: 'Online shop coming soon.' }),
+    page.getByRole('heading', { level: 1, name: 'Your cart is waiting for the shop.' }),
   ).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
 
   const robots = await request.get('/robots.txt');
   expect(robots.ok()).toBeTruthy();
@@ -130,5 +129,7 @@ test('alpha destinations are honest noindex placeholders and SEO files are crawl
   expect(sitemap.ok()).toBeTruthy();
   const xml = await sitemap.text();
   expect(xml).toContain('<loc>https://paperseal.co.uk/</loc>');
-  expect(xml).not.toContain('/artworks');
+  expect(xml).toContain('/artworks');
+  expect(xml).toContain('/our-story');
+  expect(xml).not.toContain('/cart');
 });

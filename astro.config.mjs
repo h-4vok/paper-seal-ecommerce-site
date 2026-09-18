@@ -5,4 +5,5 @@ export default defineConfig({
   site: 'https://paperseal.co.uk',
   integrations: [react()],
   output: 'static',
+  devToolbar: { enabled: false },
 });

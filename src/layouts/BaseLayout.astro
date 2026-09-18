@@ -10,7 +10,9 @@ interface Props {
   description: string;
   canonical?: string;
   image?: string;
+  imageAlt?: string;
   indexable?: boolean;
+  ogType?: 'website' | 'product';
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
   bodyClass?: string;
   showChrome?: boolean;
@@ -21,7 +23,9 @@ const {
   description,
   canonical,
   image,
+  imageAlt,
   indexable,
+  ogType,
   structuredData,
   bodyClass,
   showChrome = true,
@@ -33,7 +37,7 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.png" type="image/png" />
-    <SeoHead {title} {description} {canonical} {image} {indexable} />
+    <SeoHead {title} {description} {canonical} {image} {imageAlt} {indexable} {ogType} />
     {structuredData && <JsonLd data={structuredData} />}
   </head>
   <body class={bodyClass}>

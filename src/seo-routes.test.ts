@@ -16,7 +16,7 @@ describe('SEO route bodies', () => {
   );
 
   it.each([new URL('https://preview.example'), undefined])(
-    'renders a valid Home-only sitemap for %s',
+    'renders all indexable catalogue and trust routes for %s',
     async (site) => {
       const response = await getSitemap({ site } as Parameters<typeof getSitemap>[0]);
       expect(response.headers.get('content-type')).toBe('application/xml; charset=utf-8');
@@ -25,6 +25,13 @@ describe('SEO route bodies', () => {
       expect(body).toContain(
         `<loc>${site ? 'https://preview.example/' : 'https://paperseal.co.uk/'}</loc>`,
       );
+      expect(body).toContain('/artworks</loc>');
+      expect(body).toContain('/artworks/flower-bed-ps-001</loc>');
+      expect(body).toContain('/our-story</loc>');
+      expect(body).toContain('/delivery</loc>');
+      expect(body).toContain('/returns</loc>');
+      expect(body).not.toContain('/cart</loc>');
+      expect(body).not.toContain('/privacy</loc>');
     },
   );
 });

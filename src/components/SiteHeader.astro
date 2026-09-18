@@ -36,7 +36,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     <p class="site-header__note" aria-hidden="true">Small prints.<br />Brighter places.</p>
 
     <div class="site-header__actions">
-      <a class="icon-link" href="/cart" aria-label="Cart, online shop coming soon">
+      <a class="icon-link" href="/cart" aria-label="Cart, online shop coming soon" aria-current={currentPath === '/cart' ? 'page' : undefined}>
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <path d="M8.5 10.5h15l1.5 17H7l1.5-17Z" fill="none" stroke="currentColor" stroke-width="1.7" />
           <path d="M12 12V8a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7" />

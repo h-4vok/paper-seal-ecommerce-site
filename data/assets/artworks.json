@@ -1,0 +1,47 @@
+{
+  "provenance": "Display-only composites generated from approved Google Drive masters. Production masters are never committed or served.",
+  "artworks": [
+    {
+      "assetBase": "flower-bed",
+      "masterFile": "flower-bed.png",
+      "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
+      "orientation": "landscape"
+    },
+    {
+      "assetBase": "seven-sisters",
+      "masterFile": "seven-sisters.png",
+      "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
+      "orientation": "landscape"
+    },
+    {
+      "assetBase": "sovereign-harbour",
+      "masterFile": "sovereign-harbour.png",
+      "driveFileId": "1ogcwYqFkL1KAAzc9zrbr8MNXdXmavLu4",
+      "orientation": "landscape"
+    },
+    {
+      "assetBase": "beachy-head",
+      "masterFile": "beachy-head.png",
+      "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
+      "orientation": "portrait"
+    },
+    {
+      "assetBase": "meet-me-eastbourne",
+      "masterFile": "meet-me-eastbourne.png",
+      "driveFileId": "1SbtW06ZUnQtbKqcJ948nlUZSFW-vOVqO",
+      "orientation": "landscape"
+    },
+    {
+      "assetBase": "eastbourne-pier",
+      "masterFile": "eastbourne-pier.png",
+      "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
+      "orientation": "landscape"
+    },
+    {
+      "assetBase": "beach-huts",
+      "masterFile": "beach-huts.png",
+      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
+      "orientation": "landscape"
+    }
+  ]
+}
