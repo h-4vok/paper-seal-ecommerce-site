@@ -36,16 +36,16 @@
     },
     {
       "id": "home-current-sovereign-harbour",
-      "scene": "scripts/asset-sources/home-scenes/templates/collection-dark-oak-landscape.jpg",
+      "scene": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
       "masterFile": "sovereign-harbour.png",
       "masterTitle": "Sovereign Harbour",
       "masterDriveId": "1ogcwYqFkL1KAAzc9zrbr8MNXdXmavLu4",
       "output": "src/assets/home/current-sovereign-harbour.jpg",
       "placement": {
-        "left": 610,
-        "top": 194,
-        "width": 434,
-        "height": 308,
+        "left": 546,
+        "top": 154,
+        "width": 764,
+        "height": 543,
         "preserveAspectRatio": true
       },
       "prompt": "Warm British editorial home scene; front-facing dark-stained frame with an exact landscape opening and narrow warm-white passepartout, ivory plaster, walnut sideboard, books, stoneware, garden branch and deckled paper; gentle late-afternoon light; no artwork, people, logos or readable text."
