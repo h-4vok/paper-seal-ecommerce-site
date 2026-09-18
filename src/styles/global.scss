@@ -256,6 +256,7 @@ textarea {
   min-height: var(--header-height);
   grid-template-columns: 1fr auto;
   align-items: center;
+  padding-block: 0.35rem;
   width: min(calc(100% - (2 * var(--page-gutter))), var(--content-wide));
   margin-inline: auto;
 }
