@@ -2,10 +2,12 @@
 import ArtworkCard from '../../components/ArtworkCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { artworks } from '../../domain/catalogue';
+import { siteCopy } from '../../domain/site-copy';
 import '../../styles/catalogue.scss';
 
-const title = 'Artworks — East Sussex art prints by Paperseal';
-const description = 'Browse Paperseal art prints inspired by Eastbourne, the Seven Sisters and familiar places across East Sussex.';
+const { catalogue } = siteCopy;
+const title = catalogue.title;
+const description = catalogue.description;
 const places = [...new Set(artworks.map(({ placeName }) => placeName))].sort((a, b) => a.localeCompare(b, 'en-GB'));
 const structuredData = [
   {

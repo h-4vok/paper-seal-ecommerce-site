@@ -1,27 +1,23 @@
 ---
 import BrandMark from './BrandMark.astro';
+import { siteCopy } from '../domain/site-copy';
 
 interface Props {
   currentPath: string;
 }
 
 const { currentPath } = Astro.props;
-const navItems = [
-  { href: '/artworks', label: 'Prints' },
-  { href: '/our-story', label: 'Our Story' },
-  { href: '/east-sussex', label: 'East Sussex' },
-  { href: '/journal', label: 'Journal' },
-];
+const navItems = siteCopy.navigation.items;
 
 const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 <header class="site-header" data-site-header>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="/" aria-label="Paperseal home">
+    <a class="site-header__brand" href="/" aria-label={siteCopy.brand.homeAriaLabel}>
       <BrandMark />
     </a>
 
-    <nav class="site-header__desktop-nav" aria-label="Primary navigation">
+    <nav class="site-header__desktop-nav" aria-label={siteCopy.navigation.primaryLabel}>
       <ul>
         {navItems.map((item) => (
           <li>
@@ -33,7 +29,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       </ul>
     </nav>
 
-    <p class="site-header__note" aria-hidden="true">Small prints.<br />Brighter places.</p>
+    <p class="site-header__note" aria-hidden="true">{siteCopy.brand.headerNote[0]}<br />{siteCopy.brand.headerNote[1]}</p>
 
     <div class="site-header__actions">
       <a class="icon-link" href="/cart" aria-label="Cart, online shop coming soon" aria-current={currentPath === '/cart' ? 'page' : undefined}>
@@ -60,7 +56,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 
   <dialog class="mobile-menu" id="mobile-navigation" aria-labelledby="mobile-menu-title" data-mobile-menu>
     <div class="mobile-menu__header">
-      <p id="mobile-menu-title">Explore Paperseal</p>
+      <p id="mobile-menu-title">{siteCopy.navigation.exploreLabel}</p>
       <form method="dialog">
         <button class="icon-button" type="submit" aria-label="Close menu" data-menu-close>
           <svg viewBox="0 0 32 32" aria-hidden="true">
@@ -82,7 +78,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     </nav>
     <div class="mobile-menu__footer">
       <p>Art prints inspired by East Sussex — made for homes with a story.</p>
-      <a href="/contact">Contact the studio <span aria-hidden="true">→</span></a>
+      <a href="/contact">{siteCopy.navigation.contactLabel} <span aria-hidden="true">→</span></a>
     </div>
   </dialog>
 </header>

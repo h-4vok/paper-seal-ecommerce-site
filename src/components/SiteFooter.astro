@@ -1,10 +1,11 @@
 ---
+import { siteCopy } from '../domain/site-copy';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="site-footer__lead">
-    <p class="eyebrow">Paperseal · East Sussex</p>
-    <p class="site-footer__statement">Places worth keeping.<br />Prints made to live with.</p>
+    <p class="eyebrow">{siteCopy.brand.name} · {siteCopy.brand.region}</p>
+    <p class="site-footer__statement">{siteCopy.brand.footerStatement[0]}<br />{siteCopy.brand.footerStatement[1]}</p>
   </div>
   <div class="site-footer__columns">
     <nav aria-label="Explore">
@@ -27,7 +28,7 @@ const year = new Date().getFullYear();
     </nav>
   </div>
   <div class="site-footer__base">
-    <p>© {year} Paperseal</p>
-    <p>Independent art from the Sussex coast.</p>
+    <p>© {year} {siteCopy.brand.name}</p>
+    <p>{siteCopy.brand.footerBase}</p>
   </div>
 </footer>

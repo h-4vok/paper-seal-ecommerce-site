@@ -2,9 +2,11 @@
 import ArtworkPicture from '../components/ArtworkPicture.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/institutional.scss';
+import { siteCopy } from '../domain/site-copy';
 
-const title = 'Cart — Online shop coming soon | Paperseal';
-const description = 'The Paperseal online shop and checkout are coming soon. Browse the artwork collection in the meantime.';
+const { cart } = siteCopy;
+const title = cart.title;
+const description = cart.description;
 const structuredData = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
