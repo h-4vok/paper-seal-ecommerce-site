@@ -2,10 +2,39 @@
 import ArtworkCard from '../../components/ArtworkCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { artworks } from '../../domain/catalogue';
-import { siteCopy } from '../../domain/site-copy';
+import { copy } from '../../content/copy';
 import '../../styles/catalogue.scss';
 
-const { catalogue } = siteCopy;
+const rawCatalogue = copy.catalogue;
+const catalogue = {
+  title: rawCatalogue.seo.title,
+  description: rawCatalogue.seo.description,
+  asideLabel: rawCatalogue.aside.label,
+  allLabel: rawCatalogue.aside.all,
+  softLaunchLabel: rawCatalogue.aside.softLaunch,
+  placeLabel: rawCatalogue.aside.place,
+  asideEyebrow: rawCatalogue.aside.eyebrow,
+  asideQuote: rawCatalogue.aside.quote,
+  sealLines: rawCatalogue.aside.sealLines,
+  heading: rawCatalogue.intro.heading,
+  headingEyebrow: rawCatalogue.intro.eyebrow,
+  intro: rawCatalogue.intro.copy,
+  searchLabel: rawCatalogue.controls.searchLabel,
+  searchPlaceholder: rawCatalogue.controls.searchPlaceholder,
+  placeFilterLabel: rawCatalogue.controls.placeLabel,
+  allPlacesLabel: rawCatalogue.controls.allPlaces,
+  availabilityLabel: rawCatalogue.controls.availabilityLabel,
+  availabilityBadge: rawCatalogue.controls.availabilityBadge,
+  availabilityNote: rawCatalogue.controls.availabilityNote,
+  sortLabel: rawCatalogue.controls.sortLabel,
+  newestLabel: rawCatalogue.controls.newest,
+  titleSortLabel: rawCatalogue.controls.title,
+  collectionLabel: rawCatalogue.results.label,
+  resultCountLabel: rawCatalogue.results.countLabel,
+  emptyEyebrow: rawCatalogue.results.emptyEyebrow,
+  emptyHeading: rawCatalogue.results.emptyHeading,
+  resetLabel: rawCatalogue.results.reset,
+};
 const title = catalogue.title;
 const description = catalogue.description;
 const places = [...new Set(artworks.map(({ placeName }) => placeName))].sort((a, b) => a.localeCompare(b, 'en-GB'));
@@ -38,7 +67,7 @@ const structuredData = [
       <p class="eyebrow">{catalogue.asideEyebrow[0]}<br />{catalogue.asideEyebrow[1]}</p>
       <blockquote>{catalogue.asideQuote}</blockquote>
       <div class="catalogue-aside__seal" aria-hidden="true">
-        <span>Paperseal · Eastbourne</span>
+        <span>{rawCatalogue.aside.sealName}</span>
         {catalogue.sealLines.map((line, index) => <>{index > 0 && <br />}{line}</>)}
       </div>
     </aside>

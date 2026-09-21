@@ -1,21 +1,23 @@
 ---
 import type { InstitutionalPage as Page } from '../domain/institutional';
+import { copy } from '../content/copy';
 
 interface Props { page: Page }
 const { page } = Astro.props;
+const { institutional } = copy;
 ---
 <main id="main-content" class="institutional-page">
   <header class="institutional-hero">
-    <p class="eyebrow">{page.eyebrow} · Paperseal</p>
+    <p class="eyebrow">{page.eyebrow} · {copy.shared.brand.name}</p>
     <h1>{page.heading}</h1>
     <p class="institutional-hero__description">{page.description}</p>
   </header>
-  {page.status && <aside class="institutional-status" aria-label="Alpha content status"><p class="eyebrow">Current status</p><p class="institutional-status__copy">{page.status}</p></aside>}
+  {page.status && <aside class="institutional-status" aria-label={institutional.statusLabel}><p class="eyebrow">{institutional.statusLabel}</p><p class="institutional-status__copy">{page.status}</p></aside>}
   <div class="institutional-content">
     {page.sections.map((section) => <section><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p class="institutional-content__copy">{paragraph}</p>)}</section>)}
   </div>
   <aside class="institutional-next">
-    <p class="eyebrow">Keep exploring</p><p>See the first Paperseal collection and the local places behind it.</p>
-    <a class="button-link button-link--navy" href="/artworks">Browse artworks <span aria-hidden="true">→</span></a>
+    <p class="eyebrow">{institutional.next.eyebrow}</p><p>{institutional.next.copy}</p>
+    <a class="button-link button-link--navy" href="/artworks">{institutional.next.browse} <span aria-hidden="true">→</span></a>
   </aside>
 </main>

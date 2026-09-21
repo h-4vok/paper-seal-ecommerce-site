@@ -18,6 +18,7 @@ Before opening a PR, run `bun run validate` and `bun run test:e2e`. Feature pull
 Read [`AGENTS.md`](./AGENTS.md) and [`CONTEXT.md`](./CONTEXT.md) before making project changes.
 
 For editable UI copy, see [`content/COPY_WORKFLOW.md`](./content/COPY_WORKFLOW.md).
+Copy/localisation sources are YAML-only under `content/copy/en-GB`; repository JSON remains reserved for technical tooling and generated data.
 
 ## Artwork content workflow
 

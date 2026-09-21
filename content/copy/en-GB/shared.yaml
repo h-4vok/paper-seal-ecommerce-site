@@ -1,5 +1,12 @@
+brand:
+  name: Paperseal
+  region: East Sussex
+  homeAriaLabel: Paperseal home
+  descriptor: Art prints · East Sussex
+  headerNote: "Small prints.\nBrighter places."
+skipLink: Skip to content
 navigation:
-  homeLabel: Paperseal home
+  primaryLabel: Primary navigation
   items:
     - { href: /artworks, key: prints, label: Prints }
     - { href: /our-story, key: ourStory, label: Our Story }

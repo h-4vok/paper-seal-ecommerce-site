@@ -1,0 +1,60 @@
+galleryExample: '{count}-image gallery example'
+galleryPreviewAlt: Seven Sisters gallery preview
+mountedProductAlt: Seven Sisters mounted print
+viewCard: 'View {title}, {place}'
+previousImage: Previous image
+nextImage: Next image
+chooseGalleryImage: Choose gallery image
+showImage: 'Show image {number}'
+mountedPrint: '{title} mounted print'
+cardDescription: A local scene presented with a warm paper mount and a simple caption slip.
+viewPrint: View print
+mixedPair: Mixed pair
+twoArtworks: 2 artworks
+noArtworks: No artworks found
+tryAnother: Try another place or a broader search.
+resetCatalogue: Reset catalogue
+softLaunch: Soft Launch · PS-002
+productTitle: Seven Sisters from the Gardens
+productPlace: Seven Sisters, East Sussex
+choose: 'Choose {label}'
+smallPrint: 7 × 5
+a4: A4
+a3: A3
+noFakeCommerce: No fake price, stock or checkout is shown.
+shareFallback: Share fallback · focused gallery
+linkCopied: Link copied to clipboard.
+papersealAlpha: Paperseal · Alpha
+zeroItems: 0 items
+cartHeading: Your cart is waiting for the shop.
+cartEmptyTitle: Online shop and checkout coming soon.
+cartEmptyCopy: There is no pretend basket here.
+continueBrowsing: Continue browsing artworks
+returnsPaperseal: Returns · Paperseal
+policyHeading: Human help, without a portal.
+policyIntro: Warm, direct policy presentation at a realistic mobile width.
+currentStatus: Current status
+policyStatus: 'Alpha review: final policy copy is still being prepared.'
+policySection: How help will work
+policyCopy: Returns and damaged-item cases will be handled manually by email once commerce launches.
+brandName: Paperseal
+brandDescriptor: Art prints · East Sussex
+homeAria: Paperseal home
+primaryNavigation: Primary navigation
+cartAria: Cart, online shop coming soon
+bag: Bag
+menu: Menu
+explore: Explore Paperseal
+closeMenu: Close menu
+mobileNavigation: Mobile navigation
+prints: Prints
+ourStory: Our Story
+eastSussex: East Sussex
+interactionStates: Shared interaction states
+default: Default
+focusVisible: Focus-visible
+unavailable: Unavailable
+textLink: Text link
+reducedMotion: Reduced motion
+warmthWithoutMovement: Warmth without movement.
+browseArtworks: Browse artworks
