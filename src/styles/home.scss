@@ -62,6 +62,7 @@
   font-family: var(--font-script);
   font-size: 1.05rem;
   transform: rotate(-4deg);
+  display: none;
 }
 
 .promise-strip {
@@ -360,7 +361,7 @@
     min-height: min(50rem, calc(100svh - var(--header-height)));
     grid-template-columns: minmax(21rem, 0.72fr) minmax(34rem, 1.28fr);
     grid-template-rows: 1fr auto;
-    gap: 2rem clamp(2.5rem, 5vw, 6rem);
+    gap: 0rem;
     align-items: center;
   }
 

@@ -12,7 +12,7 @@ test.describe('The Paper Seal Studio Home', () => {
     await expect(page).toHaveTitle('The Paper Seal Studio — Art prints inspired by East Sussex');
     await expect(page.locator('main h1')).toHaveCount(1);
     await expect(page.locator('main').getByRole('heading', { level: 1 })).toHaveText(
-      'Make home feel more like yours.',
+      'Celebrate the beauty of East Sussex everyday.',
     );
     await expect(
       page.getByRole('heading', { name: 'For familiar places that stay with you.' }),
