@@ -23,17 +23,6 @@ export interface CatalogueState {
   sort: 'newest' | 'title';
 }
 
-export const PRINT_SIZES = [
-  { id: 'small', label: 'Small', dimensions: '17.8 × 12.7 cm · 7 × 5 in' },
-  { id: 'medium', label: 'Medium', dimensions: '21 × 29.7 cm · 8.27 × 11.69 in' },
-  { id: 'large', label: 'Large', dimensions: '29.7 × 42 cm · 11.69 × 16.54 in' },
-] as const;
-
-export const FRAMING_OPTIONS = [
-  { id: 'unframed', label: 'Unframed' },
-  { id: 'framed', label: 'Framed' },
-] as const;
-
 const requiredText = [
   'artworkCode',
   'title',

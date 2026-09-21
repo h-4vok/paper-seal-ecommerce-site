@@ -1,5 +1,6 @@
 ---
 import BrandMark from './BrandMark.astro';
+import { siteCopy } from '../domain/site-copy';
 import { copy } from '../content/copy';
 
 interface Props {
@@ -14,11 +15,11 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 ---
 <header class="site-header" data-site-header>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="/" aria-label={shared.navigation.homeLabel}>
+    <a class="site-header__brand" href="/" aria-label={siteCopy.brand.homeAriaLabel}>
       <BrandMark />
     </a>
 
-    <nav class="site-header__desktop-nav" aria-label="Primary navigation">
+    <nav class="site-header__desktop-nav" aria-label={siteCopy.navigation.primaryLabel}>
       <ul>
         {navItems.map((item) => (
           <li>
@@ -30,7 +31,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       </ul>
     </nav>
 
-    <p class="site-header__note" aria-hidden="true">Small prints.<br />Brighter places.</p>
+    <p class="site-header__note" aria-hidden="true">{siteCopy.brand.headerNote[0]}<br />{siteCopy.brand.headerNote[1]}</p>
 
     <div class="site-header__actions">
       <a class="icon-link" href="/cart" aria-label={shared.navigation.cartLabel} aria-current={currentPath === '/cart' ? 'page' : undefined}>

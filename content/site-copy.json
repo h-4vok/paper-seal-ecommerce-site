@@ -1,0 +1,182 @@
+{
+  "brand": {
+    "name": "Paperseal",
+    "region": "East Sussex",
+    "homeAriaLabel": "Paperseal home",
+    "descriptor": "Art prints · East Sussex",
+    "cartAriaLabel": "Cart, online shop coming soon",
+    "headerNote": ["Small prints.", "Brighter places."],
+    "footerStatement": ["Places worth keeping.", "Prints made to live with."],
+    "footerBase": "Independent art from the Sussex coast."
+  },
+  "navigation": {
+    "primaryLabel": "Primary navigation",
+    "mobileLabel": "Mobile navigation",
+    "exploreLabel": "Explore Paperseal",
+    "items": [
+      { "href": "/artworks", "label": "Prints" },
+      { "href": "/our-story", "label": "Our Story" },
+      { "href": "/east-sussex", "label": "East Sussex" },
+      { "href": "/journal", "label": "Journal" }
+    ],
+    "contactLabel": "Contact the studio",
+    "menuOpenLabel": "Open menu",
+    "menuCloseLabel": "Close menu",
+    "mobileFooterStatement": "Art prints inspired by East Sussex — made for homes with a story.",
+    "footerNavigation": [
+      {
+        "label": "Explore",
+        "links": [
+          { "href": "/artworks", "label": "All artworks" },
+          { "href": "/our-story", "label": "Our story" },
+          { "href": "/east-sussex", "label": "East Sussex" },
+          { "href": "/journal", "label": "Journal" }
+        ]
+      },
+      {
+        "label": "Good to know",
+        "links": [
+          { "href": "/delivery", "label": "Delivery" },
+          { "href": "/returns", "label": "Returns" },
+          { "href": "/contact", "label": "Contact" }
+        ]
+      },
+      {
+        "label": "Small print",
+        "links": [
+          { "href": "/privacy", "label": "Privacy" },
+          { "href": "/terms", "label": "Terms" }
+        ]
+      }
+    ]
+  },
+  "home": {
+    "title": "Paperseal — Art prints inspired by East Sussex",
+    "description": "Warm, characterful art prints inspired by Eastbourne and East Sussex, made to help your home feel more like yours.",
+    "heroEyebrow": "Art prints for a brighter everyday",
+    "heroHeading": "Make home feel more like yours.",
+    "heroIntro": "Art prints inspired by East Sussex — coastal paths, garden colour and the small, beautiful things that make a place home.",
+    "heroCta": "Explore prints",
+    "heroAlt": "Eastbourne's pier and flower beds presented as a framed Paperseal print in a warm home interior",
+    "heroCaption": "Eastbourne New Flower Bed · East Sussex",
+    "heroNote": "Homes are happier with art.",
+    "promiseLabel": "What makes Paperseal different",
+    "promises": [
+      { "title": "Locally inspired", "copy": "East Sussex places and stories" },
+      { "title": "Independent", "copy": "A small studio, a bigger why" },
+      { "title": "Thoughtfully made", "copy": "For a kinder, brighter home" },
+      { "title": "Made to live with", "copy": "Art for everyday life" }
+    ],
+    "manifestoEyebrow": "Paperseal, East Sussex",
+    "manifestoHeading": "For familiar places that stay with you.",
+    "manifestoParagraphs": [
+      "There is beauty in the places we pass every day: the pier in changing light, chalk cliffs after rain, a harbour settling into evening. Paperseal turns those moments into prints with colour, warmth and a little wonder.",
+      "Made for rooms that are collected rather than styled, each piece is a small reminder that good art and meaningful places belong in everyday homes."
+    ],
+    "collectionEyebrow": "The current collection",
+    "collectionHeading": ["Places you know.", "Seen a little differently."],
+    "collectionIntro": "A first gathering of gardens, harbours and coastal walks — drawn from the character of Eastbourne and the South Downs.",
+    "browseEyebrow": "Find your place",
+    "browseHeading": ["A wall can hold a view,", "a memory, a bit of home."],
+    "browseCta": "Browse all artworks",
+    "processEyebrow": "Made by people, not a product machine",
+    "processHeading": "From a local moment to a print worth keeping.",
+    "processBody": "Paperseal begins with looking carefully: at a familiar place, an unexpected colour, or the way a season changes a walk you know by heart.",
+    "processCta": "Meet Paperseal",
+    "processSteps": [
+      { "title": "Notice", "copy": "A local scene catches the eye and earns another look." },
+      { "title": "Make", "copy": "Colour, atmosphere and small details turn a view into a story." },
+      {
+        "title": "Print",
+        "copy": "The final piece is prepared with care for a crisp, lasting result."
+      }
+    ],
+    "manifestoStamp": "Always a good idea",
+    "browseAnnotation": ["Local places.", "Brighter rooms."],
+    "artworkLinkLabel": "View print"
+  },
+  "catalogue": {
+    "title": "Artworks — East Sussex art prints by Paperseal",
+    "description": "Browse Paperseal art prints inspired by Eastbourne, the Seven Sisters and familiar places across East Sussex.",
+    "asideLabel": "Curated catalogue paths",
+    "allLabel": "All artworks",
+    "softLaunchLabel": "Soft Launch",
+    "placeLabel": "Eastbourne",
+    "asideEyebrow": ["Local places.", "Lasting prints."],
+    "asideQuote": "“For the towns, coasts and stillness that stay with you.”",
+    "sealLines": ["Fine art prints", "Locally curated", "Always meaningful"],
+    "heading": "Artworks",
+    "headingEyebrow": "A curated selection of local art prints",
+    "intro": "Original scenes. Lasting impressions. Fine-art prints inspired by real places — from Eastbourne and beyond.",
+    "searchLabel": "Search artworks and places",
+    "searchPlaceholder": "Search artworks, places, or themes…",
+    "placeFilterLabel": "Place",
+    "allPlacesLabel": "All places",
+    "availabilityLabel": "Availability",
+    "availabilityBadge": "Coming soon",
+    "availabilityNote": "Live availability will appear when the online shop opens.",
+    "sortLabel": "Sort",
+    "newestLabel": "Newest first",
+    "titleSortLabel": "Title A–Z",
+    "collectionLabel": "The collection",
+    "resultCountLabel": "artworks",
+    "cardLink": "View print",
+    "emptyEyebrow": "No artworks found",
+    "emptyHeading": "Try another place or a broader search.",
+    "resetLabel": "Reset catalogue"
+  },
+  "cart": {
+    "title": "Cart — Online shop coming soon | Paperseal",
+    "description": "The Paperseal online shop and checkout are coming soon. Browse the artwork collection in the meantime.",
+    "eyebrow": "Paperseal · Alpha",
+    "itemCount": "0 items",
+    "heading": "Your cart is waiting for the shop.",
+    "emptyTitle": "Online shop and checkout coming soon.",
+    "emptyCopy": "There is no pretend basket here. Live products, availability and Shopify-hosted checkout will appear only when the commerce connection is ready and properly tested.",
+    "browseCta": "Continue browsing artworks",
+    "sceneLabel": "A Paperseal print inspired by the Seven Sisters",
+    "sceneAlt": "Seven Sisters print presented on a warm paper surface",
+    "sceneScript": "Art for a brighter East Sussex.",
+    "sceneCopy": "Prints inspired by coastline, countryside and the everyday beauty around us."
+  },
+  "product": {
+    "breadcrumbLabel": "Breadcrumb",
+    "breadcrumbLinkLabel": "Artworks",
+    "galleryLabel": "image gallery",
+    "openImageLabel": "Open {image} full screen",
+    "previousImageLabel": "Previous image",
+    "nextImageLabel": "Next image",
+    "chooseGalleryImageLabel": "Choose gallery image",
+    "showImageLabel": "Show image {number}: {image}",
+    "placeSuffix": ", East Sussex",
+    "sizeLabel": "Select size",
+    "framingLabel": "Framing",
+    "printSizes": [
+      { "id": "small", "label": "Small", "dimensions": "17.8 × 12.7 cm · 7 × 5 in" },
+      { "id": "medium", "label": "Medium", "dimensions": "21 × 29.7 cm · 8.27 × 11.69 in" },
+      { "id": "large", "label": "Large", "dimensions": "29.7 × 42 cm · 11.69 × 16.54 in" }
+    ],
+    "framingOptions": [
+      { "id": "unframed", "label": "Unframed", "detail": "Print only" },
+      { "id": "framed", "label": "Framed", "detail": "One frame style" }
+    ],
+    "selectionSuffix": " selected. This does not reserve stock.",
+    "noStockLabel": "Online shop coming soon",
+    "commerceEyebrow": "Alpha preview",
+    "commerceCopy": "Explore the artwork, sizes and framing now. Purchasing and live availability will open after the Shopify connection is ready and tested.",
+    "shareGroupLabel": "Share this artwork",
+    "shareLabel": "Share artwork",
+    "copyLinkLabel": "Copy link",
+    "linkCopiedMessage": "Link copied to clipboard.",
+    "shareOpenedMessage": "Share sheet opened.",
+    "printSizesLabel": "Print sizes",
+    "printSizesValue": "7 × 5, A4 and A3",
+    "presentationLabel": "Presentation",
+    "presentationValue": "Framed or unframed",
+    "orderingLabel": "Online ordering",
+    "orderingValue": "Coming soon",
+    "deliveryLabel": "Delivery notes",
+    "returnsLabel": "Returns information",
+    "lightboxLabel": "Expanded artwork image"
+  }
+}

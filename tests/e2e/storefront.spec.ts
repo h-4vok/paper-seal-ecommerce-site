@@ -1,7 +1,32 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
+const copy = JSON.parse(readFileSync(resolve(process.cwd(), 'content/site-copy.json'), 'utf8')) as {
+  brand: { footerStatement: string[] };
+  home: { heroHeading: string };
+  catalogue: { searchPlaceholder: string };
+  cart: { heading: string };
+  product: { noStockLabel: string };
+};
+
 test.describe('catalogue discovery', () => {
+  test('renders representative values from the editable copy source', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(copy.home.heroHeading);
+    await expect(page.locator('footer')).toContainText(copy.brand.footerStatement[0]);
+
+    await page.goto('/artworks');
+    await expect(page.getByPlaceholder(copy.catalogue.searchPlaceholder)).toBeVisible();
+
+    await page.goto('/cart');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(copy.cart.heading);
+
+    await page.goto('/artworks/seven-sisters-from-the-gardens-ps-002');
+    await expect(page.getByText(copy.product.noStockLabel, { exact: true })).toBeVisible();
+  });
+
   test('renders crawlable cards and combines live search, place and sort controls', async ({
     page,
   }) => {
