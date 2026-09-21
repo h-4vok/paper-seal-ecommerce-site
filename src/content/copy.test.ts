@@ -19,7 +19,7 @@ describe('editorial copy', () => {
   it('provides validated shared navigation and home SEO copy', () => {
     const loaded = copy as unknown as LoadedCopy;
     expect(loaded.shared.navigation.items).toHaveLength(4);
-    expect(loaded.home.seo.title).toContain('Paperseal');
+    expect(loaded.home.seo.title).toContain('The Paper Seal Studio');
     expect(loaded.catalogue.controls.searchPlaceholder).toBeTruthy();
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.noStock).toBeTruthy();
@@ -27,7 +27,9 @@ describe('editorial copy', () => {
   });
 
   it('supports only controlled interpolation and readable line breaks', () => {
-    expect(copyText('© {year} Paperseal', { year: 2026 })).toBe('© 2026 Paperseal');
+    expect(copyText('© {year} The Paper Seal Studio', { year: 2026 })).toBe(
+      '© 2026 The Paper Seal Studio',
+    );
     expect(copyLines('Places worth keeping.\nPrints made to live with.')).toEqual([
       'Places worth keeping.',
       'Prints made to live with.',

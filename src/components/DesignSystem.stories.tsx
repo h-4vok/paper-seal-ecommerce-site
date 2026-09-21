@@ -117,7 +117,7 @@ const HeaderPreview = ({ initiallyOpen = false }: { initiallyOpen?: boolean }) =
 };
 
 const meta = {
-  title: 'Foundations/Paperseal system',
+  title: 'Foundations/The Paper Seal Studio system',
   parameters: { layout: 'fullscreen' },
 } satisfies Meta;
 

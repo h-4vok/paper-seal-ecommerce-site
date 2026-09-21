@@ -1,6 +1,6 @@
-# Paperseal
+# The Paper Seal Studio - Ecommerce platform
 
-Paperseal is an art boutique storefront in its earliest implementation stage. The MVP will present a considered, editorial shopping experience for framed art and connect it to Shopify for commerce.
+The Paper Seal Studio is an art boutique storefront in its earliest implementation stage. The MVP will present a considered, editorial shopping experience for framed art and connect it to Shopify for commerce.
 
 This repository currently provides the production-ready project foundation: Astro static rendering, a custom design-system boundary, Storybook, Vitest, Playwright, quality gates, GitHub Actions, and Netlify deployment configuration. The visible product is intentionally a small coming-soon page until the feature epics are implemented.
 

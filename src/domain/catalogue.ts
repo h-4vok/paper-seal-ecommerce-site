@@ -155,6 +155,6 @@ export function productStructuredData(artwork: Artwork, canonical: string, image
     url: canonical,
     sku: artwork.artworkCode,
     category: 'Fine art print',
-    brand: { '@type': 'Brand', name: 'Paperseal' },
+    brand: { '@type': 'Brand', name: 'The Paper Seal Studio' },
   };
 }

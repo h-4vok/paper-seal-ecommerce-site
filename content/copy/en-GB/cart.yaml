@@ -1,8 +1,8 @@
 seo:
-  title: Cart — Online shop coming soon | Paperseal
-  description: The Paperseal online shop and checkout are coming soon. Browse the artwork collection in the meantime.
+  title: Cart — Online shop coming soon | The Paper Seal Studio
+  description: The Paper Seal Studio online shop and checkout are coming soon. Browse the artwork collection in the meantime.
 header:
-  eyebrow: Paperseal · Alpha
+  eyebrow: The Paper Seal Studio · Alpha
   itemCount: 0 items
   heading: Your cart is waiting for the shop.
 empty:
@@ -10,7 +10,7 @@ empty:
   copy: There is no pretend basket here. Live products, availability and Shopify-hosted checkout will appear only when the commerce connection is ready and properly tested.
   browse: Continue browsing artworks
 scene:
-  label: A Paperseal print inspired by the Seven Sisters
+  label: A Paper Seal print inspired by the Seven Sisters
   alt: Seven Sisters print presented on a warm paper surface
   script: Art for a brighter East Sussex.
   copy: Prints inspired by coastline, countryside and the everyday beauty around us.

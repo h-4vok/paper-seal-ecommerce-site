@@ -12,7 +12,7 @@ const preview: Preview = {
     viewport: {
       viewports: {
         papersealMobile: {
-          name: 'Paperseal mobile',
+          name: 'The Paper Seal Studio mobile',
           styles: { width: '390px', height: '844px' },
         },
       },

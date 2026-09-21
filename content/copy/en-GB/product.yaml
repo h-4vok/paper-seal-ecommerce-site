@@ -31,7 +31,7 @@ labels:
 sizes:
   - id: small
     label: Small
-    dimensions: 17.8 × 12.7 cm · 7 × 5 in
+    dimensions: '17.8 × 12.7 cm · 7 × 5 in'
   - id: medium
     label: Medium
     dimensions: 21 × 29.7 cm · 8.27 × 11.69 in

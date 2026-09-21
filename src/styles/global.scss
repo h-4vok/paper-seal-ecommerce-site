@@ -159,6 +159,14 @@ textarea {
   transform: translateY(-0.1rem);
 }
 
+.button-link--darkblue {
+  background: darkblue;
+}
+
+.button-link--darkblue:hover {
+  background: #061d2b;
+}
+
 .button-link--navy {
   background: var(--color-navy);
 }
@@ -219,8 +227,8 @@ textarea {
 }
 
 .brand-mark__seal {
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
   flex: 0 0 auto;
 }
 
@@ -242,6 +250,7 @@ textarea {
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
+  margin-top: 0.3rem;
 }
 
 .site-header {

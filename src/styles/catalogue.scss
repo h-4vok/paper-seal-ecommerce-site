@@ -4,10 +4,6 @@
   margin-inline: auto;
 }
 
-.catalogue-aside {
-  display: none;
-}
-
 .catalogue-main {
   min-width: 0;
   padding: clamp(2.5rem, 7vw, 6rem) var(--page-gutter) 7rem;
@@ -234,67 +230,6 @@
 }
 
 @media (width >= 64rem) {
-  .catalogue-page {
-    grid-template-columns: 18rem minmax(0, 1fr);
-  }
-
-  .catalogue-aside {
-    position: sticky;
-    top: 0;
-    display: grid;
-    min-height: 100vh;
-    align-content: start;
-    gap: 2.5rem;
-    padding: 4rem 2.2rem;
-    border-right: 0.06rem solid var(--color-rule);
-  }
-
-  .catalogue-aside nav {
-    display: grid;
-    gap: 0.8rem;
-    padding-block: 1.5rem;
-    border-block: 0.06rem solid var(--color-rule);
-  }
-
-  .catalogue-aside nav a {
-    width: fit-content;
-    font-size: 1.08rem;
-    text-underline-offset: 0.3rem;
-  }
-
-  .catalogue-aside__sketch {
-    font-size: 2rem;
-    letter-spacing: 0.2em;
-  }
-
-  .catalogue-aside blockquote {
-    margin: 0;
-    font-size: 1.2rem;
-    font-style: italic;
-    line-height: 1.55;
-  }
-
-  .catalogue-aside__seal {
-    padding: 2.5rem 1rem;
-    color: var(--color-paper-light);
-    background: var(--color-garden-dark);
-    font-family: var(--font-ui);
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    line-height: 1.8;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .catalogue-aside__seal span {
-    display: block;
-    margin-bottom: 1.2rem;
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    text-transform: none;
-  }
-
   .catalogue-intro {
     grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.7fr);
   }
