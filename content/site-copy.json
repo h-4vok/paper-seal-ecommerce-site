@@ -141,6 +141,7 @@
   },
   "product": {
     "breadcrumbLabel": "Breadcrumb",
+    "breadcrumbLinkLabel": "Artworks",
     "galleryLabel": "image gallery",
     "openImageLabel": "Open {image} full screen",
     "previousImageLabel": "Previous image",
@@ -150,12 +151,18 @@
     "placeSuffix": ", East Sussex",
     "sizeLabel": "Select size",
     "framingLabel": "Framing",
-    "printOnlyLabel": "Print only",
-    "frameStyleLabel": "One frame style",
+    "printSizes": [
+      { "id": "small", "label": "Small", "dimensions": "17.8 × 12.7 cm · 7 × 5 in" },
+      { "id": "medium", "label": "Medium", "dimensions": "21 × 29.7 cm · 8.27 × 11.69 in" },
+      { "id": "large", "label": "Large", "dimensions": "29.7 × 42 cm · 11.69 × 16.54 in" }
+    ],
+    "framingOptions": [
+      { "id": "unframed", "label": "Unframed", "detail": "Print only" },
+      { "id": "framed", "label": "Framed", "detail": "One frame style" }
+    ],
     "selectionSuffix": " selected. This does not reserve stock.",
     "noStockLabel": "Online shop coming soon",
     "commerceEyebrow": "Alpha preview",
-    "commerceTitle": "Online shop coming soon",
     "commerceCopy": "Explore the artwork, sizes and framing now. Purchasing and live availability will open after the Shopify connection is ready and tested.",
     "shareGroupLabel": "Share this artwork",
     "shareLabel": "Share artwork",

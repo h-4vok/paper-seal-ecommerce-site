@@ -17,6 +17,8 @@ Before opening a PR, run `bun run validate` and `bun run test:e2e`. Feature pull
 
 Read [`AGENTS.md`](./AGENTS.md) and [`CONTEXT.md`](./CONTEXT.md) before making project changes.
 
+For editable UI copy, see [`content/COPY_WORKFLOW.md`](./content/COPY_WORKFLOW.md).
+
 ## Artwork content workflow
 
 See [`content/WORKFLOW.md`](./content/WORKFLOW.md) for the full content and asset pipeline,

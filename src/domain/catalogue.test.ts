@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import {
-  FRAMING_OPTIONS,
-  PRINT_SIZES,
   artworkMatches,
   artworks,
   filterCatalogue,
@@ -16,12 +14,6 @@ describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
     expect(artworks).toHaveLength(17);
     expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(17);
-    expect(PRINT_SIZES.map(({ dimensions }) => dimensions)).toEqual([
-      '17.8 × 12.7 cm · 7 × 5 in',
-      '21 × 29.7 cm · 8.27 × 11.69 in',
-      '29.7 × 42 cm · 11.69 × 16.54 in',
-    ]);
-    expect(FRAMING_OPTIONS.map(({ label }) => label)).toEqual(['Unframed', 'Framed']);
   });
 
   it.each([
