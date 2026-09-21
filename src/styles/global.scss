@@ -159,6 +159,14 @@ textarea {
   transform: translateY(-0.1rem);
 }
 
+.button-link--darkblue {
+  background: darkblue;
+}
+
+.button-link--darkblue:hover {
+  background: #061d2b;
+}
+
 .button-link--navy {
   background: var(--color-navy);
 }

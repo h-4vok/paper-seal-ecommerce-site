@@ -244,7 +244,7 @@
   margin-block: clamp(3rem, 8vw, 7rem);
   padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 6vw, 6rem);
   color: var(--color-paper-light);
-  background: var(--color-terracotta);
+  background: var(--color-navy);
   box-shadow: var(--shadow-soft);
 }
 
@@ -257,6 +257,7 @@
   font-family: var(--font-script);
   line-height: 1.3;
   transform: rotate(-5deg);
+  visibility: collapse;
 }
 
 .process {

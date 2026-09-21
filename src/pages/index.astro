@@ -107,7 +107,7 @@ const structuredData = [
       </header>
 
       <div class="collection-grid">
-        <a class="artwork-feature" href={`/artworks/${featuredBeachHuts.handle}`} aria-label={`Explore ${featuredBeachHuts.title}`}>
+        <a class="artwork-feature" href={`/artworks`} aria-label={`Explore our Artworks`}>
           <Picture
             src={beachHutsImage}
             widths={[480, 720, 960, 1484]}
@@ -123,7 +123,7 @@ const structuredData = [
           </span>
         </a>
 
-        <a class="artwork-feature" href={`/artworks/${featuredHarbour.handle}`} aria-label={`Explore ${featuredHarbour.title}`}>
+        <a class="artwork-feature" href={`/artworks`} aria-label={`Explore our Artworks`}>
           <Picture
             src={harbourImage}
             widths={[480, 720, 960, 1484]}
@@ -144,7 +144,7 @@ const structuredData = [
     <section class="browse-callout section-shell" aria-labelledby="browse-title">
       <p class="eyebrow">{home.browse.eyebrow}</p>
       <h2 id="browse-title">{browseHeading[0]}<br />{browseHeading[1]}</h2>
-      <a class="button-link button-link--navy" href="/artworks">
+      <a class="button-link button-link--darkblue" href="/artworks">
         {home.browse.cta} <span aria-hidden="true">→</span>
       </a>
       <p class="browse-callout__annotation" aria-hidden="true">{browseAnnotation[0]}<br />{browseAnnotation[1]}</p>
