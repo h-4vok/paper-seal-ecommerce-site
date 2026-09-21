@@ -141,7 +141,8 @@
 }
 
 .manifesto__stamp {
-  display: grid;
+  // display: grid;
+  display: none; // we hide the stamp for now.
   width: 8.5rem;
   height: 8.5rem;
   align-content: center;
