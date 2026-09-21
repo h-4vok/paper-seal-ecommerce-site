@@ -3,6 +3,8 @@
     "name": "Paperseal",
     "region": "East Sussex",
     "homeAriaLabel": "Paperseal home",
+    "descriptor": "Art prints · East Sussex",
+    "cartAriaLabel": "Cart, online shop coming soon",
     "headerNote": ["Small prints.", "Brighter places."],
     "footerStatement": ["Places worth keeping.", "Prints made to live with."],
     "footerBase": "Independent art from the Sussex coast."
@@ -17,7 +19,27 @@
       { "href": "/east-sussex", "label": "East Sussex" },
       { "href": "/journal", "label": "Journal" }
     ],
-    "contactLabel": "Contact the studio"
+    "contactLabel": "Contact the studio",
+    "menuOpenLabel": "Open menu",
+    "menuCloseLabel": "Close menu",
+    "mobileFooterStatement": "Art prints inspired by East Sussex — made for homes with a story.",
+    "footerNavigation": [
+      { "label": "Explore", "links": [
+        { "href": "/artworks", "label": "All artworks" },
+        { "href": "/our-story", "label": "Our story" },
+        { "href": "/east-sussex", "label": "East Sussex" },
+        { "href": "/journal", "label": "Journal" }
+      ] },
+      { "label": "Good to know", "links": [
+        { "href": "/delivery", "label": "Delivery" },
+        { "href": "/returns", "label": "Returns" },
+        { "href": "/contact", "label": "Contact" }
+      ] },
+      { "label": "Small print", "links": [
+        { "href": "/privacy", "label": "Privacy" },
+        { "href": "/terms", "label": "Terms" }
+      ] }
+    ]
   },
   "home": {
     "title": "Paperseal — Art prints inspired by East Sussex",

@@ -8,24 +8,12 @@ const year = new Date().getFullYear();
     <p class="site-footer__statement">{siteCopy.brand.footerStatement[0]}<br />{siteCopy.brand.footerStatement[1]}</p>
   </div>
   <div class="site-footer__columns">
-    <nav aria-label="Explore">
-      <p>Explore</p>
-      <a href="/artworks">All artworks</a>
-      <a href="/our-story">Our story</a>
-      <a href="/east-sussex">East Sussex</a>
-      <a href="/journal">Journal</a>
-    </nav>
-    <nav aria-label="Customer information">
-      <p>Good to know</p>
-      <a href="/delivery">Delivery</a>
-      <a href="/returns">Returns</a>
-      <a href="/contact">Contact</a>
-    </nav>
-    <nav aria-label="Legal information">
-      <p>Small print</p>
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-    </nav>
+    {siteCopy.navigation.footerNavigation.map((section) => (
+      <nav aria-label={section.label}>
+        <p>{section.label}</p>
+        {section.links.map((link) => <a href={link.href}>{link.label}</a>)}
+      </nav>
+    ))}
   </div>
   <div class="site-footer__base">
     <p>© {year} {siteCopy.brand.name}</p>
