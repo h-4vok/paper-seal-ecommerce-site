@@ -1,22 +1,35 @@
 ---
-import { siteCopy } from '../domain/site-copy';
+import { copy, copyText } from '../content/copy';
+const shared = copy.shared as any;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="site-footer__lead">
-    <p class="eyebrow">{siteCopy.brand.name} · {siteCopy.brand.region}</p>
-    <p class="site-footer__statement">{siteCopy.brand.footerStatement[0]}<br />{siteCopy.brand.footerStatement[1]}</p>
+    <p class="eyebrow">{shared.footer.eyebrow}</p>
+    <p class="site-footer__statement">{shared.footer.statement}</p>
   </div>
   <div class="site-footer__columns">
-    {siteCopy.navigation.footerNavigation.map((section) => (
-      <nav aria-label={section.label}>
-        <p>{section.label}</p>
-        {section.links.map((link) => <a href={link.href}>{link.label}</a>)}
-      </nav>
-    ))}
+    <nav aria-label={shared.footer.explore}>
+      <p>{shared.footer.explore}</p>
+      <a href="/artworks">{shared.footer.allArtworks}</a>
+      <a href="/our-story">{shared.footer.ourStory}</a>
+      <a href="/east-sussex">{shared.navigation.items[2].label}</a>
+      <a href="/journal">{shared.navigation.items[3].label}</a>
+    </nav>
+    <nav aria-label={shared.footer.goodToKnow}>
+      <p>{shared.footer.goodToKnow}</p>
+      <a href="/delivery">{shared.footer.delivery}</a>
+      <a href="/returns">{shared.footer.returns}</a>
+      <a href="/contact">{shared.footer.contact}</a>
+    </nav>
+    <nav aria-label={shared.footer.smallPrint}>
+      <p>{shared.footer.smallPrint}</p>
+      <a href="/privacy">{shared.footer.privacy}</a>
+      <a href="/terms">{shared.footer.terms}</a>
+    </nav>
   </div>
   <div class="site-footer__base">
-    <p>© {year} {siteCopy.brand.name}</p>
-    <p>{siteCopy.brand.footerBase}</p>
+    <p>{copyText(shared.footer.copyright, { year })}</p>
+    <p>{shared.footer.strapline}</p>
   </div>
 </footer>

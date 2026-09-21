@@ -1,13 +1,15 @@
 ---
 import BrandMark from './BrandMark.astro';
 import { siteCopy } from '../domain/site-copy';
+import { copy } from '../content/copy';
 
 interface Props {
   currentPath: string;
 }
 
 const { currentPath } = Astro.props;
-const navItems = siteCopy.navigation.items;
+const shared = copy.shared as any;
+const navItems = shared.navigation.items as Array<{ href: string; label: string }>;
 
 const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
@@ -32,7 +34,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     <p class="site-header__note" aria-hidden="true">{siteCopy.brand.headerNote[0]}<br />{siteCopy.brand.headerNote[1]}</p>
 
     <div class="site-header__actions">
-      <a class="icon-link" href="/cart" aria-label={siteCopy.brand.cartAriaLabel} aria-current={currentPath === '/cart' ? 'page' : undefined}>
+      <a class="icon-link" href="/cart" aria-label={shared.navigation.cartLabel} aria-current={currentPath === '/cart' ? 'page' : undefined}>
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <path d="M8.5 10.5h15l1.5 17H7l1.5-17Z" fill="none" stroke="currentColor" stroke-width="1.7" />
           <path d="M12 12V8a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7" />
@@ -42,7 +44,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       <button
         class="icon-button site-header__menu-toggle"
         type="button"
-        aria-label={siteCopy.navigation.menuOpenLabel}
+        aria-label={shared.navigation.openMenu}
         aria-expanded="false"
         aria-controls="mobile-navigation"
         data-menu-open
@@ -56,16 +58,16 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 
   <dialog class="mobile-menu" id="mobile-navigation" aria-labelledby="mobile-menu-title" data-mobile-menu>
     <div class="mobile-menu__header">
-      <p id="mobile-menu-title">{siteCopy.navigation.exploreLabel}</p>
+      <p id="mobile-menu-title">{shared.navigation.explore}</p>
       <form method="dialog">
-        <button class="icon-button" type="submit" aria-label={siteCopy.navigation.menuCloseLabel} data-menu-close>
+        <button class="icon-button" type="submit" aria-label={shared.navigation.closeMenu} data-menu-close>
           <svg viewBox="0 0 32 32" aria-hidden="true">
             <path d="M7 7l18 18M25 7 7 25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
           </svg>
         </button>
       </form>
     </div>
-    <nav aria-label={siteCopy.navigation.mobileLabel}>
+    <nav aria-label={shared.navigation.mobileLabel}>
       <ul class="mobile-menu__links">
         {navItems.map((item, index) => (
           <li>
@@ -77,8 +79,8 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       </ul>
     </nav>
     <div class="mobile-menu__footer">
-      <p>{siteCopy.navigation.mobileFooterStatement}</p>
-      <a href="/contact">{siteCopy.navigation.contactLabel} <span aria-hidden="true">→</span></a>
+      <p>{shared.navigation.mobileIntro}</p>
+      <a href="/contact">{shared.navigation.contact} <span aria-hidden="true">→</span></a>
     </div>
   </dialog>
 </header>

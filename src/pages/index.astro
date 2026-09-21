@@ -6,11 +6,14 @@ import beachHutsImage from '../assets/home/current-beach-huts.jpg';
 import harbourImage from '../assets/home/current-sovereign-harbour.jpg';
 import '../styles/home.scss';
 import { artworks } from '../domain/catalogue';
-import { siteCopy } from '../domain/site-copy';
+import { copy, copyLines } from '../content/copy';
 
-const title = siteCopy.home.title;
-const description = siteCopy.home.description;
-const home = siteCopy.home;
+const home = copy.home as any;
+const title = home.seo.title;
+const description = home.seo.description;
+const collectionHeading = copyLines(home.collection.heading);
+const browseHeading = copyLines(home.browse.heading);
+const browseAnnotation = copyLines(home.browse.annotation);
 const [featuredBeachHuts, featuredHarbour] = [
   artworks.find((artwork) => artwork.artworkCode === 'PS-007'),
   artworks.find((artwork) => artwork.artworkCode === 'PS-003'),
@@ -47,11 +50,11 @@ const structuredData = [
   <main id="main-content">
     <section class="home-hero" aria-labelledby="home-hero-title">
       <div class="home-hero__copy">
-        <p class="eyebrow">{home.heroEyebrow}</p>
-        <h1 id="home-hero-title">{home.heroHeading}</h1>
-        <p class="home-hero__intro">{home.heroIntro}</p>
+        <p class="eyebrow">{home.hero.eyebrow}</p>
+        <h1 id="home-hero-title">{home.hero.heading}</h1>
+        <p class="home-hero__intro">{home.hero.intro}</p>
         <a class="button-link" href="/artworks">
-          {home.heroCta} <span aria-hidden="true">→</span>
+          {home.hero.cta} <span aria-hidden="true">→</span>
         </a>
       </div>
 
@@ -62,45 +65,45 @@ const structuredData = [
           sizes="(min-width: 64rem) 68vw, 100vw"
           formats={['avif', 'webp']}
           fallbackFormat="jpg"
-          alt={home.heroAlt}
+          alt={home.hero.imageAlt}
           loading="eager"
           fetchpriority="high"
         />
-        <figcaption>{home.heroCaption}</figcaption>
+        <figcaption>{home.hero.caption}</figcaption>
       </figure>
 
-      <p class="home-hero__note" aria-hidden="true">{home.heroNote}</p>
+      <p class="home-hero__note" aria-hidden="true">{home.hero.note}</p>
     </section>
 
-    <section class="promise-strip" aria-label={home.promiseLabel}>
-      {home.promises.map((promise, index) => (
+    <section class="promise-strip" aria-label={home.promise.label}>
+      {home.promise.items.map((promise: any) => (
         <article>
-          <span class="promise-strip__icon" aria-hidden="true">{['⌁', '♡', '✦', '≈'][index]}</span>
-          <div><h2>{promise.title}</h2><p>{promise.copy}</p></div>
+          <span class="promise-strip__icon" aria-hidden="true">{promise.icon}</span>
+          <div><h2>{promise.heading}</h2><p>{promise.body}</p></div>
         </article>
       ))}
     </section>
 
     <section class="manifesto section-shell" aria-labelledby="manifesto-title">
       <div class="manifesto__heading">
-        <p class="eyebrow">{home.manifestoEyebrow}</p>
-        <h2 id="manifesto-title">{home.manifestoHeading}</h2>
+        <p class="eyebrow">{home.manifesto.eyebrow}</p>
+        <h2 id="manifesto-title">{home.manifesto.heading}</h2>
       </div>
       <div class="manifesto__copy">
-        {home.manifestoParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+        {home.manifesto.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}
       </div>
       <div class="manifesto__stamp" aria-hidden="true">
-        <span class="manifesto__stamp-name">Paperseal</span><span>{home.manifestoStamp}</span>
+        <span class="manifesto__stamp-name">Paperseal</span><span>{home.manifesto.stamp}</span>
       </div>
     </section>
 
     <section class="current-collection section-shell" aria-labelledby="collection-title">
       <header class="section-heading">
         <div>
-          <p class="eyebrow">{home.collectionEyebrow}</p>
-          <h2 id="collection-title">{home.collectionHeading[0]}<br />{home.collectionHeading[1]}</h2>
+          <p class="eyebrow">{home.collection.eyebrow}</p>
+          <h2 id="collection-title">{collectionHeading[0]}<br />{collectionHeading[1]}</h2>
         </div>
-        <p>{home.collectionIntro}</p>
+        <p>{home.collection.intro}</p>
       </header>
 
       <div class="collection-grid">
@@ -116,7 +119,7 @@ const structuredData = [
           />
           <span class="artwork-feature__caption">
             <span><strong>{featuredBeachHuts.title}</strong><small>{featuredBeachHuts.placeName} · East Sussex</small></span>
-            <span aria-hidden="true">{home.artworkLinkLabel} →</span>
+            <span aria-hidden="true">{home.collection.view}</span>
           </span>
         </a>
 
@@ -132,31 +135,31 @@ const structuredData = [
           />
           <span class="artwork-feature__caption">
             <span><strong>{featuredHarbour.title}</strong><small>{featuredHarbour.placeName} · East Sussex</small></span>
-            <span aria-hidden="true">{home.artworkLinkLabel} →</span>
+            <span aria-hidden="true">{home.collection.view}</span>
           </span>
         </a>
       </div>
     </section>
 
     <section class="browse-callout section-shell" aria-labelledby="browse-title">
-      <p class="eyebrow">{home.browseEyebrow}</p>
-      <h2 id="browse-title">{home.browseHeading[0]}<br />{home.browseHeading[1]}</h2>
+      <p class="eyebrow">{home.browse.eyebrow}</p>
+      <h2 id="browse-title">{browseHeading[0]}<br />{browseHeading[1]}</h2>
       <a class="button-link button-link--navy" href="/artworks">
-        {home.browseCta} <span aria-hidden="true">→</span>
+        {home.browse.cta} <span aria-hidden="true">→</span>
       </a>
-      <p class="browse-callout__annotation" aria-hidden="true">{home.browseAnnotation[0]}<br />{home.browseAnnotation[1]}</p>
+      <p class="browse-callout__annotation" aria-hidden="true">{browseAnnotation[0]}<br />{browseAnnotation[1]}</p>
     </section>
 
     <section class="process section-shell" aria-labelledby="process-title">
       <div class="process__intro">
-        <p class="eyebrow">{home.processEyebrow}</p>
-        <h2 id="process-title">{home.processHeading}</h2>
-        <p class="process__body">{home.processBody}</p>
-        <a class="text-link" href="/our-story">{home.processCta} <span aria-hidden="true">→</span></a>
+        <p class="eyebrow">{home.process.eyebrow}</p>
+        <h2 id="process-title">{home.process.heading}</h2>
+        <p class="process__body">{home.process.body}</p>
+        <a class="text-link" href="/our-story">{home.process.cta} <span aria-hidden="true">→</span></a>
       </div>
       <ol class="process__steps">
-        {home.processSteps.map((step, index) => (
-          <li><span class="process__number">{String(index + 1).padStart(2, '0')}</span><div><h3>{step.title}</h3><p class="process__description">{step.copy}</p></div></li>
+        {home.process.steps.map((step: any) => (
+          <li><span class="process__number">{step.number}</span><div><h3>{step.heading}</h3><p class="process__description">{step.body}</p></div></li>
         ))}
       </ol>
     </section>

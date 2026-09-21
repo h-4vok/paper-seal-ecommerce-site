@@ -74,3 +74,27 @@ does not replace the requirement for enough free disk space and memory.
 
 The current catalogue contains 17 artworks. Editorial titles, descriptions, and ordering
 can be refined later by editing only `artworks.yaml` and rerunning the metadata build.
+
+# Editorial copy workflow
+
+Page and interface copy lives in `content/copy/en-GB`. The locale directory is explicit: there is no implicit fallback, and a future locale must provide its own validated files.
+
+## Editing
+
+Use the shared file for navigation, footer and labels used in more than one page. Use a page/domain file for copy owned by that experience. Product titles, descriptions, alt text and commercial data remain in the artwork/product models.
+
+YAML values are plain text. Use `\n` for intentional line breaks. Links must remain declared by the consuming component; do not add HTML or executable content to YAML. State variants belong in the content file while selection logic remains in TypeScript.
+
+## Review
+
+After editing YAML:
+
+1. Run `npm run test -- src/content/copy.test.ts`.
+2. Run `npm run dev` and review the affected route in the browser.
+3. Run `npm run validate` before handoff.
+
+Missing required keys, invalid types and invalid URL structures fail validation. Editorial warnings should be visible in validation output but must not silently change rendered copy.
+
+## Format decision
+
+YAML was selected over JSON for readable manual editing, over TypeScript for lower editorial friction, and over Astro Content Collections because this copy is a typed application input rather than long-form document content. A hybrid domain/page layout avoids both one oversized catalogue and component-level fragmentation.
