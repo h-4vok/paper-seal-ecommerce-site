@@ -22,7 +22,14 @@ export const siteCopySchema = z.object({
     menuOpenLabel: text,
     menuCloseLabel: text,
     mobileFooterStatement: text,
-    footerNavigation: z.array(z.object({ label: text, links: z.array(z.object({ href: z.string().startsWith('/'), label: text })).min(1) })).length(3),
+    footerNavigation: z
+      .array(
+        z.object({
+          label: text,
+          links: z.array(z.object({ href: z.string().startsWith('/'), label: text })).min(1),
+        }),
+      )
+      .length(3),
   }),
   home: z.object({
     title: text,
