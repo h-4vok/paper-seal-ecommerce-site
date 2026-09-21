@@ -85,6 +85,8 @@
     "newestLabel": "Newest first",
     "titleSortLabel": "Title A–Z",
     "collectionLabel": "The collection",
+    "resultCountLabel": "artworks",
+    "cardLink": "View print",
     "emptyEyebrow": "No artworks found",
     "emptyHeading": "Try another place or a broader search.",
     "resetLabel": "Reset catalogue"
