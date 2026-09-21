@@ -40,7 +40,7 @@ const description = catalogue.description;
 const places = [...new Set(artworks.map(({ placeName }) => placeName))].sort((a, b) => a.localeCompare(b, 'en-GB'));
 const structuredData = [
   {
-    '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Paperseal artworks', description,
+    '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'The Paper Seal Studio artworks', description,
     url: 'https://paperseal.co.uk/artworks',
     mainEntity: { '@type': 'ItemList', itemListElement: artworks.map((artwork, index) => ({
       '@type': 'ListItem', position: index + 1, name: artwork.title,

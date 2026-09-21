@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
-test.describe('Paperseal Home', () => {
+test.describe('The Paper Seal Studio Home', () => {
   test('renders the complete server-authored Home with crawlable destinations', async ({
     page,
   }) => {
@@ -9,7 +9,7 @@ test.describe('Paperseal Home', () => {
     expect(response?.status()).toBe(200);
     const serverHtml = await response?.text();
     expect(serverHtml?.match(/<h1\b/g) ?? []).toHaveLength(1);
-    await expect(page).toHaveTitle('Paperseal — Art prints inspired by East Sussex');
+    await expect(page).toHaveTitle('The Paper Seal Studio — Art prints inspired by East Sussex');
     await expect(page.locator('main h1')).toHaveCount(1);
     await expect(page.locator('main').getByRole('heading', { level: 1 })).toHaveText(
       'Make home feel more like yours.',
@@ -85,7 +85,7 @@ test.describe('mobile navigation', () => {
     await trigger.focus();
     await page.keyboard.press('Enter');
 
-    const dialog = page.getByRole('dialog', { name: 'Explore Paperseal' });
+    const dialog = page.getByRole('dialog', { name: 'Explore The Paper Seal Studio' });
     await expect(dialog).toBeVisible();
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     await expect(page.getByRole('button', { name: 'Close menu' })).toBeFocused();

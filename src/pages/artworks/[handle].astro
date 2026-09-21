@@ -14,8 +14,8 @@ const { product } = copy;
 const productLabels = product.labels;
 const canonical = `/artworks/${artwork.handle}`;
 const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
-const title = `${artwork.title} — East Sussex art print | Paperseal`;
-const description = `${artwork.description} Explore this Paperseal print inspired by ${artwork.placeName}.`;
+const title = `${artwork.title} — East Sussex art print | The Paper Seal Studio`;
+const description = `${artwork.description} Explore this Paper Seal Studio print inspired by ${artwork.placeName}.`;
 const structuredData = [
   productStructuredData(artwork, `https://paperseal.co.uk${canonical}`, `https://paperseal.co.uk${shareImage}`),
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -30,7 +30,7 @@ const galleryLabels = {
 };
 const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
 ---
-<BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a Paperseal print`} ogType="product" {structuredData} bodyClass="product-body">
+<BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a The Paper Seal Studio print`} ogType="product" {structuredData} bodyClass="product-body">
   <main id="main-content" class="product-page" data-product-page data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)}>
     <nav class="product-breadcrumbs" aria-label={productLabels.breadcrumb}><a href="/artworks">{productLabels.breadcrumbLink}</a><span aria-hidden="true">/</span><span aria-current="page">{artwork.title}</span></nav>
     <section class="product-layout">

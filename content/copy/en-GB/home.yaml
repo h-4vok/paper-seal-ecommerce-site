@@ -1,26 +1,26 @@
 seo:
-  title: Paperseal — Art prints inspired by East Sussex
+  title: The Paper Seal Studio — Art prints inspired by East Sussex
   description: Warm, characterful art prints inspired by Eastbourne and East Sussex, made to help your home feel more like yours.
 hero:
   eyebrow: Art prints for a brighter everyday
   heading: Make home feel more like yours.
   intro: Art prints inspired by East Sussex — coastal paths, garden colour and the small, beautiful things that make a place home.
   cta: Explore prints
-  imageAlt: Eastbourne's pier and flower beds presented as a framed Paperseal print in a warm home interior
+  imageAlt: Eastbourne's pier and flower beds presented as a framed Paper Seal Studio print in a warm home interior
   caption: Eastbourne New Flower Bed · East Sussex
   note: Homes are happier with art.
 promise:
-  label: What makes Paperseal different
+  label: What makes The Paper Seal Studio different
   items:
     - { icon: ⌁, heading: Locally inspired, body: East Sussex places and stories }
     - { icon: ♡, heading: Independent, body: A small studio, a bigger why }
     - { icon: ✦, heading: Thoughtfully made, body: For a kinder, brighter home }
     - { icon: ≈, heading: Made to live with, body: Art for everyday life }
 manifesto:
-  eyebrow: Paperseal, East Sussex
+  eyebrow: The Paper Seal Studio, East Sussex
   heading: For familiar places that stay with you.
   paragraphs:
-    - 'There is beauty in the places we pass every day: the pier in changing light, chalk cliffs after rain, a harbour settling into evening. Paperseal turns those moments into prints with colour, warmth and a little wonder.'
+    - 'There is beauty in the places we pass every day: the pier in changing light, chalk cliffs after rain, a harbour settling into evening. The Paper Seal Studio turns those moments into prints with colour, warmth and a little wonder.'
     - Made for rooms that are collected rather than styled, each piece is a small reminder that good art and meaningful places belong in everyday homes.
   stamp: Always a good idea
 collection:
@@ -39,8 +39,8 @@ browse:
 process:
   eyebrow: Made by people, not a product machine
   heading: From a local moment to a print worth keeping.
-  body: 'Paperseal begins with looking carefully: at a familiar place, an unexpected colour, or the way a season changes a walk you know by heart.'
-  cta: Meet Paperseal
+  body: 'The Paper Seal Studio begins with looking carefully: at a familiar place, an unexpected colour, or the way a season changes a walk you know by heart.'
+  cta: Meet Us
   steps:
     - { number: '01', heading: Notice, body: A local scene catches the eye and earns another look. }
     - {

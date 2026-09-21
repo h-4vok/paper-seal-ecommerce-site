@@ -1,7 +1,7 @@
 brand:
-  name: Paperseal
+  name: The Paper Seal Studio
   region: East Sussex
-  homeAriaLabel: Paperseal home
+  homeAriaLabel: The Paper Seal Studio home
   descriptor: Art prints · East Sussex
   headerNote: "Small prints.\nBrighter places."
 skipLink: Skip to content
@@ -15,12 +15,12 @@ navigation:
   cartLabel: Cart, online shop coming soon
   openMenu: Open menu
   closeMenu: Close menu
-  explore: Explore Paperseal
+  explore: Explore The Paper Seal Studio
   mobileLabel: Mobile navigation
   contact: Contact the studio
   mobileIntro: Art prints inspired by East Sussex — made for homes with a story.
 footer:
-  eyebrow: Paperseal · East Sussex
+  eyebrow: The Paper Seal Studio · East Sussex
   statement: "Places worth keeping.\nPrints made to live with."
   explore: Explore
   allArtworks: All artworks
@@ -32,5 +32,5 @@ footer:
   smallPrint: Small print
   privacy: Privacy
   terms: Terms
-  copyright: © {year} Paperseal
+  copyright: © 2026 The Paper Seal Studio
   strapline: Independent art from the Sussex coast.
