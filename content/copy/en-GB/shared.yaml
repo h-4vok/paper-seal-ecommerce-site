@@ -3,12 +3,12 @@ brand:
   region: East Sussex
   homeAriaLabel: The Paper Seal Studio home
   descriptor: Art prints · East Sussex
-  headerNote: "Small prints.\nBrighter places."
+  headerNote: "Colorful memories.\nBrighter homes."
 skipLink: Skip to content
 navigation:
   primaryLabel: Primary navigation
   items:
-    - { href: /artworks, key: prints, label: Prints }
+    - { href: /artworks, key: prints, label: Prints } 
     - { href: /our-story, key: ourStory, label: Our Story }
     - { href: /east-sussex, key: eastSussex, label: East Sussex }
     - { href: /collabs, key: collabs, label: Collabs }
