@@ -12,10 +12,10 @@ hero:
 promise:
   label: What makes The Paper Seal Studio different
   items:
-    - { icon: ⌁, heading: Locally inspired, body: East Sussex places and stories }
-    - { icon: ♡, heading: Independent, body: A small studio, a bigger why }
-    - { icon: ✦, heading: Thoughtfully made, body: For a kinder, brighter home }
-    - { icon: ≈, heading: Made to live with, body: Art for everyday life }
+    - { icon: ≈, heading: Locally inspired, body: "East Sussex places and stories" }
+    - { icon: ✦, heading: Independent, body: "A small studio, a bigger why" }
+    - { icon: ♡, heading: Thoughtfully made, body: "For a kinder, warmer home" }
+    - { icon: ⌾, heading: Born from memories, body: "Crafted with real photography" }
 manifesto:
   eyebrow: The Paper Seal Studio, East Sussex
   heading: For familiar places that stay with you.
