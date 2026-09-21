@@ -212,22 +212,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-014,
-      title: South Downs Cat at Sunrise,
-      handle: south-downs-cat-sunrise-ps-014,
-      description: 'A quiet sunrise encounter on the South Downs, with a cat, grasses and wide morning light.',
-      placeName: South Downs,
-      publishedOrder: 1,
-      collections: [Full Collection],
-      orientation: portrait,
-      alt: 'A cat at sunrise among the grasses of the South Downs',
-      assetBase: south-downs-cat-sunrise,
-      gallery: [room],
-      masterFile: south-downs-cat-sunrise.png,
-      driveFileId: 1N05g-Y06lu5fd1Ihrldig3s3E8FUycSJ,
-      roomScene: *portrait,
-    }
-  - {
       artworkCode: PS-015,
       title: Devils Dyke,
       handle: devils-dyke-ps-015,

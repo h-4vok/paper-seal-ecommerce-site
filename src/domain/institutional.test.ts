@@ -11,7 +11,7 @@ describe('institutional route configuration', () => {
       'privacy',
       'terms',
       'east-sussex',
-      'journal',
+      'collabs',
     ]);
     expect(new Set(institutionalPages.map(({ slug }) => slug)).size).toBe(
       institutionalPages.length,

@@ -9,7 +9,7 @@ describe('artwork content metadata', () => {
   it('derives the committed catalogue and asset shapes deterministically', () => {
     const artworks = validateArtworkManifest(source);
     const outputs = deriveOutputs(artworks);
-    expect(outputs.catalogue).toHaveLength(17);
+    expect(outputs.catalogue).toHaveLength(16);
     expect(outputs.catalogue[0]).not.toHaveProperty('masterFile');
     expect(outputs.assets.artworks[0]).toMatchObject({
       assetBase: 'flower-bed',

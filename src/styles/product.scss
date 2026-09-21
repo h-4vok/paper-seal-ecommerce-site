@@ -1,14 +1,8 @@
 .product-body .site-header {
   color: var(--color-paper-light);
-  background: var(--color-navy);
-}
-
-.product-body .brand-mark {
-  color: var(--color-paper-light);
-}
-
-.product-body .brand-mark__seal {
-  filter: brightness(0) invert(1);
+  background: #f3ede2;
+  background: linear-gradient(90deg, rgb(243 237 226 / 100%) 20%, rgb(11 37 65 / 100%) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F3EDE2", endColorstr="#0B2541", GradientType=1);
 }
 
 .product-body .site-header__actions,
@@ -303,7 +297,8 @@ dialog.product-lightbox {
 .option-grid small {
   color: var(--color-muted);
   font-size: 0.78rem;
-  white-space: nowrap;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .option-announcement {

@@ -9,13 +9,6 @@ const rawCatalogue = copy.catalogue;
 const catalogue = {
   title: rawCatalogue.seo.title,
   description: rawCatalogue.seo.description,
-  asideLabel: rawCatalogue.aside.label,
-  allLabel: rawCatalogue.aside.all,
-  softLaunchLabel: rawCatalogue.aside.softLaunch,
-  placeLabel: rawCatalogue.aside.place,
-  asideEyebrow: rawCatalogue.aside.eyebrow,
-  asideQuote: rawCatalogue.aside.quote,
-  sealLines: rawCatalogue.aside.sealLines,
   heading: rawCatalogue.intro.heading,
   headingEyebrow: rawCatalogue.intro.eyebrow,
   intro: rawCatalogue.intro.copy,
@@ -57,21 +50,6 @@ const structuredData = [
 ---
 <BaseLayout {title} {description} canonical="/artworks" image="/images/artworks/flower-bed/room-1440.jpg" {structuredData}>
   <main id="main-content" class="catalogue-page" data-catalogue data-result-label={catalogue.resultCountLabel}>
-    <aside class="catalogue-aside" aria-label={catalogue.asideLabel}>
-      <nav>
-        <a href="/artworks" aria-current="page">{catalogue.allLabel}</a>
-        <a href="/artworks?q=Soft+Launch">{catalogue.softLaunchLabel}</a>
-        <a href="/artworks?place=Eastbourne">{catalogue.placeLabel}</a>
-      </nav>
-      <div class="catalogue-aside__sketch" aria-hidden="true">⌁ 〰 ⌁</div>
-      <p class="eyebrow">{catalogue.asideEyebrow[0]}<br />{catalogue.asideEyebrow[1]}</p>
-      <blockquote>{catalogue.asideQuote}</blockquote>
-      <div class="catalogue-aside__seal" aria-hidden="true">
-        <span>{rawCatalogue.aside.sealName}</span>
-        {catalogue.sealLines.map((line, index) => <>{index > 0 && <br />}{line}</>)}
-      </div>
-    </aside>
-
     <section class="catalogue-main" aria-labelledby="catalogue-title">
       <header class="catalogue-intro">
         <div><h1 id="catalogue-title">{catalogue.heading}</h1><p class="eyebrow">{catalogue.headingEyebrow}</p></div>

@@ -197,22 +197,6 @@
       }
     },
     {
-      "orientation": "portrait",
-      "assetBase": "south-downs-cat-sunrise",
-      "masterFile": "south-downs-cat-sunrise.png",
-      "driveFileId": "1N05g-Y06lu5fd1Ihrldig3s3E8FUycSJ",
-      "roomScene": {
-        "template": "scripts/asset-sources/artwork-scenes/pale-oak-portrait.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 506,
-          "top": 137,
-          "width": 458,
-          "height": 641
-        }
-      }
-    },
-    {
       "orientation": "landscape",
       "assetBase": "devils-dyke",
       "masterFile": "devils-dyke.png",

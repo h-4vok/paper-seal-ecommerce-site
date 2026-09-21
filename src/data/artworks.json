@@ -10,15 +10,11 @@
       "description": "A bright Eastbourne flower bed gathered into a joyful study of colour, leaves and late-season light.",
       "placeName": "Eastbourne",
       "publishedOrder": 100,
-      "collections": [
-        "Soft Launch"
-      ],
+      "collections": ["Soft Launch"],
       "orientation": "landscape",
       "alt": "Colourful flower beds in Eastbourne rendered as a painterly local scene",
       "assetBase": "flower-bed",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-002",
@@ -27,15 +23,11 @@
       "description": "Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast.",
       "placeName": "Seven Sisters",
       "publishedOrder": 1,
-      "collections": [
-        "Soft Launch"
-      ],
+      "collections": ["Soft Launch"],
       "orientation": "landscape",
       "alt": "The Seven Sisters chalk cliffs seen from a garden above the Sussex coast",
       "assetBase": "seven-sisters",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-004",
@@ -44,15 +36,11 @@
       "description": "A tall, quiet portrait of the downland landmark where paths, chalk and weather meet.",
       "placeName": "Beachy Head",
       "publishedOrder": 1,
-      "collections": [
-        "Soft Launch"
-      ],
+      "collections": ["Soft Launch"],
       "orientation": "portrait",
       "alt": "A portrait-format view of the downland and landmark at Beachy Head",
       "assetBase": "beachy-head",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-005",
@@ -61,15 +49,11 @@
       "description": "A broad Eastbourne view shaped by the town, the sea and the invitation to meet somewhere familiar.",
       "placeName": "Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "Soft Launch"
-      ],
+      "collections": ["Soft Launch"],
       "orientation": "landscape",
       "alt": "A wide painterly view across Eastbourne towards the sea",
       "assetBase": "meet-me-eastbourne",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-006",
@@ -78,15 +62,11 @@
       "description": "The pier held against sea and sky: a familiar Eastbourne silhouette seen with fresh attention.",
       "placeName": "Eastbourne Pier",
       "publishedOrder": 2,
-      "collections": [
-        "Soft Launch"
-      ],
+      "collections": ["Soft Launch"],
       "orientation": "landscape",
       "alt": "Eastbourne Pier extending into the sea beneath a bright sky",
       "assetBase": "eastbourne-pier",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-007",
@@ -95,15 +75,11 @@
       "description": "A row of Eastbourne beach huts turned into a small celebration of colour, rhythm and seaside days.",
       "placeName": "Eastbourne",
       "publishedOrder": 99,
-      "collections": [
-        "Soft Launch"
-      ],
+      "collections": ["Soft Launch"],
       "orientation": "landscape",
       "alt": "Colourful beach huts arranged along Eastbourne seafront",
       "assetBase": "beach-huts",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-008",
@@ -112,15 +88,11 @@
       "description": "A wide South Downs landscape of open fields, soft light and rolling Sussex horizons.",
       "placeName": "South Downs",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "Open fields and rolling hills across the South Downs in Sussex",
       "assetBase": "south-downs-1",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-009",
@@ -129,15 +101,11 @@
       "description": "Historic stone, green grounds and the quiet atmosphere of Battle Abbey in East Sussex.",
       "placeName": "Battle",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "The historic grounds and stone architecture of Battle Abbey in East Sussex",
       "assetBase": "battle-abbey",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-010",
@@ -146,15 +114,11 @@
       "description": "A spacious waterfront view where boats, buildings and open Eastbourne light meet.",
       "placeName": "Sovereign Harbour",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "A wide waterfront view of boats and buildings at Sovereign Harbour",
       "assetBase": "sovereign-harbour-waterfront",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-011",
@@ -163,15 +127,11 @@
       "description": "The Long Man of Wilmington standing quietly against the chalk downland of Sussex.",
       "placeName": "Wilmington",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "The Long Man of Wilmington figure set into the Sussex chalk hills",
       "assetBase": "long-man",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-012",
@@ -180,15 +140,11 @@
       "description": "Warm evening colour settling over Eastbourne, the sea and the edge of the day.",
       "placeName": "Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "A warm sunset over Eastbourne and the Sussex coast",
       "assetBase": "eastbourne-sunset",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-013",
@@ -197,32 +153,11 @@
       "description": "A familiar Martello tower held against the changing light of the East Sussex coast.",
       "placeName": "Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "Martello tower 66 on the East Sussex coast",
       "assetBase": "martello-66",
-      "gallery": [
-        "room"
-      ]
-    },
-    {
-      "artworkCode": "PS-014",
-      "title": "South Downs Cat at Sunrise",
-      "handle": "south-downs-cat-sunrise-ps-014",
-      "description": "A quiet sunrise encounter on the South Downs, with a cat, grasses and wide morning light.",
-      "placeName": "South Downs",
-      "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
-      "orientation": "portrait",
-      "alt": "A cat at sunrise among the grasses of the South Downs",
-      "assetBase": "south-downs-cat-sunrise",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-015",
@@ -231,15 +166,11 @@
       "description": "Layered hills and open sky above the dramatic downland valley of Devils Dyke.",
       "placeName": "Devils Dyke",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "The rolling hills and valley of Devils Dyke in Sussex",
       "assetBase": "devils-dyke",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-016",
@@ -248,15 +179,11 @@
       "description": "A vertical glimpse of flight, hillside and open Sussex air above the South Downs.",
       "placeName": "South Downs",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "portrait",
       "alt": "A paraglider flying above the South Downs landscape",
       "assetBase": "parapente-south-downs",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-003",
@@ -265,15 +192,11 @@
       "description": "A detailed harbour view with boats, water and the calm geometry of Sovereign Harbour.",
       "placeName": "Sovereign Harbour",
       "publishedOrder": 98,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "Boats and water at Sovereign Harbour in a detailed coastal view",
       "assetBase": "sovereign-harbour-high-res",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     },
     {
       "artworkCode": "PS-018",
@@ -282,15 +205,11 @@
       "description": "A lively South Downs scene of paths, vehicles and the everyday adventure of the hills.",
       "placeName": "South Downs",
       "publishedOrder": 1,
-      "collections": [
-        "Full Collection"
-      ],
+      "collections": ["Full Collection"],
       "orientation": "landscape",
       "alt": "Jeeps and a bike on a South Downs track beneath open hills",
       "assetBase": "south-downs-jeeps-bike",
-      "gallery": [
-        "room"
-      ]
+      "gallery": ["room"]
     }
   ]
 }

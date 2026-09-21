@@ -27,7 +27,9 @@ describe('editorial copy', () => {
   });
 
   it('supports only controlled interpolation and readable line breaks', () => {
-    expect(copyText('© {year} The Paper Seal Studio', { year: 2026 })).toBe('© 2026 The Paper Seal Studio');
+    expect(copyText('© {year} The Paper Seal Studio', { year: 2026 })).toBe(
+      '© 2026 The Paper Seal Studio',
+    );
     expect(copyLines('Places worth keeping.\nPrints made to live with.')).toEqual([
       'Places worth keeping.',
       'Prints made to live with.',
