@@ -2,7 +2,7 @@ import { z } from 'zod';
 import rawCopy from '../../content/site-copy.json';
 
 const text = z.string().min(1);
-const copySchema = z.object({
+export const siteCopySchema = z.object({
   brand: z.object({
     name: text,
     region: text,
@@ -130,4 +130,4 @@ const copySchema = z.object({
   }),
 });
 
-export const siteCopy = copySchema.parse(rawCopy);
+export const siteCopy = siteCopySchema.parse(rawCopy);
