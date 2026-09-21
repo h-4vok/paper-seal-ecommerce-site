@@ -2,11 +2,11 @@
 import ArtworkPicture from '../components/ArtworkPicture.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/institutional.scss';
-import { siteCopy } from '../domain/site-copy';
+import { copy } from '../content/copy';
 
-const { cart } = siteCopy;
-const title = cart.title;
-const description = cart.description;
+const { cart } = copy;
+const title = cart.seo.title;
+const description = cart.seo.description;
 const structuredData = {
   '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
@@ -17,18 +17,18 @@ const structuredData = {
 <BaseLayout {title} {description} canonical="/cart" indexable={false} {structuredData} bodyClass="cart-body">
   <main id="main-content" class="cart-page">
     <section class="cart-paper" aria-labelledby="cart-title">
-      <div class="cart-paper__header"><p class="eyebrow">{cart.eyebrow}</p><span aria-hidden="true">{cart.itemCount}</span></div>
-      <h1 id="cart-title">{cart.heading}</h1>
+      <div class="cart-paper__header"><p class="eyebrow">{cart.header.eyebrow}</p><span aria-hidden="true">{cart.header.itemCount}</span></div>
+      <h1 id="cart-title">{cart.header.heading}</h1>
       <div class="cart-empty-state">
-        <p class="cart-empty-state__title">{cart.emptyTitle}</p>
-        <p class="cart-empty-state__copy">{cart.emptyCopy}</p>
-        <a class="button-link button-link--navy" href="/artworks">{cart.browseCta} <span aria-hidden="true">→</span></a>
+        <p class="cart-empty-state__title">{cart.empty.title}</p>
+        <p class="cart-empty-state__copy">{cart.empty.copy}</p>
+        <a class="button-link button-link--navy" href="/artworks">{cart.empty.browse} <span aria-hidden="true">→</span></a>
       </div>
     </section>
-    <aside class="cart-brand-scene" aria-label={cart.sceneLabel}>
+    <aside class="cart-brand-scene" aria-label={cart.scene.label}>
       <div class="cart-brand-scene__tear" aria-hidden="true"></div>
-      <ArtworkPicture assetBase="seven-sisters" kind="room" alt={cart.sceneAlt} sizes="(min-width: 56rem) 44vw, 100vw" />
-      <div><p class="cart-brand-scene__script">{cart.sceneScript}</p><p>{cart.sceneCopy}</p></div>
+      <ArtworkPicture assetBase="seven-sisters" kind="room" alt={cart.scene.alt} sizes="(min-width: 56rem) 44vw, 100vw" />
+      <div><p class="cart-brand-scene__script">{cart.scene.script}</p><p>{cart.scene.copy}</p></div>
     </aside>
   </main>
 </BaseLayout>

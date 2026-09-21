@@ -1,0 +1,37 @@
+seo:
+  title: Artworks — East Sussex art prints by Paperseal
+  description: Browse Paperseal art prints inspired by Eastbourne, the Seven Sisters and familiar places across East Sussex.
+aside:
+  sealName: Paperseal · Eastbourne
+  label: Curated catalogue paths
+  all: All artworks
+  softLaunch: Soft Launch
+  place: Eastbourne
+  eyebrow: "Local places.\nLasting prints."
+  quote: “For the towns, coasts and stillness that stay with you.”
+  sealLines:
+    - Fine art prints
+    - Locally curated
+    - Always meaningful
+intro:
+  heading: Artworks
+  eyebrow: A curated selection of local art prints
+  copy: Original scenes. Lasting impressions. Fine-art prints inspired by real places — from Eastbourne and beyond.
+controls:
+  searchLabel: Search artworks and places
+  searchPlaceholder: Search artworks, places, or themes…
+  placeLabel: Place
+  allPlaces: All places
+  availabilityLabel: Availability
+  availabilityBadge: Coming soon
+  availabilityNote: Live availability will appear when the online shop opens.
+  sortLabel: Sort
+  newest: Newest first
+  title: Title A–Z
+results:
+  label: The collection
+  countLabel: artworks
+  cardLink: View print
+  emptyEyebrow: No artworks found
+  emptyHeading: Try another place or a broader search.
+  reset: Reset catalogue

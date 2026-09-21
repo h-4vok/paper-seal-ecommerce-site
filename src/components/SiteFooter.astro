@@ -1,35 +1,35 @@
 ---
 import { copy, copyText } from '../content/copy';
-const shared = copy.shared as any;
+const { navigation, footer } = copy.shared;
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="site-footer__lead">
-    <p class="eyebrow">{shared.footer.eyebrow}</p>
-    <p class="site-footer__statement">{shared.footer.statement}</p>
+    <p class="eyebrow">{footer.eyebrow}</p>
+    <p class="site-footer__statement">{footer.statement[0]}<br />{footer.statement[1]}</p>
   </div>
   <div class="site-footer__columns">
-    <nav aria-label={shared.footer.explore}>
-      <p>{shared.footer.explore}</p>
-      <a href="/artworks">{shared.footer.allArtworks}</a>
-      <a href="/our-story">{shared.footer.ourStory}</a>
-      <a href="/east-sussex">{shared.navigation.items[2].label}</a>
-      <a href="/journal">{shared.navigation.items[3].label}</a>
+    <nav aria-label={footer.explore}>
+      <p>{footer.explore}</p>
+      <a href="/artworks">{footer.allArtworks}</a>
+      <a href="/our-story">{footer.ourStory}</a>
+      <a href="/east-sussex">{navigation.items[2].label}</a>
+      <a href="/journal">{navigation.items[3].label}</a>
     </nav>
-    <nav aria-label={shared.footer.goodToKnow}>
-      <p>{shared.footer.goodToKnow}</p>
-      <a href="/delivery">{shared.footer.delivery}</a>
-      <a href="/returns">{shared.footer.returns}</a>
-      <a href="/contact">{shared.footer.contact}</a>
+    <nav aria-label={footer.goodToKnow}>
+      <p>{footer.goodToKnow}</p>
+      <a href="/delivery">{footer.delivery}</a>
+      <a href="/returns">{footer.returns}</a>
+      <a href="/contact">{footer.contact}</a>
     </nav>
-    <nav aria-label={shared.footer.smallPrint}>
-      <p>{shared.footer.smallPrint}</p>
-      <a href="/privacy">{shared.footer.privacy}</a>
-      <a href="/terms">{shared.footer.terms}</a>
+    <nav aria-label={footer.smallPrint}>
+      <p>{footer.smallPrint}</p>
+      <a href="/privacy">{footer.privacy}</a>
+      <a href="/terms">{footer.terms}</a>
     </nav>
   </div>
   <div class="site-footer__base">
-    <p>{copyText(shared.footer.copyright, { year })}</p>
-    <p>{shared.footer.strapline}</p>
+    <p>{copyText(footer.copyright, { year })}</p>
+    <p>{footer.strapline}</p>
   </div>
 </footer>

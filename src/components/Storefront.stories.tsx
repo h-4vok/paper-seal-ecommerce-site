@@ -1,4 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { parse } from 'yaml';
+import productYaml from '../../content/copy/en-GB/product.yaml?raw';
+import storiesYaml from '../../content/copy/en-GB/stories.yaml?raw';
+
+const stories = parse(storiesYaml) as Record<string, string>;
+const product = parse(productYaml) as {
+  labels: {
+    size: string;
+    framing: string;
+    commerceEyebrow: string;
+    noStock: string;
+    shareGroup: string;
+    share: string;
+    copyLink: string;
+    linkCopied: string;
+  };
+  sizes: Array<{ id: string; label: string; dimensions: string }>;
+  framing: Array<{ id: string; label: string; detail: string }>;
+};
 
 type GalleryKind = 'room';
 
@@ -22,7 +41,10 @@ const galleryKinds: GalleryKind[] = ['room', 'room'];
 const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focused?: boolean }) => {
   const images = galleryKinds.slice(0, count);
   return (
-    <div className="product-gallery" aria-label={`${count}-image gallery example`}>
+    <div
+      className="product-gallery"
+      aria-label={stories.galleryExample.replace('{count}', String(count))}
+    >
       <div
         className="product-gallery__stage"
         style={
@@ -30,21 +52,21 @@ const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focus
         }
       >
         <div className="product-gallery__slide">
-          <Picture asset="seven-sisters" kind={images[0]} alt="Seven Sisters gallery preview" />
+          <Picture asset="seven-sisters" kind={images[0]} alt={stories.galleryPreviewAlt} />
         </div>
         {count > 1 && (
           <>
             <button
               className="gallery-arrow gallery-arrow--previous"
               type="button"
-              aria-label="Previous image"
+              aria-label={stories.previousImage}
             >
               ←
             </button>
             <button
               className="gallery-arrow gallery-arrow--next"
               type="button"
-              aria-label="Next image"
+              aria-label={stories.nextImage}
             >
               →
             </button>
@@ -52,12 +74,12 @@ const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focus
         )}
       </div>
       {count > 1 && (
-        <div className="product-gallery__dots" aria-label="Choose gallery image">
+        <div className="product-gallery__dots" aria-label={stories.chooseGalleryImage}>
           {images.map((kind, index) => (
             <button
               key={`${kind}-${index}`}
               type="button"
-              aria-label={`Show image ${index + 1}`}
+              aria-label={stories.showImage.replace('{number}', String(index + 1))}
               aria-pressed={index === 0}
             />
           ))}
@@ -70,7 +92,7 @@ const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focus
               key={`${kind}-${index}`}
               type="button"
               className="product-gallery__thumbnail"
-              aria-label={`Show image ${index + 1}`}
+              aria-label={stories.showImage.replace('{number}', String(index + 1))}
               aria-pressed={index === 0}
             >
               <Picture asset="seven-sisters" kind={kind} alt="" />
@@ -84,19 +106,20 @@ const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focus
 
 const Card = ({ asset, title, place }: { asset: string; title: string; place: string }) => (
   <article className="artwork-card">
-    <a href="#product" aria-label={`View ${title}, ${place}`}>
+    <a
+      href="#product"
+      aria-label={stories.viewCard.replace('{title}', title).replace('{place}', place)}
+    >
       <div className="artwork-card__media">
-        <Picture asset={asset} alt={`${title} mounted print`} />
+        <Picture asset={asset} alt={stories.mountedPrint.replace('{title}', title)} />
       </div>
       <div className="artwork-card__caption">
         <div>
           <h2>{title}</h2>
           <p>{place} · PS-000</p>
         </div>
-        <p className="artwork-card__description">
-          A local scene presented with a warm paper mount and a simple caption slip.
-        </p>
-        <span aria-hidden="true">View print →</span>
+        <p className="artwork-card__description">{stories.cardDescription}</p>
+        <span aria-hidden="true">{stories.viewPrint} →</span>
       </div>
     </a>
   </article>
@@ -113,8 +136,8 @@ export const CatalogueLandscapePortraitAndLongTitle: Story = {
   render: () => (
     <main className="catalogue-main">
       <div className="catalogue-results-heading">
-        <p className="eyebrow">Mixed pair</p>
-        <p>2 artworks</p>
+        <p className="eyebrow">{stories.mixedPair}</p>
+        <p>{stories.twoArtworks}</p>
       </div>
       <div className="artwork-grid">
         <Card asset="flower-bed" title="Flower Bed" place="Eastbourne" />
@@ -132,14 +155,14 @@ export const CatalogueEmptyAndFocus: Story = {
   render: () => (
     <main className="catalogue-main">
       <div className="catalogue-empty" style={{ display: 'block' }}>
-        <p className="eyebrow">No artworks found</p>
-        <h2>Try another place or a broader search.</h2>
+        <p className="eyebrow">{stories.noArtworks}</p>
+        <h2>{stories.tryAnother}</h2>
         <button
           className="button-link button-link--navy"
           type="button"
           style={{ outline: '0.18rem solid var(--color-focus)', outlineOffset: '0.24rem' }}
         >
-          Reset catalogue
+          {stories.resetCatalogue}
         </button>
       </div>
     </main>
@@ -151,39 +174,43 @@ export const ProductComingSoonAndOptions: Story = {
     <main className="product-layout">
       <div className="product-gallery">
         <div className="product-gallery__stage">
-          <Picture asset="seven-sisters" alt="Seven Sisters mounted print" />
+          <Picture asset="seven-sisters" alt={stories.mountedProductAlt} />
         </div>
       </div>
       <article className="product-information">
-        <p className="eyebrow">Soft Launch · PS-002</p>
-        <h1>Seven Sisters from the Gardens</h1>
-        <p className="product-place">Seven Sisters, East Sussex</p>
+        <p className="eyebrow">{stories.softLaunch}</p>
+        <h1>{stories.productTitle}</h1>
+        <p className="product-place">{stories.productPlace}</p>
         <form className="product-options">
           <fieldset>
-            <legend>Select size</legend>
+            <legend>{product.labels.size}</legend>
             <div className="option-grid option-grid--three">
-              {['Small', 'Medium', 'Large'].map((label, index) => (
-                <label key={label}>
+              {product.sizes.map((size, index) => (
+                <label key={size.id}>
                   <input type="radio" name="story-size" defaultChecked={index === 0} />
-                  <span className="visually-hidden">Choose {label}</span>
+                  <span className="visually-hidden">
+                    {stories.choose.replace('{label}', size.label)}
+                  </span>
                   <span>
-                    <strong>{label}</strong>
-                    <small>{['7 × 5', 'A4', 'A3'][index]}</small>
+                    <strong>{size.label}</strong>
+                    <small>{size.dimensions}</small>
                   </span>
                 </label>
               ))}
             </div>
           </fieldset>
           <fieldset>
-            <legend>Framing</legend>
+            <legend>{product.labels.framing}</legend>
             <div className="option-grid option-grid--two">
-              {['Unframed', 'Framed'].map((label, index) => (
-                <label key={label}>
+              {product.framing.map((frame, index) => (
+                <label key={frame.id}>
                   <input type="radio" name="story-frame" defaultChecked={index === 1} />
-                  <span className="visually-hidden">Choose {label}</span>
+                  <span className="visually-hidden">
+                    {stories.choose.replace('{label}', frame.label)}
+                  </span>
                   <span>
-                    <strong>{label}</strong>
-                    <small>{index === 0 ? 'Print only' : 'One frame style'}</small>
+                    <strong>{frame.label}</strong>
+                    <small>{frame.detail}</small>
                   </span>
                 </label>
               ))}
@@ -191,9 +218,9 @@ export const ProductComingSoonAndOptions: Story = {
           </fieldset>
         </form>
         <section className="commerce-coming-soon">
-          <p className="eyebrow">Alpha preview</p>
-          <p className="commerce-coming-soon__title">Online shop coming soon</p>
-          <p>No fake price, stock or checkout is shown.</p>
+          <p className="eyebrow">{product.labels.commerceEyebrow}</p>
+          <p className="commerce-coming-soon__title">{product.labels.noStock}</p>
+          <p>{stories.noFakeCommerce}</p>
         </section>
       </article>
     </main>
@@ -217,16 +244,16 @@ export const ProductShareFallbackAndFocus: Story = {
     <main className="product-layout">
       <ProductGalleryPreview count={2} focused />
       <article className="product-information">
-        <p className="eyebrow">Share fallback · focused gallery</p>
-        <h1>Seven Sisters from the Gardens</h1>
-        <div className="product-actions" aria-label="Share this artwork">
+        <p className="eyebrow">{stories.shareFallback}</p>
+        <h1>{stories.productTitle}</h1>
+        <div className="product-actions" aria-label={product.labels.shareGroup}>
           <button className="text-link" type="button">
-            Share artwork
+            {product.labels.share}
           </button>
           <button className="text-link" type="button">
-            Copy link
+            {product.labels.copyLink}
           </button>
-          <p role="status">Link copied to clipboard.</p>
+          <p role="status">{product.labels.linkCopied}</p>
         </div>
       </article>
     </main>
@@ -240,12 +267,12 @@ export const ProductNarrowMobile: Story = {
       <div className="product-layout">
         <ProductGalleryPreview count={2} />
         <article className="product-information">
-          <p className="eyebrow">Soft Launch · PS-002</p>
-          <h1>Seven Sisters from the Gardens</h1>
-          <p className="product-place">Seven Sisters, East Sussex</p>
+          <p className="eyebrow">{stories.softLaunch}</p>
+          <h1>{stories.productTitle}</h1>
+          <p className="product-place">{stories.productPlace}</p>
           <section className="commerce-coming-soon">
-            <p className="eyebrow">Alpha preview</p>
-            <p className="commerce-coming-soon__title">Online shop coming soon</p>
+            <p className="eyebrow">{product.labels.commerceEyebrow}</p>
+            <p className="commerce-coming-soon__title">{product.labels.noStock}</p>
           </section>
         </article>
       </div>
@@ -258,15 +285,15 @@ export const CartEmptyState: Story = {
     <main className="cart-page">
       <section className="cart-paper">
         <div className="cart-paper__header">
-          <p className="eyebrow">Paperseal · Alpha</p>
-          <span>0 items</span>
+          <p className="eyebrow">{stories.papersealAlpha}</p>
+          <span>{stories.zeroItems}</span>
         </div>
-        <h1>Your cart is waiting for the shop.</h1>
+        <h1>{stories.cartHeading}</h1>
         <div className="cart-empty-state">
-          <p className="cart-empty-state__title">Online shop and checkout coming soon.</p>
-          <p>There is no pretend basket here.</p>
+          <p className="cart-empty-state__title">{stories.cartEmptyTitle}</p>
+          <p>{stories.cartEmptyCopy}</p>
           <a className="button-link button-link--navy" href="#artworks">
-            Continue browsing artworks
+            {stories.continueBrowsing}
           </a>
         </div>
       </section>
@@ -279,20 +306,18 @@ export const PolicyTypographyMobile: Story = {
   render: () => (
     <main className="institutional-page">
       <header className="institutional-hero">
-        <p className="eyebrow">Returns · Paperseal</p>
-        <h1>Human help, without a portal.</h1>
-        <p>Warm, direct policy presentation at a realistic mobile width.</p>
+        <p className="eyebrow">{stories.returnsPaperseal}</p>
+        <h1>{stories.policyHeading}</h1>
+        <p>{stories.policyIntro}</p>
       </header>
       <aside className="institutional-status">
-        <p className="eyebrow">Current status</p>
-        <p>Alpha review: final policy copy is still being prepared.</p>
+        <p className="eyebrow">{stories.currentStatus}</p>
+        <p>{stories.policyStatus}</p>
       </aside>
       <div className="institutional-content">
         <section>
-          <h2>How help will work</h2>
-          <p>
-            Returns and damaged-item cases will be handled manually by email once commerce launches.
-          </p>
+          <h2>{stories.policySection}</h2>
+          <p>{stories.policyCopy}</p>
         </section>
       </div>
     </main>

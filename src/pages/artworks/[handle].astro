@@ -2,7 +2,7 @@
 import ArtworkPicture from '../../components/ArtworkPicture.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { artworks, productStructuredData, type Artwork } from '../../domain/catalogue';
-import { siteCopy } from '../../domain/site-copy';
+import { copy, copyText } from '../../content/copy';
 import '../../styles/product.scss';
 
 export function getStaticPaths() {
@@ -10,7 +10,8 @@ export function getStaticPaths() {
 }
 
 const { artwork } = Astro.props as { artwork: Artwork };
-const { product } = siteCopy;
+const { product } = copy;
+const productLabels = product.labels;
 const canonical = `/artworks/${artwork.handle}`;
 const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
 const title = `${artwork.title} — East Sussex art print | Paperseal`;
@@ -30,27 +31,27 @@ const galleryLabels = {
 const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
 ---
 <BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a Paperseal print`} ogType="product" {structuredData} bodyClass="product-body">
-  <main id="main-content" class="product-page" data-product-page data-selection-suffix={product.selectionSuffix} data-link-copied={product.linkCopiedMessage} data-share-opened={product.shareOpenedMessage} data-size-options={JSON.stringify(product.printSizes)} data-framing-options={JSON.stringify(product.framingOptions)}>
-    <nav class="product-breadcrumbs" aria-label={product.breadcrumbLabel}><a href="/artworks">{product.breadcrumbLinkLabel}</a><span aria-hidden="true">/</span><span aria-current="page">{artwork.title}</span></nav>
+  <main id="main-content" class="product-page" data-product-page data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)}>
+    <nav class="product-breadcrumbs" aria-label={productLabels.breadcrumb}><a href="/artworks">{productLabels.breadcrumbLink}</a><span aria-hidden="true">/</span><span aria-current="page">{artwork.title}</span></nav>
     <section class="product-layout">
-      <div class="product-gallery" data-gallery aria-label={`${artwork.title} ${product.galleryLabel}`}>
+      <div class="product-gallery" data-gallery aria-label={`${artwork.title} ${productLabels.gallery}`}>
         <div class="product-gallery__stage" data-gallery-stage tabindex="0" aria-roledescription="carousel">
           {gallery.map((image, index) => (
             <div class="product-gallery__slide" data-slide={index} hidden={index !== 0}>
-              <button class="product-gallery__zoom-trigger" type="button" aria-label={product.openImageLabel.replace('{image}', image.label)} data-gallery-zoom>
+              <button class="product-gallery__zoom-trigger" type="button" aria-label={copyText(productLabels.openImage, { image: image.label })} data-gallery-zoom>
                 <ArtworkPicture assetBase={artwork.assetBase} kind={image.kind} alt={image.label} sizes="(min-width: 64rem) 62vw, 100vw" eager={index === 0} />
               </button>
             </div>
           ))}
-          {gallery.length > 1 && <button class="gallery-arrow gallery-arrow--previous" type="button" aria-label={product.previousImageLabel} data-gallery-previous>←</button>}
-          {gallery.length > 1 && <button class="gallery-arrow gallery-arrow--next" type="button" aria-label={product.nextImageLabel} data-gallery-next>→</button>}
+          {gallery.length > 1 && <button class="gallery-arrow gallery-arrow--previous" type="button" aria-label={productLabels.previousImage} data-gallery-previous>←</button>}
+          {gallery.length > 1 && <button class="gallery-arrow gallery-arrow--next" type="button" aria-label={productLabels.nextImage} data-gallery-next>→</button>}
         </div>
-        {gallery.length > 1 && <div class="product-gallery__dots" aria-label={product.chooseGalleryImageLabel}>
-          {gallery.map((image, index) => <button type="button" aria-label={product.showImageLabel.replace('{number}', String(index + 1)).replace('{image}', image.label)} aria-pressed={index === 0 ? 'true' : 'false'} data-gallery-dot={index}><span class="visually-hidden">{image.label}</span></button>)}
+        {gallery.length > 1 && <div class="product-gallery__dots" aria-label={productLabels.chooseGalleryImage}>
+          {gallery.map((image, index) => <button type="button" aria-label={copyText(productLabels.showImage, { number: index + 1, image: image.label })} aria-pressed={index === 0 ? 'true' : 'false'} data-gallery-dot={index}><span class="visually-hidden">{image.label}</span></button>)}
         </div>}
         {gallery.length > 1 && <div class="product-gallery__thumbs">
           {gallery.map((image, index) => (
-            <button type="button" class="product-gallery__thumbnail" aria-label={product.showImageLabel.replace('{number}', String(index + 1)).replace('{image}', image.label)} aria-pressed={index === 0 ? 'true' : 'false'} data-gallery-thumbnail={index}>
+            <button type="button" class="product-gallery__thumbnail" aria-label={copyText(productLabels.showImage, { number: index + 1, image: image.label })} aria-pressed={index === 0 ? 'true' : 'false'} data-gallery-thumbnail={index}>
               <ArtworkPicture assetBase={artwork.assetBase} kind={image.kind} alt="" sizes="8rem" />
             </button>
           ))}
@@ -60,33 +61,33 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
       <article class="product-information">
         <p class="eyebrow">{artwork.collections[0]} · {artwork.artworkCode}</p>
         <h1>{artwork.title}</h1>
-        <a class="product-place" href={`/artworks?place=${encodeURIComponent(artwork.placeName)}`}>{artwork.placeName}{product.placeSuffix}</a>
+        <a class="product-place" href={`/artworks?place=${encodeURIComponent(artwork.placeName)}`}>{artwork.placeName}{productLabels.placeSuffix}</a>
         <p class="product-description">{artwork.description}</p>
     <form class="product-options" data-product-options>
-          <fieldset><legend>{product.sizeLabel}</legend><div class="option-grid option-grid--three">
-            {product.printSizes.map((size, index) => <label><input type="radio" name="size" value={size.id} checked={index === 0} /><span><strong>{size.label}</strong><small>{size.dimensions}</small></span></label>)}
+          <fieldset><legend>{productLabels.size}</legend><div class="option-grid option-grid--three">
+            {product.sizes.map((size, index) => <label><input type="radio" name="size" value={size.id} checked={index === 0} /><span><strong>{size.label}</strong><small>{size.dimensions}</small></span></label>)}
           </div></fieldset>
-          <fieldset><legend>{product.framingLabel}</legend><div class="option-grid option-grid--two">
-            {product.framingOptions.map((frame, index) => <label><input type="radio" name="framing" value={frame.id} checked={index === 0} /><span><strong>{frame.label}</strong><small>{frame.detail}</small></span></label>)}
+          <fieldset><legend>{productLabels.framing}</legend><div class="option-grid option-grid--two">
+            {product.framing.map((frame, index) => <label><input type="radio" name="framing" value={frame.id} checked={index === 0} /><span><strong>{frame.label}</strong><small>{frame.detail}</small></span></label>)}
           </div></fieldset>
-          <p class="option-announcement" aria-live="polite" data-option-announcement>{product.printSizes[0].label}, {product.printSizes[0].dimensions}, {product.framingOptions[0].label}{product.selectionSuffix}</p>
+          <p class="option-announcement" aria-live="polite" data-option-announcement>{product.sizes[0].label}, {product.sizes[0].dimensions}, {product.framing[0].label}{productLabels.selectionSuffix}</p>
         </form>
         <section class="commerce-coming-soon" aria-labelledby="commerce-title">
-          <p class="eyebrow" id="commerce-title">{product.commerceEyebrow}</p>
-          <p class="commerce-coming-soon__title" tabindex="0">{product.noStockLabel}</p>
-          <p>{product.commerceCopy}</p>
+          <p class="eyebrow" id="commerce-title">{productLabels.commerceEyebrow}</p>
+          <p class="commerce-coming-soon__title" tabindex="0">{productLabels.noStock}</p>
+          <p>{productLabels.commerceCopy}</p>
         </section>
-        <div class="product-actions" aria-label={product.shareGroupLabel}>
-          <button class="text-link" type="button" data-share>{product.shareLabel}</button><button class="text-link" type="button" data-copy-link>{product.copyLinkLabel}</button>
+        <div class="product-actions" aria-label={productLabels.shareGroup}>
+          <button class="text-link" type="button" data-share>{productLabels.share}</button><button class="text-link" type="button" data-copy-link>{productLabels.copyLink}</button>
           <p class="visually-hidden" aria-live="polite" data-share-status></p>
         </div>
         <dl class="product-trust">
-          <div><dt>{product.printSizesLabel}</dt><dd>{product.printSizesValue}</dd></div><div><dt>{product.presentationLabel}</dt><dd>{product.presentationValue}</dd></div><div><dt>{product.orderingLabel}</dt><dd>{product.orderingValue}</dd></div>
+          <div><dt>{productLabels.printSizes}</dt><dd>{productLabels.printSizesValue}</dd></div><div><dt>{productLabels.presentation}</dt><dd>{productLabels.presentationValue}</dd></div><div><dt>{productLabels.ordering}</dt><dd>{productLabels.orderingValue}</dd></div>
         </dl>
-        <p class="product-policy-links"><a href="/delivery">{product.deliveryLabel}</a> · <a href="/returns">{product.returnsLabel}</a></p>
+        <p class="product-policy-links"><a href="/delivery">{productLabels.delivery}</a> · <a href="/returns">{productLabels.returns}</a></p>
       </article>
     </section>
-    <dialog class="product-lightbox" data-lightbox aria-label={product.lightboxLabel}>
+    <dialog class="product-lightbox" data-lightbox aria-label={productLabels.lightbox}>
       <div class="product-lightbox__surface" data-lightbox-surface>
         <img data-lightbox-image alt="" />
       </div>

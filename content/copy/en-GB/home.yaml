@@ -20,7 +20,7 @@ manifesto:
   eyebrow: Paperseal, East Sussex
   heading: For familiar places that stay with you.
   paragraphs:
-    - There is beauty in the places we pass every day: the pier in changing light, chalk cliffs after rain, a harbour settling into evening. Paperseal turns those moments into prints with colour, warmth and a little wonder.
+    - 'There is beauty in the places we pass every day: the pier in changing light, chalk cliffs after rain, a harbour settling into evening. Paperseal turns those moments into prints with colour, warmth and a little wonder.'
     - Made for rooms that are collected rather than styled, each piece is a small reminder that good art and meaningful places belong in everyday homes.
   stamp: Always a good idea
 collection:
@@ -46,12 +46,10 @@ process:
     - {
         number: '02',
         heading: Make,
-        body: Colour,
-        atmosphere and small details turn a view into a story.,
+        body: 'Colour, atmosphere and small details turn a view into a story.',
       }
     - {
         number: '03',
         heading: Print,
-        body: The final piece is prepared with care for a crisp,
-        lasting result.,
+        body: 'The final piece is prepared with care for a crisp, lasting result.',
       }
