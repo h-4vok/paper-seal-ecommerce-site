@@ -90,7 +90,10 @@
         "title": "Print",
         "copy": "The final piece is prepared with care for a crisp, lasting result."
       }
-    ]
+    ],
+    "manifestoStamp": "Always a good idea",
+    "browseAnnotation": ["Local places.", "Brighter rooms."],
+    "artworkLinkLabel": "View print"
   },
   "catalogue": {
     "title": "Artworks — East Sussex art prints by Paperseal",

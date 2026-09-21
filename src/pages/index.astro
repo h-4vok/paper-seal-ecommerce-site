@@ -5,11 +5,17 @@ import heroImage from '../assets/home/hero-eastbourne-flower-bed.jpg';
 import beachHutsImage from '../assets/home/current-beach-huts.jpg';
 import harbourImage from '../assets/home/current-sovereign-harbour.jpg';
 import '../styles/home.scss';
+import { artworks } from '../domain/catalogue';
 import { siteCopy } from '../domain/site-copy';
 
 const title = siteCopy.home.title;
 const description = siteCopy.home.description;
 const home = siteCopy.home;
+const [featuredBeachHuts, featuredHarbour] = [
+  artworks.find((artwork) => artwork.artworkCode === 'PS-007'),
+  artworks.find((artwork) => artwork.artworkCode === 'PS-003'),
+];
+if (!featuredBeachHuts || !featuredHarbour) throw new Error('Featured home artworks are missing from the catalogue.');
 const canonical = new URL('/', Astro.site ?? Astro.url.origin).href;
 const socialImage = new URL(heroImage.src, Astro.site ?? Astro.url.origin).href;
 const structuredData = [
@@ -84,7 +90,7 @@ const structuredData = [
         {home.manifestoParagraphs.map((paragraph) => <p>{paragraph}</p>)}
       </div>
       <div class="manifesto__stamp" aria-hidden="true">
-        <span class="manifesto__stamp-name">Paperseal</span><span>Always a good idea</span>
+        <span class="manifesto__stamp-name">Paperseal</span><span>{home.manifestoStamp}</span>
       </div>
     </section>
 
@@ -98,35 +104,35 @@ const structuredData = [
       </header>
 
       <div class="collection-grid">
-        <a class="artwork-feature" href="/artworks/beach-huts-eastbourne-ps-007" aria-label="Explore Beach Huts, Eastbourne">
+        <a class="artwork-feature" href={`/artworks/${featuredBeachHuts.handle}`} aria-label={`Explore ${featuredBeachHuts.title}`}>
           <Picture
             src={beachHutsImage}
             widths={[480, 720, 960, 1484]}
             sizes="(min-width: 48rem) 50vw, 100vw"
             formats={['avif', 'webp']}
             fallbackFormat="jpg"
-            alt="Beach Huts, Eastbourne shown as a framed print on a warm textured wall"
+            alt={featuredBeachHuts.alt}
             loading="lazy"
           />
           <span class="artwork-feature__caption">
-            <span><strong>Beach Huts, Eastbourne</strong><small>Eastbourne · East Sussex</small></span>
-            <span aria-hidden="true">View print →</span>
+            <span><strong>{featuredBeachHuts.title}</strong><small>{featuredBeachHuts.placeName} · East Sussex</small></span>
+            <span aria-hidden="true">{home.artworkLinkLabel} →</span>
           </span>
         </a>
 
-        <a class="artwork-feature" href="/artworks/sovereign-harbour-ps-003" aria-label="Explore Sovereign Harbour">
+        <a class="artwork-feature" href={`/artworks/${featuredHarbour.handle}`} aria-label={`Explore ${featuredHarbour.title}`}>
           <Picture
             src={harbourImage}
             widths={[480, 720, 960, 1484]}
             sizes="(min-width: 48rem) 50vw, 100vw"
             formats={['avif', 'webp']}
             fallbackFormat="jpg"
-            alt="Sovereign Harbour at sunset shown as a framed Paperseal print above a wooden sideboard"
+            alt={featuredHarbour.alt}
             loading="lazy"
           />
           <span class="artwork-feature__caption">
-            <span><strong>Sovereign Harbour</strong><small>Eastbourne · East Sussex</small></span>
-            <span aria-hidden="true">View print →</span>
+            <span><strong>{featuredHarbour.title}</strong><small>{featuredHarbour.placeName} · East Sussex</small></span>
+            <span aria-hidden="true">{home.artworkLinkLabel} →</span>
           </span>
         </a>
       </div>
@@ -138,7 +144,7 @@ const structuredData = [
       <a class="button-link button-link--navy" href="/artworks">
         {home.browseCta} <span aria-hidden="true">→</span>
       </a>
-      <p class="browse-callout__annotation" aria-hidden="true">Local places.<br />Brighter rooms.</p>
+      <p class="browse-callout__annotation" aria-hidden="true">{home.browseAnnotation[0]}<br />{home.browseAnnotation[1]}</p>
     </section>
 
     <section class="process section-shell" aria-labelledby="process-title">

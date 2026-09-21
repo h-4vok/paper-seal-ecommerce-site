@@ -57,6 +57,9 @@ export const siteCopySchema = z.object({
     processBody: text,
     processCta: text,
     processSteps: z.array(z.object({ title: text, copy: text })).length(3),
+    manifestoStamp: text,
+    browseAnnotation: z.array(text).length(2),
+    artworkLinkLabel: text,
   }),
   catalogue: z.object({
     title: text,
