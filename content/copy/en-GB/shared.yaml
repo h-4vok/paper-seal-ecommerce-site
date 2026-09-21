@@ -11,7 +11,7 @@ navigation:
     - { href: /artworks, key: prints, label: Prints }
     - { href: /our-story, key: ourStory, label: Our Story }
     - { href: /east-sussex, key: eastSussex, label: East Sussex }
-    - { href: /journal, key: journal, label: Journal }
+    - { href: /collabs, key: collabs, label: Collabs }
   cartLabel: Cart, online shop coming soon
   openMenu: Open menu
   closeMenu: Close menu

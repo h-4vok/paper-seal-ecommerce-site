@@ -97,13 +97,13 @@ pages:
       - heading: Explore the art first
         paragraphs:
           - The place guide is still being written. Every published local work is already available to browse in the artwork catalogue.
-  - slug: journal
-    eyebrow: Journal
-    heading: Notes from brighter places.
-    description: Future The Paper Seal Studio studio notes, local walks and stories behind the artwork.
-    status: Journal coming soon.
+  - slug: collabs
+    eyebrow: Collabs
+    heading: Our work with other local traders.
+    description: We have worked with local traders. We will soon showcase what we did with them!
+    status: Collabs section coming soon.
     indexable: false
     sections:
-      - heading: The first notes are being prepared
+      - heading: Collab with local AirBnb owners
         paragraphs:
-          - Until then, the catalogue holds the current artwork stories and local context.
+          - Notes and pictures on our collabs coming soon!
