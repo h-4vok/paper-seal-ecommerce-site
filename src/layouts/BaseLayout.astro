@@ -3,6 +3,7 @@ import SeoHead from '../components/SeoHead.astro';
 import JsonLd from '../components/JsonLd.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { copy } from '../content/copy';
 import '../styles/global.scss';
 
 interface Props {
@@ -41,7 +42,7 @@ const {
     {structuredData && <JsonLd data={structuredData} />}
   </head>
   <body class={bodyClass}>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content">{copy.shared.skipLink}</a>
     {showChrome && <SiteHeader currentPath={Astro.url.pathname} />}
     <slot />
     {showChrome && <SiteFooter />}

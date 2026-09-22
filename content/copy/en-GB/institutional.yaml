@@ -1,0 +1,109 @@
+statusLabel: Current status
+next:
+  eyebrow: Keep exploring
+  copy: See the first The Paper Seal Studio collection and the local places behind it.
+  browse: Browse artworks
+pages:
+  - slug: our-story
+    eyebrow: Our story
+    heading: Made by looking closer.
+    description: The Paper Seal Studio is an independent collection of art prints rooted in Eastbourne and the places around it.
+    indexable: true
+    sections:
+      - heading: A local point of view
+        paragraphs:
+          - 'The Paper Seal Studio starts with familiar places: a seafront garden, chalk cliffs, a harbour, a street on the way home. The work is about noticing what is already here and giving it room to be seen again.'
+      - heading: From scene to print
+        paragraphs:
+          - 'Each piece moves through observation, selection, making, refinement and presentation. The result is intended to feel personal in a home: recognisable without becoming ordinary, and carefully composed without feeling distant.'
+      - heading: The collection grows slowly
+        paragraphs:
+          - This alpha introduces the first local selection. More places and stories will join it as they are ready; the catalogue will remain a considered collection rather than an endless feed.
+  - slug: delivery
+    eyebrow: Delivery
+    heading: Clear notes before the shop opens.
+    description: Current alpha delivery information for The Paper Seal Studio art prints, with final purchasing details still under review.
+    status: 'Alpha review: online ordering is not active yet. Final carrier, delivery-charge and destination details will be published before checkout opens.'
+    indexable: true
+    sections:
+      - heading: Dispatch timing after launch
+        paragraphs:
+          - Once commerce is live, the intended global promise for genuinely in-stock variants is “Dispatched within 2–3 working days”. This is not a current purchasing promise and will not apply to sold-out work.
+      - heading: No invented thresholds
+        paragraphs:
+          - The Paper Seal Studio has not approved a delivery fee or free-delivery threshold for the online shop. Those details will appear here only when they are confirmed.
+      - heading: Questions
+        paragraphs:
+          - A confirmed public contact channel is still being prepared. It will be linked from this page before online orders open.
+  - slug: returns
+    eyebrow: Returns
+    heading: Human help, without a portal.
+    description: The Paper Seal Studio returns and damaged-item handling for the alpha, ahead of final shop policy publication.
+    status: 'Alpha review: the complete returns, refunds and damaged-item policy is still being finalised before commerce launches.'
+    indexable: true
+    sections:
+      - heading: How help will work
+        paragraphs:
+          - Once online commerce launches, returns, refunds and damaged-item cases will be handled manually by email and resolved individually using Shopify order and refund tooling. The Paper Seal Studio will not use a separate returns portal.
+      - heading: Before sending anything
+        paragraphs:
+          - The final return window, eligibility rules and return instructions have not yet been approved. They will be published here before checkout opens; please do not rely on illustrative policy language from a mock.
+      - heading: Damaged items
+        paragraphs:
+          - The final policy will explain what information is needed when an order arrives damaged. A confirmed public email address will be added before ordering becomes available.
+  - slug: contact
+    eyebrow: Contact
+    heading: The studio channel is coming soon.
+    description: The Paper Seal Studio is preparing a confirmed public contact channel before online shopping opens.
+    status: No public email address has been approved for this alpha. The confirmed contact channel will appear here when it is ready.
+    indexable: false
+    sections:
+      - heading: For now
+        paragraphs:
+          - You can explore the collection and the story behind The Paper Seal Studio without submitting personal information. No contact form has been introduced while the public channel is still being confirmed.
+  - slug: privacy
+    eyebrow: Privacy
+    heading: Privacy notice under review.
+    description: The final The Paper Seal Studio privacy notice is being prepared for review before the online shop launches.
+    status: 'Alpha review: this is a transparent status page, not the final legal privacy notice.'
+    indexable: false
+    sections:
+      - heading: Current alpha
+        paragraphs:
+          - This website alpha does not provide customer accounts, newsletter signup, a contact form or checkout. The final notice will document the services and data flows actually used at launch.
+      - heading: Before commerce opens
+        paragraphs:
+          - A complete, reviewed privacy notice and confirmed contact channel will replace this page before customers can place orders.
+  - slug: terms
+    eyebrow: Terms
+    heading: Website and shop terms under review.
+    description: The Paper Seal Studio website and shop terms are being prepared before online ordering becomes available.
+    status: 'Alpha review: no checkout is available and final customer terms have not yet been approved.'
+    indexable: false
+    sections:
+      - heading: Current alpha
+        paragraphs:
+          - The catalogue can be browsed and shared, but this alpha does not accept orders, reserve stock or create a customer contract. Product option controls are for presentation only.
+      - heading: Before commerce opens
+        paragraphs:
+          - Final website and purchase terms, business details and the confirmed public contact channel will be published before checkout is enabled.
+  - slug: east-sussex
+    eyebrow: East Sussex
+    heading: Places worth another look.
+    description: A future The Paper Seal Studio guide to the coast, gardens and downland behind the collection.
+    status: Editorial guide coming soon.
+    indexable: false
+    sections:
+      - heading: Explore the art first
+        paragraphs:
+          - The place guide is still being written. Every published local work is already available to browse in the artwork catalogue.
+  - slug: collabs
+    eyebrow: Collabs
+    heading: Our work with other local traders.
+    description: We have worked with local traders. We will soon showcase what we did with them!
+    status: Collabs section coming soon.
+    indexable: false
+    sections:
+      - heading: Collab with local AirBnb owners
+        paragraphs:
+          - Notes and pictures on our collabs coming soon!

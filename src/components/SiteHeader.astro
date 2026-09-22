@@ -1,27 +1,24 @@
 ---
 import BrandMark from './BrandMark.astro';
+import { copy } from '../content/copy';
 
 interface Props {
   currentPath: string;
 }
 
 const { currentPath } = Astro.props;
-const navItems = [
-  { href: '/artworks', label: 'Prints' },
-  { href: '/our-story', label: 'Our Story' },
-  { href: '/east-sussex', label: 'East Sussex' },
-  { href: '/journal', label: 'Journal' },
-];
+const { brand, navigation } = copy.shared;
+const navItems = navigation.items;
 
 const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 <header class="site-header" data-site-header>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="/" aria-label="Paperseal home">
+    <a class="site-header__brand" href="/" aria-label={brand.homeAriaLabel}>
       <BrandMark />
     </a>
 
-    <nav class="site-header__desktop-nav" aria-label="Primary navigation">
+    <nav class="site-header__desktop-nav" aria-label={navigation.primaryLabel}>
       <ul>
         {navItems.map((item) => (
           <li>
@@ -33,10 +30,10 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       </ul>
     </nav>
 
-    <p class="site-header__note" aria-hidden="true">Small prints.<br />Brighter places.</p>
+    <p class="site-header__note" aria-hidden="true">{brand.headerNote[0]}<br />{brand.headerNote[1]}</p>
 
     <div class="site-header__actions">
-      <a class="icon-link" href="/cart" aria-label="Cart, online shop coming soon" aria-current={currentPath === '/cart' ? 'page' : undefined}>
+      <a class="icon-link" href="/cart" aria-label={navigation.cartLabel} aria-current={currentPath === '/cart' ? 'page' : undefined}>
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <path d="M8.5 10.5h15l1.5 17H7l1.5-17Z" fill="none" stroke="currentColor" stroke-width="1.7" />
           <path d="M12 12V8a4 4 0 0 1 8 0v4" fill="none" stroke="currentColor" stroke-width="1.7" />
@@ -46,7 +43,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       <button
         class="icon-button site-header__menu-toggle"
         type="button"
-        aria-label="Open menu"
+        aria-label={navigation.openMenu}
         aria-expanded="false"
         aria-controls="mobile-navigation"
         data-menu-open
@@ -60,16 +57,16 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 
   <dialog class="mobile-menu" id="mobile-navigation" aria-labelledby="mobile-menu-title" data-mobile-menu>
     <div class="mobile-menu__header">
-      <p id="mobile-menu-title">Explore Paperseal</p>
+      <p id="mobile-menu-title">{navigation.explore}</p>
       <form method="dialog">
-        <button class="icon-button" type="submit" aria-label="Close menu" data-menu-close>
+        <button class="icon-button" type="submit" aria-label={navigation.closeMenu} data-menu-close>
           <svg viewBox="0 0 32 32" aria-hidden="true">
             <path d="M7 7l18 18M25 7 7 25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
           </svg>
         </button>
       </form>
     </div>
-    <nav aria-label="Mobile navigation">
+    <nav aria-label={navigation.mobileLabel}>
       <ul class="mobile-menu__links">
         {navItems.map((item, index) => (
           <li>
@@ -81,8 +78,8 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       </ul>
     </nav>
     <div class="mobile-menu__footer">
-      <p>Art prints inspired by East Sussex — made for homes with a story.</p>
-      <a href="/contact">Contact the studio <span aria-hidden="true">→</span></a>
+      <p>{navigation.mobileIntro}</p>
+      <a href="/contact">{navigation.contact} <span aria-hidden="true">→</span></a>
     </div>
   </dialog>
 </header>

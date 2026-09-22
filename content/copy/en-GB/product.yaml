@@ -1,0 +1,47 @@
+labels:
+  breadcrumb: Breadcrumb
+  breadcrumbLink: Artworks
+  gallery: image gallery
+  openImage: Open {image} full screen
+  previousImage: Previous image
+  nextImage: Next image
+  chooseGalleryImage: Choose gallery image
+  showImage: 'Show image {number}: {image}'
+  placeSuffix: ', East Sussex'
+  size: Select size
+  framing: Framing
+  selectionSuffix: ' selected. This does not reserve stock.'
+  noStock: Online shop coming soon
+  commerceEyebrow: Alpha preview
+  commerceCopy: Explore the artwork, sizes and framing now. Purchasing and live availability will open after the Shopify connection is ready and tested.
+  shareGroup: Share this artwork
+  share: Share artwork
+  copyLink: Copy link
+  linkCopied: Link copied to clipboard.
+  shareOpened: Share sheet opened.
+  printSizes: Print sizes
+  printSizesValue: 7 × 5, A4 and A3
+  presentation: Presentation
+  presentationValue: Framed or unframed
+  ordering: Online ordering
+  orderingValue: Coming soon
+  delivery: Delivery notes
+  returns: Returns information
+  lightbox: Expanded artwork image
+sizes:
+  - id: small
+    label: Small
+    dimensions: '17.8 × 12.7 cm · 7 × 5 in'
+  - id: medium
+    label: Medium
+    dimensions: 21 × 29.7 cm · 8.27 × 11.69 in
+  - id: large
+    label: Large
+    dimensions: 29.7 × 42 cm · 11.69 × 16.54 in
+framing:
+  - id: unframed
+    label: Unframed
+    detail: Print only
+  - id: framed
+    label: Framed
+    detail: One frame style

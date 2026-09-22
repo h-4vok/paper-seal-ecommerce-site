@@ -1,0 +1,59 @@
+seo:
+  title: The Paper Seal Studio — Art prints inspired by East Sussex
+  description: Warm, characterful art prints inspired by Eastbourne and East Sussex, made to help your home feel more like yours.
+hero:
+  eyebrow: Real Photography · Real Soul
+  heading: Celebrate the beauty of East Sussex everyday.
+  intro: Artwork inspired by East Sussex — coastal paths, garden colour and the small, beautiful things that make our county special.
+  cta: Browse All Artworks
+  imageAlt: Eastbourne's pier and flower beds presented as a framed Paper Seal Studio print in a warm home interior
+  caption: Eastbourne New Flower Bed · East Sussex
+  note: Homes are happier with art.
+promise:
+  label: What makes The Paper Seal Studio different
+  items:
+    - { icon: ≈, heading: Locally inspired, body: 'East Sussex places and stories' }
+    - { icon: ✦, heading: Independent, body: 'A small studio, a bigger why' }
+    - { icon: ♡, heading: Thoughtfully made, body: 'For a kinder, warmer home' }
+    - { icon: ⌾, heading: Born from memories, body: 'Crafted with real photography' }
+manifesto:
+  eyebrow: The Paper Seal Studio, East Sussex
+  heading: For familiar places that stay with you.
+  paragraphs:
+    - 'There is beauty in the places we pass every day: the pier in changing light, chalk cliffs after rain, a harbour settling into evening. The Paper Seal Studio turns those moments into prints with colour, warmth and a little wonder.'
+    - Made for rooms that are collected rather than styled, each piece is a small reminder that good art and meaningful places belong in everyday homes.
+  stamp: Always a good idea
+collection:
+  eyebrow: Our First Collection
+  heading: 'Places that are part of you.'
+  intro: A collection drawn from the character of Eastbourne and surroundings — photographs coloured by the moods these places evoke.
+  view: Explore More →
+  beachHuts: Beach Huts, Eastbourne
+  harbour: Sovereign Harbour
+  place: Eastbourne · East Sussex
+browse:
+  eyebrow: Find your Mood
+  heading: 'A wall can hold a memory. Make it glow.'
+  cta: Browse all artworks
+  annotation: "Local places.\nBrighter rooms."
+process:
+  eyebrow: Know our story
+  heading: East Sussex is art. We make it last.
+  body: 'The Paper Seal Studio begins by rediscovering familiar places. When the world feels uncertain, we remind ourselves how lucky we are to live here — and we want to share that feeling with everyone.'
+  cta: Meet Us
+  steps:
+    - {
+        number: '01',
+        heading: Discover,
+        body: A local scene catches our eye and earns a closer look.,
+      }
+    - {
+        number: '02',
+        heading: Imagine,
+        body: 'We bring out its mood through colour, style and transformation.',
+      }
+    - {
+        number: '03',
+        heading: Bring to Life,
+        body: 'Our museum-grade paper gives each image lasting quality, tactile depth and the presence of a true work of art.',
+      }

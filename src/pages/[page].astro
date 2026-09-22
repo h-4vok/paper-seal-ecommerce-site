@@ -10,7 +10,7 @@ export function getStaticPaths() {
 
 const { page } = Astro.props as { page: Page };
 const canonical = `/${page.slug}`;
-const title = `${page.eyebrow} — Paperseal`;
+const title = `${page.eyebrow} — The Paper Seal Studio`;
 const structuredData = [
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },

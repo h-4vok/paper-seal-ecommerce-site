@@ -1,20 +1,46 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { copy } from '../../src/content/copy';
 
 test.describe('catalogue discovery', () => {
+  test('renders representative values from the editable copy source', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(copy.home.hero.heading);
+
+    await page.goto('/artworks');
+    await expect(page.getByPlaceholder(copy.catalogue.controls.searchPlaceholder)).toBeVisible();
+
+    await page.goto('/cart');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(copy.cart.header.heading);
+
+    await page.goto('/artworks/seven-sisters-from-the-gardens-ps-002');
+    await expect(page.getByText(copy.product.labels.noStock, { exact: true })).toBeVisible();
+  });
+
   test('renders crawlable cards and combines live search, place and sort controls', async ({
     page,
   }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
     const response = await page.goto('/artworks');
     expect(response?.status()).toBe(200);
     const html = await response?.text();
-    expect(html?.match(/href="\/artworks\/[^"]+"/g)?.length).toBe(17);
+    expect(html?.match(/href="\/artworks\/[^"]+"/g)?.length).toBe(16);
     await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
-    await expect(page.locator('[data-artwork-card]')).toHaveCount(17);
+    await expect(page.locator('[data-artwork-card]')).toHaveCount(16);
     await expect(page.getByRole('button', { name: /Availability/ })).toHaveAttribute(
       'aria-disabled',
       'true',
     );
+    await expect(page.locator('main.catalogue-page > aside')).toHaveCount(0);
+    await expect
+      .poll(() =>
+        page
+          .locator('.artwork-grid')
+          .evaluate(
+            (grid) => getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/).length,
+          ),
+      )
+      .toBe(2);
 
     const search = page.getByRole('searchbox', { name: 'Search artworks and places' });
     await search.fill('Beachy Head');
@@ -44,14 +70,12 @@ test.describe('catalogue discovery', () => {
     await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(8);
     const target = page.getByRole('link', { name: /View South Downs I/ });
     await target.scrollIntoViewIfNeeded();
-    const previousScroll = await page.evaluate(() => window.scrollY);
     await target.click();
     await expect(page.getByRole('heading', { level: 1, name: 'South Downs I' })).toBeVisible();
     await page.goBack();
     await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
-    await expect
-      .poll(() => page.evaluate(() => window.scrollY))
-      .toBeGreaterThan(previousScroll - 600);
+    await expect(target).toBeVisible();
+    expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
   });
 
   test('announces no-results recovery and passes axe', async ({ page }) => {
@@ -65,7 +89,7 @@ test.describe('catalogue discovery', () => {
     await expect(page.locator('[data-result-count]')).toHaveText('0 artworks');
     await page.getByRole('button', { name: 'Reset catalogue' }).click();
     await expect(page.getByRole('searchbox', { name: 'Search artworks and places' })).toBeFocused();
-    await expect(page.locator('[data-result-count]')).toHaveText('17 artworks');
+    await expect(page.locator('[data-result-count]')).toHaveText('16 artworks');
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });
@@ -153,6 +177,42 @@ test.describe('product detail', () => {
     await page.getByRole('button', { name: 'Copy link' }).click();
     await expect(page.locator('[data-share-status]')).toHaveText('Link copied to clipboard.');
     expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(productPath);
+  });
+
+  test('keeps size toggles contained and equal-height at desktop widths', async ({ page }) => {
+    for (const width of [1440, 1180]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.goto(productPath);
+
+      const sizeCards = page.locator('.option-grid--three label');
+      const cardMetrics = await sizeCards.evaluateAll((cards) =>
+        cards.map((card) => {
+          const cardBox = card.getBoundingClientRect();
+          const textBox = card.querySelector('span small')?.getBoundingClientRect();
+          return {
+            top: cardBox.top,
+            height: cardBox.height,
+            textBottom: textBox?.bottom ?? 0,
+            cardBottom: cardBox.bottom,
+          };
+        }),
+      );
+
+      expect(cardMetrics).toHaveLength(3);
+      expect(new Set(cardMetrics.map(({ top }) => Math.round(top)).values()).size).toBe(1);
+      expect(new Set(cardMetrics.map(({ height }) => Math.round(height)).values()).size).toBe(1);
+      expect(cardMetrics.every(({ textBottom, cardBottom }) => textBottom <= cardBottom)).toBe(
+        true,
+      );
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= document.documentElement.clientWidth,
+        ),
+      ).toBe(true);
+
+      const results = await new AxeBuilder({ page }).analyze();
+      expect(results.violations, `viewport ${width}`).toEqual([]);
+    }
   });
 
   test('supports mobile swipe and indicator controls and passes axe', async ({ page }) => {

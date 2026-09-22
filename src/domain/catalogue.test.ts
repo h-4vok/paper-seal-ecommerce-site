@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import {
-  FRAMING_OPTIONS,
-  PRINT_SIZES,
   artworkMatches,
   artworks,
   filterCatalogue,
@@ -14,14 +12,8 @@ import {
 
 describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
-    expect(artworks).toHaveLength(17);
-    expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(17);
-    expect(PRINT_SIZES.map(({ dimensions }) => dimensions)).toEqual([
-      '17.8 × 12.7 cm · 7 × 5 in',
-      '21 × 29.7 cm · 8.27 × 11.69 in',
-      '29.7 × 42 cm · 11.69 × 16.54 in',
-    ]);
-    expect(FRAMING_OPTIONS.map(({ label }) => label)).toEqual(['Unframed', 'Framed']);
+    expect(artworks).toHaveLength(16);
+    expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(16);
   });
 
   it.each([
@@ -48,31 +40,98 @@ describe('catalogue model', () => {
     expect(artworkMatches(artworks[0], '')).toBe(true);
   });
 
-  it('combines place, query and deterministic sort', () => {
-    const eastbourne = filterCatalogue(artworks, {
-      query: 'sea',
-      place: 'Eastbourne',
+  it('filters and sorts a local catalogue for every filter state', () => {
+    const items = [
+      {
+        artworkCode: 'PS-003',
+        title: 'Zebra Coast',
+        handle: 'zebra-coast-ps-003',
+        description: 'A coastal study.',
+        placeName: 'Brighton',
+        publishedOrder: 2,
+        collections: ['coast'],
+        orientation: 'landscape',
+        alt: 'Zebra Coast artwork',
+        assetBase: '/artworks/zebra-coast',
+        gallery: ['flat'],
+      },
+      {
+        artworkCode: 'PS-002',
+        title: 'Amber Harbour',
+        handle: 'amber-harbour-ps-002',
+        description: 'A harbour study.',
+        placeName: 'Brighton',
+        publishedOrder: 2,
+        collections: ['harbour'],
+        orientation: 'portrait',
+        alt: 'Amber Harbour artwork',
+        assetBase: '/artworks/amber-harbour',
+        gallery: ['room'],
+      },
+      {
+        artworkCode: 'PS-001',
+        title: 'Quiet Moor',
+        handle: 'quiet-moor-ps-001',
+        description: 'A moorland study.',
+        placeName: 'Yorkshire',
+        publishedOrder: 1,
+        collections: ['moor'],
+        orientation: 'landscape',
+        alt: 'Quiet Moor artwork',
+        assetBase: '/artworks/quiet-moor',
+        gallery: ['flat', 'room'],
+      },
+    ] as const;
+    const catalogue = [...items] as unknown as typeof artworks;
+
+    const allNewest = filterCatalogue(catalogue, {
+      query: '',
+      place: 'all',
+      sort: 'newest',
+    });
+    expect(allNewest.map(({ artworkCode }) => artworkCode)).toEqual(['PS-002', 'PS-003', 'PS-001']);
+    expect(allNewest).not.toBe(catalogue);
+    expect(catalogue.map(({ artworkCode }) => artworkCode)).toEqual(['PS-003', 'PS-002', 'PS-001']);
+
+    const filteredByQueryAndPlace = filterCatalogue(catalogue, {
+      query: 'harbour',
+      place: 'Brighton',
       sort: 'title',
     });
-    expect(eastbourne.map(({ title }) => title)).toEqual([
-      'Beach Huts, Eastbourne',
-      'Eastbourne Sunset',
-      'Flower Bed',
-      'Meet Me in Eastbourne',
-    ]);
-    expect(filterCatalogue(artworks, { query: 'zzzz', place: 'all', sort: 'newest' })).toEqual([]);
-    expect(filterCatalogue(artworks, { query: '', place: 'all', sort: 'newest' })[0].title).toBe(
-      'South Downs I',
-    );
-    const tied = [
-      { ...artworks[0], artworkCode: 'PS-020', publishedOrder: 1 },
-      { ...artworks[1], artworkCode: 'PS-010', publishedOrder: 1 },
-    ];
+    expect(filteredByQueryAndPlace.map(({ artworkCode }) => artworkCode)).toEqual(['PS-002']);
+
+    const filteredByPlace = filterCatalogue(catalogue, {
+      query: '',
+      place: 'Yorkshire',
+      sort: 'title',
+    });
+    expect(filteredByPlace.map(({ artworkCode }) => artworkCode)).toEqual(['PS-001']);
+
     expect(
-      filterCatalogue(tied, { query: '', place: 'all', sort: 'newest' }).map(
-        ({ artworkCode }) => artworkCode,
-      ),
-    ).toEqual(['PS-010', 'PS-020']);
+      filterCatalogue(catalogue, {
+        query: 'not-found',
+        place: 'all',
+        sort: 'title',
+      }),
+    ).toEqual([]);
+    expect(
+      filterCatalogue(catalogue, {
+        query: '',
+        place: 'London',
+        sort: 'title',
+      }),
+    ).toEqual([]);
+
+    const alphabetical = filterCatalogue(catalogue, {
+      query: '',
+      place: 'all',
+      sort: 'title',
+    });
+    expect(alphabetical.map(({ title }) => title)).toEqual([
+      'Amber Harbour',
+      'Quiet Moor',
+      'Zebra Coast',
+    ]);
   });
 
   it('advances progressive content safely', () => {

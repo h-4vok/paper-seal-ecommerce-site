@@ -113,7 +113,7 @@ async function compose(masterPath, kind, artwork) {
         { input: art, left: left + 75, top: top + 70 },
         {
           input: Buffer.from(
-            `<svg xmlns="http://www.w3.org/2000/svg" width="${paperWidth}" height="90"><text x="75" y="55" fill="#0b2541" font-family="Georgia" font-size="28" letter-spacing="4">PAPERSEAL · EAST SUSSEX</text><path d="M${paperWidth - 190} 50h110" stroke="#9b8a75" stroke-width="2"/></svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" width="${paperWidth}" height="90"><text x="75" y="55" fill="#0b2541" font-family="Georgia" font-size="28" letter-spacing="4">THE PAPER SEAL STUDIO · EAST SUSSEX</text><path d="M${paperWidth - 190} 50h110" stroke="#9b8a75" stroke-width="2"/></svg>`,
           ),
           left,
           top: top + paperHeight - 105,
