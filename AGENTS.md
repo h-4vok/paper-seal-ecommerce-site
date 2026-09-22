@@ -14,6 +14,33 @@
 - Design-system changes: update Storybook stories; capture visual evidence.
 - No secrets, real env values, or unapproved coverage/SEO/a11y suppressions.
 
+## Agentic UI Workflow
+
+Use Atomic Design. Storybook = UI source of truth.
+
+- Read `CONTEXT.md` + relevant source before UI work.
+- Inventory existing atoms/molecules/organisms first. Reuse before create.
+- Classify every reusable UI: Foundations → Atoms → Molecules → Organisms → Templates/Pages.
+- Keep production component + colocated story + tests + assets together.
+- New UI req: real implementation, story, meaningful states, mobile/desktop, a11y interaction coverage.
+- Route/page req: compose documented components. No Storybook-only clone.
+- Repeated raw markup/class/inline style → extract token/component, or record explicit exception.
+- Raw HTML allowed for semantic composition. Exception must state reason, owner, scope.
+- Interactive UI: native control, accessible name, keyboard path, visible focus, state, announcement, focus restore.
+- Images: deterministic asset, dimensions, meaningful alt, responsive source, fallback/error state.
+- Design change: update story + visual evidence. Preserve approved visual direction.
+- Before handoff: `bun run validate`, `bun run test:e2e`, `bun run build-storybook`.
+- Report changed stories, tests, gates, visual evidence, exceptions, baseline failures.
+- Stop + ask when change needs architecture/visual/product decision not encoded here.
+
+Definition of done: impl + story + states + tests + asset check + responsive check + validation green.
+
+Story titles: `Foundations/*`, `Atoms/*`, `Molecules/*`, `Organisms/*`, `Templates/*`.
+
+Design-system gate: `bun run check:design-system`. Update `.design-system-coverage.json` with every reusable component and story mapping.
+
+Astro boundary: Storybook React cannot import `.astro` directly. Boundary story may mirror static Astro markup only when named component mapping exists, production classes/tokens/assets remain exact, exception is explicit, and parity review is recorded. Prefer shared implementation extraction when interaction/logic grows.
+
 ## UI / A11y
 
 - Mobile-first CSS; functional tokens; max 3 nesting levels; no `!important`.

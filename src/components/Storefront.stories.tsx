@@ -38,8 +38,17 @@ const Picture = ({
 
 const galleryKinds: GalleryKind[] = ['room', 'room'];
 
-const ProductGalleryPreview = ({ count, focused = false }: { count: 1 | 2; focused?: boolean }) => {
-  const images = galleryKinds.slice(0, count);
+const ProductGalleryPreview = ({
+  count,
+  focused = false,
+}: {
+  count: 1 | 2 | 5;
+  focused?: boolean;
+}) => {
+  const images = Array.from(
+    { length: count },
+    (_, index) => galleryKinds[index % galleryKinds.length],
+  );
   return (
     <div
       className="product-gallery"
@@ -236,7 +245,7 @@ export const ProductGalleryThreeImages: Story = {
 };
 
 export const ProductGalleryFiveImages: Story = {
-  render: () => <ProductGalleryPreview count={2} />,
+  render: () => <ProductGalleryPreview count={5} />,
 };
 
 export const ProductShareFallbackAndFocus: Story = {
