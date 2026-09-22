@@ -28,6 +28,10 @@
     "content:build:metadata": "node scripts/build-content-metadata.mjs",
     "content:build:assets": "node scripts/build-artwork-assets.mjs",
     "content:build": "bun run content:build:metadata && bun run content:build:assets",
+    "repo:configure": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/configure-github-repo.ps1",
+    "repo:configure:dry": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/configure-github-repo.ps1 -DryRun",
+    "repo:configure:prune": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/configure-github-repo.ps1 -PruneLocal",
+    "repo:prune:dry": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/configure-github-repo.ps1 -DryRun -PruneLocal",
     "prepare": "husky",
     "validate": "bun run check:copy && bun run lint && bun run format && bun run typecheck && bun run test && bun run build",
     "check": "npm run validate && npm run test:e2e && npm run build-storybook"

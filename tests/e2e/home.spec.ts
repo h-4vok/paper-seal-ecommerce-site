@@ -17,14 +17,16 @@ test.describe('The Paper Seal Studio Home', () => {
     await expect(
       page.getByRole('heading', { name: 'For familiar places that stay with you.' }),
     ).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Places you know/ })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /A wall can hold a view/ })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /From a local moment/ })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Places that are part of you.' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /A wall can hold a memory/ })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'East Sussex is art. We make it last.' }),
+    ).toBeVisible();
 
     const artworkLinks = page.locator('a[href="/artworks"]');
     await expect(artworkLinks.first()).toBeVisible();
     expect(await artworkLinks.count()).toBeGreaterThanOrEqual(4);
-    await expect(page.locator('footer')).toContainText('Places worth keeping.');
+    await expect(page.locator('footer')).toContainText('Independent art from the Sussex coast.');
   });
 
   test('publishes complete SEO and structured metadata', async ({ page }) => {
@@ -113,7 +115,7 @@ test('catalogue and cart destinations are honest and SEO files are crawlable', a
   await page.goto('/artworks');
   await expect(page.getByRole('heading', { level: 1, name: 'Artworks' })).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
-  await expect(page.locator('[data-artwork-card]')).toHaveCount(17);
+  await expect(page.locator('[data-artwork-card]')).toHaveCount(16);
 
   await page.goto('/cart');
   await expect(

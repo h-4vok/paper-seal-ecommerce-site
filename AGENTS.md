@@ -1,37 +1,31 @@
-# Repo Instructions
+# Repo Rules
 
-- Write repo content in English.
-- Read `CONTEXT.md` before repo work.
+- Repo content: English.
+- Read `CONTEXT.md` before repo work; load only relevant source docs.
+- Runtime: Bun 1.3.10, Node 24.13.0; npm fallback.
+- Branches: target `staging`; `main` = human releases.
 
-## Delivery standards
+## Delivery
 
-- Use Bun 1.3.10 and Node.js 24.13.0; npm is the documented fallback when Bun cannot run locally.
-- Feature branches target `staging`; `main` is reserved for human-approved releases.
-- Run `npm run validate` (or the equivalent Bun command) before handoff: lint, formatting, typecheck, unit tests with coverage, and production build.
-- Run `npm run test:e2e` during implementation and commit the relevant Playwright coverage.
-- Build or update Storybook stories for design-system components and capture relevant visual evidence for review.
-- Never add secrets, real environment values, or human-approved coverage exclusions to the repository.
-- Keep CSS mobile-first, tokenized with meaningful functional names, no more than three nesting levels, and no `!important`.
-- Treat WCAG 2.2 AA as an implementation and verification requirement. Use semantic HTML and native controls by default.
-- For every interactive component, implement and verify keyboard access, visible focus, logical focus order, focus restoration, accessible names, correct ARIA state, dynamic announcements, reduced-motion behaviour, and sufficient contrast.
-- Add unit tests for state/semantics, Storybook states for relevant UI, and Playwright coverage for real keyboard/focus interaction. Run automated axe checks on representative pages.
-- Do not mark an accessibility exception as accepted or add an exclusion without explicit human approval; Codex may report and suggest exceptions only.
+- Before handoff run `bun run validate`: copy check, lint, format, typecheck, covered unit tests, build.
+- Run `bun run test:e2e`; add/update Playwright coverage.
+- Format is implementation: on Prettier failure run `bunx prettier --write <changed-files>`, inspect diff, recheck.
+- Pre-existing unrelated format failures: do not rewrite whole worktree; fix changed files, report baseline failures.
+- Design-system changes: update Storybook stories; capture visual evidence.
+- No secrets, real env values, or unapproved coverage/SEO/a11y suppressions.
 
-## SEO requirements
+## UI / A11y
 
-- Treat SEO as a requirement for every user-facing route and component.
-- Use `src/layouts/BaseLayout.astro` as the shared page shell for every route.
-- Use `src/components/SeoHead.astro` for page metadata, including a unique title, description, and canonical URL.
-- Use `src/components/JsonLd.astro` for applicable structured data such as `Product`, `Offer`, `BreadcrumbList`, and `Organization`.
-- Every indexable page must have a unique, meaningful `<title>` and `<meta name="description">`.
-- Use semantic HTML with exactly one primary `<h1>` per page.
-- Add Open Graph and Twitter metadata for shareable pages.
-- Ensure important content is present in server-rendered or prerendered HTML.
-- Do not hide SEO-critical content behind client-only React rendering.
-- Use descriptive, stable URLs and crawlable internal links.
-- Images must have meaningful `alt` text and explicit dimensions where possible.
-- Maintain valid `sitemap.xml` and `robots.txt`.
-- Product and category pages must define their indexability explicitly.
-- Add tests for metadata, headings, canonical URLs, structured data, and crawlability.
-- Run automated SEO and accessibility checks on representative routes.
-- Do not suppress or accept an SEO failure without explicit human approval.
+- Mobile-first CSS; functional tokens; max 3 nesting levels; no `!important`.
+- WCAG 2.2 AA required. Prefer semantic HTML/native controls.
+- Interactive UI: keyboard, visible focus, logical order, focus restore, accessible names, ARIA state, live announcements, reduced motion, contrast.
+- Add unit semantics/state tests, Storybook states, Playwright keyboard/focus tests, and axe checks.
+
+## SEO
+
+- Every user route uses `src/layouts/BaseLayout.astro`.
+- Metadata: `src/components/SeoHead.astro`; structured data: `src/components/JsonLd.astro`.
+- Indexable pages need unique title/description, canonical, OG/Twitter metadata, one primary `h1`, SSR/prerendered critical content, stable URLs, internal links.
+- Images need meaningful alt and dimensions where possible.
+- Keep `sitemap.xml`/`robots.txt` valid; set product/category indexability explicitly.
+- Test metadata, headings, canonical, JSON-LD, crawlability; run SEO/a11y checks.
