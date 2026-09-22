@@ -1,0 +1,35 @@
+{
+  "exceptions": [
+    { "name": "JsonLd", "reason": "head-only structured-data primitive; no visual story" },
+    { "name": "SeoHead", "reason": "head-only metadata primitive; no visual story" }
+  ],
+  "components": [
+    {
+      "name": "ArtworkCard",
+      "story": "src/components/ArtworkCard.stories.tsx",
+      "level": "Molecules"
+    },
+    {
+      "name": "ArtworkPicture",
+      "story": "src/components/ArtworkPicture.stories.tsx",
+      "level": "Atoms"
+    },
+    { "name": "BrandMark", "story": "src/components/BrandMark.stories.tsx", "level": "Atoms" },
+    {
+      "name": "InstitutionalPage",
+      "story": "src/components/InstitutionalPage.stories.tsx",
+      "level": "Templates"
+    },
+    {
+      "name": "PlaceholderPage",
+      "story": "src/components/PlaceholderPage.stories.tsx",
+      "level": "Templates"
+    },
+    {
+      "name": "SiteFooter",
+      "story": "src/components/SiteFooter.stories.tsx",
+      "level": "Organisms"
+    },
+    { "name": "SiteHeader", "story": "src/components/SiteHeader.stories.tsx", "level": "Organisms" }
+  ]
+}
