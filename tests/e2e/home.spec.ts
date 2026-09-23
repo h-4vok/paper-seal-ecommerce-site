@@ -113,6 +113,19 @@ test.describe('The Paper Seal Studio Home', () => {
       ).toBe(true);
       const link = paper.getByRole('link', { name: copy.home.paperQuality.cta });
       await expect(link).toHaveAttribute('href', '/our-story#paper-and-quality');
+      await expect(link).toHaveClass(/button-link/);
+      const imageBounds = await paper.locator('img').boundingBox();
+      const contentBounds = await paper.locator('.paper-quality__content').boundingBox();
+      expect(imageBounds).not.toBeNull();
+      expect(contentBounds).not.toBeNull();
+      expect(contentBounds!.x).toBeGreaterThanOrEqual(imageBounds!.x);
+      expect(contentBounds!.y).toBeGreaterThanOrEqual(imageBounds!.y);
+      expect(contentBounds!.x + contentBounds!.width).toBeLessThanOrEqual(
+        imageBounds!.x + imageBounds!.width,
+      );
+      expect(contentBounds!.y + contentBounds!.height).toBeLessThanOrEqual(
+        imageBounds!.y + imageBounds!.height,
+      );
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
         viewport.width,
       );

@@ -19,25 +19,29 @@ const imageUrl = typeof textureImage === 'string' ? textureImage : textureImage.
 // Astro boundary: static markup mirrors PaperQuality.astro; review classes, asset and YAML copy for parity.
 const PaperQualityPreview = () => (
   <section className="paper-quality section-shell" aria-labelledby="paper-quality-title">
-    <figure className="paper-quality__image">
-      <picture>
-        <img src={imageUrl} alt={paperQuality.imageAlt} width="1536" height="1024" loading="lazy" />
-      </picture>
-      <figcaption>{paperQuality.imageCaption}</figcaption>
-    </figure>
-    <div className="paper-quality__content">
-      <div className="paper-quality__heading">
+    <div className="paper-quality__scene">
+      <figure className="paper-quality__image">
+        <picture>
+          <img
+            src={imageUrl}
+            alt={paperQuality.imageAlt}
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+        </picture>
+        <figcaption>{paperQuality.imageCaption}</figcaption>
+      </figure>
+      <div className="paper-quality__content">
         <p className="eyebrow">{paperQuality.eyebrow}</p>
         <h2 id="paper-quality-title">{paperQuality.heading}</h2>
-      </div>
-      <div className="paper-quality__detail">
-        <p>{paperQuality.body}</p>
+        <p className="paper-quality__body">{paperQuality.body}</p>
         <ul className="paper-quality__attributes">
           {paperQuality.attributes.map((attribute) => (
             <li key={attribute}>{attribute}</li>
           ))}
         </ul>
-        <a className="text-link" href="/our-story#paper-and-quality">
+        <a className="button-link button-link--navy" href="/our-story#paper-and-quality">
           {paperQuality.cta} <span aria-hidden="true">→</span>
         </a>
       </div>
