@@ -1,0 +1,37 @@
+---
+import { Picture } from 'astro:assets';
+import textureImage from '../assets/home/german-etching-editorial.jpg';
+import { copy } from '../content/copy';
+
+const { paperQuality } = copy.home;
+---
+
+<section class="paper-quality section-shell" aria-labelledby="paper-quality-title">
+  <figure class="paper-quality__image">
+    <Picture
+      src={textureImage}
+      widths={[480, 768, 1200, 1536]}
+      sizes="(min-width: 72rem) 90vw, 100vw"
+      formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      alt={paperQuality.imageAlt}
+      loading="lazy"
+    />
+    <figcaption>{paperQuality.imageCaption}</figcaption>
+  </figure>
+  <div class="paper-quality__content">
+    <div class="paper-quality__heading">
+      <p class="eyebrow">{paperQuality.eyebrow}</p>
+      <h2 id="paper-quality-title">{paperQuality.heading}</h2>
+    </div>
+    <div class="paper-quality__detail">
+      <p>{paperQuality.body}</p>
+      <ul class="paper-quality__attributes">
+        {paperQuality.attributes.map((attribute) => <li>{attribute}</li>)}
+      </ul>
+      <a class="text-link" href="/our-story#paper-and-quality">
+        {paperQuality.cta} <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

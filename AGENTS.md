@@ -20,6 +20,7 @@ Use Atomic Design. Storybook = UI source of truth.
 
 - Read `CONTEXT.md` + relevant source before UI work.
 - Inventory existing atoms/molecules/organisms first. Reuse before create.
+- Lookup: `.design-system-coverage.json` → matching source/story only; tokens + shared classes indexed there. Reuse first; update index with each new component.
 - Classify every reusable UI: Foundations → Atoms → Molecules → Organisms → Templates/Pages.
 - Keep production component + colocated story + tests + assets together.
 - New UI req: real implementation, story, meaningful states, mobile/desktop, a11y interaction coverage.
@@ -32,6 +33,7 @@ Use Atomic Design. Storybook = UI source of truth.
 - Before handoff: `bun run validate`, `bun run test:e2e`, `bun run build-storybook`.
 - Report changed stories, tests, gates, visual evidence, exceptions, baseline failures.
 - Stop + ask when change needs architecture/visual/product decision not encoded here.
+- Boy Scout: fix adjacent issues within 10% task effort; report larger findings.
 
 Definition of done: impl + story + states + tests + asset check + responsive check + validation green.
 

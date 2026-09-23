@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
+import { copy } from '../../src/content/copy';
 
 test.describe('The Paper Seal Studio Home', () => {
   test('renders the complete server-authored Home with crawlable destinations', async ({
@@ -61,15 +62,74 @@ test.describe('The Paper Seal Studio Home', () => {
   test('serves responsive, dimensioned contextual artwork', async ({ page }) => {
     await page.goto('/');
     const images = page.locator('main img');
-    await expect(images).toHaveCount(3);
+    await expect(images).toHaveCount(4);
     for (const image of await images.all()) {
       await expect(image).toHaveAttribute('width', /\d+/);
       await expect(image).toHaveAttribute('height', /\d+/);
       await expect(image).toHaveAttribute('alt', /.+/);
     }
-    expect(await page.locator('main source[type="image/avif"]').count()).toBe(3);
-    expect(await page.locator('main source[type="image/webp"]').count()).toBe(3);
+    expect(await page.locator('main source[type="image/avif"]').count()).toBe(4);
+    expect(await page.locator('main source[type="image/webp"]').count()).toBe(4);
   });
+
+  for (const [name, viewport] of [
+    ['desktop', { width: 1440, height: 900 }],
+    ['tablet', { width: 820, height: 1180 }],
+    ['mobile', { width: 390, height: 844 }],
+  ] as const) {
+    test(`shows paper quality and its story destination on ${name}`, async ({ page }) => {
+      await page.setViewportSize(viewport);
+      const errors: string[] = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') errors.push(message.text());
+      });
+      page.on('pageerror', (error) => errors.push(error.message));
+
+      const response = await page.goto('/');
+      const html = await response?.text();
+      expect(html).toContain(copy.home.paperQuality.heading);
+      const paper = page.locator('section.paper-quality');
+      await expect(
+        paper.getByRole('heading', { name: copy.home.paperQuality.heading }),
+      ).toBeVisible();
+      await expect(paper).toContainText(copy.home.paperQuality.body);
+      for (const attribute of copy.home.paperQuality.attributes)
+        await expect(paper).toContainText(attribute);
+      await expect(paper.locator('img')).toHaveAttribute('alt', copy.home.paperQuality.imageAlt);
+      await paper.locator('img').scrollIntoViewIfNeeded();
+      await expect
+        .poll(
+          () =>
+            paper
+              .locator('img')
+              .evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0),
+          { timeout: 30000 },
+        )
+        .toBe(true);
+      expect(
+        await paper.evaluate((element) =>
+          element.nextElementSibling?.classList.contains('current-collection'),
+        ),
+      ).toBe(true);
+      const link = paper.getByRole('link', { name: copy.home.paperQuality.cta });
+      await expect(link).toHaveAttribute('href', '/our-story#paper-and-quality');
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+        viewport.width,
+      );
+      await link.click();
+      await expect(page).toHaveURL(/\/our-story#paper-and-quality$/);
+      await expect(page.locator('#paper-and-quality')).toContainText(
+        copy.institutional.pages
+          .find((item) => item.slug === 'our-story')
+          ?.sections.find((item) => item.id === 'paper-and-quality')?.heading ?? '',
+      );
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+        viewport.width,
+      );
+      expect(errors).toEqual([]);
+      expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+    });
+  }
 
   test('has no automated accessibility violations on desktop', async ({ page }) => {
     await page.goto('/');
