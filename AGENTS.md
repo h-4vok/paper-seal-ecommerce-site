@@ -9,8 +9,10 @@
 
 - Before handoff run `bun run validate`: copy check, lint, format, typecheck, covered unit tests, build.
 - Run `bun run test:e2e`; add/update Playwright coverage.
-- Format is implementation: on Prettier failure run `bunx prettier --write <changed-files>`, inspect diff, recheck.
-- Pre-existing unrelated format failures: do not rewrite whole worktree; fix changed files, report baseline failures.
+- Text uses LF via `.gitattributes`.
+- Prettier fail → `bunx prettier --write <reported-files>` (even untouched); inspect diff; rerun `bun run validate`.
+- Never bypass pre-push or hand off red PR. Fix required gates; verify GitHub + Netlify checks green.
+- Gate fixes exempt from Boy Scout 10% cap.
 - Design-system changes: update Storybook stories; capture visual evidence.
 - No secrets, real env values, or unapproved coverage/SEO/a11y suppressions.
 
