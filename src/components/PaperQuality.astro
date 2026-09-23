@@ -1,25 +1,29 @@
 ---
 import { Picture } from 'astro:assets';
-import textureImage from '../assets/home/german-etching-editorial.jpg';
+import sunsetImage from '../assets/home/paper-quality-ps-012.jpg';
+import pierAngleImage from '../assets/home/paper-quality-ps-006-angle-1.jpg';
+import pierOverheadImage from '../assets/home/paper-quality-ps-006-angle-2.jpg';
 import { copy } from '../content/copy';
 
 const { paperQuality } = copy.home;
+const images = [sunsetImage, pierAngleImage, pierOverheadImage];
 ---
 
-<section class="paper-quality section-shell" aria-labelledby="paper-quality-title">
+<section class="paper-quality section-shell" aria-labelledby="paper-quality-title" data-paper-carousel>
   <div class="paper-quality__scene">
-    <figure class="paper-quality__image">
-      <Picture
-        src={textureImage}
-        widths={[480, 768, 1200, 1536]}
-        sizes="(min-width: 72rem) 90vw, 100vw"
-        formats={['avif', 'webp']}
-        fallbackFormat="jpg"
-        alt={paperQuality.imageAlt}
-        loading="lazy"
-      />
-      <figcaption>{paperQuality.imageCaption}</figcaption>
-    </figure>
+    {paperQuality.images.map((slide, index) => (
+      <figure class="paper-quality__image" data-paper-slide data-caption={slide.caption} hidden={index !== 0}>
+        <Picture
+          src={images[index]}
+          widths={[480, 768, 1200, 1536]}
+          sizes="(min-width: 72rem) 90vw, 100vw"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          alt={slide.alt}
+          loading="lazy"
+        />
+      </figure>
+    ))}
     <div class="paper-quality__content">
       <p class="eyebrow">{paperQuality.eyebrow}</p>
       <h2 id="paper-quality-title">{paperQuality.heading}</h2>
@@ -32,4 +36,32 @@ const { paperQuality } = copy.home;
       </a>
     </div>
   </div>
+  <div class="paper-quality__footer">
+    <p data-paper-caption aria-live="polite">{paperQuality.images[0].caption}</p>
+    <div class="paper-quality__controls" role="group" aria-label={paperQuality.carouselLabel}>
+      <button class="paper-quality__arrow" type="button" data-paper-step="-1" aria-label={paperQuality.previousImage}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 5-7 7 7 7" /></svg>
+      </button>
+      <div class="paper-quality__dots">
+        {paperQuality.images.map((_, index) => (
+          <button
+            class="paper-quality__dot"
+            type="button"
+            data-paper-index={index}
+            aria-label={paperQuality.selectImage.replace('{index}', String(index + 1)).replace('{count}', String(images.length))}
+            aria-pressed={index === 0}
+          ></button>
+        ))}
+      </div>
+      <button class="paper-quality__arrow" type="button" data-paper-step="1" aria-label={paperQuality.nextImage}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m10 5 7 7-7 7" /></svg>
+      </button>
+    </div>
+  </div>
 </section>
+
+<script>
+  import { setupPaperCarousel } from '../lib/paperCarousel';
+
+  document.querySelectorAll<HTMLElement>('[data-paper-carousel]').forEach(setupPaperCarousel);
+</script>

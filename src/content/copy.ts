@@ -73,8 +73,11 @@ const homeSchema = z.object({
     heading: text,
     body: text,
     attributes: z.array(text).length(3),
-    imageAlt: text,
-    imageCaption: text,
+    carouselLabel: text,
+    previousImage: text,
+    nextImage: text,
+    selectImage: text,
+    images: z.array(z.object({ alt: text, caption: text })).length(3),
     cta: text,
   }),
   collection: z.object({

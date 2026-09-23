@@ -62,14 +62,14 @@ test.describe('The Paper Seal Studio Home', () => {
   test('serves responsive, dimensioned contextual artwork', async ({ page }) => {
     await page.goto('/');
     const images = page.locator('main img');
-    await expect(images).toHaveCount(4);
+    await expect(images).toHaveCount(6);
     for (const image of await images.all()) {
       await expect(image).toHaveAttribute('width', /\d+/);
       await expect(image).toHaveAttribute('height', /\d+/);
       await expect(image).toHaveAttribute('alt', /.+/);
     }
-    expect(await page.locator('main source[type="image/avif"]').count()).toBe(4);
-    expect(await page.locator('main source[type="image/webp"]').count()).toBe(4);
+    expect(await page.locator('main source[type="image/avif"]').count()).toBe(6);
+    expect(await page.locator('main source[type="image/webp"]').count()).toBe(6);
   });
 
   for (const [name, viewport] of [
@@ -95,26 +95,34 @@ test.describe('The Paper Seal Studio Home', () => {
       await expect(paper).toContainText(copy.home.paperQuality.body);
       for (const attribute of copy.home.paperQuality.attributes)
         await expect(paper).toContainText(attribute);
-      await expect(paper.locator('img')).toHaveAttribute('alt', copy.home.paperQuality.imageAlt);
-      await paper.locator('img').scrollIntoViewIfNeeded();
+      const slides = paper.locator('[data-paper-slide]');
+      await expect(slides).toHaveCount(3);
+      for (const [index, image] of copy.home.paperQuality.images.entries())
+        await expect(slides.nth(index).locator('img')).toHaveAttribute('alt', image.alt);
+      await slides.first().locator('img').scrollIntoViewIfNeeded();
       await expect
         .poll(
           () =>
-            paper
+            slides
+              .first()
               .locator('img')
               .evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0),
           { timeout: 30000 },
         )
         .toBe(true);
       expect(
-        await paper.evaluate((element) =>
-          element.nextElementSibling?.classList.contains('current-collection'),
+        await paper.evaluate(
+          (element) =>
+            Boolean(
+              element.compareDocumentPosition(document.querySelector('.current-collection')) &
+                Node.DOCUMENT_POSITION_FOLLOWING,
+            ),
         ),
       ).toBe(true);
       const link = paper.getByRole('link', { name: copy.home.paperQuality.cta });
       await expect(link).toHaveAttribute('href', '/our-story#paper-and-quality');
       await expect(link).toHaveClass(/button-link/);
-      const imageBounds = await paper.locator('img').boundingBox();
+      const imageBounds = await slides.first().locator('img').boundingBox();
       const contentBounds = await paper.locator('.paper-quality__content').boundingBox();
       expect(imageBounds).not.toBeNull();
       expect(contentBounds).not.toBeNull();
@@ -126,6 +134,24 @@ test.describe('The Paper Seal Studio Home', () => {
       expect(contentBounds!.y + contentBounds!.height).toBeLessThanOrEqual(
         imageBounds!.y + imageBounds!.height,
       );
+      const next = paper.getByRole('button', { name: copy.home.paperQuality.nextImage });
+      const previous = paper.getByRole('button', { name: copy.home.paperQuality.previousImage });
+      const dots = paper.locator('[data-paper-index]');
+      await next.click();
+      await expect(slides.nth(1)).toBeVisible();
+      await expect(slides.first()).toBeHidden();
+      await expect(dots.nth(1)).toHaveAttribute('aria-pressed', 'true');
+      await expect(paper.locator('[data-paper-caption]')).toHaveText(
+        copy.home.paperQuality.images[1].caption,
+      );
+      await dots.nth(2).focus();
+      await dots.nth(2).press('Space');
+      await expect(slides.nth(2)).toBeVisible();
+      await expect(dots.nth(2)).toHaveAttribute('aria-pressed', 'true');
+      await previous.click();
+      await expect(slides.nth(1)).toBeVisible();
+      await dots.first().click();
+      await expect(slides.first()).toBeVisible();
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
         viewport.width,
       );

@@ -184,6 +184,10 @@
   margin: 0;
 }
 
+.paper-quality__image[hidden] {
+  display: none;
+}
+
 .paper-quality__image picture,
 .paper-quality__image img {
   width: 100%;
@@ -208,18 +212,66 @@
   content: '';
 }
 
-.paper-quality__image figcaption {
-  position: absolute;
-  z-index: 2;
-  right: clamp(1.5rem, 5vw, 5rem);
-  bottom: 1.5rem;
-  max-width: 20rem;
-  padding: 0.4rem 0.6rem;
-  color: var(--color-ink);
-  background: rgb(250 247 240 / 88%);
+.paper-quality__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  align-items: center;
+  min-height: 4.5rem;
+  padding: 0.5rem clamp(1rem, 3vw, 2rem);
+}
+
+.paper-quality__footer p {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--color-muted);
   font-family: var(--font-ui);
   font-size: 0.65rem;
   line-height: 1.5;
+}
+
+.paper-quality__controls,
+.paper-quality__dots {
+  display: flex;
+  gap: 0.15rem;
+  align-items: center;
+}
+
+.paper-quality__arrow,
+.paper-quality__dot {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--color-ink);
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+}
+
+.paper-quality__arrow:hover,
+.paper-quality__dot:hover {
+  background: var(--color-paper-deep);
+}
+
+.paper-quality__arrow svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.paper-quality__dot::after {
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 0.08rem solid currentcolor;
+  border-radius: 50%;
+  content: '';
+}
+
+.paper-quality__dot[aria-pressed='true']::after {
+  background: currentcolor;
 }
 
 .paper-quality__content {
@@ -268,6 +320,39 @@
   letter-spacing: 0.08em;
   line-height: 1.5;
   text-transform: uppercase;
+}
+
+@media (width < 48rem) {
+  .paper-quality__scene {
+    min-height: 47rem;
+    align-items: flex-start;
+  }
+
+  .paper-quality__image img {
+    object-position: 62% center;
+  }
+
+  .paper-quality__image::after {
+    background: linear-gradient(
+      180deg,
+      rgb(243 237 226 / 97%) 0%,
+      rgb(243 237 226 / 94%) 64%,
+      rgb(243 237 226 / 38%) 84%,
+      rgb(243 237 226 / 8%) 100%
+    );
+  }
+}
+
+@media (width >= 48rem) and (width < 64rem) {
+  .paper-quality__image::after {
+    background: linear-gradient(
+      90deg,
+      rgb(243 237 226 / 97%) 0%,
+      rgb(243 237 226 / 94%) 55%,
+      rgb(243 237 226 / 75%) 72%,
+      rgb(243 237 226 / 12%) 100%
+    );
+  }
 }
 
 .current-collection {

@@ -31,8 +31,17 @@ paperQuality:
     - 310 gsm
     - Softly textured
     - Matt finish
-  imageAlt: Editorial interpretation of textured fine art paper beside a colourful landscape print
-  imageCaption: A visual interpretation of German Etching's textured surface.
+  carouselLabel: Paper and quality images
+  previousImage: Previous image
+  nextImage: Next image
+  selectImage: Show image {index} of {count}
+  images:
+    - alt: Editorial interpretation of textured fine art paper beside the PS-012 Eastbourne Sunset artwork
+      caption: Editorial interpretation of PS-012 on textured fine art paper.
+    - alt: Angled editorial view of textured fine art paper beside the PS-006 Eastbourne Pier artwork
+      caption: Editorial interpretation of PS-006 from a low angle.
+    - alt: Overhead editorial view of textured fine art paper beside the PS-006 Eastbourne Pier artwork
+      caption: Editorial interpretation of PS-006 from above.
   cta: What makes us unique
 collection:
   eyebrow: Our First Collection
