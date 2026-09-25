@@ -78,7 +78,6 @@ test.describe('The Paper Seal Studio Home', () => {
     ['mobile', { width: 390, height: 844 }],
   ] as const) {
     test(`shows paper quality and its story destination on ${name}`, async ({ page }) => {
-      await page.clock.install();
       await page.setViewportSize(viewport);
       const errors: string[] = [];
       page.on('console', (message) => {
@@ -139,7 +138,20 @@ test.describe('The Paper Seal Studio Home', () => {
       const next = paper.getByRole('button', { name: copy.home.paperQuality.nextImage });
       const previous = paper.getByRole('button', { name: copy.home.paperQuality.previousImage });
       const dots = paper.locator('[data-paper-index]');
-      await page.clock.pauseAt(new Date());
+      await expect
+        .poll(() =>
+          slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
+        )
+        .toBe(1);
+      await expect(dots.nth(1)).toHaveAttribute('aria-pressed', 'true');
+      await dots.nth(2).focus();
+      await dots.nth(2).press('Space');
+      await expect(slides.nth(2)).toHaveAttribute('data-active', 'true');
+      await expect(dots.nth(2)).toHaveAttribute('aria-pressed', 'true');
+      await previous.click();
+      await expect(slides.nth(1)).toHaveAttribute('data-active', 'true');
+      await dots.first().click();
+      await expect(slides.first()).toHaveAttribute('data-active', 'true');
       await next.click();
       await expect(slides.nth(1)).toBeVisible();
       await expect(slides.first()).toHaveAttribute('data-active', 'false');
@@ -152,7 +164,6 @@ test.describe('The Paper Seal Studio Home', () => {
       await expect(slides.nth(1)).toBeVisible();
       await dots.first().click();
       await expect(slides.first()).toBeVisible();
-      await page.clock.resume();
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
         viewport.width,
       );
@@ -210,14 +221,11 @@ test.describe('The Paper Seal Studio Home', () => {
       .toBe(true);
 
     await paper.getByRole('button', { name: copy.home.paperQuality.nextImage }).click();
-    await page.waitForTimeout(250);
-    const opacity = await slides.evaluateAll((items) =>
-      items.slice(0, 2).map((item) => Number(getComputedStyle(item).opacity)),
-    );
-    expect(opacity[0]).toBeGreaterThan(0);
-    expect(opacity[0]).toBeLessThan(1);
-    expect(opacity[1]).toBeGreaterThan(0);
-    expect(opacity[1]).toBeLessThan(1);
+    await expect(slides.nth(1)).toHaveAttribute('data-active', 'true');
+    await expect(slides.nth(0)).toHaveAttribute('data-active', 'false');
+    expect(
+      await slides.nth(1).evaluate((item) => getComputedStyle(item).transitionProperty),
+    ).toContain('opacity');
     await expect(slides.nth(1)).toBeVisible();
   });
 
