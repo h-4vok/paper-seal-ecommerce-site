@@ -34,16 +34,15 @@ paperQuality:
   carouselLabel: Paper and quality images
   previousImage: Previous image
   nextImage: Next image
-  pauseImages: Pause carousel
-  resumeImages: Play carousel
   selectImage: Show image {index} of {count}
+  imageDisclosure: Imagery created to evoke the texture of fine art paper.
   images:
     - alt: Overhead editorial close-up of the soft, matt surface of unprinted fine art paper
-      caption: Editorial interpretation of the paper's soft, matt texture.
+      caption: The soft texture of fine art paper, up close.
     - alt: Low-angle editorial view of unprinted fine art paper in grazing light
-      caption: Editorial interpretation of light across the paper grain.
+      caption: Light skimming across the paper grain.
     - alt: Three-quarter editorial view of one unprinted fine art paper sheet and its clean edge
-      caption: Editorial interpretation of the paper's weight and clean edge.
+      caption: A clean edge, a softly textured sheet.
   cta: What makes us unique
 collection:
   eyebrow: Our First Collection

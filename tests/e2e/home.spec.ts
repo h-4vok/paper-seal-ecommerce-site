@@ -78,6 +78,7 @@ test.describe('The Paper Seal Studio Home', () => {
     ['mobile', { width: 390, height: 844 }],
   ] as const) {
     test(`shows paper quality and its story destination on ${name}`, async ({ page }) => {
+      await page.clock.install();
       await page.setViewportSize(viewport);
       const errors: string[] = [];
       page.on('console', (message) => {
@@ -93,6 +94,7 @@ test.describe('The Paper Seal Studio Home', () => {
         paper.getByRole('heading', { name: copy.home.paperQuality.heading }),
       ).toBeVisible();
       await expect(paper).toContainText(copy.home.paperQuality.body);
+      await expect(paper).toContainText(copy.home.paperQuality.imageDisclosure);
       for (const attribute of copy.home.paperQuality.attributes)
         await expect(paper).toContainText(attribute);
       const slides = paper.locator('[data-paper-slide]');
@@ -137,9 +139,10 @@ test.describe('The Paper Seal Studio Home', () => {
       const next = paper.getByRole('button', { name: copy.home.paperQuality.nextImage });
       const previous = paper.getByRole('button', { name: copy.home.paperQuality.previousImage });
       const dots = paper.locator('[data-paper-index]');
+      await page.clock.pauseAt(new Date());
       await next.click();
       await expect(slides.nth(1)).toBeVisible();
-      await expect(slides.first()).toBeHidden();
+      await expect(slides.first()).toHaveAttribute('data-active', 'false');
       await expect(dots.nth(1)).toHaveAttribute('aria-pressed', 'true');
       await expect(paper.locator('[data-paper-caption]')).toHaveText(
         copy.home.paperQuality.images[1].caption,
@@ -152,6 +155,7 @@ test.describe('The Paper Seal Studio Home', () => {
       await expect(slides.nth(1)).toBeVisible();
       await dots.first().click();
       await expect(slides.first()).toBeVisible();
+      await page.clock.resume();
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
         viewport.width,
       );
@@ -170,29 +174,27 @@ test.describe('The Paper Seal Studio Home', () => {
     });
   }
 
-  test('advances paper images automatically and lets visitors pause playback', async ({ page }) => {
-    await page.clock.install();
+  test('rotates paper images in real time during hover and focus', async ({ page }) => {
     await page.goto('/');
     const paper = page.locator('section.paper-quality');
     const slides = paper.locator('[data-paper-slide]');
-    const toggle = paper.locator('[data-paper-toggle]');
+    const controls = paper.locator('.paper-quality__controls');
+    await controls.hover();
+    await controls.getByRole('button', { name: copy.home.paperQuality.nextImage }).focus();
+    const initial = await slides.evaluateAll((items) =>
+      items.findIndex((item) => item.dataset.active === 'true'),
+    );
 
-    await expect(slides.first()).toBeVisible();
+    await expect(paper.locator('[data-paper-toggle]')).toHaveCount(0);
     await expect(paper.locator('[data-paper-caption]')).toHaveAttribute('aria-live', 'off');
-    await page.clock.runFor(3000);
-    await expect(slides.nth(1)).toBeVisible();
-    await expect(slides.nth(1)).toHaveAttribute('data-active', 'true');
-    await expect(slides.first()).toHaveAttribute('aria-hidden', 'true');
+    await expect
+      .poll(() =>
+        slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
+      )
+      .not.toBe(initial);
     expect(
       await slides.nth(1).evaluate((slide) => getComputedStyle(slide).transitionProperty),
     ).toContain('opacity');
-
-    await toggle.click();
-    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    await expect(toggle).toHaveAttribute('aria-label', copy.home.paperQuality.resumeImages);
-    await expect(paper.locator('[data-paper-caption]')).toHaveAttribute('aria-live', 'polite');
-    await page.clock.runFor(14000);
-    await expect(slides.nth(1)).toBeVisible();
   });
 
   test('preloads paper images and crossfades between them', async ({ page }) => {
@@ -221,23 +223,22 @@ test.describe('The Paper Seal Studio Home', () => {
     await expect(slides.nth(1)).toBeVisible();
   });
 
-  test('starts paused for reduced motion and allows explicit playback', async ({ page }) => {
+  test('keeps rotating with reduced motion while disabling the fade', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.clock.install();
     await page.goto('/');
     const paper = page.locator('section.paper-quality');
     const slides = paper.locator('[data-paper-slide]');
-    const toggle = paper.locator('[data-paper-toggle]');
-
-    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    await page.clock.runFor(3000);
-    await expect(slides.first()).toBeVisible();
-    await toggle.click();
-    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-    await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
-    await page.mouse.move(0, 0);
-    await page.clock.runFor(3000);
-    await expect(slides.nth(1)).toBeVisible();
+    const initial = await slides.evaluateAll((items) =>
+      items.findIndex((item) => item.dataset.active === 'true'),
+    );
+    await expect
+      .poll(() =>
+        slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
+      )
+      .not.toBe(initial);
+    expect(
+      await slides.first().evaluate((slide) => getComputedStyle(slide).transitionDuration),
+    ).toBe('0s');
   });
 
   test('has no automated accessibility violations on desktop', async ({ page }) => {

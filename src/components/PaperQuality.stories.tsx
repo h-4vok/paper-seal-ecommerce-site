@@ -17,9 +17,8 @@ const { paperQuality } = parse(homeYaml) as {
     carouselLabel: string;
     previousImage: string;
     nextImage: string;
-    pauseImages: string;
-    resumeImages: string;
     selectImage: string;
+    imageDisclosure: string;
     images: Array<{ alt: string; caption: string }>;
     cta: string;
   };
@@ -76,9 +75,12 @@ const PaperQualityPreview = () => {
         </div>
       </div>
       <div className="paper-quality__footer">
-        <p data-paper-caption aria-live="off">
-          {paperQuality.images[0].caption}
-        </p>
+        <div className="paper-quality__copy">
+          <p data-paper-caption aria-live="off">
+            {paperQuality.images[0].caption}
+          </p>
+          <p className="paper-quality__disclosure">{paperQuality.imageDisclosure}</p>
+        </div>
         <div
           className="paper-quality__controls"
           role="group"
@@ -130,34 +132,6 @@ const PaperQualityPreview = () => {
               <path d="m10 5 7 7-7 7" />
             </svg>
           </button>
-          <button
-            className="paper-quality__toggle"
-            type="button"
-            data-paper-toggle
-            data-pause-label={paperQuality.pauseImages}
-            data-resume-label={paperQuality.resumeImages}
-            aria-label={paperQuality.pauseImages}
-            aria-pressed="false"
-          >
-            <svg
-              className="paper-quality__pause-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden="true"
-            >
-              <path d="M8 5v14m8-14v14" />
-            </svg>
-            <svg
-              className="paper-quality__play-icon"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="m8 5 11 7-11 7V5Z" />
-            </svg>
-          </button>
         </div>
       </div>
     </section>
@@ -181,11 +155,10 @@ export const Mobile: Story = {
   render: () => <PaperQualityPreview />,
 };
 
-const showPausedSlide =
+const showSlide =
   (index: number) =>
   async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole('button', { name: paperQuality.pauseImages }));
     await userEvent.click(
       canvas.getByRole('button', {
         name: paperQuality.selectImage
@@ -197,10 +170,10 @@ const showPausedSlide =
 
 export const RakingLight: Story = {
   render: () => <PaperQualityPreview />,
-  play: showPausedSlide(1),
+  play: showSlide(1),
 };
 
 export const PaperEdge: Story = {
   render: () => <PaperQualityPreview />,
-  play: showPausedSlide(2),
+  play: showSlide(2),
 };

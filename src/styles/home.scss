@@ -221,8 +221,17 @@
   margin: 0;
   color: var(--color-muted);
   font-family: var(--font-ui);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   line-height: 1.5;
+}
+
+.paper-quality__copy {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.paper-quality__footer .paper-quality__disclosure {
+  font-size: 0.7rem;
 }
 
 .paper-quality__controls,
@@ -233,8 +242,7 @@
 }
 
 .paper-quality__arrow,
-.paper-quality__dot,
-.paper-quality__toggle {
+.paper-quality__dot {
   display: grid;
   width: 2.75rem;
   height: 2.75rem;
@@ -247,30 +255,14 @@
   place-items: center;
 }
 
-.paper-quality__toggle {
-  margin-left: 0.5rem;
-  border: 0.08rem solid var(--color-rule);
-}
-
 .paper-quality__arrow:hover,
-.paper-quality__dot:hover,
-.paper-quality__toggle:hover {
+.paper-quality__dot:hover {
   background: var(--color-paper-deep);
 }
 
-.paper-quality__arrow svg,
-.paper-quality__toggle svg {
+.paper-quality__arrow svg {
   width: 1.2rem;
   height: 1.2rem;
-}
-
-.paper-quality__toggle .paper-quality__play-icon,
-.paper-quality__toggle[aria-pressed='true'] .paper-quality__pause-icon {
-  display: none;
-}
-
-.paper-quality__toggle[aria-pressed='true'] .paper-quality__play-icon {
-  display: block;
 }
 
 .paper-quality__dot::after {
