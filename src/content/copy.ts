@@ -24,6 +24,7 @@ const sharedSchema = z.object({
   brand: z.object({
     name: text,
     region: text,
+    market: text,
     homeAriaLabel: text,
     descriptor: text,
     headerNote: lines,
@@ -66,6 +67,18 @@ const homeSchema = z.object({
     heading: text,
     paragraphs: z.array(text).length(2),
     stamp: text,
+  }),
+  paperQuality: z.object({
+    eyebrow: text,
+    heading: text,
+    body: text,
+    attributes: z.array(text).length(3),
+    carouselLabel: text,
+    previousImage: text,
+    nextImage: text,
+    selectImage: text,
+    images: z.array(z.object({ alt: text })).length(3),
+    cta: text,
   }),
   collection: z.object({
     eyebrow: text,
@@ -172,7 +185,9 @@ const institutionalSchema = z.object({
         description: text,
         status: text.optional(),
         indexable: z.boolean(),
-        sections: z.array(z.object({ heading: text, paragraphs: z.array(text).min(1) })).min(1),
+        sections: z
+          .array(z.object({ id: text.optional(), heading: text, paragraphs: z.array(text).min(1) }))
+          .min(1),
       }),
     )
     .min(1),

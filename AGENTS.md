@@ -9,8 +9,11 @@
 
 - Before handoff run `bun run validate`: copy check, lint, format, typecheck, covered unit tests, build.
 - Run `bun run test:e2e`; add/update Playwright coverage.
-- Format is implementation: on Prettier failure run `bunx prettier --write <changed-files>`, inspect diff, recheck.
-- Pre-existing unrelated format failures: do not rewrite whole worktree; fix changed files, report baseline failures.
+- Text uses LF via `.gitattributes`.
+- Prettier fail → `bunx prettier --write <reported-files>` (even untouched); inspect diff; rerun `bun run validate`.
+- Hook bypass banned, no exceptions: never use `HUSKY=0`, `--no-verify`, `core.hooksPath` overrides, hook edits/removal, or equivalent. Failed pre-push → fix gate; push only after hook passes.
+- PR handoff only after GitHub + Netlify checks green.
+- Gate fixes exempt from Boy Scout 10% cap.
 - Design-system changes: update Storybook stories; capture visual evidence.
 - No secrets, real env values, or unapproved coverage/SEO/a11y suppressions.
 
@@ -20,6 +23,7 @@ Use Atomic Design. Storybook = UI source of truth.
 
 - Read `CONTEXT.md` + relevant source before UI work.
 - Inventory existing atoms/molecules/organisms first. Reuse before create.
+- Lookup: `.design-system-coverage.json` → matching source/story only; tokens + shared classes indexed there. Reuse first; update index with each new component.
 - Classify every reusable UI: Foundations → Atoms → Molecules → Organisms → Templates/Pages.
 - Keep production component + colocated story + tests + assets together.
 - New UI req: real implementation, story, meaningful states, mobile/desktop, a11y interaction coverage.
@@ -32,6 +36,7 @@ Use Atomic Design. Storybook = UI source of truth.
 - Before handoff: `bun run validate`, `bun run test:e2e`, `bun run build-storybook`.
 - Report changed stories, tests, gates, visual evidence, exceptions, baseline failures.
 - Stop + ask when change needs architecture/visual/product decision not encoded here.
+- Boy Scout: fix adjacent issues within 10% task effort; report larger findings.
 
 Definition of done: impl + story + states + tests + asset check + responsive check + validation green.
 

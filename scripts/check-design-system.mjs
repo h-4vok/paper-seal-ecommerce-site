@@ -8,6 +8,35 @@ const reusableComponents = globSync('src/components/*.astro', { cwd: root })
   .map((file) => file.replaceAll('\\', '/').split('/').pop().replace('.astro', ''))
   .filter((name) => !coverage.exceptions.some((exception) => exception.name === name));
 const storyFiles = globSync('src/**/*.stories.@(js|jsx|mjs|ts|tsx)', { cwd: root });
+const inventoryErrors = [];
+const componentNames = new Set(reusableComponents);
+const indexedNames = new Set();
+const levels = new Set(['Atoms', 'Molecules', 'Organisms', 'Templates']);
+for (const component of coverage.components) {
+  if (indexedNames.has(component.name)) inventoryErrors.push(`duplicate: ${component.name}`);
+  indexedNames.add(component.name);
+  if (!componentNames.has(component.name)) inventoryErrors.push(`stale: ${component.name}`);
+  if (
+    component.source !== `src/components/${component.name}.astro` ||
+    !existsSync(join(root, component.source ?? ''))
+  )
+    inventoryErrors.push(`invalid source: ${component.name}`);
+  if (!levels.has(component.level)) inventoryErrors.push(`invalid level: ${component.name}`);
+  if (typeof component.useFor !== 'string' || !component.useFor.trim())
+    inventoryErrors.push(`missing useFor: ${component.name}`);
+}
+const { tokens, story, sharedClasses } = coverage.foundations ?? {};
+if (!tokens || !existsSync(join(root, tokens))) inventoryErrors.push('missing foundations tokens');
+if (!story || !existsSync(join(root, story))) inventoryErrors.push('missing foundations story');
+if (!Array.isArray(sharedClasses) || !sharedClasses.length) {
+  inventoryErrors.push('missing shared classes');
+} else if (tokens && existsSync(join(root, tokens))) {
+  const css = readFileSync(join(root, tokens), 'utf8');
+  for (const className of sharedClasses) {
+    if (typeof className !== 'string' || !css.includes(`.${className}`))
+      inventoryErrors.push(`missing shared class: ${className}`);
+  }
+}
 const missing = reusableComponents
   .filter((name) => !coverage.components.some((component) => component.name === name))
   .map((name) => ({ name, reason: 'missing inventory entry' }));
@@ -41,7 +70,13 @@ if (!existsSync(join(root, '.storybook', 'main.ts'))) {
   forbidden.push('.storybook/main.ts: missing Storybook config');
 }
 
-if (missing.length || broken.length || invalidExceptions.length || forbidden.length) {
+if (
+  missing.length ||
+  broken.length ||
+  invalidExceptions.length ||
+  forbidden.length ||
+  inventoryErrors.length
+) {
   console.error('Design-system check failed.');
   if (missing.length)
     console.error(`Missing inventory entries: ${missing.map(({ name }) => name).join(', ')}`);
@@ -52,6 +87,7 @@ if (missing.length || broken.length || invalidExceptions.length || forbidden.len
       `Invalid head-only exceptions: ${invalidExceptions.map(({ name }) => name).join(', ')}`,
     );
   if (forbidden.length) console.error(forbidden.join('\n'));
+  if (inventoryErrors.length) console.error(inventoryErrors.join('\n'));
   process.exit(1);
 }
 

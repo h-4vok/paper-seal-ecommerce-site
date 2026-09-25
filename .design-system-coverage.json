@@ -1,4 +1,9 @@
 {
+  "foundations": {
+    "tokens": "src/styles/global.scss",
+    "story": "src/components/DesignSystem.stories.tsx",
+    "sharedClasses": ["eyebrow", "section-shell", "button-link", "text-link"]
+  },
   "exceptions": [
     { "name": "JsonLd", "reason": "head-only structured-data primitive; no visual story" },
     { "name": "SeoHead", "reason": "head-only metadata primitive; no visual story" }
@@ -6,30 +11,59 @@
   "components": [
     {
       "name": "ArtworkCard",
+      "source": "src/components/ArtworkCard.astro",
       "story": "src/components/ArtworkCard.stories.tsx",
-      "level": "Molecules"
+      "level": "Molecules",
+      "useFor": "Catalogue artwork link with mounted image and caption."
     },
     {
       "name": "ArtworkPicture",
+      "source": "src/components/ArtworkPicture.astro",
       "story": "src/components/ArtworkPicture.stories.tsx",
-      "level": "Atoms"
+      "level": "Atoms",
+      "useFor": "Responsive flat or room artwork derivative."
     },
-    { "name": "BrandMark", "story": "src/components/BrandMark.stories.tsx", "level": "Atoms" },
+    {
+      "name": "BrandMark",
+      "source": "src/components/BrandMark.astro",
+      "story": "src/components/BrandMark.stories.tsx",
+      "level": "Atoms",
+      "useFor": "Seal and wordmark lockup."
+    },
     {
       "name": "InstitutionalPage",
+      "source": "src/components/InstitutionalPage.astro",
       "story": "src/components/InstitutionalPage.stories.tsx",
-      "level": "Templates"
+      "level": "Templates",
+      "useFor": "Our Story and policy page layout."
+    },
+    {
+      "name": "PaperQuality",
+      "source": "src/components/PaperQuality.astro",
+      "story": "src/components/PaperQuality.stories.tsx",
+      "level": "Organisms",
+      "useFor": "Timed editorial paper and quality carousel."
     },
     {
       "name": "PlaceholderPage",
+      "source": "src/components/PlaceholderPage.astro",
       "story": "src/components/PlaceholderPage.stories.tsx",
-      "level": "Templates"
+      "level": "Templates",
+      "useFor": "Shared not-yet-available route state."
     },
     {
       "name": "SiteFooter",
+      "source": "src/components/SiteFooter.astro",
       "story": "src/components/SiteFooter.stories.tsx",
-      "level": "Organisms"
+      "level": "Organisms",
+      "useFor": "Global footer navigation and small print."
     },
-    { "name": "SiteHeader", "story": "src/components/SiteHeader.stories.tsx", "level": "Organisms" }
+    {
+      "name": "SiteHeader",
+      "source": "src/components/SiteHeader.astro",
+      "story": "src/components/SiteHeader.stories.tsx",
+      "level": "Organisms",
+      "useFor": "Global desktop header and mobile navigation."
+    }
   ]
 }

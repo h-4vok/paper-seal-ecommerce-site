@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 24.13.0 }
       - run: bun install --frozen-lockfile
+      - run: bun run check:copy
+      - run: bun run check:design-system
       - run: bun run lint
       - run: bun run format
       - run: bun run typecheck
