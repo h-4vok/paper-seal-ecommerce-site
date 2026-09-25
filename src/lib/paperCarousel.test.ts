@@ -18,11 +18,11 @@ class TestButton extends EventTarget {
 }
 
 class TestSlide {
-  dataset: { active: string; caption: string };
+  dataset: { active: string };
   private attributes = new Map<string, string>();
 
   constructor(index: number) {
-    this.dataset = { active: String(index === 0), caption: `Paper view ${index + 1}` };
+    this.dataset = { active: String(index === 0) };
     this.attributes.set('aria-hidden', String(index !== 0));
   }
 
@@ -40,33 +40,31 @@ function createCarousel(count = 3) {
   const dots = slides.map(() => new TestButton());
   const previous = new TestButton();
   const next = new TestButton();
-  const caption = { textContent: slides[0].dataset.caption };
   const root = Object.assign(new EventTarget(), {
     querySelectorAll(selector: string) {
       return selector === '[data-paper-slide]' ? slides : dots;
     },
     querySelector(selector: string) {
-      if (selector === '[data-paper-caption]') return caption;
       return selector === '[data-paper-step="-1"]' ? previous : next;
     },
   }) as unknown as HTMLElement;
-  return { slides, dots, previous, next, caption, root };
+  return { slides, dots, previous, next, root };
 }
 
 afterEach(() => vi.useRealTimers());
 
 describe('paper carousel', () => {
-  it('rotates every three seconds even during hover and focus', () => {
+  it('rotates every seven seconds even during hover and focus', () => {
     vi.useFakeTimers();
     const carousel = createCarousel();
     const dispose = setupPaperCarousel(carousel.root);
 
     carousel.root.dispatchEvent(new Event('mouseenter'));
     carousel.root.dispatchEvent(new Event('focusin'));
-    vi.advanceTimersByTime(2999);
-    expect(carousel.caption.textContent).toBe('Paper view 1');
+    vi.advanceTimersByTime(6999);
+    expect(carousel.slides[0].dataset.active).toBe('true');
     vi.advanceTimersByTime(1);
-    expect(carousel.caption.textContent).toBe('Paper view 2');
+    expect(carousel.slides[1].dataset.active).toBe('true');
     expect(carousel.slides.map((slide) => slide.dataset.active)).toEqual([
       'false',
       'true',
@@ -82,11 +80,11 @@ describe('paper carousel', () => {
       'true',
       'false',
     ]);
-    vi.advanceTimersByTime(6000);
-    expect(carousel.caption.textContent).toBe('Paper view 1');
+    vi.advanceTimersByTime(14000);
+    expect(carousel.slides[0].dataset.active).toBe('true');
     dispose();
-    vi.advanceTimersByTime(3000);
-    expect(carousel.caption.textContent).toBe('Paper view 1');
+    vi.advanceTimersByTime(7000);
+    expect(carousel.slides[0].dataset.active).toBe('true');
   });
 
   it('keeps manual arrows and dots working without stopping rotation', () => {
@@ -95,17 +93,17 @@ describe('paper carousel', () => {
     const dispose = setupPaperCarousel(carousel.root);
 
     carousel.previous.click();
-    expect(carousel.caption.textContent).toBe('Paper view 3');
+    expect(carousel.slides[2].dataset.active).toBe('true');
     carousel.next.click();
-    expect(carousel.caption.textContent).toBe('Paper view 1');
+    expect(carousel.slides[0].dataset.active).toBe('true');
     carousel.dots[1].click();
-    expect(carousel.caption.textContent).toBe('Paper view 2');
-    vi.advanceTimersByTime(3000);
-    expect(carousel.caption.textContent).toBe('Paper view 3');
+    expect(carousel.slides[1].dataset.active).toBe('true');
+    vi.advanceTimersByTime(7000);
+    expect(carousel.slides[2].dataset.active).toBe('true');
     dispose();
     carousel.next.click();
     carousel.dots[0].click();
-    expect(carousel.caption.textContent).toBe('Paper view 3');
+    expect(carousel.slides[2].dataset.active).toBe('true');
   });
 
   it('keeps a single slide static', () => {
@@ -113,7 +111,7 @@ describe('paper carousel', () => {
     const carousel = createCarousel(1);
     const dispose = setupPaperCarousel(carousel.root);
     vi.advanceTimersByTime(10000);
-    expect(carousel.caption.textContent).toBe('Paper view 1');
+    expect(carousel.slides[0].dataset.active).toBe('true');
     dispose();
   });
 });

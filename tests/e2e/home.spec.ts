@@ -94,11 +94,11 @@ test.describe('The Paper Seal Studio Home', () => {
         paper.getByRole('heading', { name: copy.home.paperQuality.heading }),
       ).toBeVisible();
       await expect(paper).toContainText(copy.home.paperQuality.body);
-      await expect(paper).toContainText(copy.home.paperQuality.imageDisclosure);
       for (const attribute of copy.home.paperQuality.attributes)
         await expect(paper).toContainText(attribute);
       const slides = paper.locator('[data-paper-slide]');
       await expect(slides).toHaveCount(3);
+      await expect(paper.locator('.paper-quality__footer p')).toHaveCount(0);
       for (const [index, image] of copy.home.paperQuality.images.entries())
         await expect(slides.nth(index).locator('img')).toHaveAttribute('alt', image.alt);
       await slides.first().locator('img').scrollIntoViewIfNeeded();
@@ -144,9 +144,6 @@ test.describe('The Paper Seal Studio Home', () => {
       await expect(slides.nth(1)).toBeVisible();
       await expect(slides.first()).toHaveAttribute('data-active', 'false');
       await expect(dots.nth(1)).toHaveAttribute('aria-pressed', 'true');
-      await expect(paper.locator('[data-paper-caption]')).toHaveText(
-        copy.home.paperQuality.images[1].caption,
-      );
       await dots.nth(2).focus();
       await dots.nth(2).press('Space');
       await expect(slides.nth(2)).toBeVisible();
@@ -186,10 +183,11 @@ test.describe('The Paper Seal Studio Home', () => {
     );
 
     await expect(paper.locator('[data-paper-toggle]')).toHaveCount(0);
-    await expect(paper.locator('[data-paper-caption]')).toHaveAttribute('aria-live', 'off');
     await expect
-      .poll(() =>
-        slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
+      .poll(
+        () =>
+          slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
+        { timeout: 10000 },
       )
       .not.toBe(initial);
     expect(
@@ -232,8 +230,10 @@ test.describe('The Paper Seal Studio Home', () => {
       items.findIndex((item) => item.dataset.active === 'true'),
     );
     await expect
-      .poll(() =>
-        slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
+      .poll(
+        () =>
+          slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
+        { timeout: 10000 },
       )
       .not.toBe(initial);
     expect(

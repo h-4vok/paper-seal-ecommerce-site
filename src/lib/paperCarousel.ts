@@ -1,7 +1,6 @@
 export function setupPaperCarousel(root: HTMLElement): () => void {
   const slides = [...root.querySelectorAll<HTMLElement>('[data-paper-slide]')];
   const dots = [...root.querySelectorAll<HTMLButtonElement>('[data-paper-index]')];
-  const caption = root.querySelector<HTMLElement>('[data-paper-caption]')!;
   const previous = root.querySelector<HTMLButtonElement>('[data-paper-step="-1"]')!;
   const next = root.querySelector<HTMLButtonElement>('[data-paper-step="1"]')!;
   let current = 0;
@@ -16,7 +15,6 @@ export function setupPaperCarousel(root: HTMLElement): () => void {
     dots.forEach((dot, dotIndex) => {
       dot.setAttribute('aria-pressed', String(dotIndex === current));
     });
-    caption.textContent = slides[current].dataset.caption!;
   }
 
   const onPrevious = () => show(current - 1);
@@ -28,7 +26,7 @@ export function setupPaperCarousel(root: HTMLElement): () => void {
   });
   previous.addEventListener('click', onPrevious);
   next.addEventListener('click', onNext);
-  const timer = slides.length > 1 ? setInterval(() => show(current + 1), 3000) : undefined;
+  const timer = slides.length > 1 ? setInterval(() => show(current + 1), 7000) : undefined;
 
   return () => {
     if (timer !== undefined) clearInterval(timer);

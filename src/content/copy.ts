@@ -77,8 +77,7 @@ const homeSchema = z.object({
     previousImage: text,
     nextImage: text,
     selectImage: text,
-    imageDisclosure: text,
-    images: z.array(z.object({ alt: text, caption: text })).length(3),
+    images: z.array(z.object({ alt: text })).length(3),
     cta: text,
   }),
   collection: z.object({

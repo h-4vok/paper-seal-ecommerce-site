@@ -18,8 +18,7 @@ const { paperQuality } = parse(homeYaml) as {
     previousImage: string;
     nextImage: string;
     selectImage: string;
-    imageDisclosure: string;
-    images: Array<{ alt: string; caption: string }>;
+    images: Array<{ alt: string }>;
     cta: string;
   };
 };
@@ -45,7 +44,6 @@ const PaperQualityPreview = () => {
             className="paper-quality__image"
             data-paper-slide
             data-active={index === 0}
-            data-caption={slide.caption}
             aria-hidden={index !== 0}
             key={slide.alt}
           >
@@ -75,12 +73,6 @@ const PaperQualityPreview = () => {
         </div>
       </div>
       <div className="paper-quality__footer">
-        <div className="paper-quality__copy">
-          <p data-paper-caption aria-live="off">
-            {paperQuality.images[0].caption}
-          </p>
-          <p className="paper-quality__disclosure">{paperQuality.imageDisclosure}</p>
-        </div>
         <div
           className="paper-quality__controls"
           role="group"
