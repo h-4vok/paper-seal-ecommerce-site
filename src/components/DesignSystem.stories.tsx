@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, userEvent, within } from '@storybook/test';
 import { useEffect, useRef, useState } from 'react';
 import { parse } from 'yaml';
 import seal from '../assets/brand/paperseal-seal.png';
@@ -126,16 +127,65 @@ type Story = StoryObj<typeof meta>;
 
 export const SharedHeader: Story = { render: () => <HeaderPreview /> };
 
+export const Foundations: Story = {
+  name: 'Foundations / tokens and type',
+  render: () => (
+    <main
+      style={{
+        display: 'grid',
+        alignContent: 'start',
+        gap: '2rem',
+        minHeight: '100vh',
+        padding: '3rem',
+      }}
+    >
+      <div>
+        <p className="eyebrow">Foundations</p>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}>Paper, ink, garden.</h1>
+        <p style={{ maxWidth: '42rem', lineHeight: 1.6 }}>
+          Shared colour, typography, focus, spacing and motion tokens used by storefront UI.
+        </p>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+        <a className="button-link" href="#primary">
+          Primary action <span aria-hidden="true">→</span>
+        </a>
+        <a className="button-link button-link--navy" href="#secondary">
+          Navy action <span aria-hidden="true">→</span>
+        </a>
+        <a className="text-link" href="#text">
+          Text link <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </main>
+  ),
+};
+
 export const MobileNavigationOpen: Story = {
-  parameters: { viewport: { defaultViewport: 'papersealMobile' } },
-  render: () => <HeaderPreview initiallyOpen />,
+  parameters: {
+    viewport: { defaultViewport: 'papersealMobile' },
+    layout: 'fullscreen',
+  },
+  render: () => (
+    <div style={{ width: 'min(100%, 390px)', minHeight: '844px', marginInline: 'auto' }}>
+      <HeaderPreview initiallyOpen />
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const close = canvas.getByRole('button', { name: stories.closeMenu });
+    await userEvent.click(close);
+    const trigger = canvas.getByRole('button', { name: stories.menu });
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.click(trigger);
+    await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  },
 };
 
 export const LinkAndControlStates: Story = {
   render: () => (
     <main
       style={{
-        minHeight: '100vh',
         padding: '3rem',
         display: 'grid',
         alignContent: 'start',

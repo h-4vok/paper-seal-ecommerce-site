@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import heroImage from '../assets/home/hero-eastbourne-flower-bed.jpg';
 import beachHutsImage from '../assets/home/current-beach-huts.jpg';
 import harbourImage from '../assets/home/current-sovereign-harbour.jpg';
+import PaperQuality from '../components/PaperQuality.astro';
 import '../styles/home.scss';
 import { artworks } from '../domain/catalogue';
 import { copy } from '../content/copy';
@@ -25,15 +26,15 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'The Paper Seal Studio',
+    name: copy.shared.brand.name,
     url: canonical,
     description,
-    areaServed: 'United Kingdom',
+    areaServed: copy.shared.brand.market,
   },
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'The Paper Seal Studio',
+    name: copy.shared.brand.name,
     url: canonical,
     inLanguage: 'en-GB',
   },
@@ -97,6 +98,8 @@ const structuredData = [
       </div>
     </section>
 
+    <PaperQuality />
+
     <section class="current-collection section-shell" aria-labelledby="collection-title">
       <header class="section-heading">
         <div>
@@ -107,7 +110,7 @@ const structuredData = [
       </header>
 
       <div class="collection-grid">
-        <a class="artwork-feature" href={`/artworks`} aria-label={`Explore our Artworks`}>
+        <a class="artwork-feature" href="/artworks">
           <Picture
             src={beachHutsImage}
             widths={[480, 720, 960, 1484]}
@@ -118,12 +121,12 @@ const structuredData = [
             loading="lazy"
           />
           <span class="artwork-feature__caption">
-            <span><strong>{featuredBeachHuts.title}</strong><small>{featuredBeachHuts.placeName} · East Sussex</small></span>
+            <span><strong>{featuredBeachHuts.title}</strong><small>{featuredBeachHuts.placeName} · {copy.shared.brand.region}</small></span>
             <span aria-hidden="true">{home.collection.view}</span>
           </span>
         </a>
 
-        <a class="artwork-feature" href={`/artworks`} aria-label={`Explore our Artworks`}>
+        <a class="artwork-feature" href="/artworks">
           <Picture
             src={harbourImage}
             widths={[480, 720, 960, 1484]}
@@ -134,7 +137,7 @@ const structuredData = [
             loading="lazy"
           />
           <span class="artwork-feature__caption">
-            <span><strong>{featuredHarbour.title}</strong><small>{featuredHarbour.placeName} · East Sussex</small></span>
+            <span><strong>{featuredHarbour.title}</strong><small>{featuredHarbour.placeName} · {copy.shared.brand.region}</small></span>
             <span aria-hidden="true">{home.collection.view}</span>
           </span>
         </a>

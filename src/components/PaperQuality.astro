@@ -1,0 +1,66 @@
+---
+import { Picture } from 'astro:assets';
+import macroImage from '../assets/home/paper-quality-texture-macro.jpg';
+import rakingImage from '../assets/home/paper-quality-texture-raking.jpg';
+import edgeImage from '../assets/home/paper-quality-texture-edge.jpg';
+import { copy } from '../content/copy';
+
+const { paperQuality } = copy.home;
+const images = [macroImage, rakingImage, edgeImage];
+---
+
+<section class="paper-quality section-shell" aria-labelledby="paper-quality-title" data-paper-carousel>
+  <div class="paper-quality__scene">
+    {paperQuality.images.map((slide, index) => (
+      <figure class="paper-quality__image" data-paper-slide data-active={index === 0} aria-hidden={index !== 0}>
+        <Picture
+          src={images[index]}
+          widths={[480, 768, 1200, 1536]}
+          sizes="(min-width: 72rem) 90vw, 100vw"
+          formats={['avif', 'webp']}
+          fallbackFormat="jpg"
+          alt={slide.alt}
+          loading="eager"
+        />
+      </figure>
+    ))}
+    <div class="paper-quality__content">
+      <p class="eyebrow">{paperQuality.eyebrow}</p>
+      <h2 id="paper-quality-title">{paperQuality.heading}</h2>
+      <p class="paper-quality__body">{paperQuality.body}</p>
+      <ul class="paper-quality__attributes">
+        {paperQuality.attributes.map((attribute) => <li>{attribute}</li>)}
+      </ul>
+      <a class="button-link button-link--navy" href="/our-story#paper-and-quality">
+        {paperQuality.cta} <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+  <div class="paper-quality__footer">
+    <div class="paper-quality__controls" role="group" aria-label={paperQuality.carouselLabel}>
+      <button class="paper-quality__arrow" type="button" data-paper-step="-1" aria-label={paperQuality.previousImage}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 5-7 7 7 7" /></svg>
+      </button>
+      <div class="paper-quality__dots">
+        {paperQuality.images.map((_, index) => (
+          <button
+            class="paper-quality__dot"
+            type="button"
+            data-paper-index={index}
+            aria-label={paperQuality.selectImage.replace('{index}', String(index + 1)).replace('{count}', String(images.length))}
+            aria-pressed={index === 0}
+          ></button>
+        ))}
+      </div>
+      <button class="paper-quality__arrow" type="button" data-paper-step="1" aria-label={paperQuality.nextImage}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m10 5 7 7-7 7" /></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { setupPaperCarousel } from '../lib/paperCarousel';
+
+  document.querySelectorAll<HTMLElement>('[data-paper-carousel]').forEach(setupPaperCarousel);
+</script>

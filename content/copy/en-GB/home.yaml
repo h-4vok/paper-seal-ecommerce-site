@@ -23,6 +23,23 @@ manifesto:
     - 'There is beauty in the places we pass every day: the pier in changing light, chalk cliffs after rain, a harbour settling into evening. The Paper Seal Studio turns those moments into prints with colour, warmth and a little wonder.'
     - Made for rooms that are collected rather than styled, each piece is a small reminder that good art and meaningful places belong in everyday homes.
   stamp: Always a good idea
+paperQuality:
+  eyebrow: Paper & quality
+  heading: The paper makes the difference.
+  body: Every Paperseal print is made on Hahnemühle German Etching. Its softly textured, matt surface gives our colour-rich local scenes depth and a tactile presence we want people to enjoy at home.
+  attributes:
+    - 310 gsm
+    - Softly textured
+    - Matt finish
+  carouselLabel: Paper and quality images
+  previousImage: Previous image
+  nextImage: Next image
+  selectImage: Show image {index} of {count}
+  images:
+    - alt: Overhead editorial close-up of the soft, matt surface of unprinted fine art paper
+    - alt: Low-angle editorial view of unprinted fine art paper in grazing light
+    - alt: Three-quarter editorial view of one unprinted fine art paper sheet and its clean edge
+  cta: What makes us unique
 collection:
   eyebrow: Our First Collection
   heading: 'Places that are part of you.'
