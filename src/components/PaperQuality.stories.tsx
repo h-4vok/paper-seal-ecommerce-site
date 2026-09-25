@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { userEvent, within } from '@storybook/test';
 import { useEffect, useRef } from 'react';
 import { parse } from 'yaml';
-import sunsetImage from '../assets/home/paper-quality-ps-012.jpg';
-import pierAngleImage from '../assets/home/paper-quality-ps-006-angle-1.jpg';
-import pierOverheadImage from '../assets/home/paper-quality-ps-006-angle-2.jpg';
+import macroImage from '../assets/home/paper-quality-texture-macro.jpg';
+import rakingImage from '../assets/home/paper-quality-texture-raking.jpg';
+import edgeImage from '../assets/home/paper-quality-texture-edge.jpg';
 import { setupPaperCarousel } from '../lib/paperCarousel';
 import homeYaml from '../../content/copy/en-GB/home.yaml?raw';
 
@@ -16,12 +17,14 @@ const { paperQuality } = parse(homeYaml) as {
     carouselLabel: string;
     previousImage: string;
     nextImage: string;
+    pauseImages: string;
+    resumeImages: string;
     selectImage: string;
     images: Array<{ alt: string; caption: string }>;
     cta: string;
   };
 };
-const imageUrls = [sunsetImage, pierAngleImage, pierOverheadImage].map((image) =>
+const imageUrls = [macroImage, rakingImage, edgeImage].map((image) =>
   typeof image === 'string' ? image : image.src,
 );
 
@@ -72,7 +75,7 @@ const PaperQualityPreview = () => {
         </div>
       </div>
       <div className="paper-quality__footer">
-        <p data-paper-caption aria-live="polite">
+        <p data-paper-caption aria-live="off">
           {paperQuality.images[0].caption}
         </p>
         <div
@@ -126,6 +129,34 @@ const PaperQualityPreview = () => {
               <path d="m10 5 7 7-7 7" />
             </svg>
           </button>
+          <button
+            className="paper-quality__toggle"
+            type="button"
+            data-paper-toggle
+            data-pause-label={paperQuality.pauseImages}
+            data-resume-label={paperQuality.resumeImages}
+            aria-label={paperQuality.pauseImages}
+            aria-pressed="false"
+          >
+            <svg
+              className="paper-quality__pause-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              aria-hidden="true"
+            >
+              <path d="M8 5v14m8-14v14" />
+            </svg>
+            <svg
+              className="paper-quality__play-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="m8 5 11 7-11 7V5Z" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>
@@ -147,4 +178,28 @@ export const Tablet: Story = {
 export const Mobile: Story = {
   parameters: { viewport: { defaultViewport: 'papersealMobile' } },
   render: () => <PaperQualityPreview />,
+};
+
+const showPausedSlide =
+  (index: number) =>
+  async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: paperQuality.pauseImages }));
+    await userEvent.click(
+      canvas.getByRole('button', {
+        name: paperQuality.selectImage
+          .replace('{index}', String(index + 1))
+          .replace('{count}', String(imageUrls.length)),
+      }),
+    );
+  };
+
+export const RakingLight: Story = {
+  render: () => <PaperQualityPreview />,
+  play: showPausedSlide(1),
+};
+
+export const PaperEdge: Story = {
+  render: () => <PaperQualityPreview />,
+  play: showPausedSlide(2),
 };

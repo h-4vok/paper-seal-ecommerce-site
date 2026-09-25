@@ -76,6 +76,8 @@ const homeSchema = z.object({
     carouselLabel: text,
     previousImage: text,
     nextImage: text,
+    pauseImages: text,
+    resumeImages: text,
     selectImage: text,
     images: z.array(z.object({ alt: text, caption: text })).length(3),
     cta: text,

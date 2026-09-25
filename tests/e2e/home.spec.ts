@@ -170,6 +170,45 @@ test.describe('The Paper Seal Studio Home', () => {
     });
   }
 
+  test('advances paper images automatically and lets visitors pause playback', async ({ page }) => {
+    await page.clock.install();
+    await page.goto('/');
+    const paper = page.locator('section.paper-quality');
+    const slides = paper.locator('[data-paper-slide]');
+    const toggle = paper.locator('[data-paper-toggle]');
+
+    await expect(slides.first()).toBeVisible();
+    await expect(paper.locator('[data-paper-caption]')).toHaveAttribute('aria-live', 'off');
+    await page.clock.runFor(7000);
+    await expect(slides.nth(1)).toBeVisible();
+
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+    await expect(toggle).toHaveAttribute('aria-label', copy.home.paperQuality.resumeImages);
+    await expect(paper.locator('[data-paper-caption]')).toHaveAttribute('aria-live', 'polite');
+    await page.clock.runFor(14000);
+    await expect(slides.nth(1)).toBeVisible();
+  });
+
+  test('starts paused for reduced motion and allows explicit playback', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.clock.install();
+    await page.goto('/');
+    const paper = page.locator('section.paper-quality');
+    const slides = paper.locator('[data-paper-slide]');
+    const toggle = paper.locator('[data-paper-toggle]');
+
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+    await page.clock.runFor(7000);
+    await expect(slides.first()).toBeVisible();
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+    await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+    await page.mouse.move(0, 0);
+    await page.clock.runFor(7000);
+    await expect(slides.nth(1)).toBeVisible();
+  });
+
   test('has no automated accessibility violations on desktop', async ({ page }) => {
     await page.goto('/');
     const results = await new AxeBuilder({ page }).analyze();

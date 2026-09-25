@@ -42,7 +42,7 @@
       "source": "src/components/PaperQuality.astro",
       "story": "src/components/PaperQuality.stories.tsx",
       "level": "Organisms",
-      "useFor": "Editorial paper texture and quality feature."
+      "useFor": "Timed editorial paper and quality carousel."
     },
     {
       "name": "PlaceholderPage",

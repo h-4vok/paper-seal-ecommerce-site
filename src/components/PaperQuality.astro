@@ -1,12 +1,12 @@
 ---
 import { Picture } from 'astro:assets';
-import sunsetImage from '../assets/home/paper-quality-ps-012.jpg';
-import pierAngleImage from '../assets/home/paper-quality-ps-006-angle-1.jpg';
-import pierOverheadImage from '../assets/home/paper-quality-ps-006-angle-2.jpg';
+import macroImage from '../assets/home/paper-quality-texture-macro.jpg';
+import rakingImage from '../assets/home/paper-quality-texture-raking.jpg';
+import edgeImage from '../assets/home/paper-quality-texture-edge.jpg';
 import { copy } from '../content/copy';
 
 const { paperQuality } = copy.home;
-const images = [sunsetImage, pierAngleImage, pierOverheadImage];
+const images = [macroImage, rakingImage, edgeImage];
 ---
 
 <section class="paper-quality section-shell" aria-labelledby="paper-quality-title" data-paper-carousel>
@@ -37,7 +37,7 @@ const images = [sunsetImage, pierAngleImage, pierOverheadImage];
     </div>
   </div>
   <div class="paper-quality__footer">
-    <p data-paper-caption aria-live="polite">{paperQuality.images[0].caption}</p>
+    <p data-paper-caption aria-live="off">{paperQuality.images[0].caption}</p>
     <div class="paper-quality__controls" role="group" aria-label={paperQuality.carouselLabel}>
       <button class="paper-quality__arrow" type="button" data-paper-step="-1" aria-label={paperQuality.previousImage}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 5-7 7 7 7" /></svg>
@@ -55,6 +55,18 @@ const images = [sunsetImage, pierAngleImage, pierOverheadImage];
       </div>
       <button class="paper-quality__arrow" type="button" data-paper-step="1" aria-label={paperQuality.nextImage}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m10 5 7 7-7 7" /></svg>
+      </button>
+      <button
+        class="paper-quality__toggle"
+        type="button"
+        data-paper-toggle
+        data-pause-label={paperQuality.pauseImages}
+        data-resume-label={paperQuality.resumeImages}
+        aria-label={paperQuality.pauseImages}
+        aria-pressed="false"
+      >
+        <svg class="paper-quality__pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 5v14m8-14v14" /></svg>
+        <svg class="paper-quality__play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" /></svg>
       </button>
     </div>
   </div>
