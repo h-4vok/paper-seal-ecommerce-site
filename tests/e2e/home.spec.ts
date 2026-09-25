@@ -111,12 +111,13 @@ test.describe('The Paper Seal Studio Home', () => {
         )
         .toBe(true);
       expect(
-        await paper.evaluate((element) =>
-          Boolean(
-            element.compareDocumentPosition(document.querySelector('.current-collection')) &
-            Node.DOCUMENT_POSITION_FOLLOWING,
-          ),
-        ),
+        await paper.evaluate((element) => {
+          const collection = document.querySelector('.current-collection');
+          return (
+            collection !== null &&
+            Boolean(element.compareDocumentPosition(collection) & Node.DOCUMENT_POSITION_FOLLOWING)
+          );
+        }),
       ).toBe(true);
       const link = paper.getByRole('link', { name: copy.home.paperQuality.cta });
       await expect(link).toHaveAttribute('href', '/our-story#paper-and-quality');
