@@ -5,6 +5,10 @@ export function setupPaperCarousel(root: HTMLElement): () => void {
   const previous = root.querySelector<HTMLButtonElement>('[data-paper-step="-1"]')!;
   const next = root.querySelector<HTMLButtonElement>('[data-paper-step="1"]')!;
   const toggle = root.querySelector<HTMLButtonElement>('[data-paper-toggle]')!;
+  const controls = root.querySelector<HTMLElement>('.paper-quality__controls')!;
+  const images = slides
+    .map((slide) => slide.querySelector('img'))
+    .filter((image): image is HTMLImageElement => image !== null);
   const document = root.ownerDocument;
   const reducedMotion = document.defaultView?.matchMedia('(prefers-reduced-motion: reduce)');
   let current = 0;
@@ -12,6 +16,8 @@ export function setupPaperCarousel(root: HTMLElement): () => void {
   let hovered = false;
   let focused = false;
   let userPaused = reducedMotion?.matches ?? false;
+  let ready = images.length === 0;
+  let disposed = false;
 
   function clearTimer(): void {
     if (timer !== undefined) {
@@ -25,7 +31,7 @@ export function setupPaperCarousel(root: HTMLElement): () => void {
   }
 
   function canAutoplay(): boolean {
-    return !hovered && !focused && !document.hidden && !userPaused && slides.length >= 2;
+    return ready && !hovered && !focused && !document.hidden && !userPaused && slides.length >= 2;
   }
 
   function schedule(): void {
@@ -35,13 +41,15 @@ export function setupPaperCarousel(root: HTMLElement): () => void {
     timer = setTimeout(() => {
       show(current + 1);
       schedule();
-    }, 7000);
+    }, 3000);
   }
 
   function show(index: number): void {
     current = (index + slides.length) % slides.length;
     slides.forEach((slide, slideIndex) => {
-      slide.hidden = slideIndex !== current;
+      const active = slideIndex === current;
+      slide.dataset.active = String(active);
+      slide.setAttribute('aria-hidden', String(!active));
     });
     dots.forEach((dot, dotIndex) => {
       dot.setAttribute('aria-pressed', String(dotIndex === current));
@@ -107,22 +115,30 @@ export function setupPaperCarousel(root: HTMLElement): () => void {
   toggle.setAttribute('aria-pressed', String(userPaused));
   toggle.setAttribute('aria-label', userPaused ? resumeLabel : pauseLabel);
   updateLiveAnnouncements();
-  root.addEventListener('mouseenter', onMouseEnter);
-  root.addEventListener('mouseleave', onMouseLeave);
+  controls.addEventListener('mouseenter', onMouseEnter);
+  controls.addEventListener('mouseleave', onMouseLeave);
   root.addEventListener('focusin', onFocusIn);
   root.addEventListener('focusout', onFocusOut);
   toggle.addEventListener('click', onToggle);
   document.addEventListener('visibilitychange', onVisibilityChange);
   reducedMotion?.addEventListener('change', onMotionPreferenceChange);
   schedule();
+  if (images.length > 0) {
+    void Promise.allSettled(images.map((image) => image.decode())).then(() => {
+      if (disposed) return;
+      ready = true;
+      schedule();
+    });
+  }
 
   return () => {
+    disposed = true;
     clearTimer();
     previous.removeEventListener('click', onPrevious);
     next.removeEventListener('click', onNext);
     dots.forEach((dot, index) => dot.removeEventListener('click', onSelect[index]));
-    root.removeEventListener('mouseenter', onMouseEnter);
-    root.removeEventListener('mouseleave', onMouseLeave);
+    controls.removeEventListener('mouseenter', onMouseEnter);
+    controls.removeEventListener('mouseleave', onMouseLeave);
     root.removeEventListener('focusin', onFocusIn);
     root.removeEventListener('focusout', onFocusOut);
     toggle.removeEventListener('click', onToggle);

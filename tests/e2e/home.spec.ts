@@ -179,14 +179,45 @@ test.describe('The Paper Seal Studio Home', () => {
 
     await expect(slides.first()).toBeVisible();
     await expect(paper.locator('[data-paper-caption]')).toHaveAttribute('aria-live', 'off');
-    await page.clock.runFor(7000);
+    await page.clock.runFor(3000);
     await expect(slides.nth(1)).toBeVisible();
+    await expect(slides.nth(1)).toHaveAttribute('data-active', 'true');
+    await expect(slides.first()).toHaveAttribute('aria-hidden', 'true');
+    expect(
+      await slides.nth(1).evaluate((slide) => getComputedStyle(slide).transitionProperty),
+    ).toContain('opacity');
 
     await toggle.click();
     await expect(toggle).toHaveAttribute('aria-pressed', 'true');
     await expect(toggle).toHaveAttribute('aria-label', copy.home.paperQuality.resumeImages);
     await expect(paper.locator('[data-paper-caption]')).toHaveAttribute('aria-live', 'polite');
     await page.clock.runFor(14000);
+    await expect(slides.nth(1)).toBeVisible();
+  });
+
+  test('preloads paper images and crossfades between them', async ({ page }) => {
+    await page.goto('/');
+    const paper = page.locator('section.paper-quality');
+    const slides = paper.locator('[data-paper-slide]');
+    await expect
+      .poll(() =>
+        paper
+          .locator('img')
+          .evaluateAll((images: HTMLImageElement[]) =>
+            images.every((image) => image.complete && image.naturalWidth > 0),
+          ),
+      )
+      .toBe(true);
+
+    await paper.getByRole('button', { name: copy.home.paperQuality.nextImage }).click();
+    await page.waitForTimeout(250);
+    const opacity = await slides.evaluateAll((items) =>
+      items.slice(0, 2).map((item) => Number(getComputedStyle(item).opacity)),
+    );
+    expect(opacity[0]).toBeGreaterThan(0);
+    expect(opacity[0]).toBeLessThan(1);
+    expect(opacity[1]).toBeGreaterThan(0);
+    expect(opacity[1]).toBeLessThan(1);
     await expect(slides.nth(1)).toBeVisible();
   });
 
@@ -199,13 +230,13 @@ test.describe('The Paper Seal Studio Home', () => {
     const toggle = paper.locator('[data-paper-toggle]');
 
     await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    await page.clock.runFor(7000);
+    await page.clock.runFor(3000);
     await expect(slides.first()).toBeVisible();
     await toggle.click();
     await expect(toggle).toHaveAttribute('aria-pressed', 'false');
     await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
     await page.mouse.move(0, 0);
-    await page.clock.runFor(7000);
+    await page.clock.runFor(3000);
     await expect(slides.nth(1)).toBeVisible();
   });
 

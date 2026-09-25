@@ -12,7 +12,7 @@ const images = [macroImage, rakingImage, edgeImage];
 <section class="paper-quality section-shell" aria-labelledby="paper-quality-title" data-paper-carousel>
   <div class="paper-quality__scene">
     {paperQuality.images.map((slide, index) => (
-      <figure class="paper-quality__image" data-paper-slide data-caption={slide.caption} hidden={index !== 0}>
+      <figure class="paper-quality__image" data-paper-slide data-active={index === 0} data-caption={slide.caption} aria-hidden={index !== 0}>
         <Picture
           src={images[index]}
           widths={[480, 768, 1200, 1536]}
@@ -20,7 +20,7 @@ const images = [macroImage, rakingImage, edgeImage];
           formats={['avif', 'webp']}
           fallbackFormat="jpg"
           alt={slide.alt}
-          loading="lazy"
+          loading="eager"
         />
       </figure>
     ))}

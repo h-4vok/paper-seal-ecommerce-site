@@ -51,17 +51,38 @@ class TestCaption {
   }
 }
 
+class TestSlide {
+  dataset: { active: string; caption: string };
+  image: { decode: () => Promise<void> } | null = null;
+  private attributes = new Map<string, string>();
+
+  constructor(index: number) {
+    this.dataset = { active: String(index === 0), caption: `Paper view ${index + 1}` };
+    this.attributes.set('aria-hidden', String(index !== 0));
+  }
+
+  setAttribute(name: string, value: string): void {
+    this.attributes.set(name, value);
+  }
+
+  getAttribute(name: string): string | undefined {
+    return this.attributes.get(name);
+  }
+
+  querySelector(selector: string): { decode: () => Promise<void> } | null {
+    return selector === 'img' ? this.image : null;
+  }
+}
+
 function createCarousel(count = 3, reducedMotion = false, withWindow = true) {
-  const slides = Array.from({ length: count }, (_, index) => ({
-    hidden: index !== 0,
-    dataset: { caption: `Paper view ${index + 1}` },
-  }));
+  const slides = Array.from({ length: count }, (_, index) => new TestSlide(index));
   const dots = slides.map(() => new TestButton());
   const previous = new TestButton();
   const next = new TestButton();
   const toggle = Object.assign(new TestButton(), {
     dataset: { pauseLabel: 'Pause carousel', resumeLabel: 'Play carousel' },
   });
+  const controls = new EventTarget();
   const caption = new TestCaption(slides[0]?.dataset.caption ?? '');
   const document = new TestDocument(reducedMotion, withWindow);
   const focusTarget = new EventTarget();
@@ -73,6 +94,7 @@ function createCarousel(count = 3, reducedMotion = false, withWindow = true) {
     querySelector(selector: string) {
       if (selector === '[data-paper-caption]') return caption;
       if (selector === '[data-paper-toggle]') return toggle;
+      if (selector === '.paper-quality__controls') return controls;
       return selector === '[data-paper-step="-1"]' ? previous : next;
     },
     contains(target: EventTarget | null) {
@@ -81,7 +103,19 @@ function createCarousel(count = 3, reducedMotion = false, withWindow = true) {
   }) as unknown as HTMLElement;
   const media = document.defaultView?.matchMedia() ?? null;
 
-  return { slides, dots, previous, next, toggle, caption, document, focusTarget, root, media };
+  return {
+    slides,
+    dots,
+    previous,
+    next,
+    toggle,
+    controls,
+    caption,
+    document,
+    focusTarget,
+    root,
+    media,
+  };
 }
 
 function dispatchFocusOut(root: HTMLElement, relatedTarget: EventTarget | null): void {
@@ -100,7 +134,16 @@ describe('paper carousel', () => {
     expect(carousel.caption.getAttribute('aria-live')).toBe('off');
 
     carousel.next.click();
-    expect(carousel.slides.map((slide) => slide.hidden)).toEqual([true, false, true]);
+    expect(carousel.slides.map((slide) => slide.dataset.active)).toEqual([
+      'false',
+      'true',
+      'false',
+    ]);
+    expect(carousel.slides.map((slide) => slide.getAttribute('aria-hidden'))).toEqual([
+      'true',
+      'false',
+      'true',
+    ]);
     expect(carousel.dots.map((dot) => dot.getAttribute('aria-pressed'))).toEqual([
       'false',
       'true',
@@ -110,9 +153,17 @@ describe('paper carousel', () => {
 
     carousel.next.click();
     carousel.next.click();
-    expect(carousel.slides.map((slide) => slide.hidden)).toEqual([false, true, true]);
+    expect(carousel.slides.map((slide) => slide.dataset.active)).toEqual([
+      'true',
+      'false',
+      'false',
+    ]);
     carousel.previous.click();
-    expect(carousel.slides.map((slide) => slide.hidden)).toEqual([true, true, false]);
+    expect(carousel.slides.map((slide) => slide.dataset.active)).toEqual([
+      'false',
+      'false',
+      'true',
+    ]);
     carousel.dots[1].click();
     expect(carousel.caption.textContent).toBe('Paper view 2');
     carousel.toggle.click();
@@ -125,27 +176,61 @@ describe('paper carousel', () => {
     expect(carousel.caption.getAttribute('aria-live')).toBe('off');
 
     dispose();
-    vi.advanceTimersByTime(7000);
+    vi.advanceTimersByTime(3000);
     carousel.next.click();
     carousel.dots[0].click();
-    expect(carousel.slides.map((slide) => slide.hidden)).toEqual([true, false, true]);
+    expect(carousel.slides.map((slide) => slide.dataset.active)).toEqual([
+      'false',
+      'true',
+      'false',
+    ]);
   });
 
-  it('advances every seven seconds and restarts the interval after manual navigation', () => {
+  it('advances every three seconds and restarts the interval after manual navigation', () => {
     vi.useFakeTimers();
     const carousel = createCarousel();
     const dispose = setupPaperCarousel(carousel.root);
 
-    vi.advanceTimersByTime(6999);
+    vi.advanceTimersByTime(2999);
     expect(carousel.caption.textContent).toBe('Paper view 1');
     vi.advanceTimersByTime(1);
     expect(carousel.caption.textContent).toBe('Paper view 2');
     carousel.dots[2].click();
-    vi.advanceTimersByTime(6999);
+    vi.advanceTimersByTime(2999);
     expect(carousel.caption.textContent).toBe('Paper view 3');
     vi.advanceTimersByTime(1);
     expect(carousel.caption.textContent).toBe('Paper view 1');
     dispose();
+  });
+
+  it('waits for image decoding before autoplay and ignores completion after cleanup', async () => {
+    vi.useFakeTimers();
+    let resolveImages!: () => void;
+    const decoded = new Promise<void>((resolve) => {
+      resolveImages = resolve;
+    });
+    const carousel = createCarousel();
+    carousel.slides.forEach((slide) => {
+      slide.image = { decode: () => decoded };
+    });
+    const dispose = setupPaperCarousel(carousel.root);
+    vi.advanceTimersByTime(3000);
+    expect(carousel.caption.textContent).toBe('Paper view 1');
+    resolveImages();
+    await decoded;
+    await Promise.resolve();
+    vi.advanceTimersByTime(3000);
+    expect(carousel.caption.textContent).toBe('Paper view 2');
+    dispose();
+
+    const nextCarousel = createCarousel();
+    nextCarousel.slides[0].image = { decode: () => Promise.resolve() };
+    const disposeEarly = setupPaperCarousel(nextCarousel.root);
+    disposeEarly();
+    await Promise.resolve();
+    await Promise.resolve();
+    vi.advanceTimersByTime(3000);
+    expect(nextCarousel.caption.textContent).toBe('Paper view 1');
   });
 
   it('pauses while hovered and resumes with a full interval after pointer leaves', () => {
@@ -153,14 +238,14 @@ describe('paper carousel', () => {
     const carousel = createCarousel();
     const dispose = setupPaperCarousel(carousel.root);
 
-    vi.advanceTimersByTime(6000);
-    carousel.root.dispatchEvent(new Event('mouseenter'));
+    vi.advanceTimersByTime(2000);
+    carousel.controls.dispatchEvent(new Event('mouseenter'));
     expect(carousel.caption.getAttribute('aria-live')).toBe('polite');
     vi.advanceTimersByTime(10000);
     expect(carousel.caption.textContent).toBe('Paper view 1');
-    carousel.root.dispatchEvent(new Event('mouseleave'));
+    carousel.controls.dispatchEvent(new Event('mouseleave'));
     expect(carousel.caption.getAttribute('aria-live')).toBe('off');
-    vi.advanceTimersByTime(6999);
+    vi.advanceTimersByTime(2999);
     expect(carousel.caption.textContent).toBe('Paper view 1');
     vi.advanceTimersByTime(1);
     expect(carousel.caption.textContent).toBe('Paper view 2');
@@ -172,7 +257,7 @@ describe('paper carousel', () => {
     const carousel = createCarousel();
     const dispose = setupPaperCarousel(carousel.root);
 
-    vi.advanceTimersByTime(6000);
+    vi.advanceTimersByTime(2000);
     carousel.root.dispatchEvent(new Event('focusin'));
     expect(carousel.caption.getAttribute('aria-live')).toBe('polite');
     vi.advanceTimersByTime(10000);
@@ -182,7 +267,7 @@ describe('paper carousel', () => {
     expect(carousel.caption.textContent).toBe('Paper view 1');
     dispatchFocusOut(carousel.root, null);
     expect(carousel.caption.getAttribute('aria-live')).toBe('off');
-    vi.advanceTimersByTime(6999);
+    vi.advanceTimersByTime(2999);
     expect(carousel.caption.textContent).toBe('Paper view 1');
     vi.advanceTimersByTime(1);
     expect(carousel.caption.textContent).toBe('Paper view 2');
@@ -194,7 +279,7 @@ describe('paper carousel', () => {
     const carousel = createCarousel();
     const dispose = setupPaperCarousel(carousel.root);
 
-    vi.advanceTimersByTime(6000);
+    vi.advanceTimersByTime(2000);
     carousel.document.hidden = true;
     carousel.document.dispatchEvent(new Event('visibilitychange'));
     expect(carousel.caption.getAttribute('aria-live')).toBe('polite');
@@ -203,7 +288,7 @@ describe('paper carousel', () => {
     carousel.document.hidden = false;
     carousel.document.dispatchEvent(new Event('visibilitychange'));
     expect(carousel.caption.getAttribute('aria-live')).toBe('off');
-    vi.advanceTimersByTime(7000);
+    vi.advanceTimersByTime(3000);
     expect(carousel.caption.textContent).toBe('Paper view 2');
     dispose();
   });
@@ -223,7 +308,7 @@ describe('paper carousel', () => {
     expect(carousel.toggle.getAttribute('aria-label')).toBe('Pause carousel');
     carousel.media!.matches = false;
     carousel.media!.dispatchEvent(new Event('change'));
-    vi.advanceTimersByTime(7000);
+    vi.advanceTimersByTime(3000);
     expect(carousel.caption.textContent).toBe('Paper view 2');
     carousel.media!.matches = true;
     carousel.media!.dispatchEvent(new Event('change'));

@@ -45,8 +45,9 @@ const PaperQualityPreview = () => {
           <figure
             className="paper-quality__image"
             data-paper-slide
+            data-active={index === 0}
             data-caption={slide.caption}
-            hidden={index !== 0}
+            aria-hidden={index !== 0}
             key={slide.alt}
           >
             <picture>
@@ -55,7 +56,7 @@ const PaperQualityPreview = () => {
                 alt={slide.alt}
                 width="1536"
                 height="1024"
-                loading="lazy"
+                loading="eager"
               />
             </picture>
           </figure>
