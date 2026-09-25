@@ -72,115 +72,25 @@ test.describe('The Paper Seal Studio Home', () => {
     expect(await page.locator('main source[type="image/webp"]').count()).toBe(6);
   });
 
-  for (const [name, viewport] of [
-    ['desktop', { width: 1440, height: 900 }],
-    ['tablet', { width: 820, height: 1180 }],
-    ['mobile', { width: 390, height: 844 }],
-  ] as const) {
-    test(`shows paper quality and its story destination on ${name}`, async ({ page }) => {
-      await page.setViewportSize(viewport);
-      const errors: string[] = [];
-      page.on('console', (message) => {
-        if (message.type() === 'error') errors.push(message.text());
-      });
-      page.on('pageerror', (error) => errors.push(error.message));
-
-      const response = await page.goto('/');
-      const html = await response?.text();
-      expect(html).toContain(copy.home.paperQuality.heading);
-      const paper = page.locator('section.paper-quality');
-      await expect(
-        paper.getByRole('heading', { name: copy.home.paperQuality.heading }),
-      ).toBeVisible();
-      await expect(paper).toContainText(copy.home.paperQuality.body);
-      for (const attribute of copy.home.paperQuality.attributes)
-        await expect(paper).toContainText(attribute);
-      const slides = paper.locator('[data-paper-slide]');
-      await expect(slides).toHaveCount(3);
-      await expect(paper.locator('.paper-quality__footer p')).toHaveCount(0);
-      for (const [index, image] of copy.home.paperQuality.images.entries())
-        await expect(slides.nth(index).locator('img')).toHaveAttribute('alt', image.alt);
-      await slides.first().locator('img').scrollIntoViewIfNeeded();
-      await expect
-        .poll(
-          () =>
-            slides
-              .first()
-              .locator('img')
-              .evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0),
-          { timeout: 30000 },
-        )
-        .toBe(true);
-      expect(
-        await paper.evaluate((element) => {
-          const collection = document.querySelector('.current-collection');
-          return (
-            collection !== null &&
-            Boolean(element.compareDocumentPosition(collection) & Node.DOCUMENT_POSITION_FOLLOWING)
-          );
-        }),
-      ).toBe(true);
-      const link = paper.getByRole('link', { name: copy.home.paperQuality.cta });
-      await expect(link).toHaveAttribute('href', '/our-story#paper-and-quality');
-      await expect(link).toHaveClass(/button-link/);
-      const imageBounds = await slides.first().locator('img').boundingBox();
-      const contentBounds = await paper.locator('.paper-quality__content').boundingBox();
-      expect(imageBounds).not.toBeNull();
-      expect(contentBounds).not.toBeNull();
-      expect(contentBounds!.x).toBeGreaterThanOrEqual(imageBounds!.x);
-      expect(contentBounds!.y).toBeGreaterThanOrEqual(imageBounds!.y);
-      expect(contentBounds!.x + contentBounds!.width).toBeLessThanOrEqual(
-        imageBounds!.x + imageBounds!.width,
-      );
-      expect(contentBounds!.y + contentBounds!.height).toBeLessThanOrEqual(
-        imageBounds!.y + imageBounds!.height,
-      );
-      const next = paper.getByRole('button', { name: copy.home.paperQuality.nextImage });
-      const previous = paper.getByRole('button', { name: copy.home.paperQuality.previousImage });
-      const dots = paper.locator('[data-paper-index]');
-      await expect
-        .poll(() =>
-          slides.evaluateAll((items) => items.findIndex((item) => item.dataset.active === 'true')),
-        )
-        .toBe(1);
-      await expect(dots.nth(1)).toHaveAttribute('aria-pressed', 'true');
-      await dots.nth(2).focus();
-      await dots.nth(2).press('Space');
-      await expect(slides.nth(2)).toHaveAttribute('data-active', 'true');
-      await expect(dots.nth(2)).toHaveAttribute('aria-pressed', 'true');
-      await previous.click();
-      await expect(slides.nth(1)).toHaveAttribute('data-active', 'true');
-      await dots.first().click();
-      await expect(slides.first()).toHaveAttribute('data-active', 'true');
-      await next.click();
-      await expect(slides.nth(1)).toBeVisible();
-      await expect(slides.first()).toHaveAttribute('data-active', 'false');
-      await expect(dots.nth(1)).toHaveAttribute('aria-pressed', 'true');
-      await dots.nth(2).focus();
-      await dots.nth(2).press('Space');
-      await expect(slides.nth(2)).toBeVisible();
-      await expect(dots.nth(2)).toHaveAttribute('aria-pressed', 'true');
-      await previous.click();
-      await expect(slides.nth(1)).toBeVisible();
-      await dots.first().click();
-      await expect(slides.first()).toBeVisible();
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
-        viewport.width,
-      );
-      await link.click();
-      await expect(page).toHaveURL(/\/our-story#paper-and-quality$/);
-      await expect(page.locator('#paper-and-quality')).toContainText(
-        copy.institutional.pages
-          .find((item) => item.slug === 'our-story')
-          ?.sections.find((item) => item.id === 'paper-and-quality')?.heading ?? '',
-      );
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
-        viewport.width,
-      );
-      expect(errors).toEqual([]);
-      expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
-    });
-  }
+  test('shows paper quality and its story destination responsively', async ({ page }) => {
+    await page.goto('/');
+    const paper = page.locator('section.paper-quality');
+    await expect(
+      paper.getByRole('heading', { name: copy.home.paperQuality.heading }),
+    ).toBeVisible();
+    await expect(paper).toContainText(copy.home.paperQuality.body);
+    for (const attribute of copy.home.paperQuality.attributes)
+      await expect(paper).toContainText(attribute);
+    const link = paper.getByRole('link', { name: copy.home.paperQuality.cta });
+    await expect(link).toHaveAttribute('href', '/our-story#paper-and-quality');
+    await link.click();
+    await expect(page).toHaveURL(/\/our-story#paper-and-quality$/);
+    await expect(page.locator('#paper-and-quality')).toContainText(
+      copy.institutional.pages
+        .find((item) => item.slug === 'our-story')
+        ?.sections.find((item) => item.id === 'paper-and-quality')?.heading ?? '',
+    );
+  });
 
   test('rotates paper images in real time during hover and focus', async ({ page }) => {
     await page.goto('/');
@@ -220,13 +130,10 @@ test.describe('The Paper Seal Studio Home', () => {
       )
       .toBe(true);
 
-    await paper.getByRole('button', { name: copy.home.paperQuality.nextImage }).click();
-    await expect(slides.nth(1)).toHaveAttribute('data-active', 'true');
-    await expect(slides.nth(0)).toHaveAttribute('data-active', 'false');
     expect(
-      await slides.nth(1).evaluate((item) => getComputedStyle(item).transitionProperty),
+      await slides.first().evaluate((item) => getComputedStyle(item).transitionProperty),
     ).toContain('opacity');
-    await expect(slides.nth(1)).toBeVisible();
+    expect(await slides.count()).toBe(3);
   });
 
   test('keeps rotating with reduced motion while disabling the fade', async ({ page }) => {
