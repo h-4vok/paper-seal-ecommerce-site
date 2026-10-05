@@ -15,7 +15,11 @@
     },
     {
       "name": "SnipcartIntegration",
-      "reason": "head-only third-party script integration; no visual story"
+      "reason": "The production Astro integration loads vendor-owned checkout markup, so the Storybook theme specimen shows representative vendor classes and states rather than importing the live Snipcart application.",
+      "story": "src/components/SnipcartTheme.stories.tsx",
+      "owner": "Storefront maintainers",
+      "scope": "Snipcart cart states and test-payment help preview",
+      "parity": "Theme variables and class selectors are shared from src/styles/snipcart.scss; the live Snipcart smoke test verifies the actual side cart."
     }
   ],
   "components": [

@@ -52,8 +52,8 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
     [[{ ...artworks[0], gallery: [] }], 'invalid gallery'],
     [[{ ...artworks[0], gallery: ['master'] }], 'invalid gallery'],
-    [[{ ...artworks[0], price: { small: 8, medium: -1, large: 28 } }], 'invalid price'],
-    [[{ ...artworks[0], price: { small: 8, medium: 14 } }], 'invalid price'],
+    [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
+    [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
   ])('rejects invalid data %#', (input, message) => {
     expect(() => validateCatalogue(input)).toThrow(message as string);
