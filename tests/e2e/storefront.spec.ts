@@ -14,7 +14,6 @@ test.describe('catalogue discovery', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(copy.cart.header.heading);
 
     await page.goto('/artworks/seven-sisters-from-the-gardens-ps-002');
-    await expect(page.getByText(copy.product.labels.noStock, { exact: true })).toBeVisible();
   });
 
   test('renders crawlable cards and combines live search, place and sort controls', async ({
@@ -119,7 +118,7 @@ test.describe('catalogue discovery', () => {
 test.describe('product detail', () => {
   const productPath = '/artworks/seven-sisters-from-the-gardens-ps-002';
 
-  test('uses true product facts, static SEO and no fabricated commerce', async ({ page }) => {
+  test('uses true product facts, static SEO and Snipcart product data', async ({ page }) => {
     await page.goto(productPath);
     await expect(
       page.getByRole('heading', { level: 1, name: 'Seven Sisters from the Gardens' }),
@@ -129,11 +128,20 @@ test.describe('product detail', () => {
     await expect(page.getByText(/17\.8 × 12\.7 cm · 7 × 5 in/).first()).toBeVisible();
     await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/).first()).toBeVisible();
     await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/).first()).toBeVisible();
-    expect(await page.locator('main').innerText()).not.toMatch(
-      /\b(?:A5|A2|review|In stock|Add to cart)\b/i,
+    const addToCart = page.locator('.snipcart-add-item');
+    await expect(page.getByRole('button', { name: 'Add to cart — £8.00' })).toHaveCount(1);
+    await expect(addToCart).toHaveAttribute('data-item-id', 'PS-002');
+    await expect(addToCart).toHaveAttribute(
+      'data-item-description',
+      'Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast.',
     );
-    await expect(page.getByText('Online shop coming soon', { exact: true })).toBeVisible();
-    expect(await page.locator('body').innerText()).not.toContain('£');
+    await expect(addToCart).toHaveAttribute('data-item-name', 'Seven Sisters from the Gardens');
+    await expect(addToCart).toHaveAttribute(
+      'data-item-image',
+      '/images/artworks/seven-sisters/room-1440.jpg',
+    );
+    await expect(addToCart).toHaveAttribute('data-item-url', productPath);
+    await expect(addToCart).toHaveAttribute('data-item-price', '8.00');
 
     const json = await page.locator('script[type="application/ld+json"]').textContent();
     expect(json).not.toBeNull();

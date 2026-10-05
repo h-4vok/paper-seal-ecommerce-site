@@ -142,6 +142,7 @@ const cartSchema = z.object({
 });
 const productSchema = z.object({
   labels: z.object({
+    addToCart: text,
     breadcrumb: text,
     breadcrumbLink: text,
     gallery: text,
@@ -154,9 +155,6 @@ const productSchema = z.object({
     size: text,
     framing: text,
     selectionSuffix: text,
-    noStock: text,
-    commerceEyebrow: text,
-    commerceCopy: text,
     shareGroup: text,
     share: text,
     copyLink: text,
