@@ -1,8 +1,8 @@
 # The Paper Seal Studio - Ecommerce platform
 
-The Paper Seal Studio is an art boutique storefront in its earliest implementation stage. The MVP will present a considered, editorial shopping experience for framed art and connect it to Shopify for commerce.
+The Paper Seal Studio is an art boutique storefront in its earliest implementation stage. The MVP presents a considered, editorial shopping experience and uses Snipcart for commerce.
 
-This repository currently provides the production-ready project foundation: Astro static rendering, a custom design-system boundary, Storybook, Vitest, Playwright, quality gates, GitHub Actions, and Netlify deployment configuration. The visible product is intentionally a small coming-soon page until the feature epics are implemented.
+This repository currently provides the project foundation: Astro static rendering, a custom design-system boundary, Storybook, Vitest, Playwright, quality gates, GitHub Actions, and Netlify deployment configuration. The visible product is intentionally a small coming-soon page until the feature epics are implemented.
 
 ## Development
 
@@ -54,6 +54,14 @@ In **Project configuration → Environment variables**, add `PUBLIC_SNIPCART_TES
 with scope **Builds**. Set its public Test key value for the specific branch `staging`
 and for **Deploy Previews**. Do not configure a Live key or a Production value for this
 milestone. Do not put actual values in `netlify.toml` or commit `.env.local`.
+
+If using Umami, add `PUBLIC_UMAMI_URL` (the Umami script URL, for example
+`https://analytics.example.com/script.js`) and `PUBLIC_UMAMI_WEBSITE_ID` (the website ID)
+in the same **Project configuration → Environment variables** screen. Set each variable's
+scope to **Builds**, then select the `staging` branch and **Deploy Previews** as its
+deploy contexts. These are optional: the storefront currently does not load Umami, and
+empty or obsolete Umami values do not block a build. Configure the public Snipcart Test
+key there as described above; never add a Snipcart secret or Live key to the frontend.
 
 Trigger a fresh build/deploy after setting or changing the variable. Astro embeds the
 public configuration at build time; changing Netlify variables cannot update an existing
