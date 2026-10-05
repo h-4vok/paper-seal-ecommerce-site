@@ -22,7 +22,7 @@ test('real Snipcart Test empty cart toggles open and closed, then reopens', asyn
   });
   await bag.focus();
   await page.evaluate(async () => {
-    await (window as Window & { __snipcartReady: Promise<void> }).__snipcartReady;
+    await (window as Window & { __snipcartReady?: Promise<void> }).__snipcartReady;
   });
   await page.keyboard.press('Enter');
   await expect(page.locator('#snipcart')).toContainText(/Your cart is empty/i, { timeout: 30_000 });
