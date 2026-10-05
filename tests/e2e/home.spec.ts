@@ -3,6 +3,33 @@ import { expect, test } from '@playwright/test';
 import { copy } from '../../src/content/copy';
 
 test.describe('The Paper Seal Studio Home', () => {
+  test('keeps the hero heading clear of the artwork around the desktop breakpoint', async ({
+    page,
+  }) => {
+    for (const width of [1024, 1072, 1280, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      await page.evaluate(() => document.fonts.ready);
+
+      const headingLines = await page.locator('.home-hero h1').evaluate((heading) => {
+        const range = document.createRange();
+        range.selectNodeContents(heading);
+        return Array.from(range.getClientRects(), (rect) => ({
+          right: rect.right,
+          bottom: rect.bottom,
+        }));
+      });
+      const artwork = await page.locator('.home-hero__art img').boundingBox();
+      expect(headingLines.length).toBeGreaterThan(0);
+      expect(artwork).not.toBeNull();
+      for (const line of headingLines) {
+        expect(line.right <= artwork!.x || line.bottom <= artwork!.y).toBe(true);
+      }
+      if (width === 1072)
+        await page.locator('.home-hero').screenshot({ path: 'test-results/home-hero-1072.png' });
+    }
+  });
+
   test('renders the complete server-authored Home with crawlable destinations', async ({
     page,
   }) => {
