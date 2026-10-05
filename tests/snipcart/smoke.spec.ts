@@ -24,6 +24,7 @@ test('real Snipcart Test empty cart toggles open and closed, then reopens', asyn
   await page.evaluate(async () => {
     await (window as Window & { __snipcartReady?: Promise<void> }).__snipcartReady;
   });
+  await bag.focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#snipcart')).toContainText(/Your cart is empty/i, { timeout: 30_000 });
   await expect(page.locator('#snipcart')).toContainText(/test mode/i);
@@ -60,6 +61,7 @@ test('real Snipcart Test populated side cart uses the Paperseal theme', async ({
   await page.evaluate(async () => {
     await (window as Window & { __snipcartReady?: Promise<void> }).__snipcartReady;
   });
+  await add.focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#snipcart')).toContainText('Flower Bed', { timeout: 30_000 });
   await expect(page.locator('#snipcart')).toContainText('£8.00');
@@ -72,4 +74,40 @@ test('real Snipcart Test populated side cart uses the Paperseal theme', async ({
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator('#snipcart')).toContainText('Flower Bed');
   await page.screenshot({ path: 'visual-evidence/snipcart-populated-mobile.png' });
+});
+
+test('test checkout displays the documented card guidance', async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.goto(new URL('/artworks/flower-bed-ps-001/', baseURL).toString());
+  const settings = await page.evaluate(
+    () => (window as Window & { SnipcartSettings?: { templatesUrl?: string } }).SnipcartSettings,
+  );
+  expect(settings?.templatesUrl).toBe('/snipcart-templates-test.html');
+  await page.locator('button.snipcart-add-item').focus();
+  await expect(page.locator('#snipcart')).toBeAttached();
+  await expect(page.locator('#snipcart')).not.toHaveAttribute('hidden', { timeout: 30_000 });
+  await page.locator('button.snipcart-add-item').click();
+  await expect(page.locator('#snipcart')).toContainText('Flower Bed', { timeout: 30_000 });
+  await page.locator('#snipcart').getByRole('button', { name: 'Checkout' }).click();
+  const checkout = page.locator('#snipcart');
+  await checkout.getByRole('textbox', { name: 'First name' }).fill('Test');
+  await checkout.getByRole('textbox', { name: 'Last name' }).fill('Customer');
+  await checkout.getByRole('textbox', { name: 'Email' }).fill('checkout-test@example.com');
+  await checkout.getByRole('textbox', { name: 'Street address' }).fill('1 Test Street');
+  await checkout.getByRole('textbox', { name: 'City' }).fill('Eastbourne');
+  await checkout.getByRole('textbox', { name: 'Province/State' }).fill('East Sussex');
+  await checkout.getByRole('textbox', { name: 'Postal/ZIP code' }).fill('BN21 1AA');
+  await checkout.getByRole('button', { name: 'Continue to shipping' }).click();
+  await checkout.getByRole('button', { name: 'Continue to payment' }).click();
+  const hint = checkout.getByRole('note');
+  await expect(hint).toBeVisible({ timeout: 30_000 });
+  await expect(hint).toContainText('4242 4242 4242 4242');
+  await expect(hint).toContainText('future expiry date');
+  await expect(checkout.locator('.snipcart-payment__form-container iframe')).toBeVisible({
+    timeout: 30_000,
+  });
+  await expect(checkout.getByRole('button', { name: 'Place order' })).toBeVisible({
+    timeout: 30_000,
+  });
+  await page.screenshot({ path: 'visual-evidence/snipcart-test-payment.png' });
 });

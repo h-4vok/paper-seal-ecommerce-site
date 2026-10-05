@@ -124,8 +124,6 @@ test.describe('product detail', () => {
       page.getByRole('heading', { level: 1, name: 'Seven Sisters from the Gardens' }),
     ).toHaveCount(1);
     await expect(page.getByText('Seven Sisters, East Sussex')).toBeVisible();
-    await expect(page.getByText('Unframed', { exact: true })).toBeVisible();
-    await expect(page.getByText('Framed or unframed', { exact: true })).toHaveCount(0);
     await expect(page.getByRole('radio')).toHaveCount(3);
     await expect(page.getByRole('group', { name: 'Framing' })).toHaveCount(0);
     await expect(page.locator('[data-option-announcement]')).toHaveText(

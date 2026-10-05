@@ -32,6 +32,8 @@
 }
 
 .snipcart-theme-preview__drawer .snipcart-cart__secondary-header {
+  display: flex;
+  align-items: center;
   flex: 0 0 auto;
   justify-content: space-between;
 }
@@ -65,6 +67,8 @@
 }
 
 .snipcart-theme-preview__drawer .snipcart-item-line__container {
+  display: flex;
+  align-items: flex-start;
   gap: 1rem;
 }
 
@@ -113,7 +117,11 @@
 }
 
 .snipcart-theme-preview__drawer .snipcart-empty-cart {
+  display: flex;
+  align-items: center;
   flex: 1;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .snipcart-theme-preview__drawer .snipcart-empty-cart__title {
@@ -172,4 +180,15 @@
   .snipcart-theme-preview__footer {
     padding: 1.25rem 1.1rem;
   }
+}
+
+.snipcart-theme-preview__payment {
+  width: min(calc(100% - 2rem), 45rem);
+  margin: 3rem auto;
+}
+
+.snipcart-theme-preview__payment h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
 }

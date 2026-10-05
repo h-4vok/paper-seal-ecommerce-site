@@ -116,6 +116,21 @@ function SnipcartThemePreview({ populated }: PreviewProps) {
   );
 }
 
+function TestPaymentHintPreview() {
+  return (
+    <div id="snipcart" className="snipcart-theme-preview__payment">
+      <h2>Payment</h2>
+      <div className="snipcart-test-payment-hint" role="note">
+        <strong>Test payment</strong>
+        <p>
+          Use card <span className="snipcart-test-payment-hint__number">4242 4242 4242 4242,</span>
+          any future expiry date and a three-digit CVC. No money will be charged.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 const meta = {
   title: 'Foundations/Snipcart theme',
   component: SnipcartThemePreview,
@@ -150,5 +165,16 @@ export const MobileEmpty: Story = {
 };
 export const MobileWithArtwork: Story = {
   args: { populated: true },
+  parameters: { viewport: { defaultViewport: 'papersealMobile' } },
+};
+
+export const TestPaymentHint: Story = {
+  args: { populated: false },
+  render: () => <TestPaymentHintPreview />,
+};
+
+export const MobileTestPaymentHint: Story = {
+  args: { populated: false },
+  render: () => <TestPaymentHintPreview />,
   parameters: { viewport: { defaultViewport: 'papersealMobile' } },
 };
