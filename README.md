@@ -79,6 +79,11 @@ Unit tests and ordinary Playwright tests check application markup without requir
 credentials or external CDN availability. They are not evidence that the real Snipcart
 account is configured correctly.
 
+For a manual payment in Snipcart Test mode, use **4242 4242 4242 4242** with any future
+expiry date and a three-digit CVC. See Snipcart's
+[payment testing guide](https://docs.snipcart.com/v3/testing/payments). Keep these test
+credentials in project documentation rather than the checkout UI.
+
 With your Test key configured, run the real smoke test separately:
 
 ```sh
