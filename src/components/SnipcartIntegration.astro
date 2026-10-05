@@ -8,7 +8,6 @@ const settings = JSON.stringify({
   loadStrategy: 'on-user-interaction',
   currency: 'gbp',
   modalStyle: 'side',
-  ...(publicApiKey ? { templatesUrl: '/snipcart-templates-test.html' } : {}),
 }).replaceAll('<', '\\u003c');
 ---
 <script is:inline set:html={`window.SnipcartSettings = ${settings};`} />

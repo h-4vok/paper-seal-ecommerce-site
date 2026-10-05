@@ -83,13 +83,13 @@ test('real Snipcart Test populated side cart uses the Paperseal theme', async ({
   await page.screenshot({ path: 'visual-evidence/snipcart-populated-mobile.png' });
 });
 
-test('test checkout displays the documented card guidance', async ({ page }) => {
+test('test checkout shows the payment form without card guidance', async ({ page }) => {
   test.setTimeout(60_000);
   await page.goto(new URL('/artworks/flower-bed-ps-001/', baseURL).toString());
   const settings = await page.evaluate(
     () => (window as Window & { SnipcartSettings?: { templatesUrl?: string } }).SnipcartSettings,
   );
-  expect(settings?.templatesUrl).toBe('/snipcart-templates-test.html');
+  expect(settings?.templatesUrl).toBeUndefined();
   await page.locator('button.snipcart-add-item').focus();
   await expect(page.locator('#snipcart')).toBeAttached();
   await expect(page.locator('#snipcart')).not.toHaveAttribute('hidden', { timeout: 30_000 });
@@ -106,15 +106,13 @@ test('test checkout displays the documented card guidance', async ({ page }) => 
   await checkout.getByRole('textbox', { name: 'Postal/ZIP code' }).fill('BN21 1AA');
   await checkout.getByRole('button', { name: 'Continue to shipping' }).click();
   await checkout.getByRole('button', { name: 'Continue to payment' }).click();
-  const hint = checkout.getByRole('note');
-  await expect(hint).toBeVisible({ timeout: 30_000 });
-  await expect(hint).toContainText('4242 4242 4242 4242');
-  await expect(hint).toContainText('future expiry date');
+  await expect(checkout.locator('.snipcart-test-payment-hint')).toHaveCount(0);
+  await expect(checkout.getByText('4242 4242 4242 4242')).toHaveCount(0);
   await expect(checkout.locator('.snipcart-payment__form-container iframe')).toBeVisible({
     timeout: 30_000,
   });
   await expect(checkout.getByRole('button', { name: 'Place order' })).toBeVisible({
     timeout: 30_000,
   });
-  await page.screenshot({ path: 'visual-evidence/snipcart-test-payment.png' });
+  await page.screenshot({ path: 'visual-evidence/snipcart-payment.png' });
 });

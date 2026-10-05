@@ -213,35 +213,6 @@
   text-align: center;
 }
 
-#snipcart .snipcart-test-payment-hint {
-  max-width: 34rem;
-  margin: 0 0 1.5rem;
-  padding: 1rem 1.25rem;
-  border-left: 0.2rem solid var(--color-garden);
-  background: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-#snipcart .snipcart-test-payment-hint strong {
-  display: block;
-  margin-bottom: 0.25rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-#snipcart .snipcart-test-payment-hint p {
-  margin: 0;
-}
-
-#snipcart .snipcart-test-payment-hint__number {
-  white-space: nowrap;
-  font-weight: 700;
-}
-
 #snipcart .snipcart-base-button {
   min-height: 3rem;
   border-radius: var(--radius-small);
