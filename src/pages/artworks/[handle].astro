@@ -12,6 +12,7 @@ export function getStaticPaths() {
 const { artwork } = Astro.props as { artwork: Artwork };
 const { product } = copy;
 const productLabels = product.labels;
+const showFramingSelector = false;
 const canonical = `/artworks/${artwork.handle}`;
 const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
 const snipcartAttributes = snipcartItemAttributes(artwork, shareImage, canonical);
@@ -33,7 +34,7 @@ const galleryLabels = {
 const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
 ---
 <BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a The Paper Seal Studio print`} ogType="product" {structuredData} bodyClass="product-body">
-  <main id="main-content" class="product-page" data-product-page data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)} data-artwork-prices={JSON.stringify(artwork.price)} data-add-to-cart-template={productLabels.addToCart}>
+  <main id="main-content" class="product-page" data-product-page data-framing-enabled={showFramingSelector} data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)} data-artwork-prices={JSON.stringify(artwork.price)} data-add-to-cart-template={productLabels.addToCart}>
     <nav class="product-breadcrumbs" aria-label={productLabels.breadcrumb}><a href="/artworks">{productLabels.breadcrumbLink}</a><span aria-hidden="true">/</span><span aria-current="page">{artwork.title}</span></nav>
     <section class="product-layout">
       <div class="product-gallery" data-gallery aria-label={`${artwork.title} ${productLabels.gallery}`}>
@@ -69,10 +70,10 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
           <fieldset><legend>{productLabels.size}</legend><div class="option-grid option-grid--three">
             {product.sizes.map((size, index) => <label><input type="radio" name="size" value={size.id} checked={index === 0} /><span><strong>{size.label}</strong><small>{size.dimensions}</small></span></label>)}
           </div></fieldset>
-          <fieldset><legend>{productLabels.framing}</legend><div class="option-grid option-grid--two">
+          {showFramingSelector && <fieldset><legend>{productLabels.framing}</legend><div class="option-grid option-grid--two">
             {product.framing.map((frame, index) => <label><input type="radio" name="framing" value={frame.id} checked={index === 0} /><span><strong>{frame.label}</strong><small>{frame.detail}</small></span></label>)}
-          </div></fieldset>
-          <p class="option-announcement" aria-live="polite" data-option-announcement>{product.sizes[0].label}, {product.sizes[0].dimensions}, {product.framing[0].label}{productLabels.selectionSuffix}</p>
+          </div></fieldset>}
+          <p class="option-announcement" aria-live="polite" data-option-announcement>{product.sizes[0].label}, {product.sizes[0].dimensions}{showFramingSelector ? `, ${product.framing[0].label}` : ''}{productLabels.selectionSuffix}</p>
         </form>
         <button
           class="button-link button-link--darkblue snipcart-add-item"
@@ -102,6 +103,7 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
 <script>
   import { galleryIndex } from '../../domain/catalogue';
   const productRoot = document.querySelector('[data-product-page]');
+  const framingEnabled = productRoot?.getAttribute('data-framing-enabled') === 'true';
   const selectionSuffix = productRoot?.getAttribute('data-selection-suffix') ?? '';
   const sizeOptions = JSON.parse(productRoot?.getAttribute('data-size-options') ?? '[]') as Array<{ id: string; label: string; dimensions: string }>;
   const framingOptions = JSON.parse(productRoot?.getAttribute('data-framing-options') ?? '[]') as Array<{ id: string; label: string }>;
@@ -150,13 +152,14 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
     if (!(optionForm instanceof HTMLFormElement) || !(optionAnnouncement instanceof HTMLElement)) return;
     const data = new FormData(optionForm);
     const size = sizeOptions.find((option) => option.id === data.get('size'));
-    const frame = framingOptions.find((option) => option.id === data.get('framing'));
+    const frame = framingEnabled ? framingOptions.find((option) => option.id === data.get('framing')) : undefined;
     const selectedPrice = artworkPrices[String(data.get('size'))];
     if (Number.isFinite(selectedPrice) && addToCartButton) {
       addToCartButton.textContent = addToCartTemplate.replace('{price}', selectedPrice.toFixed(2));
       if (size) addToCartButton.setAttribute('data-item-custom1-value', size.label);
     }
-    optionAnnouncement.textContent = `${size ? `${size.label}, ${size.dimensions}` : ''}, ${frame?.label ?? ''}${selectionSuffix}`;
+    const sizeDescription = size ? `${size.label}, ${size.dimensions}` : '';
+    optionAnnouncement.textContent = `${[sizeDescription, frame?.label].filter(Boolean).join(', ')}${selectionSuffix}`;
   });
   const shareStatus = document.querySelector('[data-share-status]');
   async function copyLink() { await navigator.clipboard.writeText(location.href); if (shareStatus instanceof HTMLElement) shareStatus.textContent = linkCopiedMessage; }
