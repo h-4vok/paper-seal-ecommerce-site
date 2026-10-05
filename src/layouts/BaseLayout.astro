@@ -3,6 +3,7 @@ import SeoHead from '../components/SeoHead.astro';
 import JsonLd from '../components/JsonLd.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import SnipcartIntegration from '../components/SnipcartIntegration.astro';
 import { copy } from '../content/copy';
 import '../styles/global.scss';
 
@@ -40,6 +41,7 @@ const {
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <SeoHead {title} {description} {canonical} {image} {imageAlt} {indexable} {ogType} />
     {structuredData && <JsonLd data={structuredData} />}
+    {showChrome && <SnipcartIntegration />}
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main-content">{copy.shared.skipLink}</a>

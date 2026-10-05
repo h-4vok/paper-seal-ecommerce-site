@@ -14,7 +14,6 @@ test.describe('catalogue discovery', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(copy.cart.header.heading);
 
     await page.goto('/artworks/seven-sisters-from-the-gardens-ps-002');
-    await expect(page.getByText(copy.product.labels.noStock, { exact: true })).toBeVisible();
   });
 
   test('renders crawlable cards and combines live search, place and sort controls', async ({
@@ -119,21 +118,42 @@ test.describe('catalogue discovery', () => {
 test.describe('product detail', () => {
   const productPath = '/artworks/seven-sisters-from-the-gardens-ps-002';
 
-  test('uses true product facts, static SEO and no fabricated commerce', async ({ page }) => {
+  test('uses true product facts, static SEO and Snipcart product data', async ({ page }) => {
     await page.goto(productPath);
     await expect(
       page.getByRole('heading', { level: 1, name: 'Seven Sisters from the Gardens' }),
     ).toHaveCount(1);
     await expect(page.getByText('Seven Sisters, East Sussex')).toBeVisible();
-    await expect(page.getByRole('radio')).toHaveCount(5);
+    await expect(page.getByRole('radio')).toHaveCount(3);
+    await expect(page.getByRole('group', { name: 'Framing' })).toHaveCount(0);
+    await expect(page.locator('[data-option-announcement]')).toHaveText(
+      'Small, 17.8 × 12.7 cm · 7 × 5 in selected. This does not reserve stock.',
+    );
     await expect(page.getByText(/17\.8 × 12\.7 cm · 7 × 5 in/).first()).toBeVisible();
     await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/).first()).toBeVisible();
     await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/).first()).toBeVisible();
-    expect(await page.locator('main').innerText()).not.toMatch(
-      /\b(?:A5|A2|review|In stock|Add to cart)\b/i,
+    const addToCart = page.locator('.snipcart-add-item');
+    await expect(page.getByRole('button', { name: 'Add to cart — £8.00' })).toHaveCount(1);
+    await expect(addToCart).toHaveClass(/product-add-to-cart/);
+    await expect(page.locator('.product-add-to-cart-container')).toBeVisible();
+    await expect(addToCart).toHaveAttribute('data-item-id', 'PS-002');
+    await expect(addToCart).toHaveAttribute(
+      'data-item-description',
+      'Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast.',
     );
-    await expect(page.getByText('Online shop coming soon', { exact: true })).toBeVisible();
-    expect(await page.locator('body').innerText()).not.toContain('£');
+    await expect(addToCart).toHaveAttribute('data-item-name', 'Seven Sisters from the Gardens');
+    await expect(addToCart).toHaveAttribute(
+      'data-item-image',
+      '/images/artworks/seven-sisters/room-1440.jpg',
+    );
+    await expect(addToCart).toHaveAttribute('data-item-url', productPath);
+    await expect(addToCart).toHaveAttribute('data-item-price', '8.00');
+    await expect(addToCart).toHaveAttribute('data-item-custom1-name', 'Size');
+    await expect(addToCart).toHaveAttribute(
+      'data-item-custom1-options',
+      'Small|Medium[+6.00]|Large[+20.00]',
+    );
+    await expect(addToCart).not.toHaveAttribute('data-item-custom1-value', /.+/);
 
     const json = await page.locator('script[type="application/ld+json"]').textContent();
     expect(json).not.toBeNull();
@@ -170,9 +190,27 @@ test.describe('product detail', () => {
     );
 
     await page.getByRole('radio', { name: /Medium/ }).check();
-    await page.getByRole('radio', { name: /Framed/ }).check();
-    await expect(page.locator('[data-option-announcement]')).toContainText(
-      'Medium, 21 × 29.7 cm · 8.27 × 11.69 in, Framed selected',
+    await expect(page.getByRole('button', { name: 'Add to cart — £14.00' })).toHaveCount(1);
+    await expect(page.locator('[data-add-to-cart-price]')).toHaveText('£14.00');
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-price', '8.00');
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
+      'data-item-custom1-value',
+      'Medium',
+    );
+    await expect(page.locator('[data-option-announcement]')).toHaveText(
+      'Medium, 21 × 29.7 cm · 8.27 × 11.69 in selected. This does not reserve stock.',
+    );
+    await page.getByRole('radio', { name: /Large/ }).check();
+    await expect(page.getByRole('button', { name: 'Add to cart — £28.00' })).toHaveCount(1);
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
+      'data-item-custom1-value',
+      'Large',
+    );
+    await page.getByRole('radio', { name: /Small/ }).check();
+    await expect(page.getByRole('button', { name: 'Add to cart — £8.00' })).toHaveCount(1);
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
+      'data-item-custom1-value',
+      'Small',
     );
     await page.getByRole('button', { name: 'Copy link' }).click();
     await expect(page.locator('[data-share-status]')).toHaveText('Link copied to clipboard.');
@@ -258,12 +296,54 @@ test.describe('product detail', () => {
     await surface.click({ position: { x: 8, y: 8 } });
     await expect(page.locator('[data-lightbox]')).not.toBeVisible();
   });
+
+  test('gives the add-to-cart button a visible keyboard focus on mobile and desktop', async ({
+    page,
+  }) => {
+    const button = page.locator('.product-add-to-cart');
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(productPath);
+      await expect(button).toHaveCSS('background-color', 'rgb(11, 37, 65)');
+      await expect(button.locator('.product-add-to-cart__icon')).toBeVisible();
+      await expect(button.locator('.product-add-to-cart__label')).toHaveText('Add to cart');
+      await expect(button.locator('.product-add-to-cart__price')).toHaveText('£8.00');
+      await button.focus();
+      await expect(button).toBeFocused();
+      await expect(button).toHaveCSS('outline-style', 'solid');
+      await expect(button).toHaveCSS('outline-color', 'rgb(179, 69, 36)');
+      await expect(button).toHaveCSS('animation-name', 'product-add-to-cart-halo');
+
+      const metrics = await page.locator('.product-add-to-cart-container').evaluate((container) => {
+        const parent = container.parentElement;
+        const containerBox = container.getBoundingClientRect();
+        const parentStyle = parent ? getComputedStyle(parent) : null;
+        const parentContentWidth = parent
+          ? parent.clientWidth -
+            Number.parseFloat(parentStyle?.paddingLeft ?? '0') -
+            Number.parseFloat(parentStyle?.paddingRight ?? '0')
+          : 0;
+        return { width: containerBox.width, parentContentWidth };
+      });
+      expect(metrics.width).toBeCloseTo(metrics.parentContentWidth, 0);
+    }
+  });
 });
 
 test.describe('cart and institutional routes', () => {
-  test('navigates to an honest dedicated cart and back to catalogue', async ({ page }) => {
+  test('uses Snipcart summary hooks on the header cart button and count badge', async ({
+    page,
+  }) => {
+    await page.route('https://cdn.snipcart.com/**', (route) => route.abort());
     await page.goto('/');
-    await page.getByRole('link', { name: 'Cart, online shop coming soon' }).click();
+    const bag = page.locator('button.snipcart-checkout');
+    await expect(bag).toBeVisible();
+    await expect(bag).toHaveAccessibleName('Open cart');
+    await expect(bag.locator('.snipcart-items-count')).toBeAttached();
+  });
+
+  test('retains the dedicated placeholder route and its catalogue link', async ({ page }) => {
+    await page.goto('/cart');
     await expect(page).toHaveURL(/\/cart$/);
     await expect(
       page.getByRole('heading', { level: 1, name: 'Your cart is waiting for the shop.' }),

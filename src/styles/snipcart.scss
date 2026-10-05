@@ -1,0 +1,279 @@
+/* Snipcart v3.2+ theme variables: https://docs.snipcart.com/v3/setup/theming */
+/* stylelint-disable custom-property-pattern -- Snipcart's documented variable names use camelCase. */
+#snipcart {
+  --color-default: var(--color-ink);
+  --color-alt: var(--color-muted);
+  --color-icon: var(--color-navy);
+  --color-success: var(--color-garden-dark);
+  --color-error: #8e382b;
+  --color-link: var(--color-navy);
+  --color-link-hover: var(--color-garden-dark);
+  --color-link-active: var(--color-navy);
+  --color-link-focus: var(--color-navy);
+  --color-input: var(--color-ink);
+  --color-input-hover: var(--color-ink);
+  --color-input-focus: var(--color-ink);
+  --color-input-checked: var(--color-ink);
+  --color-input-disabled: var(--color-muted);
+  --color-input-error: #8e382b;
+  --color-inputLabel: var(--color-ink-soft);
+  --color-inputLabel-hover: var(--color-ink);
+  --color-inputLabel-focus: var(--color-ink);
+  --color-inputIcon: var(--color-ink-soft);
+  --color-inputIcon-hover: var(--color-navy);
+  --color-inputIcon-focus: var(--color-navy);
+  --color-inputIcon-checked: var(--color-paper-light);
+  --color-inputIcon-error: #8e382b;
+  --color-inputPlaceholder: var(--color-muted);
+  --color-buttonPrimary: var(--color-paper-light);
+  --color-buttonPrimary-hover: var(--color-paper-light);
+  --color-buttonPrimary-active: var(--color-paper-light);
+  --color-buttonPrimary-focus: var(--color-paper-light);
+  --color-buttonPrimary-disabled: var(--color-paper-deep);
+  --color-buttonPrimary-success: var(--color-paper-light);
+  --color-buttonPrimary-error: var(--color-paper-light);
+  --color-buttonSecondary: var(--color-navy);
+  --color-buttonSecondary-hover: var(--color-navy);
+  --color-buttonSecondary-active: var(--color-navy);
+  --color-buttonSecondary-focus: var(--color-navy);
+  --color-buttonSecondary-disabled: var(--color-muted);
+  --color-buttonSecondary-success: var(--color-garden-dark);
+  --color-buttonSecondary-error: #8e382b;
+  --color-buttonDanger: var(--color-paper-light);
+  --color-buttonDanger-hover: var(--color-paper-light);
+  --color-buttonDanger-active: var(--color-paper-light);
+  --color-buttonDanger-focus: var(--color-paper-light);
+  --color-buttonDanger-disabled: var(--color-paper-deep);
+  --color-buttonDanger-success: var(--color-paper-light);
+  --color-buttonDanger-error: var(--color-paper-light);
+  --color-badge: var(--color-navy);
+  --color-badge-active: var(--color-paper-light);
+  --color-badge-disabled: var(--color-muted);
+  --borderColor-default: var(--color-rule);
+  --borderColor-error: #8e382b;
+  --borderColor-link: currentcolor;
+  --borderColor-link-hover: currentcolor;
+  --borderColor-link-active: currentcolor;
+  --borderColor-link-focus: currentcolor;
+  --borderColor-input: var(--color-rule);
+  --borderColor-input-hover: var(--color-garden);
+  --borderColor-input-focus: var(--color-navy);
+  --borderColor-input-checked: var(--color-navy);
+  --borderColor-input-disabled: var(--color-paper-deep);
+  --borderColor-input-error: #8e382b;
+  --borderColor-buttonPrimary: var(--color-navy);
+  --borderColor-buttonPrimary-hover: #061d2b;
+  --borderColor-buttonPrimary-focus: var(--color-navy);
+  --borderColor-buttonPrimary-disabled: var(--color-rule);
+  --borderColor-buttonPrimary-success: var(--color-garden-dark);
+  --borderColor-buttonPrimary-error: #8e382b;
+  --borderColor-buttonSecondary: var(--color-rule);
+  --borderColor-buttonSecondary-hover: var(--color-garden);
+  --borderColor-buttonSecondary-focus: var(--color-navy);
+  --borderColor-buttonSecondary-disabled: var(--color-paper-deep);
+  --borderColor-buttonSecondary-success: var(--color-garden-dark);
+  --borderColor-buttonSecondary-error: #8e382b;
+  --borderColor-badge: var(--color-rule);
+  --borderColor-badge-active: var(--color-navy);
+  --borderColor-badge-disabled: var(--color-rule);
+  --bgColor-default: var(--color-paper-light);
+  --bgColor-alt: var(--color-paper);
+  --bgColor-success: #e5eddf;
+  --bgColor-error: #f8e6df;
+  --bgColor-info: #e8eee9;
+  --bgColor-modal: var(--color-paper-light);
+  --bgColor-modalVeil: rgb(11 37 65 / 56%);
+  --bgColor-link: transparent;
+  --bgColor-link-hover: transparent;
+  --bgColor-link-active: transparent;
+  --bgColor-link-focus: var(--color-paper-deep);
+  --bgColor-input: #fffdfa;
+  --bgColor-input-hover: #fffdfa;
+  --bgColor-input-focus: #fffdfa;
+  --bgColor-input-checked: var(--color-navy);
+  --bgColor-input-disabled: var(--color-paper);
+  --bgColor-input-error: #fffdfa;
+  --bgColor-input-autofill: #e8eee9;
+  --bgColor-buttonPrimary: var(--color-navy);
+  --bgColor-buttonPrimary-hover: #061d2b;
+  --bgColor-buttonPrimary-active: #061d2b;
+  --bgColor-buttonPrimary-focus: var(--color-navy);
+  --bgColor-buttonPrimary-disabled: var(--color-rule);
+  --bgColor-buttonPrimary-success: var(--color-garden-dark);
+  --bgColor-buttonPrimary-error: #8e382b;
+  --bgColor-buttonSecondary: var(--color-paper-deep);
+  --bgColor-buttonSecondary-hover: #ded1bc;
+  --bgColor-buttonSecondary-active: #ded1bc;
+  --bgColor-buttonSecondary-focus: var(--color-paper-deep);
+  --bgColor-buttonSecondary-disabled: var(--color-paper);
+  --bgColor-buttonSecondary-success: #e5eddf;
+  --bgColor-buttonSecondary-error: #f8e6df;
+  --bgColor-buttonDanger: #8e382b;
+  --bgColor-buttonDanger-hover: #742b20;
+  --bgColor-buttonDanger-active: #742b20;
+  --bgColor-buttonDanger-focus: #8e382b;
+  --bgColor-buttonDanger-disabled: var(--color-rule);
+  --bgColor-buttonDanger-success: var(--color-garden-dark);
+  --bgColor-buttonDanger-error: #8e382b;
+  --bgColor-badge: var(--color-paper);
+  --bgColor-badge-active: var(--color-navy);
+  --bgColor-badge-disabled: var(--color-paper-deep);
+  --shadow-default: none;
+  --shadow-tooltip: 0 0.5rem 1.5rem rgb(11 37 65 / 14%);
+  --shadow-link-focus: 0 0 0 0.18rem var(--color-focus);
+  --shadow-input-hover: none;
+  --shadow-input-focus: 0 0 0 0.18rem var(--color-focus);
+  --shadow-input-checked: none;
+  --shadow-buttonPrimary-hover: none;
+  --shadow-buttonPrimary-active: none;
+  --shadow-buttonPrimary-focus: 0 0 0 0.18rem var(--color-focus);
+  --shadow-buttonSecondary-hover: none;
+  --shadow-buttonSecondary-active: none;
+  --shadow-buttonSecondary-focus: 0 0 0 0.18rem var(--color-focus);
+  --shadow-buttonDanger-hover: none;
+  --shadow-buttonDanger-active: none;
+  --shadow-buttonDanger-focus: 0 0 0 0.18rem var(--color-focus);
+
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+}
+/* stylelint-enable custom-property-pattern */
+
+/* The vendor owns checkout structure and behaviour. These are presentation only. */
+#snipcart .snipcart-cart__secondary-header,
+#snipcart .snipcart-cart-header {
+  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-paper);
+}
+
+#snipcart .snipcart-cart__secondary-header-title,
+#snipcart .snipcart-cart-header__title,
+#snipcart .snipcart-empty-cart__title {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
+#snipcart .snipcart-cart__secondary-header {
+  min-height: 5.5rem;
+  padding-inline: clamp(1.25rem, 3vw, 2rem);
+}
+
+#snipcart .snipcart-cart__content,
+#snipcart .snipcart-cart__footer,
+#snipcart .snipcart-layout__content--side {
+  background: var(--color-paper-light);
+}
+
+#snipcart .snipcart-item-line {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+#snipcart .snipcart-item-line__container {
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+#snipcart .snipcart-item-line__title,
+#snipcart .snipcart-card-product__name {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+#snipcart .snipcart-item-line__image,
+#snipcart .snipcart-card-product__image {
+  border: 0.35rem solid var(--color-paper);
+  border-radius: var(--radius-small);
+  object-fit: cover;
+}
+
+#snipcart .snipcart-empty-cart {
+  justify-content: center;
+  gap: 1.25rem;
+  min-height: max(26rem, calc(100dvh - 6rem));
+  height: auto;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+#snipcart .snipcart-empty-cart::before {
+  width: 4.5rem;
+  height: 4.5rem;
+  background: url('/images/brand/paperseal-seal.png') center / contain no-repeat;
+  content: '';
+  opacity: 0.7;
+}
+
+#snipcart .snipcart-empty-cart__title {
+  height: auto;
+  text-align: center;
+}
+
+#snipcart .snipcart-test-payment-hint {
+  max-width: 34rem;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 0.2rem solid var(--color-garden);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+#snipcart .snipcart-test-payment-hint strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+#snipcart .snipcart-test-payment-hint p {
+  margin: 0;
+}
+
+#snipcart .snipcart-test-payment-hint__number {
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+#snipcart .snipcart-base-button {
+  min-height: 3rem;
+  border-radius: var(--radius-small);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+#snipcart .snipcart-form__field,
+#snipcart .snipcart-item-quantity__quantity {
+  border-radius: var(--radius-small);
+}
+
+#snipcart :is(button, a, input, select, textarea):focus-visible {
+  outline: 0.18rem solid var(--color-focus);
+  outline-offset: 0.18rem;
+}
+
+@media (width < 620px) {
+  #snipcart .snipcart-cart__secondary-header {
+    min-height: 4.5rem;
+    padding-inline: 1.1rem;
+  }
+
+  #snipcart .snipcart-item-line__container {
+    padding: 1.25rem 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #snipcart .snipcart-base-button,
+  #snipcart .snipcart-item-quantity__quantity {
+    transition-duration: 0.01ms;
+  }
+}

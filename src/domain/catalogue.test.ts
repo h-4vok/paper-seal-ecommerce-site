@@ -3,10 +3,12 @@ import {
   artworkMatches,
   artworks,
   filterCatalogue,
+  formatPrice,
   galleryIndex,
   nextVisibleCount,
   normalizeSearch,
   productStructuredData,
+  snipcartItemAttributes,
   validateCatalogue,
 } from './catalogue';
 
@@ -14,6 +16,28 @@ describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
     expect(artworks).toHaveLength(16);
     expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(16);
+  });
+
+  it('maps artwork prices to Snipcart base price and size modifiers', () => {
+    const artwork = artworks[0];
+    const image = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
+    const url = `/artworks/${artwork.handle}`;
+
+    expect(snipcartItemAttributes(artwork, image, url)).toEqual({
+      'data-item-id': artwork.artworkCode,
+      'data-item-description': artwork.description,
+      'data-item-name': artwork.title,
+      'data-item-image': image,
+      'data-item-url': url,
+      'data-item-price': '8.00',
+      'data-item-custom1-name': 'Size',
+      'data-item-custom1-options': 'Small|Medium[+6.00]|Large[+20.00]',
+    });
+  });
+
+  it('formats selected product prices to two decimal places', () => {
+    expect(formatPrice(14)).toBe('14.00');
+    expect(formatPrice(8.5)).toBe('8.50');
   });
 
   it.each([
@@ -28,6 +52,8 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
     [[{ ...artworks[0], gallery: [] }], 'invalid gallery'],
     [[{ ...artworks[0], gallery: ['master'] }], 'invalid gallery'],
+    [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
+    [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
   ])('rejects invalid data %#', (input, message) => {
     expect(() => validateCatalogue(input)).toThrow(message as string);

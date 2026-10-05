@@ -13,7 +13,8 @@ navigation:
     - { href: /our-story, key: ourStory, label: Our Story }
     - { href: /east-sussex, key: eastSussex, label: East Sussex }
     - { href: /collabs, key: collabs, label: Collabs }
-  cartLabel: Cart, online shop coming soon
+  cart:
+    label: Open cart
   openMenu: Open menu
   closeMenu: Close menu
   explore: Explore The Paper Seal Studio

@@ -11,7 +11,9 @@ const lines = z
 const navigation = z.object({
   primaryLabel: text,
   items: z.array(z.object({ href: z.string().startsWith('/'), key: text, label: text })).min(1),
-  cartLabel: text,
+  cart: z.object({
+    label: text,
+  }),
   openMenu: text,
   closeMenu: text,
   explore: text,
@@ -140,6 +142,7 @@ const cartSchema = z.object({
 });
 const productSchema = z.object({
   labels: z.object({
+    addToCart: text,
     breadcrumb: text,
     breadcrumbLink: text,
     gallery: text,
@@ -152,9 +155,6 @@ const productSchema = z.object({
     size: text,
     framing: text,
     selectionSuffix: text,
-    noStock: text,
-    commerceEyebrow: text,
-    commerceCopy: text,
     shareGroup: text,
     share: text,
     copyLink: text,

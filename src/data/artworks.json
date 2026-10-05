@@ -14,7 +14,12 @@
       "orientation": "landscape",
       "alt": "Colourful flower beds in Eastbourne rendered as a painterly local scene",
       "assetBase": "flower-bed",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-002",
@@ -27,7 +32,12 @@
       "orientation": "landscape",
       "alt": "The Seven Sisters chalk cliffs seen from a garden above the Sussex coast",
       "assetBase": "seven-sisters",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-004",
@@ -40,7 +50,12 @@
       "orientation": "portrait",
       "alt": "A portrait-format view of the downland and landmark at Beachy Head",
       "assetBase": "beachy-head",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-005",
@@ -53,7 +68,12 @@
       "orientation": "landscape",
       "alt": "A wide painterly view across Eastbourne towards the sea",
       "assetBase": "meet-me-eastbourne",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-006",
@@ -66,7 +86,12 @@
       "orientation": "landscape",
       "alt": "Eastbourne Pier extending into the sea beneath a bright sky",
       "assetBase": "eastbourne-pier",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-007",
@@ -79,7 +104,12 @@
       "orientation": "landscape",
       "alt": "Colourful beach huts arranged along Eastbourne seafront",
       "assetBase": "beach-huts",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-008",
@@ -92,7 +122,12 @@
       "orientation": "landscape",
       "alt": "Open fields and rolling hills across the South Downs in Sussex",
       "assetBase": "south-downs-1",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-009",
@@ -105,7 +140,12 @@
       "orientation": "landscape",
       "alt": "The historic grounds and stone architecture of Battle Abbey in East Sussex",
       "assetBase": "battle-abbey",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-010",
@@ -118,7 +158,12 @@
       "orientation": "landscape",
       "alt": "A wide waterfront view of boats and buildings at Sovereign Harbour",
       "assetBase": "sovereign-harbour-waterfront",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-011",
@@ -131,7 +176,12 @@
       "orientation": "landscape",
       "alt": "The Long Man of Wilmington figure set into the Sussex chalk hills",
       "assetBase": "long-man",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-012",
@@ -144,7 +194,12 @@
       "orientation": "landscape",
       "alt": "A warm sunset over Eastbourne and the Sussex coast",
       "assetBase": "eastbourne-sunset",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-013",
@@ -157,7 +212,12 @@
       "orientation": "landscape",
       "alt": "Martello tower 66 on the East Sussex coast",
       "assetBase": "martello-66",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-015",
@@ -170,7 +230,12 @@
       "orientation": "landscape",
       "alt": "The rolling hills and valley of Devils Dyke in Sussex",
       "assetBase": "devils-dyke",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-016",
@@ -183,7 +248,12 @@
       "orientation": "portrait",
       "alt": "A paraglider flying above the South Downs landscape",
       "assetBase": "parapente-south-downs",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-003",
@@ -196,7 +266,12 @@
       "orientation": "landscape",
       "alt": "Boats and water at Sovereign Harbour in a detailed coastal view",
       "assetBase": "sovereign-harbour-high-res",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     },
     {
       "artworkCode": "PS-018",
@@ -209,7 +284,12 @@
       "orientation": "landscape",
       "alt": "Jeeps and a bike on a South Downs track beneath open hills",
       "assetBase": "south-downs-jeeps-bike",
-      "gallery": ["room"]
+      "gallery": ["room"],
+      "price": {
+        "small": 8,
+        "medium": 14,
+        "large": 28
+      }
     }
   ]
 }

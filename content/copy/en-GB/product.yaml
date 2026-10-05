@@ -1,4 +1,5 @@
 labels:
+  addToCart: 'Add to cart — £{price}'
   breadcrumb: Breadcrumb
   breadcrumbLink: Artworks
   gallery: image gallery
@@ -11,9 +12,6 @@ labels:
   size: Select size
   framing: Framing
   selectionSuffix: ' selected. This does not reserve stock.'
-  noStock: Online shop coming soon
-  commerceEyebrow: Alpha preview
-  commerceCopy: Explore the artwork, sizes and framing now. Purchasing and live availability will open after the Shopify connection is ready and tested.
   shareGroup: Share this artwork
   share: Share artwork
   copyLink: Copy link
@@ -22,7 +20,7 @@ labels:
   printSizes: Print sizes
   printSizesValue: 7 × 5, A4 and A3
   presentation: Presentation
-  presentationValue: Framed or unframed
+  presentationValue: Unframed
   ordering: Online ordering
   orderingValue: Coming soon
   delivery: Delivery notes

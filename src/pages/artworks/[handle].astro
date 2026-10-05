@@ -1,7 +1,7 @@
 ---
 import ArtworkPicture from '../../components/ArtworkPicture.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { artworks, productStructuredData, type Artwork } from '../../domain/catalogue';
+import { artworks, formatPrice, productStructuredData, snipcartItemAttributes, type Artwork } from '../../domain/catalogue';
 import { copy, copyText } from '../../content/copy';
 import '../../styles/product.scss';
 
@@ -12,8 +12,11 @@ export function getStaticPaths() {
 const { artwork } = Astro.props as { artwork: Artwork };
 const { product } = copy;
 const productLabels = product.labels;
+const showFramingSelector = false;
 const canonical = `/artworks/${artwork.handle}`;
 const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
+const snipcartAttributes = snipcartItemAttributes(artwork, shareImage, canonical);
+const initialAddToCartLabel = copyText(productLabels.addToCart, { price: formatPrice(artwork.price.small) });
 const title = `${artwork.title} — East Sussex art print | The Paper Seal Studio`;
 const description = `${artwork.description} Explore this Paper Seal Studio print inspired by ${artwork.placeName}.`;
 const structuredData = [
@@ -31,7 +34,7 @@ const galleryLabels = {
 const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
 ---
 <BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a The Paper Seal Studio print`} ogType="product" {structuredData} bodyClass="product-body">
-  <main id="main-content" class="product-page" data-product-page data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)}>
+  <main id="main-content" class="product-page" data-product-page data-framing-enabled={showFramingSelector} data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)} data-artwork-prices={JSON.stringify(artwork.price)} data-add-to-cart-template={productLabels.addToCart}>
     <nav class="product-breadcrumbs" aria-label={productLabels.breadcrumb}><a href="/artworks">{productLabels.breadcrumbLink}</a><span aria-hidden="true">/</span><span aria-current="page">{artwork.title}</span></nav>
     <section class="product-layout">
       <div class="product-gallery" data-gallery aria-label={`${artwork.title} ${productLabels.gallery}`}>
@@ -67,23 +70,30 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
           <fieldset><legend>{productLabels.size}</legend><div class="option-grid option-grid--three">
             {product.sizes.map((size, index) => <label><input type="radio" name="size" value={size.id} checked={index === 0} /><span><strong>{size.label}</strong><small>{size.dimensions}</small></span></label>)}
           </div></fieldset>
-          <fieldset><legend>{productLabels.framing}</legend><div class="option-grid option-grid--two">
+          {showFramingSelector && <fieldset><legend>{productLabels.framing}</legend><div class="option-grid option-grid--two">
             {product.framing.map((frame, index) => <label><input type="radio" name="framing" value={frame.id} checked={index === 0} /><span><strong>{frame.label}</strong><small>{frame.detail}</small></span></label>)}
-          </div></fieldset>
-          <p class="option-announcement" aria-live="polite" data-option-announcement>{product.sizes[0].label}, {product.sizes[0].dimensions}, {product.framing[0].label}{productLabels.selectionSuffix}</p>
+          </div></fieldset>}
+          <p class="option-announcement" aria-live="polite" data-option-announcement>{product.sizes[0].label}, {product.sizes[0].dimensions}{showFramingSelector ? `, ${product.framing[0].label}` : ''}{productLabels.selectionSuffix}</p>
         </form>
-        <section class="commerce-coming-soon" aria-labelledby="commerce-title">
-          <p class="eyebrow" id="commerce-title">{productLabels.commerceEyebrow}</p>
-          <p class="commerce-coming-soon__title" tabindex="0">{productLabels.noStock}</p>
-          <p>{productLabels.commerceCopy}</p>
-        </section>
+        <div class="product-add-to-cart-container">
+          <button
+            class="button-link button-link--darkblue product-add-to-cart snipcart-add-item"
+            type="button"
+            aria-label={initialAddToCartLabel}
+            {...snipcartAttributes}
+          >
+            <svg class="product-add-to-cart__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6.5 8h11l1 13h-13l1-13Z" />
+              <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+            </svg>
+            <span class="product-add-to-cart__label">{initialAddToCartLabel.split('—')[0].trim()}</span>
+            <span class="product-add-to-cart__price" data-add-to-cart-price>{initialAddToCartLabel.split('—').slice(1).join('—').trim()}</span>
+          </button>
+        </div>
         <div class="product-actions" aria-label={productLabels.shareGroup}>
           <button class="text-link" type="button" data-share>{productLabels.share}</button><button class="text-link" type="button" data-copy-link>{productLabels.copyLink}</button>
           <p class="visually-hidden" aria-live="polite" data-share-status></p>
         </div>
-        <dl class="product-trust">
-          <div><dt>{productLabels.printSizes}</dt><dd>{productLabels.printSizesValue}</dd></div><div><dt>{productLabels.presentation}</dt><dd>{productLabels.presentationValue}</dd></div><div><dt>{productLabels.ordering}</dt><dd>{productLabels.orderingValue}</dd></div>
-        </dl>
         <p class="product-policy-links"><a href="/delivery">{productLabels.delivery}</a> · <a href="/returns">{productLabels.returns}</a></p>
       </article>
     </section>
@@ -98,9 +108,13 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
 <script>
   import { galleryIndex } from '../../domain/catalogue';
   const productRoot = document.querySelector('[data-product-page]');
+  const framingEnabled = productRoot?.getAttribute('data-framing-enabled') === 'true';
   const selectionSuffix = productRoot?.getAttribute('data-selection-suffix') ?? '';
   const sizeOptions = JSON.parse(productRoot?.getAttribute('data-size-options') ?? '[]') as Array<{ id: string; label: string; dimensions: string }>;
   const framingOptions = JSON.parse(productRoot?.getAttribute('data-framing-options') ?? '[]') as Array<{ id: string; label: string }>;
+  const artworkPrices = JSON.parse(productRoot?.getAttribute('data-artwork-prices') ?? '{}') as Record<string, number>;
+  const addToCartTemplate = productRoot?.getAttribute('data-add-to-cart-template') ?? '';
+  const addToCartButton = document.querySelector<HTMLButtonElement>('.snipcart-add-item');
   const linkCopiedMessage = productRoot?.getAttribute('data-link-copied') ?? '';
   const shareOpenedMessage = productRoot?.getAttribute('data-share-opened') ?? '';
   const gallery = document.querySelector('[data-gallery]');
@@ -143,8 +157,17 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
     if (!(optionForm instanceof HTMLFormElement) || !(optionAnnouncement instanceof HTMLElement)) return;
     const data = new FormData(optionForm);
     const size = sizeOptions.find((option) => option.id === data.get('size'));
-    const frame = framingOptions.find((option) => option.id === data.get('framing'));
-    optionAnnouncement.textContent = `${size ? `${size.label}, ${size.dimensions}` : ''}, ${frame?.label ?? ''}${selectionSuffix}`;
+    const frame = framingEnabled ? framingOptions.find((option) => option.id === data.get('framing')) : undefined;
+    const selectedPrice = artworkPrices[String(data.get('size'))];
+    if (Number.isFinite(selectedPrice) && addToCartButton) {
+      const updatedLabel = addToCartTemplate.replace('{price}', selectedPrice.toFixed(2));
+      addToCartButton.setAttribute('aria-label', updatedLabel);
+      const priceLabel = addToCartButton.querySelector('[data-add-to-cart-price]');
+      if (priceLabel) priceLabel.textContent = updatedLabel.split('—').slice(1).join('—').trim();
+      if (size) addToCartButton.setAttribute('data-item-custom1-value', size.label);
+    }
+    const sizeDescription = size ? `${size.label}, ${size.dimensions}` : '';
+    optionAnnouncement.textContent = `${[sizeDescription, frame?.label].filter(Boolean).join(', ')}${selectionSuffix}`;
   });
   const shareStatus = document.querySelector('[data-share-status]');
   async function copyLink() { await navigator.clipboard.writeText(location.href); if (shareStatus instanceof HTMLElement) shareStatus.textContent = linkCopiedMessage; }

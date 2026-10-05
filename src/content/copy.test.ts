@@ -6,7 +6,7 @@ type LoadedCopy = {
   home: { seo: { title: string } };
   catalogue: { controls: { searchPlaceholder: string } };
   cart: { header: { heading: string } };
-  product: { labels: { noStock: string } };
+  product: { labels: { addToCart: string } };
   institutional: { pages: unknown[] };
 };
 
@@ -22,7 +22,7 @@ describe('editorial copy', () => {
     expect(loaded.home.seo.title).toContain('The Paper Seal Studio');
     expect(loaded.catalogue.controls.searchPlaceholder).toBeTruthy();
     expect(loaded.cart.header.heading).toBeTruthy();
-    expect(loaded.product.labels.noStock).toBeTruthy();
+    expect(loaded.product.labels.addToCart).toBeTruthy();
     expect(loaded.institutional.pages).toHaveLength(8);
   });
 
