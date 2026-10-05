@@ -27,7 +27,11 @@ test('real Snipcart Test empty cart toggles open and closed, then reopens', asyn
   await page.keyboard.press('Enter');
   await expect(page.locator('#snipcart')).toContainText(/Your cart is empty/i, { timeout: 30_000 });
   await expect(page.locator('#snipcart')).toContainText(/test mode/i);
-  await page.screenshot({ path: 'visual-evidence/snipcart-desktop.png', fullPage: true });
+  await expect(page.locator('#snipcart .snipcart-cart__secondary-header')).toHaveCSS(
+    'background-color',
+    'rgb(243, 237, 226)',
+  );
+  await page.screenshot({ path: 'visual-evidence/snipcart-desktop.png' });
   const close = page.locator('#snipcart .snipcart-cart__secondary-header button');
   await expect(close).toHaveCount(1);
   await close.click();
@@ -39,5 +43,33 @@ test('real Snipcart Test empty cart toggles open and closed, then reopens', asyn
   await bag.focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#snipcart')).toContainText(/Your cart is empty/i, { timeout: 30_000 });
-  await page.screenshot({ path: 'visual-evidence/snipcart-mobile.png', fullPage: true });
+  await page.screenshot({ path: 'visual-evidence/snipcart-mobile.png' });
+});
+
+test('real Snipcart Test populated side cart uses the Paperseal theme', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(new URL('/artworks/flower-bed-ps-001/', baseURL).toString());
+  const add = page.locator('button.snipcart-add-item');
+  await page.evaluate(() => {
+    const windowWithSnipcartReady = window as Window & { __snipcartReady?: Promise<void> };
+    windowWithSnipcartReady.__snipcartReady = new Promise((resolve) =>
+      document.addEventListener('snipcart.ready', () => resolve(), { once: true }),
+    );
+  });
+  await add.focus();
+  await page.evaluate(async () => {
+    await (window as Window & { __snipcartReady?: Promise<void> }).__snipcartReady;
+  });
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#snipcart')).toContainText('Flower Bed', { timeout: 30_000 });
+  await expect(page.locator('#snipcart')).toContainText('£8.00');
+  await expect(page.locator('#snipcart .snipcart-cart__secondary-header')).toHaveCSS(
+    'background-color',
+    'rgb(243, 237, 226)',
+  );
+  await page.screenshot({ path: 'visual-evidence/snipcart-populated-desktop.png' });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator('#snipcart')).toContainText('Flower Bed');
+  await page.screenshot({ path: 'visual-evidence/snipcart-populated-mobile.png' });
 });

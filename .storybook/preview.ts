@@ -4,6 +4,7 @@ import '../src/styles/home.scss';
 import '../src/styles/catalogue.scss';
 import '../src/styles/product.scss';
 import '../src/styles/institutional.scss';
+import '../src/styles/snipcart.scss';
 
 const preview: Preview = {
   parameters: {
