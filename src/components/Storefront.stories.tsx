@@ -208,23 +208,6 @@ export const ProductComingSoonAndOptions: Story = {
               ))}
             </div>
           </fieldset>
-          <fieldset>
-            <legend>{product.labels.framing}</legend>
-            <div className="option-grid option-grid--two">
-              {product.framing.map((frame, index) => (
-                <label key={frame.id}>
-                  <input type="radio" name="story-frame" defaultChecked={index === 1} />
-                  <span className="visually-hidden">
-                    {stories.choose.replace('{label}', frame.label)}
-                  </span>
-                  <span>
-                    <strong>{frame.label}</strong>
-                    <small>{frame.detail}</small>
-                  </span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
         </form>
         <section className="commerce-coming-soon">
           <p className="eyebrow">{product.labels.commerceEyebrow}</p>

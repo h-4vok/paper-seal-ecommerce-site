@@ -124,7 +124,13 @@ test.describe('product detail', () => {
       page.getByRole('heading', { level: 1, name: 'Seven Sisters from the Gardens' }),
     ).toHaveCount(1);
     await expect(page.getByText('Seven Sisters, East Sussex')).toBeVisible();
-    await expect(page.getByRole('radio')).toHaveCount(5);
+    await expect(page.getByText('Unframed', { exact: true })).toBeVisible();
+    await expect(page.getByText('Framed or unframed', { exact: true })).toHaveCount(0);
+    await expect(page.getByRole('radio')).toHaveCount(3);
+    await expect(page.getByRole('group', { name: 'Framing' })).toHaveCount(0);
+    await expect(page.locator('[data-option-announcement]')).toHaveText(
+      'Small, 17.8 × 12.7 cm · 7 × 5 in selected. This does not reserve stock.',
+    );
     await expect(page.getByText(/17\.8 × 12\.7 cm · 7 × 5 in/).first()).toBeVisible();
     await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/).first()).toBeVisible();
     await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/).first()).toBeVisible();
@@ -190,9 +196,8 @@ test.describe('product detail', () => {
       'data-item-custom1-value',
       'Medium',
     );
-    await page.getByRole('radio', { name: /Framed/ }).check();
-    await expect(page.locator('[data-option-announcement]')).toContainText(
-      'Medium, 21 × 29.7 cm · 8.27 × 11.69 in, Framed selected',
+    await expect(page.locator('[data-option-announcement]')).toHaveText(
+      'Medium, 21 × 29.7 cm · 8.27 × 11.69 in selected. This does not reserve stock.',
     );
     await page.getByRole('radio', { name: /Large/ }).check();
     await expect(page.getByRole('button', { name: 'Add to cart — £28.00' })).toHaveCount(1);
