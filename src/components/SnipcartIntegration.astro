@@ -1,0 +1,49 @@
+---
+import { env } from '../lib/env';
+
+const settings = JSON.stringify({
+  publicApiKey: env.PUBLIC_SNIPCART_TEST_API_KEY ?? '',
+  loadStrategy: 'on-user-interaction',
+  currency: 'gbp',
+  modalStyle: 'side',
+}).replaceAll('<', '\\u003c');
+---
+<script is:inline set:html={`window.SnipcartSettings = ${settings};`} />
+<script is:inline>
+  const events = ['focus', 'mouseover', 'touchmove', 'scroll', 'keydown'];
+  let loaded = false;
+  let timeout;
+
+  function loadSnipcart() {
+    if (loaded) return;
+    loaded = true;
+    clearTimeout(timeout);
+    events.forEach((event) => document.removeEventListener(event, loadSnipcart));
+
+    const cart = document.createElement('div');
+    cart.id = 'snipcart';
+    cart.hidden = true;
+    document.body.append(cart);
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.snipcart.com/themes/v3.0/default/snipcart.js';
+    script.async = true;
+    document.head.append(script);
+
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = 'https://cdn.snipcart.com/themes/v3.0/default/snipcart.css';
+    document.head.prepend(stylesheet);
+  }
+
+  function prepareSnipcart() {
+    events.forEach((event) => document.addEventListener(event, loadSnipcart));
+    timeout = setTimeout(loadSnipcart, 2750);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', prepareSnipcart, { once: true });
+  } else {
+    prepareSnipcart();
+  }
+</script>

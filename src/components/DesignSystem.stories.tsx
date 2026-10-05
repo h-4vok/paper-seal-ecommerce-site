@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
 import { useEffect, useRef, useState } from 'react';
 import { parse } from 'yaml';
+import { CartTriggerPreview } from './CartTriggerPreview';
 import seal from '../assets/brand/paperseal-seal.png';
 import sharedYaml from '../../content/copy/en-GB/shared.yaml?raw';
 import storiesYaml from '../../content/copy/en-GB/stories.yaml?raw';
@@ -50,9 +51,7 @@ const HeaderPreview = ({ initiallyOpen = false }: { initiallyOpen?: boolean }) =
           </ul>
         </nav>
         <div className="site-header__actions">
-          <a className="icon-link" href="#cart" aria-label={stories.cartAria}>
-            {stories.bag}
-          </a>
+          <CartTriggerPreview inline />
           <button
             ref={trigger}
             className="icon-button site-header__menu-toggle"
