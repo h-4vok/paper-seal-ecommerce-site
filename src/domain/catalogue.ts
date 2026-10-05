@@ -2,6 +2,13 @@ import generatedCatalogue from '../data/artworks.json';
 
 export type Orientation = 'landscape' | 'portrait';
 export type GalleryKind = 'flat' | 'room';
+export type ArtworkSize = 'small' | 'medium' | 'large';
+
+export interface ArtworkPrices {
+  small: number;
+  medium: number;
+  large: number;
+}
 
 export interface Artwork {
   artworkCode: string;
@@ -15,6 +22,19 @@ export interface Artwork {
   alt: string;
   assetBase: string;
   gallery: GalleryKind[];
+  price: ArtworkPrices;
+}
+
+export function formatPrice(amount: number): string {
+  return amount.toFixed(2);
+}
+
+export function snipcartSizeOptions(prices: ArtworkPrices): string {
+  return [
+    `Small`,
+    `Medium[+${formatPrice(prices.medium - prices.small)}]`,
+    `Large[+${formatPrice(prices.large - prices.small)}]`,
+  ].join('|');
 }
 
 export function snipcartItemAttributes(artwork: Artwork, image: string, url: string) {
@@ -24,7 +44,9 @@ export function snipcartItemAttributes(artwork: Artwork, image: string, url: str
     'data-item-name': artwork.title,
     'data-item-image': image,
     'data-item-url': url,
-    'data-item-price': '8.00',
+    'data-item-price': formatPrice(artwork.price.small),
+    'data-item-custom1-name': 'Size',
+    'data-item-custom1-options': snipcartSizeOptions(artwork.price),
   };
 }
 
@@ -81,6 +103,15 @@ export function validateCatalogue(input: unknown): Artwork[] {
     }
     if (item.orientation !== 'landscape' && item.orientation !== 'portrait') {
       throw new Error(`Artwork ${index + 1} has an invalid orientation.`);
+    }
+    const price = item.price as Record<string, unknown> | undefined;
+    if (
+      !price ||
+      ['small', 'medium', 'large'].some(
+        (size) => !Number.isFinite(price[size]) || Number(price[size]) <= 0,
+      )
+    ) {
+      throw new Error(`Artwork ${index + 1} has invalid price values.`);
     }
     if (
       !Array.isArray(item.gallery) ||

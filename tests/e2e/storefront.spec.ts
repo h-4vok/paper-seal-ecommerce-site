@@ -142,6 +142,12 @@ test.describe('product detail', () => {
     );
     await expect(addToCart).toHaveAttribute('data-item-url', productPath);
     await expect(addToCart).toHaveAttribute('data-item-price', '8.00');
+    await expect(addToCart).toHaveAttribute('data-item-custom1-name', 'Size');
+    await expect(addToCart).toHaveAttribute(
+      'data-item-custom1-options',
+      'Small|Medium[+6.00]|Large[+20.00]',
+    );
+    await expect(addToCart).not.toHaveAttribute('data-item-custom1-value', /.+/);
 
     const json = await page.locator('script[type="application/ld+json"]').textContent();
     expect(json).not.toBeNull();
@@ -178,9 +184,27 @@ test.describe('product detail', () => {
     );
 
     await page.getByRole('radio', { name: /Medium/ }).check();
+    await expect(page.getByRole('button', { name: 'Add to cart — £14.00' })).toHaveCount(1);
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-price', '8.00');
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
+      'data-item-custom1-value',
+      'Medium',
+    );
     await page.getByRole('radio', { name: /Framed/ }).check();
     await expect(page.locator('[data-option-announcement]')).toContainText(
       'Medium, 21 × 29.7 cm · 8.27 × 11.69 in, Framed selected',
+    );
+    await page.getByRole('radio', { name: /Large/ }).check();
+    await expect(page.getByRole('button', { name: 'Add to cart — £28.00' })).toHaveCount(1);
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
+      'data-item-custom1-value',
+      'Large',
+    );
+    await page.getByRole('radio', { name: /Small/ }).check();
+    await expect(page.getByRole('button', { name: 'Add to cart — £8.00' })).toHaveCount(1);
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
+      'data-item-custom1-value',
+      'Small',
     );
     await page.getByRole('button', { name: 'Copy link' }).click();
     await expect(page.locator('[data-share-status]')).toHaveText('Link copied to clipboard.');

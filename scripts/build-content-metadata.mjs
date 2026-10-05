@@ -4,6 +4,7 @@ import { parse } from 'yaml';
 
 export const projectRoot = path.resolve(import.meta.dirname, '..');
 const galleryKinds = ['flat', 'room'];
+const priceFields = ['small', 'medium', 'large'];
 const generated = {
   generated: true,
   source: 'content/artworks.yaml',
@@ -58,6 +59,12 @@ export function validateArtworkManifest(input) {
     if (!['landscape', 'portrait'].includes(item.orientation))
       fail(index, 'has an invalid orientation.');
     if (
+      !item.price ||
+      typeof item.price !== 'object' ||
+      priceFields.some((size) => !Number.isFinite(item.price[size]) || item.price[size] <= 0)
+    )
+      fail(index, 'has invalid price values.');
+    if (
       !Array.isArray(item.gallery) ||
       item.gallery.length === 0 ||
       item.gallery.some((value) => !galleryKinds.includes(value))
@@ -101,6 +108,7 @@ export function deriveOutputs(artworks) {
           placeName,
           publishedOrder,
           collections,
+          price,
           alt,
           gallery,
           ...asset

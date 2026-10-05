@@ -1,5 +1,5 @@
 labels:
-  addToCart: 'Add to cart — £8.00'
+  addToCart: 'Add to cart — £{price}'
   breadcrumb: Breadcrumb
   breadcrumbLink: Artworks
   gallery: image gallery

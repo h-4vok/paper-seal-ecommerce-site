@@ -1,7 +1,7 @@
 ---
 import ArtworkPicture from '../../components/ArtworkPicture.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { artworks, productStructuredData, snipcartItemAttributes, type Artwork } from '../../domain/catalogue';
+import { artworks, formatPrice, productStructuredData, snipcartItemAttributes, type Artwork } from '../../domain/catalogue';
 import { copy, copyText } from '../../content/copy';
 import '../../styles/product.scss';
 
@@ -15,6 +15,7 @@ const productLabels = product.labels;
 const canonical = `/artworks/${artwork.handle}`;
 const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
 const snipcartAttributes = snipcartItemAttributes(artwork, shareImage, canonical);
+const initialAddToCartLabel = copyText(productLabels.addToCart, { price: formatPrice(artwork.price.small) });
 const title = `${artwork.title} — East Sussex art print | The Paper Seal Studio`;
 const description = `${artwork.description} Explore this Paper Seal Studio print inspired by ${artwork.placeName}.`;
 const structuredData = [
@@ -32,7 +33,7 @@ const galleryLabels = {
 const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.title) }, ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) }))];
 ---
 <BaseLayout {title} {description} {canonical} image={shareImage} imageAlt={`${artwork.title}, presented as a The Paper Seal Studio print`} ogType="product" {structuredData} bodyClass="product-body">
-  <main id="main-content" class="product-page" data-product-page data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)}>
+  <main id="main-content" class="product-page" data-product-page data-selection-suffix={productLabels.selectionSuffix} data-link-copied={productLabels.linkCopied} data-share-opened={productLabels.shareOpened} data-size-options={JSON.stringify(product.sizes)} data-framing-options={JSON.stringify(product.framing)} data-artwork-prices={JSON.stringify(artwork.price)} data-add-to-cart-template={productLabels.addToCart}>
     <nav class="product-breadcrumbs" aria-label={productLabels.breadcrumb}><a href="/artworks">{productLabels.breadcrumbLink}</a><span aria-hidden="true">/</span><span aria-current="page">{artwork.title}</span></nav>
     <section class="product-layout">
       <div class="product-gallery" data-gallery aria-label={`${artwork.title} ${productLabels.gallery}`}>
@@ -78,7 +79,7 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
           type="button"
           {...snipcartAttributes}
         >
-          {productLabels.addToCart}
+          {initialAddToCartLabel}
         </button>
         <div class="product-actions" aria-label={productLabels.shareGroup}>
           <button class="text-link" type="button" data-share>{productLabels.share}</button><button class="text-link" type="button" data-copy-link>{productLabels.copyLink}</button>
@@ -104,6 +105,9 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
   const selectionSuffix = productRoot?.getAttribute('data-selection-suffix') ?? '';
   const sizeOptions = JSON.parse(productRoot?.getAttribute('data-size-options') ?? '[]') as Array<{ id: string; label: string; dimensions: string }>;
   const framingOptions = JSON.parse(productRoot?.getAttribute('data-framing-options') ?? '[]') as Array<{ id: string; label: string }>;
+  const artworkPrices = JSON.parse(productRoot?.getAttribute('data-artwork-prices') ?? '{}') as Record<string, number>;
+  const addToCartTemplate = productRoot?.getAttribute('data-add-to-cart-template') ?? '';
+  const addToCartButton = document.querySelector<HTMLButtonElement>('.snipcart-add-item');
   const linkCopiedMessage = productRoot?.getAttribute('data-link-copied') ?? '';
   const shareOpenedMessage = productRoot?.getAttribute('data-share-opened') ?? '';
   const gallery = document.querySelector('[data-gallery]');
@@ -147,6 +151,11 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
     const data = new FormData(optionForm);
     const size = sizeOptions.find((option) => option.id === data.get('size'));
     const frame = framingOptions.find((option) => option.id === data.get('framing'));
+    const selectedPrice = artworkPrices[String(data.get('size'))];
+    if (Number.isFinite(selectedPrice) && addToCartButton) {
+      addToCartButton.textContent = addToCartTemplate.replace('{price}', selectedPrice.toFixed(2));
+      if (size) addToCartButton.setAttribute('data-item-custom1-value', size.label);
+    }
     optionAnnouncement.textContent = `${size ? `${size.label}, ${size.dimensions}` : ''}, ${frame?.label ?? ''}${selectionSuffix}`;
   });
   const shareStatus = document.querySelector('[data-share-status]');
