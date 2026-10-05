@@ -10,6 +10,7 @@ const product = parse(productYaml) as {
     framing: string;
     commerceEyebrow: string;
     noStock: string;
+    addToCart: string;
     shareGroup: string;
     share: string;
     copyLink: string;
@@ -217,6 +218,78 @@ export const ProductComingSoonAndOptions: Story = {
       </article>
     </main>
   ),
+};
+
+export const ProductAddToCart: Story = {
+  render: () => (
+    <main className="product-page">
+      <section className="product-layout">
+        <div className="product-gallery">
+          <div className="product-gallery__stage">
+            <Picture asset="seven-sisters" alt={stories.mountedProductAlt} />
+          </div>
+        </div>
+        <article className="product-information">
+          <p className="eyebrow">{stories.softLaunch}</p>
+          <h1>{stories.productTitle}</h1>
+          <p className="product-place">{stories.productPlace}</p>
+          <div className="product-add-to-cart-container">
+            <button
+              className="button-link button-link--darkblue product-add-to-cart"
+              type="button"
+              aria-label={product.labels.addToCart.replace('{price}', '8.00')}
+            >
+              <svg className="product-add-to-cart__icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6.5 8h11l1 13h-13l1-13Z" />
+                <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+              </svg>
+              <span className="product-add-to-cart__label">Add to cart</span>
+              <span className="product-add-to-cart__price">£8.00</span>
+            </button>
+          </div>
+        </article>
+      </section>
+    </main>
+  ),
+};
+
+export const ProductAddToCartFocused: Story = {
+  render: () => (
+    <main className="product-page">
+      <article className="product-information">
+        <p className="eyebrow">{stories.softLaunch}</p>
+        <h1>{stories.productTitle}</h1>
+        <div className="product-add-to-cart-container">
+          <button
+            className="button-link button-link--darkblue product-add-to-cart"
+            type="button"
+            aria-label={product.labels.addToCart.replace('{price}', '8.00')}
+            style={{
+              outline: '0.18rem solid var(--color-focus)',
+              outlineOffset: '0.2rem',
+              boxShadow:
+                '0 0 0 0.4rem rgb(179 69 36 / 16%), 0 0 1.4rem 0.45rem rgb(179 69 36 / 38%)',
+            }}
+          >
+            <svg className="product-add-to-cart__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 8h11l1 13h-13l1-13Z" />
+              <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+            </svg>
+            <span className="product-add-to-cart__label">Add to cart</span>
+            <span className="product-add-to-cart__price">£8.00</span>
+          </button>
+        </div>
+      </article>
+    </main>
+  ),
+};
+
+export const ProductAddToCartMobile: Story = {
+  ...ProductAddToCart,
+  parameters: {
+    ...ProductAddToCart.parameters,
+    viewport: { defaultViewport: 'papersealMobile' },
+  },
 };
 
 export const ProductGalleryOneImage: Story = {

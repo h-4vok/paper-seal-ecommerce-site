@@ -75,20 +75,25 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
           </div></fieldset>}
           <p class="option-announcement" aria-live="polite" data-option-announcement>{product.sizes[0].label}, {product.sizes[0].dimensions}{showFramingSelector ? `, ${product.framing[0].label}` : ''}{productLabels.selectionSuffix}</p>
         </form>
-        <button
-          class="button-link button-link--darkblue snipcart-add-item"
-          type="button"
-          {...snipcartAttributes}
-        >
-          {initialAddToCartLabel}
-        </button>
+        <div class="product-add-to-cart-container">
+          <button
+            class="button-link button-link--darkblue product-add-to-cart snipcart-add-item"
+            type="button"
+            aria-label={initialAddToCartLabel}
+            {...snipcartAttributes}
+          >
+            <svg class="product-add-to-cart__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6.5 8h11l1 13h-13l1-13Z" />
+              <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+            </svg>
+            <span class="product-add-to-cart__label">{initialAddToCartLabel.split('—')[0].trim()}</span>
+            <span class="product-add-to-cart__price" data-add-to-cart-price>{initialAddToCartLabel.split('—').slice(1).join('—').trim()}</span>
+          </button>
+        </div>
         <div class="product-actions" aria-label={productLabels.shareGroup}>
           <button class="text-link" type="button" data-share>{productLabels.share}</button><button class="text-link" type="button" data-copy-link>{productLabels.copyLink}</button>
           <p class="visually-hidden" aria-live="polite" data-share-status></p>
         </div>
-        <dl class="product-trust">
-          <div><dt>{productLabels.printSizes}</dt><dd>{productLabels.printSizesValue}</dd></div><div><dt>{productLabels.presentation}</dt><dd>{productLabels.presentationValue}</dd></div><div><dt>{productLabels.ordering}</dt><dd>{productLabels.orderingValue}</dd></div>
-        </dl>
         <p class="product-policy-links"><a href="/delivery">{productLabels.delivery}</a> · <a href="/returns">{productLabels.returns}</a></p>
       </article>
     </section>
@@ -155,7 +160,10 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
     const frame = framingEnabled ? framingOptions.find((option) => option.id === data.get('framing')) : undefined;
     const selectedPrice = artworkPrices[String(data.get('size'))];
     if (Number.isFinite(selectedPrice) && addToCartButton) {
-      addToCartButton.textContent = addToCartTemplate.replace('{price}', selectedPrice.toFixed(2));
+      const updatedLabel = addToCartTemplate.replace('{price}', selectedPrice.toFixed(2));
+      addToCartButton.setAttribute('aria-label', updatedLabel);
+      const priceLabel = addToCartButton.querySelector('[data-add-to-cart-price]');
+      if (priceLabel) priceLabel.textContent = updatedLabel.split('—').slice(1).join('—').trim();
       if (size) addToCartButton.setAttribute('data-item-custom1-value', size.label);
     }
     const sizeDescription = size ? `${size.label}, ${size.dimensions}` : '';
