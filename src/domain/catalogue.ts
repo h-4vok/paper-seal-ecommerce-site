@@ -17,6 +17,17 @@ export interface Artwork {
   gallery: GalleryKind[];
 }
 
+export function snipcartItemAttributes(artwork: Artwork, image: string, url: string) {
+  return {
+    'data-item-id': artwork.artworkCode,
+    'data-item-description': artwork.description,
+    'data-item-name': artwork.title,
+    'data-item-image': image,
+    'data-item-url': url,
+    'data-item-price': '8.00',
+  };
+}
+
 export interface CatalogueState {
   query: string;
   place: string;

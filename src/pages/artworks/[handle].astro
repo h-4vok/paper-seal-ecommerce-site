@@ -1,7 +1,7 @@
 ---
 import ArtworkPicture from '../../components/ArtworkPicture.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { artworks, productStructuredData, type Artwork } from '../../domain/catalogue';
+import { artworks, productStructuredData, snipcartItemAttributes, type Artwork } from '../../domain/catalogue';
 import { copy, copyText } from '../../content/copy';
 import '../../styles/product.scss';
 
@@ -14,6 +14,7 @@ const { product } = copy;
 const productLabels = product.labels;
 const canonical = `/artworks/${artwork.handle}`;
 const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
+const snipcartAttributes = snipcartItemAttributes(artwork, shareImage, canonical);
 const title = `${artwork.title} — East Sussex art print | The Paper Seal Studio`;
 const description = `${artwork.description} Explore this Paper Seal Studio print inspired by ${artwork.placeName}.`;
 const structuredData = [
@@ -72,11 +73,13 @@ const gallery = [{ kind: 'flat' as const, label: galleryLabels.flat(artwork.titl
           </div></fieldset>
           <p class="option-announcement" aria-live="polite" data-option-announcement>{product.sizes[0].label}, {product.sizes[0].dimensions}, {product.framing[0].label}{productLabels.selectionSuffix}</p>
         </form>
-        <section class="commerce-coming-soon" aria-labelledby="commerce-title">
-          <p class="eyebrow" id="commerce-title">{productLabels.commerceEyebrow}</p>
-          <p class="commerce-coming-soon__title" tabindex="0">{productLabels.noStock}</p>
-          <p>{productLabels.commerceCopy}</p>
-        </section>
+        <button
+          class="button-link button-link--darkblue snipcart-add-item"
+          type="button"
+          {...snipcartAttributes}
+        >
+          {productLabels.addToCart}
+        </button>
         <div class="product-actions" aria-label={productLabels.shareGroup}>
           <button class="text-link" type="button" data-share>{productLabels.share}</button><button class="text-link" type="button" data-copy-link>{productLabels.copyLink}</button>
           <p class="visually-hidden" aria-live="polite" data-share-status></p>

@@ -7,6 +7,7 @@ import {
   nextVisibleCount,
   normalizeSearch,
   productStructuredData,
+  snipcartItemAttributes,
   validateCatalogue,
 } from './catalogue';
 
@@ -14,6 +15,21 @@ describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
     expect(artworks).toHaveLength(16);
     expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(16);
+  });
+
+  it('maps artwork data to Snipcart item attributes at the placeholder price', () => {
+    const artwork = artworks[0];
+    const image = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
+    const url = `/artworks/${artwork.handle}`;
+
+    expect(snipcartItemAttributes(artwork, image, url)).toEqual({
+      'data-item-id': artwork.artworkCode,
+      'data-item-description': artwork.description,
+      'data-item-name': artwork.title,
+      'data-item-image': image,
+      'data-item-url': url,
+      'data-item-price': '8.00',
+    });
   });
 
   it.each([
