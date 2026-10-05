@@ -301,6 +301,14 @@ textarea {
   place-items: center;
 }
 
+.cart-trigger-preview {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 12rem;
+  padding: 2rem;
+}
+
 .mobile-menu {
   width: min(100% - 1rem, 31rem);
   max-height: calc(100dvh - 1rem);

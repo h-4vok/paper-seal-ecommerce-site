@@ -261,9 +261,19 @@ test.describe('product detail', () => {
 });
 
 test.describe('cart and institutional routes', () => {
-  test('navigates to an honest dedicated cart and back to catalogue', async ({ page }) => {
+  test('uses Snipcart summary hooks on the header cart button and count badge', async ({
+    page,
+  }) => {
+    await page.route('https://cdn.snipcart.com/**', (route) => route.abort());
     await page.goto('/');
-    await page.getByRole('link', { name: 'Cart, online shop coming soon' }).click();
+    const bag = page.locator('button.snipcart-checkout');
+    await expect(bag).toBeVisible();
+    await expect(bag).toHaveAccessibleName('Open cart');
+    await expect(bag.locator('.snipcart-items-count')).toBeAttached();
+  });
+
+  test('retains the dedicated placeholder route and its catalogue link', async ({ page }) => {
+    await page.goto('/cart');
     await expect(page).toHaveURL(/\/cart$/);
     await expect(
       page.getByRole('heading', { level: 1, name: 'Your cart is waiting for the shop.' }),

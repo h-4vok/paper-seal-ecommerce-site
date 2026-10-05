@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CartTriggerPreview } from './CartTriggerPreview';
 
 export const HeaderPreview = ({ initiallyOpen = false }: { initiallyOpen?: boolean }) => {
   const [open, setOpen] = useState(initiallyOpen);
@@ -23,6 +24,7 @@ export const HeaderPreview = ({ initiallyOpen = false }: { initiallyOpen?: boole
           </ul>
         </nav>
         <div className="site-header__actions">
+          <CartTriggerPreview inline />
           <button
             className="icon-button site-header__menu-toggle"
             type="button"

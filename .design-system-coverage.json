@@ -5,8 +5,18 @@
     "sharedClasses": ["eyebrow", "section-shell", "button-link", "text-link"]
   },
   "exceptions": [
-    { "name": "JsonLd", "reason": "head-only structured-data primitive; no visual story" },
-    { "name": "SeoHead", "reason": "head-only metadata primitive; no visual story" }
+    {
+      "name": "JsonLd",
+      "reason": "head-only structured-data primitive; no visual story"
+    },
+    {
+      "name": "SeoHead",
+      "reason": "head-only metadata primitive; no visual story"
+    },
+    {
+      "name": "SnipcartIntegration",
+      "reason": "head-only third-party script integration; no visual story"
+    }
   ],
   "components": [
     {
@@ -64,6 +74,19 @@
       "story": "src/components/SiteHeader.stories.tsx",
       "level": "Organisms",
       "useFor": "Global desktop header and mobile navigation."
+    },
+    {
+      "name": "CartTrigger",
+      "source": "src/components/CartTrigger.astro",
+      "story": "src/components/CartTrigger.stories.tsx",
+      "level": "Molecules",
+      "useFor": "Header bag that opens the Snipcart cart and displays its item count.",
+      "boundary": {
+        "reason": "CartTrigger.astro is static Astro markup; its Storybook preview mirrors the button, icon, badge classes and production CSS because Storybook React cannot import Astro.",
+        "owner": "Storefront maintainers",
+        "scope": "CartTrigger stories and header previews",
+        "parity": "The SVG, button classes and CSS are kept aligned; desktop/mobile Storybook viewports cover the static trigger."
+      }
     }
   ]
 }

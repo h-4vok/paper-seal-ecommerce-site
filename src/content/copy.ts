@@ -11,7 +11,9 @@ const lines = z
 const navigation = z.object({
   primaryLabel: text,
   items: z.array(z.object({ href: z.string().startsWith('/'), key: text, label: text })).min(1),
-  cartLabel: text,
+  cart: z.object({
+    label: text,
+  }),
   openMenu: text,
   closeMenu: text,
   explore: text,
