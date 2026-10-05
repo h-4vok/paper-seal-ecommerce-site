@@ -136,6 +136,8 @@ test.describe('product detail', () => {
     await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/).first()).toBeVisible();
     const addToCart = page.locator('.snipcart-add-item');
     await expect(page.getByRole('button', { name: 'Add to cart — £8.00' })).toHaveCount(1);
+    await expect(addToCart).toHaveClass(/product-add-to-cart/);
+    await expect(page.locator('.product-add-to-cart-container')).toBeVisible();
     await expect(addToCart).toHaveAttribute('data-item-id', 'PS-002');
     await expect(addToCart).toHaveAttribute(
       'data-item-description',
@@ -191,6 +193,7 @@ test.describe('product detail', () => {
 
     await page.getByRole('radio', { name: /Medium/ }).check();
     await expect(page.getByRole('button', { name: 'Add to cart — £14.00' })).toHaveCount(1);
+    await expect(page.locator('[data-add-to-cart-price]')).toHaveText('£14.00');
     await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-price', '8.00');
     await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
       'data-item-custom1-value',
@@ -294,6 +297,38 @@ test.describe('product detail', () => {
     await expect(surface).toBeVisible();
     await surface.click({ position: { x: 8, y: 8 } });
     await expect(page.locator('[data-lightbox]')).not.toBeVisible();
+  });
+
+  test('gives the add-to-cart button a visible keyboard focus on mobile and desktop', async ({
+    page,
+  }) => {
+    const button = page.locator('.product-add-to-cart');
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(productPath);
+      await expect(button).toHaveCSS('background-color', 'rgb(11, 37, 65)');
+      await expect(button.locator('.product-add-to-cart__icon')).toBeVisible();
+      await expect(button.locator('.product-add-to-cart__label')).toHaveText('Add to cart');
+      await expect(button.locator('.product-add-to-cart__price')).toHaveText('£8.00');
+      await button.focus();
+      await expect(button).toBeFocused();
+      await expect(button).toHaveCSS('outline-style', 'solid');
+      await expect(button).toHaveCSS('outline-color', 'rgb(179, 69, 36)');
+      await expect(button).toHaveCSS('animation-name', 'product-add-to-cart-halo');
+
+      const metrics = await page.locator('.product-add-to-cart-container').evaluate((container) => {
+        const parent = container.parentElement;
+        const containerBox = container.getBoundingClientRect();
+        const parentStyle = parent ? getComputedStyle(parent) : null;
+        const parentContentWidth = parent
+          ? parent.clientWidth -
+            Number.parseFloat(parentStyle?.paddingLeft ?? '0') -
+            Number.parseFloat(parentStyle?.paddingRight ?? '0')
+          : 0;
+        return { width: containerBox.width, parentContentWidth };
+      });
+      expect(metrics.width).toBeCloseTo(metrics.parentContentWidth, 0);
+    }
   });
 });
 
