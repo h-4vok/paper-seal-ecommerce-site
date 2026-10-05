@@ -28,6 +28,13 @@ test('real Snipcart Test empty cart toggles open and closed, then reopens', asyn
   await page.keyboard.press('Enter');
   await expect(page.locator('#snipcart')).toContainText(/Your cart is empty/i, { timeout: 30_000 });
   await expect(page.locator('#snipcart')).toContainText(/test mode/i);
+  const sealImage = await page
+    .locator('#snipcart .snipcart-empty-cart')
+    .evaluate((element) => getComputedStyle(element, '::before').backgroundImage);
+  expect(sealImage).toContain('/images/brand/paperseal-seal.png');
+  const sealResponse = await page.request.get('/images/brand/paperseal-seal.png');
+  expect(sealResponse.ok()).toBe(true);
+  expect(sealResponse.headers()['content-type']).toContain('image/png');
   await expect(page.locator('#snipcart .snipcart-cart__secondary-header')).toHaveCSS(
     'background-color',
     'rgb(243, 237, 226)',
