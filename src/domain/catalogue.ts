@@ -12,6 +12,7 @@ export interface ArtworkPrices {
 
 export interface Artwork {
   artworkCode: string;
+  sku: string;
   title: string;
   handle: string;
   description: string;
@@ -39,7 +40,7 @@ export function snipcartSizeOptions(prices: ArtworkPrices): string {
 
 export function snipcartItemAttributes(artwork: Artwork, image: string, url: string) {
   return {
-    'data-item-id': artwork.artworkCode,
+    'data-item-id': artwork.sku,
     'data-item-description': artwork.description,
     'data-item-name': artwork.title,
     'data-item-image': image,
@@ -58,6 +59,7 @@ export interface CatalogueState {
 
 const requiredText = [
   'artworkCode',
+  'sku',
   'title',
   'handle',
   'description',
@@ -72,6 +74,7 @@ export function validateCatalogue(input: unknown): Artwork[] {
   }
 
   const codes = new Set<string>();
+  const skus = new Set<string>();
   const handles = new Set<string>();
   return input.map((candidate, index) => {
     if (!candidate || typeof candidate !== 'object') {
@@ -86,10 +89,17 @@ export function validateCatalogue(input: unknown): Artwork[] {
     if (!/^PS-\d{3}$/.test(item.artworkCode as string)) {
       throw new Error(`Artwork ${index + 1} has an invalid artworkCode.`);
     }
+    if (!/^PS-PR-\d{3}$/.test(item.sku as string)) {
+      throw new Error(`Artwork ${index + 1} has an invalid sku.`);
+    }
     if (!/^[a-z0-9-]+-ps-\d{3}$/.test(item.handle as string)) {
       throw new Error(`Artwork ${index + 1} has an invalid handle.`);
     }
-    if (codes.has(item.artworkCode as string) || handles.has(item.handle as string)) {
+    if (
+      codes.has(item.artworkCode as string) ||
+      skus.has(item.sku as string) ||
+      handles.has(item.handle as string)
+    ) {
       throw new Error(`Artwork ${index + 1} duplicates a stable identifier.`);
     }
     if (!Number.isInteger(item.publishedOrder) || (item.publishedOrder as number) < 0) {
@@ -121,6 +131,7 @@ export function validateCatalogue(input: unknown): Artwork[] {
       throw new Error(`Artwork ${index + 1} has an invalid gallery.`);
     }
     codes.add(item.artworkCode as string);
+    skus.add(item.sku as string);
     handles.add(item.handle as string);
     return item as unknown as Artwork;
   });
@@ -195,7 +206,7 @@ export function productStructuredData(artwork: Artwork, canonical: string, image
     description: artwork.description,
     image,
     url: canonical,
-    sku: artwork.artworkCode,
+    sku: artwork.sku,
     category: 'Fine art print',
     brand: { '@type': 'Brand', name: 'The Paper Seal Studio' },
   };

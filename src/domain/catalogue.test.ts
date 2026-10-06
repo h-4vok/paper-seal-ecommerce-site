@@ -24,14 +24,14 @@ describe('catalogue model', () => {
     const url = `/artworks/${artwork.handle}`;
 
     expect(snipcartItemAttributes(artwork, image, url)).toEqual({
-      'data-item-id': artwork.artworkCode,
+      'data-item-id': artwork.sku,
       'data-item-description': artwork.description,
       'data-item-name': artwork.title,
       'data-item-image': image,
       'data-item-url': url,
-      'data-item-price': '8.00',
+      'data-item-price': '7.00',
       'data-item-custom1-name': 'Size',
-      'data-item-custom1-options': 'Small|Medium[+6.00]|Large[+20.00]',
+      'data-item-custom1-options': 'Small|Medium[+7.00]|Large[+21.00]',
     });
   });
 
@@ -170,7 +170,7 @@ describe('catalogue model', () => {
     expect(galleryIndex(0, 3, -1)).toBe(2);
     expect(galleryIndex(0, 0, 1)).toBe(0);
     const data = productStructuredData(artworks[0], 'https://paperseal.co.uk/a', '/image.jpg');
-    expect(data).toMatchObject({ '@type': 'Product', sku: 'PS-001' });
+    expect(data).toMatchObject({ '@type': 'Product', sku: artworks[0].sku });
     expect(data).not.toHaveProperty('offers');
     expect(JSON.stringify(data)).not.toMatch(/price|availability|review/i);
   });
