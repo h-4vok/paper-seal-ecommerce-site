@@ -46,6 +46,7 @@ describe('catalogue model', () => {
     [[null], 'must be an object'],
     [[{ ...artworks[0], title: '' }], 'invalid title'],
     [[{ ...artworks[0], artworkCode: 'bad' }], 'invalid artworkCode'],
+    [[{ ...artworks[0], sku: 'bad' }], 'invalid sku'],
     [[{ ...artworks[0], handle: 'bad' }], 'invalid handle'],
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
@@ -55,6 +56,7 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
     [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
+    [[artworks[0], { ...artworks[1], sku: artworks[0].sku }], 'duplicates'],
   ])('rejects invalid data %#', (input, message) => {
     expect(() => validateCatalogue(input)).toThrow(message as string);
   });
