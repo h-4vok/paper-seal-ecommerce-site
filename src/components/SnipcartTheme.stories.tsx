@@ -35,7 +35,7 @@ function SnipcartThemePreview({ populated }: PreviewProps) {
             </div>
             <button
               type="button"
-              className="snipcart-theme-preview__close"
+              className="snipcart-cart-header__close-button snipcart-modal__close snipcart-theme-preview__close"
               aria-label="Close cart"
               onClick={() => setOpen(false)}
             >
@@ -133,7 +133,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Empty: Story = { args: { populated: false } };
+export const Empty: Story = {
+  args: { populated: false },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const closeButton = canvas.getByRole('button', { name: 'Close cart' });
+    await expect(getComputedStyle(closeButton).cursor).toBe('pointer');
+  },
+};
 export const WithArtwork: Story = {
   args: { populated: true },
   play: async ({ canvasElement }) => {

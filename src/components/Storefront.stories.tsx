@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 import { parse } from 'yaml';
 import productYaml from '../../content/copy/en-GB/product.yaml?raw';
 import storiesYaml from '../../content/copy/en-GB/stories.yaml?raw';
@@ -251,6 +252,11 @@ export const ProductAddToCart: Story = {
       </section>
     </main>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const addToCartButton = canvas.getByRole('button', { name: /add to cart/i });
+    await expect(getComputedStyle(addToCartButton).cursor).toBe('pointer');
+  },
 };
 
 export const ProductAddToCartFocused: Story = {
