@@ -9,7 +9,12 @@ type Page = {
   heading: string;
   description: string;
   status?: string;
-  sections: Array<{ id?: string; heading: string; paragraphs: string[] }>;
+  sections: Array<{
+    id?: string;
+    heading: string;
+    paragraphs: string[];
+    link?: { label: string; href: string };
+  }>;
 };
 const institutional = parse(institutionalYaml) as {
   statusLabel: string;
@@ -43,6 +48,13 @@ const InstitutionalPreview = ({ page }: { page: Page }) => (
               {paragraph}
             </p>
           ))}
+          {section.link && (
+            <p className="institutional-content__copy">
+              <a className="text-link" href={section.link.href}>
+                {section.link.label}
+              </a>
+            </p>
+          )}
         </section>
       ))}
     </div>
@@ -57,8 +69,10 @@ const InstitutionalPreview = ({ page }: { page: Page }) => (
 );
 
 const storyPage = institutional.pages.find((page) => page.slug === 'our-story');
+const deliveryPage = institutional.pages.find((page) => page.slug === 'delivery');
 const returnsPage = institutional.pages.find((page) => page.slug === 'returns');
-if (!storyPage || !returnsPage) throw new Error('Institutional story pages are missing.');
+if (!storyPage || !deliveryPage || !returnsPage)
+  throw new Error('Institutional story pages are missing.');
 
 const meta = {
   title: 'Templates/InstitutionalPage',
@@ -76,4 +90,13 @@ export const OurStoryMobile: Story = {
   parameters: { viewport: { defaultViewport: 'papersealMobile' } },
   render: () => <InstitutionalPreview page={storyPage} />,
 };
-export const Policy: Story = { render: () => <InstitutionalPreview page={returnsPage} /> };
+export const Delivery: Story = { render: () => <InstitutionalPreview page={deliveryPage} /> };
+export const DeliveryMobile: Story = {
+  parameters: { viewport: { defaultViewport: 'papersealMobile' } },
+  render: () => <InstitutionalPreview page={deliveryPage} />,
+};
+export const Returns: Story = { render: () => <InstitutionalPreview page={returnsPage} /> };
+export const ReturnsMobile: Story = {
+  parameters: { viewport: { defaultViewport: 'papersealMobile' } },
+  render: () => <InstitutionalPreview page={returnsPage} />,
+};

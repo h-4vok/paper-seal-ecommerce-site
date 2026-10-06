@@ -355,14 +355,29 @@ test.describe('cart and institutional routes', () => {
     await expect(page).toHaveURL(/\/artworks$/);
   });
 
-  test('publishes stable trust routes with explicit review status and footer links', async ({
+  test('publishes delivery and return terms with explicit pre-launch status and footer links', async ({
     page,
   }) => {
+    await page.goto('/delivery');
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Delivery, clearly explained.' }),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/charges and carrier options below are our planned launch terms/),
+    ).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Planned delivery charges' })).toBeVisible();
+    await expect(page.getByText(/at least £45/)).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Email delivery support' })).toHaveAttribute(
+      'href',
+      'mailto:support@paperseal.uk',
+    );
+
     await page.goto('/returns');
     await expect(
-      page.getByRole('heading', { level: 1, name: 'Human help, without a portal.' }),
+      page.getByRole('heading', { level: 1, name: 'Returns, cancellations and refunds.' }),
     ).toBeVisible();
-    await expect(page.getByText(/handled manually by email/)).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Model cancellation form' })).toBeVisible();
+    await expect(page.getByText(/We will not add a retrospective delivery charge/)).toBeVisible();
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
     for (const href of ['/our-story', '/contact', '/delivery', '/returns', '/privacy', '/terms']) {
       await expect(page.locator(`footer a[href="${href}"]`)).toHaveCount(1);

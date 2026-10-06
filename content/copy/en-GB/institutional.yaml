@@ -26,46 +26,85 @@ pages:
           - This alpha introduces the first local selection. More places and stories will join it as they are ready; the catalogue will remain a considered collection rather than an endless feed.
   - slug: delivery
     eyebrow: Delivery
-    heading: Clear notes before the shop opens.
-    description: Current alpha delivery information for The Paper Seal Studio art prints, with final purchasing details still under review.
-    status: 'Alpha review: online ordering is not active yet. Final carrier, delivery-charge and destination details will be published before checkout opens.'
+    heading: Delivery, clearly explained.
+    description: Planned UK delivery methods, charges and dispatch times for unframed Paper Seal Studio art prints.
+    status: 'Pre-launch policy: online checkout is not open. The charges and carrier options below are our planned launch terms. We will confirm them after packaging, carrier and checkout tests, before taking orders.'
     indexable: true
     sections:
-      - heading: Dispatch timing after launch
+      - heading: Where we deliver
         paragraphs:
-          - Once commerce is live, the intended global promise for genuinely in-stock variants is “Dispatched within 2–3 working days”. This is not a current purchasing promise and will not apply to sold-out work.
-      - heading: No invented thresholds
+          - We plan to deliver preprinted, unframed art prints to UK addresses, including Northern Ireland and the UK islands served by Royal Mail. We do not currently plan to deliver to Jersey, Guernsey or the Isle of Man, or offer local collection.
+          - InPost locker delivery will appear only where a real collection point can be selected. InPost home delivery will appear only where the destination is eligible. Royal Mail Tracked 48 will cover other eligible UK destinations; Royal Mail Tracked 24 will be the faster home-delivery option.
+      - heading: Dispatch and transit times
         paragraphs:
-          - The Paper Seal Studio has not approved a delivery fee or free-delivery threshold for the online shop. Those details will appear here only when they are confirmed.
-      - heading: Questions
+          - We aim to dispatch in-stock orders within 2–3 working days after payment. Working days exclude weekends and UK bank holidays. We will show any planned studio closure and its revised dispatch date before checkout.
+          - The carrier's delivery estimate starts after dispatch. InPost aims to reach a locker or shop within 3 working days and a home address within 4 working days. Royal Mail Tracked 48 aims for 2–3 working days and Tracked 24 aims for the next working day. These are estimates, not guaranteed arrival dates; remote postcodes and disruption can take longer.
+          - We will send tracking details when an order is dispatched. If an order needs more than one parcel, the delivery charge stays the same and we will provide tracking for each parcel.
+      - heading: Planned delivery charges
         paragraphs:
-          - A confirmed public contact channel is still being prepared. It will be linked from this page before online orders open.
+          - Charges are per order, based on the delivery address and the prints in the basket. InPost locker delivery is planned at £3.49 where available. Standard home delivery is £4.49 where InPost is available, or when Royal Mail is used for an order without an A3 print. Standard Royal Mail home delivery for an order containing A3 is £7.49.
+          - Faster Royal Mail Tracked 24 home delivery is planned at £5.49 without A3 or £8.49 with A3. There is no faster locker option.
+          - Standard delivery, including an available locker option, is free when the product subtotal after discounts is at least £45. If you choose faster home delivery for a qualifying order, you pay only £1.00, the difference from the applicable standard home charge. Delivery charges do not count towards the £45 threshold.
+      - heading: Lockers and delivery problems
+        paragraphs:
+          - InPost normally gives you 3 days to collect a parcel after it reaches a locker. Follow the carrier's notification for the exact collection deadline. If an uncollected parcel comes back to us, contact us; we can arrange a new delivery at its new postage cost or discuss cancellation and any refund due under your rights.
+          - If tracking stalls, a parcel is lost, or something arrives damaged or incorrect, email support@paperseal.uk with your order number. We aim to reply within 2 working days. We will handle the carrier enquiry ourselves; carrier claim deadlines do not limit your consumer rights.
+        link:
+          label: Email delivery support
+          href: mailto:support@paperseal.uk
   - slug: returns
     eyebrow: Returns
-    heading: Human help, without a portal.
-    description: The Paper Seal Studio returns and damaged-item handling for the alpha, ahead of final shop policy publication.
-    status: 'Alpha review: the complete returns, refunds and damaged-item policy is still being finalised before commerce launches.'
+    heading: Returns, cancellations and refunds.
+    description: How to cancel an online print order, return it, or get help with damage, errors and missing parcels.
+    status: 'Pre-launch policy: online checkout is not open. These terms describe our planned UK online print sales and will be confirmed before orders can be placed.'
     indexable: true
     sections:
-      - heading: How help will work
+      - heading: Cancel before dispatch
         paragraphs:
-          - Once online commerce launches, returns, refunds and damaged-item cases will be handled manually by email and resolved individually using Shopify order and refund tooling. The Paper Seal Studio will not use a separate returns portal.
-      - heading: Before sending anything
+          - Email support@paperseal.uk with your order number as soon as possible. If your order has not been dispatched, we will cancel it and refund the full amount, including delivery, to your original payment method. If it has already been dispatched, you can use the return process below.
+        link:
+          label: Email support about an order
+          href: mailto:support@paperseal.uk
+      - heading: Change your mind after delivery
         paragraphs:
-          - The final return window, eligibility rules and return instructions have not yet been approved. They will be published here before checkout opens; please do not rely on illustrative policy language from a mock.
-      - heading: Damaged items
+          - For an online order, tell us clearly that you wish to cancel within 14 days of receiving the last item in your order. Then send the print back within 14 days of telling us. Email support@paperseal.uk with your order number and the item or items you are returning; we will provide the return address and instructions. You may use the cancellation form below, but you do not have to.
+          - Arrange and pay for return postage for a change-of-mind return. We recommend a tracked service and ask that you use the original protective packaging or equivalent so the print travels safely. Opening the packaging to inspect a print does not remove your cancellation right. We may deduct only a lawful amount for diminished value caused by handling beyond what is necessary to inspect it.
+          - You may cancel one item or the whole order. We will not add a retrospective delivery charge merely because a partial return takes the kept items below the £45 free-delivery threshold. We do not operate exchanges; if you want a different print, return the first one and place a new order when it is available.
+      - heading: Refunds after a change-of-mind return
         paragraphs:
-          - The final policy will explain what information is needed when an order arrives damaged. A confirmed public email address will be added before ordering becomes available.
+          - For a full-order cancellation, we refund the returned items and the original outbound delivery charge up to the price of our least expensive generally available standard delivery option. We do not have to refund an extra amount paid for a faster delivery choice. For a partial cancellation, we refund the returned item or items; the original delivery charge remains as charged.
+          - We refund to your original payment method, without a refund fee, as soon as possible and no later than 14 days after we receive the returned goods or you provide evidence that you sent them back, whichever is earlier. We may wait until either of those events occurs. Your payment provider may take additional time to display the credit.
+      - heading: Damage, wrong items and missing orders
+        paragraphs:
+          - Email support@paperseal.uk with your order number and a description of the problem. Photos of the print and packaging help when possible, but they are not a condition for help. We aim to reply within 2 working days. Please do not send an item back before we have discussed a suitable return arrangement.
+          - If a print is damaged, faulty or incorrect, we will offer a replacement at no extra cost if stock is available or a refund, in line with your legal rights. If it cannot be replaced, we will refund it. We cover the reasonable cost of returning a faulty or incorrect item and refund any delivery charge due by law. If a parcel is lost, we will investigate with the carrier and provide a replacement or refund as appropriate. Your rights are not limited by a carrier claim period or by whether you can provide photos.
+          - Your statutory rights for faulty goods continue beyond the 14-day change-of-mind period. Contact us so we can put things right.
+        link:
+          label: Email support about a problem
+          href: mailto:support@paperseal.uk
+      - heading: Model cancellation form
+        paragraphs:
+          - 'To: The Paper Seal Studio, support@paperseal.uk. I hereby give notice that I cancel my contract of sale for the following goods: [print and size]. Ordered on: [date]. Received on: [date]. Name: [your name]. Address: [your address]. Date: [date]. Send this statement by email; a signature is needed only if you send it on paper.'
+          - You can instead send any clear cancellation statement by email. We will supply a return address after you contact us; the studio's legal identity and geographic address must also be published before checkout opens.
   - slug: contact
     eyebrow: Contact
-    heading: The studio channel is coming soon.
-    description: The Paper Seal Studio is preparing a confirmed public contact channel before online shopping opens.
-    status: No public email address has been approved for this alpha. The confirmed contact channel will appear here when it is ready.
+    heading: Get in touch with the studio.
+    description: Contact The Paper Seal Studio about its artwork, planned delivery or an order issue.
+    status: 'Pre-launch: these inboxes are being tested for delivery and replies before online checkout opens.'
     indexable: false
     sections:
-      - heading: For now
+      - heading: General enquiries
         paragraphs:
-          - You can explore the collection and the story behind The Paper Seal Studio without submitting personal information. No contact form has been introduced while the public channel is still being confirmed.
+          - For artwork, collaborations or a general question, write to hello@paperseal.uk.
+        link:
+          label: Email the studio
+          href: mailto:hello@paperseal.uk
+      - heading: Orders, delivery and returns
+        paragraphs:
+          - For an order, delivery or return question, write to support@paperseal.uk and include your order number if you have one. We aim to reply to order problems within 2 working days.
+        link:
+          label: Email order support
+          href: mailto:support@paperseal.uk
   - slug: privacy
     eyebrow: Privacy
     heading: Privacy notice under review.

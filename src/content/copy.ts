@@ -186,7 +186,14 @@ const institutionalSchema = z.object({
         status: text.optional(),
         indexable: z.boolean(),
         sections: z
-          .array(z.object({ id: text.optional(), heading: text, paragraphs: z.array(text).min(1) }))
+          .array(
+            z.object({
+              id: text.optional(),
+              heading: text,
+              paragraphs: z.array(text).min(1),
+              link: z.object({ label: text, href: text }).optional(),
+            }),
+          )
           .min(1),
       }),
     )
