@@ -35,7 +35,7 @@ function SnipcartThemePreview({ populated }: PreviewProps) {
             </div>
             <button
               type="button"
-              className="snipcart-cart-header__close-button snipcart-modal__close snipcart-theme-preview__close"
+              className="snipcart-theme-preview__close"
               aria-label="Close cart"
               onClick={() => setOpen(false)}
             >
