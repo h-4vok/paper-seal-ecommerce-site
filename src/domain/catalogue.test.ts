@@ -15,7 +15,7 @@ import {
 describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
     expect(artworks).toHaveLength(16);
-    expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(16);
+    expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(16);
   });
 
   it('maps artwork prices to Snipcart base price and size modifiers', () => {
@@ -45,9 +45,8 @@ describe('catalogue model', () => {
     [[], 'Catalogue must contain'],
     [[null], 'must be an object'],
     [[{ ...artworks[0], title: '' }], 'invalid title'],
-    [[{ ...artworks[0], artworkCode: 'bad' }], 'invalid artworkCode'],
     [[{ ...artworks[0], sku: 'bad' }], 'invalid sku'],
-    [[{ ...artworks[0], handle: 'bad' }], 'invalid handle'],
+    [[{ ...artworks[0], handle: 'Bad Handle' }], 'invalid handle'],
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
@@ -64,6 +63,7 @@ describe('catalogue model', () => {
   it('normalizes and fuzzy-matches useful local metadata', () => {
     expect(normalizeSearch('  Seven—Sísters  ')).toBe('seven sisters');
     expect(artworkMatches(artworks[1], 'svn sstrs')).toBe(true);
+    expect(artworkMatches(artworks[1], 'PS-PR-002')).toBe(true);
     expect(artworkMatches(artworks[1], 'Harbour')).toBe(false);
     expect(artworkMatches(artworks[0], '')).toBe(true);
   });
@@ -71,7 +71,7 @@ describe('catalogue model', () => {
   it('filters and sorts a local catalogue for every filter state', () => {
     const items = [
       {
-        artworkCode: 'PS-003',
+        sku: 'PS-PR-003',
         title: 'Zebra Coast',
         handle: 'zebra-coast-ps-003',
         description: 'A coastal study.',
@@ -84,7 +84,7 @@ describe('catalogue model', () => {
         gallery: ['flat'],
       },
       {
-        artworkCode: 'PS-002',
+        sku: 'PS-PR-002',
         title: 'Amber Harbour',
         handle: 'amber-harbour-ps-002',
         description: 'A harbour study.',
@@ -97,7 +97,7 @@ describe('catalogue model', () => {
         gallery: ['room'],
       },
       {
-        artworkCode: 'PS-001',
+        sku: 'PS-PR-001',
         title: 'Quiet Moor',
         handle: 'quiet-moor-ps-001',
         description: 'A moorland study.',
@@ -117,23 +117,23 @@ describe('catalogue model', () => {
       place: 'all',
       sort: 'newest',
     });
-    expect(allNewest.map(({ artworkCode }) => artworkCode)).toEqual(['PS-002', 'PS-003', 'PS-001']);
+    expect(allNewest.map(({ sku }) => sku)).toEqual(['PS-PR-002', 'PS-PR-003', 'PS-PR-001']);
     expect(allNewest).not.toBe(catalogue);
-    expect(catalogue.map(({ artworkCode }) => artworkCode)).toEqual(['PS-003', 'PS-002', 'PS-001']);
+    expect(catalogue.map(({ sku }) => sku)).toEqual(['PS-PR-003', 'PS-PR-002', 'PS-PR-001']);
 
     const filteredByQueryAndPlace = filterCatalogue(catalogue, {
       query: 'harbour',
       place: 'Brighton',
       sort: 'title',
     });
-    expect(filteredByQueryAndPlace.map(({ artworkCode }) => artworkCode)).toEqual(['PS-002']);
+    expect(filteredByQueryAndPlace.map(({ sku }) => sku)).toEqual(['PS-PR-002']);
 
     const filteredByPlace = filterCatalogue(catalogue, {
       query: '',
       place: 'Yorkshire',
       sort: 'title',
     });
-    expect(filteredByPlace.map(({ artworkCode }) => artworkCode)).toEqual(['PS-001']);
+    expect(filteredByPlace.map(({ sku }) => sku)).toEqual(['PS-PR-001']);
 
     expect(
       filterCatalogue(catalogue, {

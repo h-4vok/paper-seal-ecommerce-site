@@ -21,7 +21,7 @@ export const Default: Story = {
           </div>
           <div className="artwork-card__caption">
             <h2>Flower Bed</h2>
-            <p>Eastbourne · PS-001</p>
+            <p>Eastbourne</p>
             <span>View print →</span>
           </div>
         </a>

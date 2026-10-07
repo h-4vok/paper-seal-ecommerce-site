@@ -11,7 +11,6 @@ export interface ArtworkPrices {
 }
 
 export interface Artwork {
-  artworkCode: string;
   sku: string;
   title: string;
   handle: string;
@@ -58,7 +57,6 @@ export interface CatalogueState {
 }
 
 const requiredText = [
-  'artworkCode',
   'sku',
   'title',
   'handle',
@@ -73,7 +71,6 @@ export function validateCatalogue(input: unknown): Artwork[] {
     throw new Error('Catalogue must contain at least one artwork.');
   }
 
-  const codes = new Set<string>();
   const skus = new Set<string>();
   const handles = new Set<string>();
   return input.map((candidate, index) => {
@@ -86,20 +83,13 @@ export function validateCatalogue(input: unknown): Artwork[] {
         throw new Error(`Artwork ${index + 1} has an invalid ${field}.`);
       }
     }
-    if (!/^PS-\d{3}$/.test(item.artworkCode as string)) {
-      throw new Error(`Artwork ${index + 1} has an invalid artworkCode.`);
-    }
     if (!/^PS-PR-\d{3}$/.test(item.sku as string)) {
       throw new Error(`Artwork ${index + 1} has an invalid sku.`);
     }
-    if (!/^[a-z0-9-]+-ps-\d{3}$/.test(item.handle as string)) {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.handle as string)) {
       throw new Error(`Artwork ${index + 1} has an invalid handle.`);
     }
-    if (
-      codes.has(item.artworkCode as string) ||
-      skus.has(item.sku as string) ||
-      handles.has(item.handle as string)
-    ) {
+    if (skus.has(item.sku as string) || handles.has(item.handle as string)) {
       throw new Error(`Artwork ${index + 1} duplicates a stable identifier.`);
     }
     if (!Number.isInteger(item.publishedOrder) || (item.publishedOrder as number) < 0) {
@@ -130,7 +120,6 @@ export function validateCatalogue(input: unknown): Artwork[] {
     ) {
       throw new Error(`Artwork ${index + 1} has an invalid gallery.`);
     }
-    codes.add(item.artworkCode as string);
     skus.add(item.sku as string);
     handles.add(item.handle as string);
     return item as unknown as Artwork;
@@ -168,7 +157,7 @@ export function artworkMatches(artwork: Artwork, query: string): boolean {
       artwork.title,
       artwork.placeName,
       artwork.description,
-      artwork.artworkCode,
+      artwork.sku,
       ...artwork.collections,
     ].join(' '),
   );
@@ -184,8 +173,7 @@ export function filterCatalogue(items: Artwork[], state: CatalogueState): Artwor
   return [...filtered].sort((left, right) =>
     state.sort === 'title'
       ? left.title.localeCompare(right.title, 'en-GB')
-      : right.publishedOrder - left.publishedOrder ||
-        left.artworkCode.localeCompare(right.artworkCode),
+      : right.publishedOrder - left.publishedOrder || left.sku.localeCompare(right.sku),
   );
 }
 

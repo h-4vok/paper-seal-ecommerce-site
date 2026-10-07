@@ -47,6 +47,13 @@ test.describe('catalogue discovery', () => {
     await expect(page.getByRole('heading', { name: 'Beachy Head' })).toBeVisible();
     await expect(page).toHaveURL(/q=Beachy\+Head/);
 
+    await search.fill('PS-PR-002');
+    await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(1);
+    await expect(
+      page.getByRole('heading', { name: 'Seven Sisters from the Gardens' }),
+    ).toBeVisible();
+    await expect(page.getByText('PS-PR-002', { exact: true })).toHaveCount(0);
+
     await search.fill('');
     await page.locator('[data-place]').selectOption('Sovereign Harbour');
     await expect(page.locator('[data-artwork-card]:visible')).toHaveCount(2);
@@ -133,6 +140,7 @@ test.describe('product detail', () => {
     await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/).first()).toBeVisible();
     await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/).first()).toBeVisible();
     const addToCart = page.locator('.snipcart-add-item');
+    await expect(page.getByText('PS-PR-002', { exact: true })).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Add to cart — £7.00' })).toHaveCount(1);
     await expect(addToCart).toHaveClass(/product-add-to-cart/);
     await expect(page.locator('.product-add-to-cart-container')).toBeVisible();

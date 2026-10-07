@@ -24,7 +24,6 @@ export function validateArtworkManifest(input) {
   ) {
     throw new Error('Content manifest must contain at least one artwork.');
   }
-  const codes = new Set();
   const skus = new Set();
   const handles = new Set();
   const assets = new Set();
@@ -32,7 +31,6 @@ export function validateArtworkManifest(input) {
   for (const [index, item] of input.artworks.entries()) {
     if (!item || typeof item !== 'object') fail(index, 'must be an object.');
     for (const field of [
-      'artworkCode',
       'sku',
       'title',
       'handle',
@@ -46,15 +44,9 @@ export function validateArtworkManifest(input) {
       if (typeof item[field] !== 'string' || item[field].trim() === '')
         fail(index, `has an invalid ${field}.`);
     }
-    if (!/^PS-\d{3}$/.test(item.artworkCode)) fail(index, 'has an invalid artworkCode.');
     if (!/^PS-PR-\d{3}$/.test(item.sku)) fail(index, 'has an invalid sku.');
-    if (!/^[a-z0-9-]+-ps-\d{3}$/.test(item.handle)) fail(index, 'has an invalid handle.');
-    if (
-      codes.has(item.artworkCode) ||
-      skus.has(item.sku) ||
-      handles.has(item.handle) ||
-      assets.has(item.assetBase)
-    )
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.handle)) fail(index, 'has an invalid handle.');
+    if (skus.has(item.sku) || handles.has(item.handle) || assets.has(item.assetBase))
       fail(index, 'duplicates a stable identifier.');
     if (!Number.isInteger(item.publishedOrder) || item.publishedOrder < 0)
       fail(index, 'has an invalid publishedOrder.');
@@ -90,7 +82,6 @@ export function validateArtworkManifest(input) {
       )
     )
       fail(index, 'has invalid roomScene placement configuration.');
-    codes.add(item.artworkCode);
     skus.add(item.sku);
     handles.add(item.handle);
     assets.add(item.assetBase);
@@ -110,7 +101,6 @@ export function deriveOutputs(artworks) {
         'Display-only composites generated from approved Google Drive masters. Production masters are never committed or served.',
       artworks: artworks.map(
         ({
-          artworkCode,
           sku,
           title,
           handle,

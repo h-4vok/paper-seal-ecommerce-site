@@ -22,7 +22,6 @@ scenes:
     }
 artworks:
   - {
-      artworkCode: PS-001,
       sku: PS-PR-001,
       title: Flower Bed,
       handle: flower-bed-ps-001,
@@ -40,7 +39,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-002,
       sku: PS-PR-002,
       title: Seven Sisters from the Gardens,
       handle: seven-sisters-from-the-gardens-ps-002,
@@ -58,7 +56,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-004,
       sku: PS-PR-004,
       title: Beachy Head,
       handle: beachy-head-ps-004,
@@ -76,7 +73,6 @@ artworks:
       roomScene: *portrait,
     }
   - {
-      artworkCode: PS-005,
       sku: PS-PR-005,
       title: Meet Me in Eastbourne,
       handle: meet-me-in-eastbourne-ps-005,
@@ -94,7 +90,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-006,
       sku: PS-PR-006,
       title: Eastbourne Pier,
       handle: eastbourne-pier-ps-006,
@@ -112,7 +107,6 @@ artworks:
       roomScene: *collection,
     }
   - {
-      artworkCode: PS-007,
       sku: PS-PR-007,
       title: 'Beach Huts, Eastbourne',
       handle: beach-huts-eastbourne-ps-007,
@@ -130,7 +124,6 @@ artworks:
       roomScene: *collection,
     }
   - {
-      artworkCode: PS-008,
       sku: PS-PR-008,
       title: South Downs I,
       handle: south-downs-i-ps-008,
@@ -148,7 +141,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-009,
       sku: PS-PR-009,
       title: Battle Abbey,
       handle: battle-abbey-ps-009,
@@ -166,7 +158,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-010,
       sku: PS-PR-010,
       title: Sovereign Harbour Waterfront,
       handle: sovereign-harbour-waterfront-ps-010,
@@ -184,7 +175,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-011,
       sku: PS-PR-011,
       title: Long Man,
       handle: long-man-ps-011,
@@ -202,7 +192,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-012,
       sku: PS-PR-012,
       title: Eastbourne Sunset,
       handle: eastbourne-sunset-ps-012,
@@ -220,7 +209,6 @@ artworks:
       roomScene: *collection,
     }
   - {
-      artworkCode: PS-013,
       sku: PS-PR-013,
       title: Martello 66,
       handle: martello-66-ps-013,
@@ -238,7 +226,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-015,
       sku: PS-PR-015,
       title: Devils Dyke,
       handle: devils-dyke-ps-015,
@@ -256,7 +243,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-016,
       sku: PS-PR-016,
       title: Parapente in the South Downs,
       handle: parapente-south-downs-ps-016,
@@ -274,7 +260,6 @@ artworks:
       roomScene: *portrait,
     }
   - {
-      artworkCode: PS-003,
       sku: PS-PR-003,
       title: Sovereign Harbour,
       handle: sovereign-harbour-ps-003,
@@ -292,7 +277,6 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-018,
       sku: PS-PR-018,
       title: 'South Downs, Jeeps and Bike',
       handle: south-downs-jeeps-and-bike-ps-018,

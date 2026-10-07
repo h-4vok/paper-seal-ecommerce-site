@@ -4,7 +4,6 @@
   "generator": "content:build:metadata",
   "artworks": [
     {
-      "artworkCode": "PS-001",
       "sku": "PS-PR-001",
       "title": "Flower Bed",
       "handle": "flower-bed-ps-001",
@@ -23,7 +22,6 @@
       }
     },
     {
-      "artworkCode": "PS-002",
       "sku": "PS-PR-002",
       "title": "Seven Sisters from the Gardens",
       "handle": "seven-sisters-from-the-gardens-ps-002",
@@ -42,7 +40,6 @@
       }
     },
     {
-      "artworkCode": "PS-004",
       "sku": "PS-PR-004",
       "title": "Beachy Head",
       "handle": "beachy-head-ps-004",
@@ -61,7 +58,6 @@
       }
     },
     {
-      "artworkCode": "PS-005",
       "sku": "PS-PR-005",
       "title": "Meet Me in Eastbourne",
       "handle": "meet-me-in-eastbourne-ps-005",
@@ -80,7 +76,6 @@
       }
     },
     {
-      "artworkCode": "PS-006",
       "sku": "PS-PR-006",
       "title": "Eastbourne Pier",
       "handle": "eastbourne-pier-ps-006",
@@ -99,7 +94,6 @@
       }
     },
     {
-      "artworkCode": "PS-007",
       "sku": "PS-PR-007",
       "title": "Beach Huts, Eastbourne",
       "handle": "beach-huts-eastbourne-ps-007",
@@ -118,7 +112,6 @@
       }
     },
     {
-      "artworkCode": "PS-008",
       "sku": "PS-PR-008",
       "title": "South Downs I",
       "handle": "south-downs-i-ps-008",
@@ -137,7 +130,6 @@
       }
     },
     {
-      "artworkCode": "PS-009",
       "sku": "PS-PR-009",
       "title": "Battle Abbey",
       "handle": "battle-abbey-ps-009",
@@ -156,7 +148,6 @@
       }
     },
     {
-      "artworkCode": "PS-010",
       "sku": "PS-PR-010",
       "title": "Sovereign Harbour Waterfront",
       "handle": "sovereign-harbour-waterfront-ps-010",
@@ -175,7 +166,6 @@
       }
     },
     {
-      "artworkCode": "PS-011",
       "sku": "PS-PR-011",
       "title": "Long Man",
       "handle": "long-man-ps-011",
@@ -194,7 +184,6 @@
       }
     },
     {
-      "artworkCode": "PS-012",
       "sku": "PS-PR-012",
       "title": "Eastbourne Sunset",
       "handle": "eastbourne-sunset-ps-012",
@@ -213,7 +202,6 @@
       }
     },
     {
-      "artworkCode": "PS-013",
       "sku": "PS-PR-013",
       "title": "Martello 66",
       "handle": "martello-66-ps-013",
@@ -232,7 +220,6 @@
       }
     },
     {
-      "artworkCode": "PS-015",
       "sku": "PS-PR-015",
       "title": "Devils Dyke",
       "handle": "devils-dyke-ps-015",
@@ -251,7 +238,6 @@
       }
     },
     {
-      "artworkCode": "PS-016",
       "sku": "PS-PR-016",
       "title": "Parapente in the South Downs",
       "handle": "parapente-south-downs-ps-016",
@@ -270,7 +256,6 @@
       }
     },
     {
-      "artworkCode": "PS-003",
       "sku": "PS-PR-003",
       "title": "Sovereign Harbour",
       "handle": "sovereign-harbour-ps-003",
@@ -289,7 +274,6 @@
       }
     },
     {
-      "artworkCode": "PS-018",
       "sku": "PS-PR-018",
       "title": "South Downs, Jeeps and Bike",
       "handle": "south-downs-jeeps-and-bike-ps-018",

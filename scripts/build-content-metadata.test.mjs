@@ -21,7 +21,7 @@ describe('artwork content metadata', () => {
 
   it.each([
     [{ title: '' }, 'invalid title'],
-    [{ handle: 'bad' }, 'invalid handle'],
+    [{ handle: 'Bad Handle' }, 'invalid handle'],
     [{ orientation: 'square' }, 'invalid orientation'],
     [{ gallery: ['master'] }, 'invalid gallery'],
     [{ price: { small: 7, medium: 0, large: 28 } }, 'invalid price'],
