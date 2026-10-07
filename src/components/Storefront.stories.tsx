@@ -127,7 +127,7 @@ const Card = ({ asset, title, place }: { asset: string; title: string; place: st
       <div className="artwork-card__caption">
         <div>
           <h2>{title}</h2>
-          <p>{place} · PS-000</p>
+          <p>{place}</p>
         </div>
         <p className="artwork-card__description">{stories.cardDescription}</p>
         <span aria-hidden="true">{stories.viewPrint} →</span>
