@@ -133,10 +133,10 @@ test.describe('product detail', () => {
     await expect(page.getByText(/21 × 29\.7 cm · 8\.27 × 11\.69 in/).first()).toBeVisible();
     await expect(page.getByText(/29\.7 × 42 cm · 11\.69 × 16\.54 in/).first()).toBeVisible();
     const addToCart = page.locator('.snipcart-add-item');
-    await expect(page.getByRole('button', { name: 'Add to cart — £8.00' })).toHaveCount(1);
+    await expect(page.getByRole('button', { name: 'Add to cart — £7.00' })).toHaveCount(1);
     await expect(addToCart).toHaveClass(/product-add-to-cart/);
     await expect(page.locator('.product-add-to-cart-container')).toBeVisible();
-    await expect(addToCart).toHaveAttribute('data-item-id', 'PS-002');
+    await expect(addToCart).toHaveAttribute('data-item-id', 'PS-PR-002');
     await expect(addToCart).toHaveAttribute(
       'data-item-description',
       'Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast.',
@@ -147,11 +147,11 @@ test.describe('product detail', () => {
       '/images/artworks/seven-sisters/room-1440.jpg',
     );
     await expect(addToCart).toHaveAttribute('data-item-url', productPath);
-    await expect(addToCart).toHaveAttribute('data-item-price', '8.00');
+    await expect(addToCart).toHaveAttribute('data-item-price', '7.00');
     await expect(addToCart).toHaveAttribute('data-item-custom1-name', 'Size');
     await expect(addToCart).toHaveAttribute(
       'data-item-custom1-options',
-      'Small|Medium[+6.00]|Large[+20.00]',
+      'Small|Medium[+7.00]|Large[+21.00]',
     );
     await expect(addToCart).not.toHaveAttribute('data-item-custom1-value', /.+/);
 
@@ -159,6 +159,7 @@ test.describe('product detail', () => {
     expect(json).not.toBeNull();
     const data = JSON.parse(json ?? '[]') as Array<Record<string, unknown>>;
     expect(data[0]?.['@type']).toBe('Product');
+    expect(data[0]?.sku).toBe('PS-PR-002');
     expect(data[0]).not.toHaveProperty('offers');
     await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'product');
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -192,7 +193,8 @@ test.describe('product detail', () => {
     await page.getByRole('radio', { name: /Medium/ }).check();
     await expect(page.getByRole('button', { name: 'Add to cart — £14.00' })).toHaveCount(1);
     await expect(page.locator('[data-add-to-cart-price]')).toHaveText('£14.00');
-    await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-price', '8.00');
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-id', 'PS-PR-002');
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-price', '7.00');
     await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
       'data-item-custom1-value',
       'Medium',
@@ -202,12 +204,14 @@ test.describe('product detail', () => {
     );
     await page.getByRole('radio', { name: /Large/ }).check();
     await expect(page.getByRole('button', { name: 'Add to cart — £28.00' })).toHaveCount(1);
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-id', 'PS-PR-002');
     await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
       'data-item-custom1-value',
       'Large',
     );
     await page.getByRole('radio', { name: /Small/ }).check();
-    await expect(page.getByRole('button', { name: 'Add to cart — £8.00' })).toHaveCount(1);
+    await expect(page.getByRole('button', { name: 'Add to cart — £7.00' })).toHaveCount(1);
+    await expect(page.locator('.snipcart-add-item')).toHaveAttribute('data-item-id', 'PS-PR-002');
     await expect(page.locator('.snipcart-add-item')).toHaveAttribute(
       'data-item-custom1-value',
       'Small',
@@ -307,7 +311,7 @@ test.describe('product detail', () => {
       await expect(button).toHaveCSS('background-color', 'rgb(11, 37, 65)');
       await expect(button.locator('.product-add-to-cart__icon')).toBeVisible();
       await expect(button.locator('.product-add-to-cart__label')).toHaveText('Add to cart');
-      await expect(button.locator('.product-add-to-cart__price')).toHaveText('£8.00');
+      await expect(button.locator('.product-add-to-cart__price')).toHaveText('£7.00');
       await button.focus();
       await expect(button).toBeFocused();
       await expect(button).toHaveCSS('outline-style', 'solid');
