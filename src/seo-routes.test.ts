@@ -1,8 +1,27 @@
 import { describe, expect, it } from 'vitest';
+import { readFile } from 'node:fs/promises';
+import { artworks } from './domain/catalogue';
 import { GET as getRobots } from './pages/robots.txt';
 import { GET as getSitemap } from './pages/sitemap.xml';
 
 describe('SEO route bodies', () => {
+  it('redirects every legacy artwork URL to its SKU-based handle', async () => {
+    const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
+    const entries = redirects
+      .trim()
+      .split('\n')
+      .map((line) => line.split(/\s+/));
+    const currentHandles = new Set(artworks.map(({ handle }) => `/artworks/${handle}`));
+
+    expect(entries).toHaveLength(artworks.length);
+    for (const [source, destination, status] of entries) {
+      expect(source).toMatch(/^\/artworks\/.+-ps-\d{3}$/);
+      expect(destination).toMatch(/^\/artworks\/.+-ps-pr-\d{3}$/);
+      expect(status).toBe('301');
+      expect(currentHandles.has(destination)).toBe(true);
+    }
+  });
+
   it.each([new URL('https://preview.example'), undefined])(
     'renders robots with a canonical sitemap for %s',
     async (site) => {
@@ -26,7 +45,7 @@ describe('SEO route bodies', () => {
         `<loc>${site ? 'https://preview.example/' : 'https://paperseal.co.uk/'}</loc>`,
       );
       expect(body).toContain('/artworks</loc>');
-      expect(body).toContain('/artworks/flower-bed-ps-001</loc>');
+      expect(body).toContain('/artworks/flower-bed-ps-pr-001</loc>');
       expect(body).toContain('/our-story</loc>');
       expect(body).toContain('/delivery</loc>');
       expect(body).toContain('/returns</loc>');
