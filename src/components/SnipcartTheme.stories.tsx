@@ -133,7 +133,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Empty: Story = { args: { populated: false } };
+export const Empty: Story = {
+  args: { populated: false },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const closeButton = canvas.getByRole('button', { name: 'Close cart' });
+    await expect(getComputedStyle(closeButton).cursor).toBe('pointer');
+  },
+};
 export const WithArtwork: Story = {
   args: { populated: true },
   play: async ({ canvasElement }) => {
