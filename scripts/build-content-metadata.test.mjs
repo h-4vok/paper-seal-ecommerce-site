@@ -22,6 +22,7 @@ describe('artwork content metadata', () => {
   it.each([
     [{ title: '' }, 'invalid title'],
     [{ handle: 'Bad Handle' }, 'invalid handle'],
+    [{ handle: 'seven-sisters-wrong-sku-suffix' }, 'invalid handle'],
     [{ orientation: 'square' }, 'invalid orientation'],
     [{ gallery: ['master'] }, 'invalid gallery'],
     [{ price: { small: 7, medium: 0, large: 28 } }, 'invalid price'],

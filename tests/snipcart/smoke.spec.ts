@@ -56,7 +56,7 @@ test('real Snipcart Test empty cart toggles open and closed, then reopens', asyn
 
 test('real Snipcart Test populated side cart uses the Paperseal theme', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto(new URL('/artworks/flower-bed-ps-001/', baseURL).toString());
+  await page.goto(new URL('/artworks/flower-bed-ps-pr-001/', baseURL).toString());
   const add = page.locator('button.snipcart-add-item');
   await page.evaluate(() => {
     const windowWithSnipcartReady = window as Window & { __snipcartReady?: Promise<void> };
@@ -85,7 +85,7 @@ test('real Snipcart Test populated side cart uses the Paperseal theme', async ({
 
 test('test checkout shows the payment form without card guidance', async ({ page }) => {
   test.setTimeout(60_000);
-  await page.goto(new URL('/artworks/flower-bed-ps-001/', baseURL).toString());
+  await page.goto(new URL('/artworks/flower-bed-ps-pr-001/', baseURL).toString());
   const settings = await page.evaluate(
     () => (window as Window & { SnipcartSettings?: { templatesUrl?: string } }).SnipcartSettings,
   );

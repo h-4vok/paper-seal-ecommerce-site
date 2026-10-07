@@ -44,8 +44,12 @@ export function validateArtworkManifest(input) {
       if (typeof item[field] !== 'string' || item[field].trim() === '')
         fail(index, `has an invalid ${field}.`);
     }
-    if (!/^PS-PR-\d{3}$/.test(item.sku)) fail(index, 'has an invalid sku.');
-    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.handle)) fail(index, 'has an invalid handle.');
+    if (!/^PS-[A-Z]{2,4}-\d{3}$/.test(item.sku)) fail(index, 'has an invalid sku.');
+    if (
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.handle) ||
+      !item.handle.endsWith(`-${item.sku.toLowerCase()}`)
+    )
+      fail(index, 'has an invalid handle.');
     if (skus.has(item.sku) || handles.has(item.handle) || assets.has(item.assetBase))
       fail(index, 'duplicates a stable identifier.');
     if (!Number.isInteger(item.publishedOrder) || item.publishedOrder < 0)

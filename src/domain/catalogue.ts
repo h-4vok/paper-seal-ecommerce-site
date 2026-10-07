@@ -83,10 +83,13 @@ export function validateCatalogue(input: unknown): Artwork[] {
         throw new Error(`Artwork ${index + 1} has an invalid ${field}.`);
       }
     }
-    if (!/^PS-PR-\d{3}$/.test(item.sku as string)) {
+    if (!/^PS-[A-Z]{2,4}-\d{3}$/.test(item.sku as string)) {
       throw new Error(`Artwork ${index + 1} has an invalid sku.`);
     }
-    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.handle as string)) {
+    if (
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.handle as string) ||
+      !(item.handle as string).endsWith(`-${(item.sku as string).toLowerCase()}`)
+    ) {
       throw new Error(`Artwork ${index + 1} has an invalid handle.`);
     }
     if (skus.has(item.sku as string) || handles.has(item.handle as string)) {

@@ -47,6 +47,7 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], title: '' }], 'invalid title'],
     [[{ ...artworks[0], sku: 'bad' }], 'invalid sku'],
     [[{ ...artworks[0], handle: 'Bad Handle' }], 'invalid handle'],
+    [[{ ...artworks[0], handle: 'seven-sisters-wrong-sku-suffix' }], 'invalid handle'],
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
@@ -55,7 +56,10 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
     [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
-    [[artworks[0], { ...artworks[1], sku: artworks[0].sku }], 'duplicates'],
+    [
+      [artworks[0], { ...artworks[1], sku: artworks[0].sku, handle: 'amber-harbour-ps-pr-001' }],
+      'duplicates',
+    ],
   ])('rejects invalid data %#', (input, message) => {
     expect(() => validateCatalogue(input)).toThrow(message as string);
   });
@@ -73,7 +77,7 @@ describe('catalogue model', () => {
       {
         sku: 'PS-PR-003',
         title: 'Zebra Coast',
-        handle: 'zebra-coast-ps-003',
+        handle: 'zebra-coast-ps-pr-003',
         description: 'A coastal study.',
         placeName: 'Brighton',
         publishedOrder: 2,
@@ -86,7 +90,7 @@ describe('catalogue model', () => {
       {
         sku: 'PS-PR-002',
         title: 'Amber Harbour',
-        handle: 'amber-harbour-ps-002',
+        handle: 'amber-harbour-ps-pr-002',
         description: 'A harbour study.',
         placeName: 'Brighton',
         publishedOrder: 2,
@@ -99,7 +103,7 @@ describe('catalogue model', () => {
       {
         sku: 'PS-PR-001',
         title: 'Quiet Moor',
-        handle: 'quiet-moor-ps-001',
+        handle: 'quiet-moor-ps-pr-001',
         description: 'A moorland study.',
         placeName: 'Yorkshire',
         publishedOrder: 1,

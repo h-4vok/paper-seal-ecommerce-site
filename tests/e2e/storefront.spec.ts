@@ -13,7 +13,7 @@ test.describe('catalogue discovery', () => {
     await page.goto('/cart');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(copy.cart.header.heading);
 
-    await page.goto('/artworks/seven-sisters-from-the-gardens-ps-002');
+    await page.goto('/artworks/seven-sisters-from-the-gardens-ps-pr-002');
   });
 
   test('renders crawlable cards and combines live search, place and sort controls', async ({
@@ -123,7 +123,7 @@ test.describe('catalogue discovery', () => {
 });
 
 test.describe('product detail', () => {
-  const productPath = '/artworks/seven-sisters-from-the-gardens-ps-002';
+  const productPath = '/artworks/seven-sisters-from-the-gardens-ps-pr-002';
 
   test('uses true product facts, static SEO and Snipcart product data', async ({ page }) => {
     await page.goto(productPath);
@@ -301,7 +301,7 @@ test.describe('product detail', () => {
   test('closes a portrait lightbox when clicking its surface outside the artwork', async ({
     page,
   }) => {
-    await page.goto('/artworks/beachy-head-ps-004');
+    await page.goto('/artworks/beachy-head-ps-pr-004');
     await page.getByRole('button', { name: /Open .* full screen/ }).click();
     const surface = page.locator('[data-lightbox-surface]');
     await expect(surface).toBeVisible();

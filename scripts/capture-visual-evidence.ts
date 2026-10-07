@@ -28,7 +28,7 @@ await loadPageImages(desktop);
 await desktop.screenshot({ path: `${output}/home-desktop.png`, fullPage: true });
 for (const [name, route] of [
   ['catalogue', '/artworks'],
-  ['product', '/artworks/seven-sisters-from-the-gardens-ps-002'],
+  ['product', '/artworks/seven-sisters-from-the-gardens-ps-pr-002'],
   ['cart', '/cart'],
   ['returns', '/returns'],
 ] as const) {
@@ -48,7 +48,7 @@ await mobile.getByRole('button', { name: 'Open menu' }).click();
 await mobile.screenshot({ path: `${output}/mobile-menu-open.png` });
 for (const [name, route] of [
   ['catalogue', '/artworks'],
-  ['product', '/artworks/seven-sisters-from-the-gardens-ps-002'],
+  ['product', '/artworks/seven-sisters-from-the-gardens-ps-pr-002'],
   ['cart', '/cart'],
   ['returns', '/returns'],
 ] as const) {
