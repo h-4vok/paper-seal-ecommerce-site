@@ -1,2 +1,4 @@
 #!/usr/bin/env sh
-bun run validate
+bun run format || exit 1
+bun run test || exit 1
+bun run build-storybook || exit 1

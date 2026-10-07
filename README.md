@@ -2,7 +2,7 @@
 
 The Paper Seal Studio is an art boutique storefront in its earliest implementation stage. The MVP presents a considered, editorial shopping experience and uses Snipcart for commerce.
 
-This repository currently provides the project foundation: Astro static rendering, a custom design-system boundary, Storybook, Vitest, Playwright, quality gates, GitHub Actions, and Netlify deployment configuration. The visible product is intentionally a small coming-soon page until the feature epics are implemented.
+This repository currently provides the project foundation: Astro static rendering, a custom design-system boundary, Storybook, Vitest, quality gates, GitHub Actions, and Netlify deployment configuration. The visible product is intentionally a small coming-soon page until the feature epics are implemented.
 
 ## Development
 
@@ -13,7 +13,7 @@ bun install
 bun run dev
 ```
 
-Before opening a PR, run `bun run validate` and `bun run test:e2e`. Feature pull requests target `staging`; `main` is reserved for releases.
+Commit checks run copy and design-system validation, lint, type checking, and the production build. Push checks run formatting, Vitest, and the Storybook build. Feature pull requests target `staging`; `main` is reserved for releases.
 
 Read [`AGENTS.md`](./AGENTS.md) and [`CONTEXT.md`](./CONTEXT.md) before making project changes.
 
@@ -75,26 +75,13 @@ support. Once the integration is deployed, set the Test Redirect URL to
 
 ### Verification
 
-Unit tests and ordinary Playwright tests check application markup without requiring
-credentials or external CDN availability. They are not evidence that the real Snipcart
-account is configured correctly.
+Vitest checks application behavior without requiring Snipcart credentials or external CDN
+availability. It is not evidence that the real Snipcart account is configured correctly.
 
 For a manual payment in Snipcart Test mode, use **4242 4242 4242 4242** with any future
 expiry date and a three-digit CVC. See Snipcart's
 [payment testing guide](https://docs.snipcart.com/v3/testing/payments). Keep these test
 credentials in project documentation rather than the checkout UI.
-
-With your Test key configured, run the real smoke test separately:
-
-```sh
-bun run test:snipcart:smoke
-```
-
-This test uses the real external service in **Test mode only** and opens/closes an
-empty cart without products or payments.
-For staging or a preview, set `SNIPCART_SMOKE_URL` to its HTTPS URL first. The smoke
-test checks the Test indicator, close and repeated opening; it saves
-desktop/mobile screenshots under `visual-evidence/`. Never run it with a Live key.
 
 References: [installation](https://docs.snipcart.com/v3/setup/installation),
 [SDK](https://docs.snipcart.com/v3/sdk/api),

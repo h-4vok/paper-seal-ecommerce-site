@@ -3,22 +3,22 @@
 - Repo content: English.
 - Read `CONTEXT.md` before repo work; load only relevant source docs.
 - Runtime: Bun 1.3.10, Node 24.13.0; npm fallback.
-- Branches: target `staging`; `main` = human releases.
+- Branches: all feature pull requests target `staging`; `main` is reserved for human releases.
 
 ## Delivery
 
-- During implementation, run only focused checks relevant to the change. Do not run `bun run validate` or `bun run test:e2e`.
-- Before handoff, tell the user to run:
-  - `bun run validate`
-  - `bun run test:e2e`
-  - `bun run build-storybook`
-- Add or update Playwright coverage when the change requires it. Do not claim that E2E coverage passes unless it was run and passed.
+- Run focused checks relevant to the change during implementation.
+- Commit hook checks, in order: `bun run check:copy`, `bun run check:design-system`, `bun run lint`, `bun run typecheck`, `bun run build`.
+- Push hook checks, in order: `bun run format`, `bun run test`, `bun run build-storybook`.
+- If `bun run format` fails, run `bun run format:write`, then rerun `bun run format`.
+- If `bun run test` fails, make the necessary non-destructive fixes and rerun it. Keep the test suite meaningful and strong; update obsolete assertions or add missing coverage when appropriate.
+- If `bun run build-storybook` fails, fix the Storybook issue and rerun it.
+- At the end of every completed work round, create a commit and push it. Create one pull request to `staging` on the first round; subsequent rounds push updates to that same pull request.
+- After pushing, the agent may hand off without waiting for GitHub checks or confirming that a Netlify Deploy Preview was generated.
 - Text uses LF via `.gitattributes`.
-- If Prettier reports failures, run `bunx prettier --write <reported-files>` (including untouched files), inspect the diff, and tell the user to run the required checks.
-- Never bypass hooks: do not use `HUSKY=0`, `--no-verify`, `core.hooksPath` overrides, hook edits/removal, or equivalent. The user should normally run `git push`; the pre-push hook must pass.
-- If the user requested a PR, hand it off only after GitHub and Netlify checks are green.
+- Never bypass hooks: do not use `HUSKY=0`, `--no-verify`, `core.hooksPath` overrides, hook edits/removal, or equivalent.
 - Gate fixes are exempt from the Boy Scout 10% cap.
-- For design-system changes, update Storybook stories and capture visual evidence.
+- For design-system changes, update Storybook stories and capture visual evidence when useful.
 - Do not add secrets, real environment values, or unapproved coverage, SEO, or accessibility suppressions.
 
 ## Agentic UI Workflow
@@ -41,7 +41,7 @@ Use Atomic Design. Storybook = UI source of truth.
 - Stop + ask when change needs architecture/visual/product decision not encoded here.
 - Boy Scout: fix adjacent issues within 10% task effort; report larger findings.
 
-Definition of done: impl + story + states + tests + asset check + responsive check + validation green.
+Definition of done: implementation + relevant tests + relevant gates green, then commit, push, and create/update the `staging` PR.
 
 Story titles: `Foundations/*`, `Atoms/*`, `Molecules/*`, `Organisms/*`, `Templates/*`.
 
@@ -54,7 +54,7 @@ Astro boundary: Storybook React cannot import `.astro` directly. Boundary story 
 - Mobile-first CSS; functional tokens; max 3 nesting levels; no `!important`.
 - WCAG 2.2 AA required. Prefer semantic HTML/native controls.
 - Interactive UI: keyboard, visible focus, logical order, focus restore, accessible names, ARIA state, live announcements, reduced motion, contrast.
-- Add unit semantics/state tests, Storybook states, Playwright keyboard/focus tests, and axe checks.
+- Add unit semantics/state tests, Storybook states, and axe checks where appropriate.
 
 ## SEO
 
