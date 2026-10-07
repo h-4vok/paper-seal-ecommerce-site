@@ -16,8 +16,6 @@ dist/
 .astro/
 .netlify/
 .vercel/
-storybook-build/
-storybook-static/
 coverage/
 
 # Local editor and OS files

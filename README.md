@@ -2,7 +2,7 @@
 
 The Paper Seal Studio is an art boutique storefront in its earliest implementation stage. The MVP presents a considered, editorial shopping experience and uses Snipcart for commerce.
 
-This repository currently provides the project foundation: Astro static rendering, a custom design-system boundary, Storybook, Vitest, quality gates, GitHub Actions, and Netlify deployment configuration. The visible product is intentionally a small coming-soon page until the feature epics are implemented.
+This repository currently provides the project foundation: Astro static rendering, a custom design-system boundary, Vitest, quality gates, GitHub Actions, and Netlify deployment configuration. The visible product is intentionally a small coming-soon page until the feature epics are implemented.
 
 ## Development
 
@@ -13,7 +13,9 @@ bun install
 bun run dev
 ```
 
-Commit checks run copy and design-system validation, lint, type checking, and the production build. Push checks run formatting, Vitest, and the Storybook build. Feature pull requests target `staging`; `main` is reserved for releases.
+Commit checks run copy and design-system validation, lint, type checking, and the production build. Push checks run formatting and Vitest. Feature pull requests target `staging`; `main` is reserved for releases.
+
+Reusable interface components follow Atomic Design. The component inventory and classifications are maintained in `.design-system-coverage.json` and checked by `bun run check:design-system`.
 
 Read [`AGENTS.md`](./AGENTS.md) and [`CONTEXT.md`](./CONTEXT.md) before making project changes.
 
