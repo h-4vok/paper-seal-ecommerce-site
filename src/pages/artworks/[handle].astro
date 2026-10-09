@@ -1,9 +1,12 @@
 ---
 import ArtworkPicture from '../../components/ArtworkPicture.astro';
+import ArtworkMockupPicture from '../../components/ArtworkMockupPicture.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   artworks,
   formatPrice,
+  mockupImagePath,
+  productGallery,
   productStructuredData,
   snipcartItemAttributes,
   type Artwork,
@@ -21,7 +24,7 @@ const productLabels = product.labels;
 const showFramingSelector = false;
 const canonical = `/artworks/${artwork.handle}`;
 const siteOrigin = Astro.site ?? Astro.url.origin;
-const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
+const shareImage = mockupImagePath(artwork, 'a3');
 const snipcartAttributes = snipcartItemAttributes(artwork, shareImage, canonical);
 const initialAddToCartLabel = copyText(productLabels.addToCart, {
   price: formatPrice(artwork.price.small),
@@ -54,14 +57,15 @@ const structuredData = [
     ],
   },
 ];
-const galleryLabels = {
-  flat: (title: string) => `${title} artwork image`,
-  room: (title: string) => `${title} presented in a room setting`,
-};
-const gallery = [
-  { kind: 'flat' as const, label: galleryLabels.flat(artwork.title) },
-  ...artwork.gallery.map((kind) => ({ kind, label: galleryLabels[kind](artwork.title) })),
-];
+const sizeLabels = { '7x5': 'small', a4: 'medium', a3: 'large' } as const;
+const gallery = productGallery(artwork).map((image) => {
+  if (image.kind === 'flat') return { ...image, label: `${artwork.title} artwork image` };
+  const size = product.sizes.find(({ id }) => id === sizeLabels[image.size]);
+  return {
+    ...image,
+    label: `${artwork.title}, ${size?.label ?? image.size}, ${size?.dimensions ?? ''}, ${image.scene.sceneName} setting`,
+  };
+});
 ---
 
 <BaseLayout
@@ -105,20 +109,39 @@ const gallery = [
           aria-roledescription="carousel"
         >
           {gallery.map((image, index) => (
-            <div class="product-gallery__slide" data-slide={index} hidden={index !== 0}>
+            <div
+              class:list={['product-gallery__slide', `product-gallery__slide--${image.kind}`]}
+              data-slide={index}
+              data-gallery-size={image.kind === 'mockup' ? image.size : undefined}
+              data-scene-id={image.kind === 'mockup' ? image.scene.sceneId : undefined}
+              hidden={index !== 0}
+            >
               <button
                 class="product-gallery__zoom-trigger"
                 type="button"
                 aria-label={copyText(productLabels.openImage, { image: image.label })}
                 data-gallery-zoom
               >
-                <ArtworkPicture
-                  assetBase={artwork.assetBase}
-                  kind={image.kind}
-                  alt={image.label}
-                  sizes="(min-width: 64rem) 62vw, 100vw"
-                  eager={index === 0}
-                />
+                {image.kind === 'flat' ? (
+                  <ArtworkPicture
+                    assetBase={artwork.assetBase}
+                    orientation={artwork.orientation}
+                    imageWidth={artwork.imageDimensions.width}
+                    imageHeight={artwork.imageDimensions.height}
+                    alt={image.label}
+                    resolution={1440}
+                    sizes="(min-width: 64rem) 62vw, 100vw"
+                    eager
+                  />
+                ) : (
+                  <ArtworkMockupPicture
+                    assetBase={artwork.assetBase}
+                    size={image.size}
+                    sceneId={image.scene.sceneId}
+                    alt={image.label}
+                    sizes="(min-width: 64rem) 62vw, 100vw"
+                  />
+                )}
               </button>
             </div>
           ))}
@@ -173,12 +196,25 @@ const gallery = [
                 aria-pressed={index === 0 ? 'true' : 'false'}
                 data-gallery-thumbnail={index}
               >
-                <ArtworkPicture
-                  assetBase={artwork.assetBase}
-                  kind={image.kind}
-                  alt=""
-                  sizes="8rem"
-                />
+                {image.kind === 'flat' ? (
+                  <ArtworkPicture
+                    assetBase={artwork.assetBase}
+                    orientation={artwork.orientation}
+                    imageWidth={artwork.imageDimensions.width}
+                    imageHeight={artwork.imageDimensions.height}
+                    alt=""
+                    sizes="8rem"
+                    watermark={false}
+                  />
+                ) : (
+                  <ArtworkMockupPicture
+                    assetBase={artwork.assetBase}
+                    size={image.size}
+                    sceneId={image.scene.sceneId}
+                    alt=""
+                    sizes="8rem"
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -271,7 +307,16 @@ const gallery = [
     </section>
     <dialog class="product-lightbox" data-lightbox aria-label={productLabels.lightbox}>
       <div class="product-lightbox__surface" data-lightbox-surface>
-        <img data-lightbox-image alt="" />
+        <div class="product-lightbox__image-wrap">
+          <img data-lightbox-image alt="" />
+          <span class="artwork-watermark" data-lightbox-watermark aria-hidden="true" hidden>
+            {Array.from({ length: 7 }, () => (
+              <span class="artwork-watermark__line">
+                PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL
+              </span>
+            ))}
+          </span>
+        </div>
       </div>
     </dialog>
   </main>
@@ -308,6 +353,7 @@ const gallery = [
   const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
   const lightboxSurface = lightbox?.querySelector<HTMLElement>('[data-lightbox-surface]');
   const lightboxImage = lightbox?.querySelector<HTMLImageElement>('[data-lightbox-image]');
+  const lightboxWatermark = lightbox?.querySelector<HTMLElement>('[data-lightbox-watermark]');
   let current = 0;
   let touchStart = 0;
   function showSlide(index: number) {
@@ -325,6 +371,9 @@ const gallery = [
     if (!image || !lightbox || !lightboxImage) return;
     lightboxImage.src = image.currentSrc || image.src;
     lightboxImage.alt = image.alt;
+    if (lightboxWatermark) {
+      lightboxWatermark.hidden = !slide.classList.contains('product-gallery__slide--flat');
+    }
     lightbox.showModal();
   }
   function closeLightbox() {
@@ -380,10 +429,12 @@ const gallery = [
 
   const optionForm = document.querySelector('[data-product-options]');
   const optionAnnouncement = optionForm?.querySelector('[data-option-announcement]');
+  let selectedGallerySize = 'small';
   optionForm?.addEventListener('change', () => {
     if (!(optionForm instanceof HTMLFormElement) || !(optionAnnouncement instanceof HTMLElement))
       return;
     const data = new FormData(optionForm);
+    const selectedSizeId = String(data.get('size'));
     const size = sizeOptions.find((option) => option.id === data.get('size'));
     const frame = framingEnabled
       ? framingOptions.find((option) => option.id === data.get('framing'))
@@ -398,6 +449,14 @@ const gallery = [
     }
     const sizeDescription = size ? `${size.label}, ${size.dimensions}` : '';
     optionAnnouncement.textContent = `${[sizeDescription, frame?.label].filter(Boolean).join(', ')}${selectionSuffix}`;
+    if (selectedSizeId !== selectedGallerySize) {
+      selectedGallerySize = selectedSizeId;
+      const gallerySize = { small: '7x5', medium: 'a4', large: 'a3' }[selectedSizeId];
+      const firstMockupIndex = slides.findIndex(
+        (slide) => slide.dataset.gallerySize === gallerySize,
+      );
+      if (firstMockupIndex >= 0) showSlide(firstMockupIndex);
+    }
   });
   const shareStatus = document.querySelector('[data-share-status]');
   async function copyLink() {

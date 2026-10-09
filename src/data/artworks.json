@@ -14,11 +14,37 @@
       "orientation": "landscape",
       "alt": "Colourful flower beds in Eastbourne rendered as a painterly local scene",
       "assetBase": "flower-bed",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "15",
+            "sceneName": "Chalk Workshop",
+            "sceneSlug": "15-chalk-workshop"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "15",
+            "sceneName": "Chalk Workshop",
+            "sceneSlug": "15-chalk-workshop"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "15",
+            "sceneName": "Chalk Workshop",
+            "sceneSlug": "15-chalk-workshop"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
       }
     },
     {
@@ -32,11 +58,37 @@
       "orientation": "landscape",
       "alt": "The Seven Sisters chalk cliffs seen from a garden above the Sussex coast",
       "assetBase": "seven-sisters",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 505
       }
     },
     {
@@ -50,11 +102,37 @@
       "orientation": "portrait",
       "alt": "A portrait-format view of the downland and landmark at Beachy Head",
       "assetBase": "beachy-head",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 1290
       }
     },
     {
@@ -68,11 +146,37 @@
       "orientation": "landscape",
       "alt": "A wide painterly view across Eastbourne towards the sea",
       "assetBase": "meet-me-eastbourne",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 376
       }
     },
     {
@@ -86,11 +190,37 @@
       "orientation": "landscape",
       "alt": "Eastbourne Pier extending into the sea beneath a bright sky",
       "assetBase": "eastbourne-pier",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "03",
+            "sceneName": "Pale Blue Ledge",
+            "sceneSlug": "03-pale-blue-ledge"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "03",
+            "sceneName": "Pale Blue Ledge",
+            "sceneSlug": "03-pale-blue-ledge"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "03",
+            "sceneName": "Pale Blue Ledge",
+            "sceneSlug": "03-pale-blue-ledge"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
       }
     },
     {
@@ -104,11 +234,37 @@
       "orientation": "landscape",
       "alt": "Colourful beach huts arranged along Eastbourne seafront",
       "assetBase": "beach-huts",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "08",
+            "sceneName": "Ink Studio",
+            "sceneSlug": "08-ink-studio"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "08",
+            "sceneName": "Ink Studio",
+            "sceneSlug": "08-ink-studio"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "08",
+            "sceneName": "Ink Studio",
+            "sceneSlug": "08-ink-studio"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
       }
     },
     {
@@ -122,11 +278,37 @@
       "orientation": "landscape",
       "alt": "Open fields and rolling hills across the South Downs in Sussex",
       "assetBase": "south-downs-1",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 402
       }
     },
     {
@@ -140,11 +322,37 @@
       "orientation": "landscape",
       "alt": "The historic grounds and stone architecture of Battle Abbey in East Sussex",
       "assetBase": "battle-abbey",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
       }
     },
     {
@@ -158,11 +366,37 @@
       "orientation": "landscape",
       "alt": "A wide waterfront view of boats and buildings at Sovereign Harbour",
       "assetBase": "sovereign-harbour-waterfront",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 505
       }
     },
     {
@@ -176,11 +410,37 @@
       "orientation": "landscape",
       "alt": "The Long Man of Wilmington figure set into the Sussex chalk hills",
       "assetBase": "long-man",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 376
       }
     },
     {
@@ -194,11 +454,37 @@
       "orientation": "landscape",
       "alt": "A warm sunset over Eastbourne and the Sussex coast",
       "assetBase": "eastbourne-sunset",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 405
       }
     },
     {
@@ -212,11 +498,37 @@
       "orientation": "landscape",
       "alt": "Martello tower 66 on the East Sussex coast",
       "assetBase": "martello-66",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 402
       }
     },
     {
@@ -230,11 +542,37 @@
       "orientation": "landscape",
       "alt": "The rolling hills and valley of Devils Dyke in Sussex",
       "assetBase": "devils-dyke",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 505
       }
     },
     {
@@ -248,11 +586,37 @@
       "orientation": "portrait",
       "alt": "A paraglider flying above the South Downs landscape",
       "assetBase": "parapente-south-downs",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 1290
       }
     },
     {
@@ -266,11 +630,37 @@
       "orientation": "landscape",
       "alt": "Boats and water at Sovereign Harbour in a detailed coastal view",
       "assetBase": "sovereign-harbour-high-res",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "12",
+            "sceneName": "Coastal Cottage",
+            "sceneSlug": "12-coastal-cottage"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "12",
+            "sceneName": "Coastal Cottage",
+            "sceneSlug": "12-coastal-cottage"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "12",
+            "sceneName": "Coastal Cottage",
+            "sceneSlug": "12-coastal-cottage"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
       }
     },
     {
@@ -284,11 +674,37 @@
       "orientation": "landscape",
       "alt": "Jeeps and a bike on a South Downs track beneath open hills",
       "assetBase": "south-downs-jeeps-bike",
-      "gallery": ["room"],
       "price": {
         "small": 7,
         "medium": 14,
         "large": 28
+      },
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "09",
+            "sceneName": "Diagonal Table",
+            "sceneSlug": "09-diagonal-table"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "09",
+            "sceneName": "Diagonal Table",
+            "sceneSlug": "09-diagonal-table"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "09",
+            "sceneName": "Diagonal Table",
+            "sceneSlug": "09-diagonal-table"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
       }
     }
   ]

@@ -5,8 +5,10 @@ import {
   filterCatalogue,
   formatPrice,
   galleryIndex,
+  mockupImagePath,
   nextVisibleCount,
   normalizeSearch,
+  productGallery,
   productStructuredData,
   snipcartItemAttributes,
   validateCatalogue,
@@ -20,14 +22,14 @@ describe('catalogue model', () => {
 
   it('maps artwork prices to Snipcart base price and size modifiers', () => {
     const artwork = artworks[0];
-    const image = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
+    const image = mockupImagePath(artwork, 'a3');
     const url = `/artworks/${artwork.handle}`;
 
     expect(snipcartItemAttributes(artwork, image, url)).toEqual({
       'data-item-id': artwork.sku,
       'data-item-description': artwork.description,
       'data-item-name': artwork.title,
-      'data-item-image': image,
+      'data-item-image': `/images/artworks/${artwork.assetBase}/mock-a3-15-1440.jpg`,
       'data-item-url': url,
       'data-item-price': '7.00',
       'data-item-custom1-name': 'Size',
@@ -51,8 +53,21 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
-    [[{ ...artworks[0], gallery: [] }], 'invalid gallery'],
-    [[{ ...artworks[0], gallery: ['master'] }], 'invalid gallery'],
+    [[{ ...artworks[0], mockups: { ...artworks[0].mockups, '7x5': [] } }], 'invalid mockup'],
+    [[{ ...artworks[0], mockups: { ...artworks[0].mockups, '7x5': [null] } }], 'invalid mockup'],
+    [
+      [
+        {
+          ...artworks[0],
+          mockups: {
+            ...artworks[0].mockups,
+            a4: [artworks[0].mockups.a4[0], artworks[0].mockups.a4[0]],
+          },
+        },
+      ],
+      'invalid mockup',
+    ],
+    [[{ ...artworks[0], imageDimensions: { width: 0, height: 500 } }], 'invalid image dimensions'],
     [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
     [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
@@ -181,10 +196,40 @@ describe('catalogue model', () => {
     expect(JSON.stringify(data)).not.toMatch(/price|availability|review/i);
   });
 
-  it('accepts variable local gallery lengths', () => {
-    expect(validateCatalogue([{ ...artworks[0], gallery: ['room'] }])[0].gallery).toHaveLength(1);
+  it('orders the flat image before size-specific mockups', () => {
+    const gallery = productGallery(artworks[0]);
+
+    expect(gallery[0]).toMatchObject({ kind: 'flat' });
+    expect(gallery.slice(1).map((slide) => (slide.kind === 'mockup' ? slide.size : null))).toEqual([
+      '7x5',
+      'a4',
+      'a3',
+    ]);
+  });
+
+  it('rejects mockup paths without a selected scene', () => {
+    expect(() => mockupImagePath(artworks[0], 'a3', '')).toThrow('has no a3 mockup scene');
+  });
+
+  it('preserves configured scene order within each size', () => {
+    const artwork = validateCatalogue([
+      {
+        ...artworks[0],
+        mockups: {
+          '7x5': [
+            { sceneId: '07', sceneName: 'Scene seven', sceneSlug: 'scene-seven' },
+            { sceneId: '08', sceneName: 'Scene eight', sceneSlug: 'scene-eight' },
+          ],
+          a4: [{ sceneId: '09', sceneName: 'Scene nine', sceneSlug: 'scene-nine' }],
+          a3: [{ sceneId: '10', sceneName: 'Scene ten', sceneSlug: 'scene-ten' }],
+        },
+      },
+    ])[0];
+
     expect(
-      validateCatalogue([{ ...artworks[0], gallery: ['room', 'flat', 'room'] }])[0].gallery,
-    ).toHaveLength(3);
+      productGallery(artwork)
+        .filter((slide) => slide.kind === 'mockup')
+        .map(({ scene }) => scene.sceneId),
+    ).toEqual(['07', '08', '09', '10']);
   });
 });

@@ -9,15 +9,28 @@
       "assetBase": "flower-bed",
       "masterFile": "flower-bed.png",
       "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "15",
+            "sceneName": "Chalk Workshop",
+            "sceneSlug": "15-chalk-workshop"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "15",
+            "sceneName": "Chalk Workshop",
+            "sceneSlug": "15-chalk-workshop"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "15",
+            "sceneName": "Chalk Workshop",
+            "sceneSlug": "15-chalk-workshop"
+          }
+        ]
       }
     },
     {
@@ -25,15 +38,28 @@
       "assetBase": "seven-sisters",
       "masterFile": "seven-sisters.png",
       "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ]
       }
     },
     {
@@ -41,15 +67,28 @@
       "assetBase": "beachy-head",
       "masterFile": "beachy-head.png",
       "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
-      "roomScene": {
-        "template": "scripts/asset-sources/artwork-scenes/pale-oak-portrait.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 506,
-          "top": 137,
-          "width": 458,
-          "height": 641
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ]
       }
     },
     {
@@ -57,15 +96,28 @@
       "assetBase": "meet-me-eastbourne",
       "masterFile": "meet-me-eastbourne.png",
       "driveFileId": "1SbtW06ZUnQtbKqcJ948nlUZSFW-vOVqO",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ]
       }
     },
     {
@@ -73,15 +125,28 @@
       "assetBase": "eastbourne-pier",
       "masterFile": "eastbourne-pier.png",
       "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 313,
-          "top": 190,
-          "width": 860,
-          "height": 611
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "03",
+            "sceneName": "Pale Blue Ledge",
+            "sceneSlug": "03-pale-blue-ledge"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "03",
+            "sceneName": "Pale Blue Ledge",
+            "sceneSlug": "03-pale-blue-ledge"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "03",
+            "sceneName": "Pale Blue Ledge",
+            "sceneSlug": "03-pale-blue-ledge"
+          }
+        ]
       }
     },
     {
@@ -89,15 +154,28 @@
       "assetBase": "beach-huts",
       "masterFile": "beach-huts.png",
       "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 313,
-          "top": 190,
-          "width": 860,
-          "height": 611
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "08",
+            "sceneName": "Ink Studio",
+            "sceneSlug": "08-ink-studio"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "08",
+            "sceneName": "Ink Studio",
+            "sceneSlug": "08-ink-studio"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "08",
+            "sceneName": "Ink Studio",
+            "sceneSlug": "08-ink-studio"
+          }
+        ]
       }
     },
     {
@@ -105,15 +183,28 @@
       "assetBase": "south-downs-1",
       "masterFile": "south-downs-1.png",
       "driveFileId": "11ghqYTjjogWachHOW2EmnXSpVe4dMJmn",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ]
       }
     },
     {
@@ -121,15 +212,28 @@
       "assetBase": "battle-abbey",
       "masterFile": "battle-abbey.png",
       "driveFileId": "15S4jRQMCVgRIyEIu9uUbtqpes7qatdeu",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
       }
     },
     {
@@ -137,15 +241,28 @@
       "assetBase": "sovereign-harbour-waterfront",
       "masterFile": "sovereign-harbour-waterfront.png",
       "driveFileId": "1DaJd8VMFSNSG207bMTiJM7ksoDdYV3S-",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ]
       }
     },
     {
@@ -153,15 +270,28 @@
       "assetBase": "long-man",
       "masterFile": "long-man.png",
       "driveFileId": "1EXlV-GfTOigNwuX9Sn1OV8dropkpvkI0",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ]
       }
     },
     {
@@ -169,15 +299,28 @@
       "assetBase": "eastbourne-sunset",
       "masterFile": "eastbourne-sunset.png",
       "driveFileId": "1Fl-4xj-nHMqDzx-YycYfxjHF8pajjgvS",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 313,
-          "top": 190,
-          "width": 860,
-          "height": 611
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ]
       }
     },
     {
@@ -185,15 +328,28 @@
       "assetBase": "martello-66",
       "masterFile": "martello-66.png",
       "driveFileId": "1LbKstBbKrXIEAF4MyA9X9PN8tRefzb9M",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ]
       }
     },
     {
@@ -201,15 +357,28 @@
       "assetBase": "devils-dyke",
       "masterFile": "devils-dyke.png",
       "driveFileId": "1OZno2NSnheCNBJ5WB4NU6MIImYT7dedO",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ]
       }
     },
     {
@@ -217,15 +386,28 @@
       "assetBase": "parapente-south-downs",
       "masterFile": "parapente-south-downs.png",
       "driveFileId": "1W-0e0QJZhYlmC8qZsdpLXcEFMBF9SFFI",
-      "roomScene": {
-        "template": "scripts/asset-sources/artwork-scenes/pale-oak-portrait.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 506,
-          "top": 137,
-          "width": 458,
-          "height": 641
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ]
       }
     },
     {
@@ -233,15 +415,28 @@
       "assetBase": "sovereign-harbour-high-res",
       "masterFile": "sovereign-harbour-high-res.png",
       "driveFileId": "1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "12",
+            "sceneName": "Coastal Cottage",
+            "sceneSlug": "12-coastal-cottage"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "12",
+            "sceneName": "Coastal Cottage",
+            "sceneSlug": "12-coastal-cottage"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "12",
+            "sceneName": "Coastal Cottage",
+            "sceneSlug": "12-coastal-cottage"
+          }
+        ]
       }
     },
     {
@@ -249,15 +444,28 @@
       "assetBase": "south-downs-jeeps-bike",
       "masterFile": "south-downs-jeeps-bike.png",
       "driveFileId": "1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz",
-      "roomScene": {
-        "template": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-        "fit": "cover",
-        "placement": {
-          "left": 546,
-          "top": 154,
-          "width": 764,
-          "height": 543
-        }
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "09",
+            "sceneName": "Diagonal Table",
+            "sceneSlug": "09-diagonal-table"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "09",
+            "sceneName": "Diagonal Table",
+            "sceneSlug": "09-diagonal-table"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "09",
+            "sceneName": "Diagonal Table",
+            "sceneSlug": "09-diagonal-table"
+          }
+        ]
       }
     }
   ]

@@ -1,8 +1,16 @@
 import generatedCatalogue from '../data/artworks.json';
 
 export type Orientation = 'landscape' | 'portrait';
-export type GalleryKind = 'flat' | 'room';
 export type ArtworkSize = 'small' | 'medium' | 'large';
+export type MockupSize = '7x5' | 'a4' | 'a3';
+
+export interface ArtworkMockup {
+  sceneId: string;
+  sceneName: string;
+  sceneSlug: string;
+}
+
+export type ArtworkMockups = Record<MockupSize, ArtworkMockup[]>;
 
 export interface ArtworkPrices {
   small: number;
@@ -21,7 +29,8 @@ export interface Artwork {
   orientation: Orientation;
   alt: string;
   assetBase: string;
-  gallery: GalleryKind[];
+  mockups: ArtworkMockups;
+  imageDimensions: { width: number; height: number };
   price: ArtworkPrices;
 }
 
@@ -116,12 +125,43 @@ export function validateCatalogue(input: unknown): Artwork[] {
     ) {
       throw new Error(`Artwork ${index + 1} has invalid price values.`);
     }
+    const mockups = item.mockups as Record<string, unknown> | undefined;
     if (
-      !Array.isArray(item.gallery) ||
-      item.gallery.length === 0 ||
-      item.gallery.some((kind) => !['flat', 'room'].includes(String(kind)))
+      !mockups ||
+      ['7x5', 'a4', 'a3'].some((size) => {
+        const selections = mockups[size];
+        if (!Array.isArray(selections) || selections.length === 0) return true;
+        const ids = new Set<string>();
+        return selections.some((candidate) => {
+          if (!candidate || typeof candidate !== 'object') return true;
+          const selection = candidate as Record<string, unknown>;
+          if (
+            typeof selection.sceneId !== 'string' ||
+            !/^\d{2}$/.test(selection.sceneId) ||
+            typeof selection.sceneName !== 'string' ||
+            !selection.sceneName.trim() ||
+            typeof selection.sceneSlug !== 'string' ||
+            !selection.sceneSlug.trim() ||
+            ids.has(selection.sceneId)
+          ) {
+            return true;
+          }
+          ids.add(selection.sceneId);
+          return false;
+        });
+      })
     ) {
-      throw new Error(`Artwork ${index + 1} has an invalid gallery.`);
+      throw new Error(`Artwork ${index + 1} has invalid mockup selections.`);
+    }
+    const imageDimensions = item.imageDimensions as Record<string, unknown> | undefined;
+    if (
+      !imageDimensions ||
+      !Number.isInteger(imageDimensions.width) ||
+      Number(imageDimensions.width) <= 0 ||
+      !Number.isInteger(imageDimensions.height) ||
+      Number(imageDimensions.height) <= 0
+    ) {
+      throw new Error(`Artwork ${index + 1} has invalid image dimensions.`);
     }
     skus.add(item.sku as string);
     handles.add(item.handle as string);
@@ -130,6 +170,25 @@ export function validateCatalogue(input: unknown): Artwork[] {
 }
 
 export const artworks = validateCatalogue(generatedCatalogue.artworks);
+
+export function mockupImagePath(
+  artwork: Artwork,
+  size: MockupSize,
+  sceneId = artwork.mockups[size][0]?.sceneId,
+  width: 720 | 1440 = 1440,
+): string {
+  if (!sceneId) throw new Error(`Artwork ${artwork.title} has no ${size} mockup scene.`);
+  return `/images/artworks/${artwork.assetBase}/mock-${size}-${sceneId}-${width}.jpg`;
+}
+
+export function productGallery(artwork: Artwork) {
+  return [
+    { kind: 'flat' as const },
+    ...(['7x5', 'a4', 'a3'] as const).flatMap((size) =>
+      artwork.mockups[size].map((scene) => ({ kind: 'mockup' as const, size, scene })),
+    ),
+  ];
+}
 
 export function normalizeSearch(value: string): string {
   return value

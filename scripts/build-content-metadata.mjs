@@ -1,10 +1,20 @@
 import { readFile, writeFile, access } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { parse } from 'yaml';
+import {
+  MOCKUP_SIZE_SOURCE_KEYS,
+  resolveMockupSelections,
+  validateMockupRegistry,
+} from './mockup-registry.mjs';
 
 export const projectRoot = path.resolve(import.meta.dirname, '..');
-const galleryKinds = ['flat', 'room'];
 const priceFields = ['small', 'medium', 'large'];
+const registryPath = (root) =>
+  path.join(root, 'scripts', 'asset-sources', 'artwork-scenes', 'approved', 'manifest.json');
+const approvedRegistry = validateMockupRegistry(
+  JSON.parse(readFileSync(registryPath(projectRoot), 'utf8')),
+);
 const generated = {
   generated: true,
   source: 'content/artworks.yaml',
@@ -15,7 +25,7 @@ function fail(index, message) {
   throw new Error(`Artwork ${index + 1}: ${message}`);
 }
 
-export function validateArtworkManifest(input) {
+export function validateArtworkManifest(input, registry = approvedRegistry) {
   if (
     !input ||
     typeof input !== 'object' ||
@@ -68,24 +78,7 @@ export function validateArtworkManifest(input) {
       priceFields.some((size) => !Number.isFinite(item.price[size]) || item.price[size] <= 0)
     )
       fail(index, 'has invalid price values.');
-    if (
-      !Array.isArray(item.gallery) ||
-      item.gallery.length === 0 ||
-      item.gallery.some((value) => !galleryKinds.includes(value))
-    )
-      fail(index, 'has an invalid gallery.');
-    const scene = item.roomScene;
-    if (
-      !scene ||
-      typeof scene.template !== 'string' ||
-      !scene.template ||
-      scene.fit !== 'cover' ||
-      !scene.placement ||
-      ['left', 'top', 'width', 'height'].some(
-        (key) => !Number.isFinite(scene.placement[key]) || scene.placement[key] <= 0,
-      )
-    )
-      fail(index, 'has invalid roomScene placement configuration.');
+    resolveMockupSelections(item, index, registry);
     skus.add(item.sku);
     handles.add(item.handle);
     assets.add(item.assetBase);
@@ -93,30 +86,40 @@ export function validateArtworkManifest(input) {
   return input.artworks;
 }
 
-export function deriveOutputs(artworks) {
+export function deriveOutputs(artworks, registry = approvedRegistry, imageDimensions = new Map()) {
   return {
-    catalogue: artworks.map(({ masterFile, driveFileId, roomScene, ...catalogue }) => ({
+    catalogue: artworks.map(({ masterFile, driveFileId, mockups, ...catalogue }, index) => ({
       ...catalogue,
-      gallery: ['room'],
+      mockups: resolveMockupSelections({ ...catalogue, mockups }, index, registry),
+      imageDimensions: imageDimensions.get(catalogue.assetBase) ?? {
+        width: 720,
+        height: catalogue.orientation === 'portrait' ? 1280 : 510,
+      },
     })),
     assets: {
       ...generated,
       provenance:
         'Display-only composites generated from approved Google Drive masters. Production masters are never committed or served.',
       artworks: artworks.map(
-        ({
-          sku,
-          title,
-          handle,
-          description,
-          placeName,
-          publishedOrder,
-          collections,
-          price,
-          alt,
-          gallery,
-          ...asset
-        }) => asset,
+        (
+          {
+            sku,
+            title,
+            handle,
+            description,
+            placeName,
+            publishedOrder,
+            collections,
+            price,
+            alt,
+            mockups,
+            ...asset
+          },
+          index,
+        ) => ({
+          ...asset,
+          mockups: resolveMockupSelections({ ...asset, mockups }, index, registry),
+        }),
       ),
     },
   };
@@ -125,15 +128,47 @@ export function deriveOutputs(artworks) {
 export async function buildMetadata({ root = projectRoot } = {}) {
   const sourcePath = path.join(root, 'content', 'artworks.yaml');
   const manifest = parse(await readFile(sourcePath, 'utf8'));
-  const artworks = validateArtworkManifest(manifest);
+  const registry = validateMockupRegistry(JSON.parse(await readFile(registryPath(root), 'utf8')));
+  const artworks = validateArtworkManifest(manifest, registry);
   for (const [index, artwork] of artworks.entries()) {
-    try {
-      await access(path.join(root, artwork.roomScene.template));
-    } catch {
-      fail(index, `roomScene template does not exist: ${artwork.roomScene.template}`);
+    const selections = resolveMockupSelections(artwork, index, registry);
+    for (const [size, selectedScenes] of Object.entries(selections)) {
+      const sizeKey = MOCKUP_SIZE_SOURCE_KEYS[size];
+      for (const scene of selectedScenes) {
+        const template = registry.scenes
+          .find(({ id }) => id === scene.sceneId)
+          .variants.find(
+            (variant) => variant.orientation === artwork.orientation && variant.size === size,
+          ).template;
+        try {
+          await access(
+            path.join(root, 'scripts', 'asset-sources', 'artwork-scenes', 'approved', template),
+          );
+        } catch {
+          fail(index, `scene ${scene.sceneId} ${sizeKey} template does not exist: ${template}`);
+        }
+      }
     }
   }
-  const outputs = deriveOutputs(artworks);
+  const sharp = (await import('sharp')).default;
+  const imageDimensions = new Map();
+  for (const artwork of artworks) {
+    const derivative = path.join(
+      root,
+      'public',
+      'images',
+      'artworks',
+      artwork.assetBase,
+      'flat-720.jpg',
+    );
+    try {
+      const { width, height } = await sharp(derivative).metadata();
+      if (width && height) imageDimensions.set(artwork.assetBase, { width, height });
+    } catch {
+      // New artwork can use the orientation fallback until its derivatives are generated.
+    }
+  }
+  const outputs = deriveOutputs(artworks, registry, imageDimensions);
   await writeFile(
     path.join(root, 'src', 'data', 'artworks.json'),
     `${JSON.stringify({ ...generated, artworks: outputs.catalogue }, null, 2)}\n`,

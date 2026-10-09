@@ -21,7 +21,14 @@ const { catalogue } = copy;
     aria-label={`View ${artwork.title}, ${artwork.placeName}`}
   >
     <div class="artwork-card__media">
-      <ArtworkPicture assetBase={artwork.assetBase} kind="flat" alt={artwork.alt} {eager} />
+      <ArtworkPicture
+        assetBase={artwork.assetBase}
+        orientation={artwork.orientation}
+        imageWidth={artwork.imageDimensions.width}
+        imageHeight={artwork.imageDimensions.height}
+        alt={artwork.alt}
+        {eager}
+      />
     </div>
     <div class="artwork-card__caption">
       <div>

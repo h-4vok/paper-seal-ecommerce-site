@@ -1,7 +1,7 @@
 ---
 import ArtworkCard from '../../components/ArtworkCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { artworks } from '../../domain/catalogue';
+import { artworks, mockupImagePath } from '../../domain/catalogue';
 import { copy } from '../../content/copy';
 import '../../styles/catalogue.scss';
 
@@ -71,7 +71,7 @@ const structuredData = [
   {title}
   {description}
   canonical="/artworks"
-  image="/images/artworks/flower-bed/room-1440.jpg"
+  image={mockupImagePath(artworks[0], 'a3')}
   {structuredData}
 >
   <main

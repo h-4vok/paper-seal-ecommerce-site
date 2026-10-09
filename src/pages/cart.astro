@@ -1,13 +1,15 @@
 ---
-import ArtworkPicture from '../components/ArtworkPicture.astro';
+import ArtworkMockupPicture from '../components/ArtworkMockupPicture.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/institutional.scss';
 import { copy } from '../content/copy';
+import { artworks } from '../domain/catalogue';
 
 const { cart } = copy;
 const title = cart.seo.title;
 const description = cart.seo.description;
 const siteOrigin = Astro.site ?? Astro.url.origin;
+const sceneArtwork = artworks.find(({ assetBase }) => assetBase === 'seven-sisters');
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -43,12 +45,15 @@ const structuredData = {
     </section>
     <aside class="cart-brand-scene" aria-label={cart.scene.label}>
       <div class="cart-brand-scene__tear" aria-hidden="true"></div>
-      <ArtworkPicture
-        assetBase="seven-sisters"
-        kind="room"
-        alt={cart.scene.alt}
-        sizes="(min-width: 56rem) 44vw, 100vw"
-      />
+      {sceneArtwork && (
+        <ArtworkMockupPicture
+          assetBase={sceneArtwork.assetBase}
+          size="a3"
+          sceneId={sceneArtwork.mockups.a3[0].sceneId}
+          alt={cart.scene.alt}
+          sizes="(min-width: 56rem) 44vw, 100vw"
+        />
+      )}
       <div>
         <p class="cart-brand-scene__script">{cart.scene.script}</p>
         <p>{cart.scene.copy}</p>
