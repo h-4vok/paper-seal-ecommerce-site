@@ -150,8 +150,11 @@
 
 #snipcart .snipcart-cart__secondary-header,
 #snipcart .snipcart-cart-header {
-  border-bottom: 0.06rem solid rgb(16 43 59 / 14%);
   background: var(--color-paper);
+}
+
+#snipcart .snipcart-cart-header {
+  border-bottom: 1px solid var(--color-rule);
 }
 
 #snipcart .snipcart-cart__secondary-header-title,
