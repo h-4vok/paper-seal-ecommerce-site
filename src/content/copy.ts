@@ -175,6 +175,8 @@ const productSchema = z.object({
 });
 const institutionalSchema = z.object({
   statusLabel: text,
+  noticeLabel: text,
+  notice: text,
   next: z.object({ eyebrow: text, copy: text, browse: text }),
   pages: z
     .array(
