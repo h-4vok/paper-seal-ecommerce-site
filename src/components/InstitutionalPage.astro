@@ -1,5 +1,5 @@
 ---
-import type { InstitutionalPage as Page } from '../domain/institutional';
+import { hasContentNotice, type InstitutionalPage as Page } from '../domain/institutional';
 import { copy } from '../content/copy';
 
 interface Props { page: Page }
@@ -7,6 +7,13 @@ const { page } = Astro.props;
 const { institutional } = copy;
 ---
 <main id="main-content" class="institutional-page">
+  {
+    hasContentNotice(page.slug) && (
+      <aside class="institutional-notice" aria-label={institutional.noticeLabel}>
+        <p>{institutional.notice}</p>
+      </aside>
+    )
+  }
   <header class="institutional-hero">
     <p class="eyebrow">{page.eyebrow} · {copy.shared.brand.name}</p>
     <h1>{page.heading}</h1>

@@ -40,7 +40,7 @@
       "name": "InstitutionalPage",
       "source": "src/components/InstitutionalPage.astro",
       "level": "Templates",
-      "useFor": "Our Story and policy page layout."
+      "useFor": "Our Story, Collabs and policy page layout, including the shared content update notice."
     },
     {
       "name": "PaperQuality",

@@ -24,7 +24,7 @@ a3: A3
 noFakeCommerce: No fake price, stock or checkout is shown.
 shareFallback: Share fallback · focused gallery
 linkCopied: Link copied to clipboard.
-papersealAlpha: The Paper Seal Studio · Alpha
+papersealStudio: The Paper Seal Studio
 zeroItems: 0 items
 cartHeading: Your cart is waiting for the shop.
 cartEmptyTitle: Online shop and checkout coming soon.
@@ -34,7 +34,7 @@ returnsPaperseal: Returns · The Paper Seal Studio
 policyHeading: Human help, without a portal.
 policyIntro: Warm, direct policy presentation at a realistic mobile width.
 currentStatus: Current status
-policyStatus: 'Alpha review: final policy copy is still being prepared.'
+policyStatus: Final policy details are still being prepared.
 policySection: How help will work
 policyCopy: Returns and damaged-item cases will be handled manually by email once commerce launches.
 brandName: The Paper Seal Studio
