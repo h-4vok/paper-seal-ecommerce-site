@@ -2,10 +2,8 @@
 
 ## Validation
 
-- [ ] `bun run validate`
-- [ ] `bun run test:e2e`
-- [ ] Relevant Deploy Preview checked
-- [ ] Relevant Storybook screenshots attached (if components changed)
+- [ ] Commit checks passed
+- [ ] Push checks passed
 
 ## Screenshots
 

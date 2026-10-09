@@ -1,4 +1,6 @@
 # Master artwork catalogue. Generated JSON files must not be edited manually.
+# Base-product SKU format: PS-{product type}-{design number}.
+# Snipcart option values such as Size are not encoded in this SKU.
 scenes:
   landscape:
     &landscape {
@@ -20,9 +22,9 @@ scenes:
     }
 artworks:
   - {
-      artworkCode: PS-001,
+      sku: PS-PR-001,
       title: Flower Bed,
-      handle: flower-bed-ps-001,
+      handle: flower-bed-ps-pr-001,
       description: 'A bright Eastbourne flower bed gathered into a joyful study of colour, leaves and late-season light.',
       placeName: Eastbourne,
       publishedOrder: 100,
@@ -37,9 +39,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-002,
+      sku: PS-PR-002,
       title: Seven Sisters from the Gardens,
-      handle: seven-sisters-from-the-gardens-ps-002,
+      handle: seven-sisters-from-the-gardens-ps-pr-002,
       description: 'Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast.',
       placeName: Seven Sisters,
       publishedOrder: 1,
@@ -54,9 +56,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-004,
+      sku: PS-PR-004,
       title: Beachy Head,
-      handle: beachy-head-ps-004,
+      handle: beachy-head-ps-pr-004,
       description: 'A tall, quiet portrait of the downland landmark where paths, chalk and weather meet.',
       placeName: Beachy Head,
       publishedOrder: 1,
@@ -71,9 +73,9 @@ artworks:
       roomScene: *portrait,
     }
   - {
-      artworkCode: PS-005,
+      sku: PS-PR-005,
       title: Meet Me in Eastbourne,
-      handle: meet-me-in-eastbourne-ps-005,
+      handle: meet-me-in-eastbourne-ps-pr-005,
       description: 'A broad Eastbourne view shaped by the town, the sea and the invitation to meet somewhere familiar.',
       placeName: Eastbourne,
       publishedOrder: 1,
@@ -88,9 +90,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-006,
+      sku: PS-PR-006,
       title: Eastbourne Pier,
-      handle: eastbourne-pier-ps-006,
+      handle: eastbourne-pier-ps-pr-006,
       description: 'The pier held against sea and sky: a familiar Eastbourne silhouette seen with fresh attention.',
       placeName: Eastbourne Pier,
       publishedOrder: 2,
@@ -105,9 +107,9 @@ artworks:
       roomScene: *collection,
     }
   - {
-      artworkCode: PS-007,
+      sku: PS-PR-007,
       title: 'Beach Huts, Eastbourne',
-      handle: beach-huts-eastbourne-ps-007,
+      handle: beach-huts-eastbourne-ps-pr-007,
       description: 'A row of Eastbourne beach huts turned into a small celebration of colour, rhythm and seaside days.',
       placeName: Eastbourne,
       publishedOrder: 99,
@@ -122,9 +124,9 @@ artworks:
       roomScene: *collection,
     }
   - {
-      artworkCode: PS-008,
+      sku: PS-PR-008,
       title: South Downs I,
-      handle: south-downs-i-ps-008,
+      handle: south-downs-i-ps-pr-008,
       description: 'A wide South Downs landscape of open fields, soft light and rolling Sussex horizons.',
       placeName: South Downs,
       publishedOrder: 1,
@@ -139,9 +141,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-009,
+      sku: PS-PR-009,
       title: Battle Abbey,
-      handle: battle-abbey-ps-009,
+      handle: battle-abbey-ps-pr-009,
       description: 'Historic stone, green grounds and the quiet atmosphere of Battle Abbey in East Sussex.',
       placeName: Battle,
       publishedOrder: 1,
@@ -156,9 +158,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-010,
+      sku: PS-PR-010,
       title: Sovereign Harbour Waterfront,
-      handle: sovereign-harbour-waterfront-ps-010,
+      handle: sovereign-harbour-waterfront-ps-pr-010,
       description: 'A spacious waterfront view where boats, buildings and open Eastbourne light meet.',
       placeName: Sovereign Harbour,
       publishedOrder: 1,
@@ -173,9 +175,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-011,
+      sku: PS-PR-011,
       title: Long Man,
-      handle: long-man-ps-011,
+      handle: long-man-ps-pr-011,
       description: 'The Long Man of Wilmington standing quietly against the chalk downland of Sussex.',
       placeName: Wilmington,
       publishedOrder: 1,
@@ -190,9 +192,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-012,
+      sku: PS-PR-012,
       title: Eastbourne Sunset,
-      handle: eastbourne-sunset-ps-012,
+      handle: eastbourne-sunset-ps-pr-012,
       description: 'Warm evening colour settling over Eastbourne, the sea and the edge of the day.',
       placeName: Eastbourne,
       publishedOrder: 1,
@@ -207,9 +209,9 @@ artworks:
       roomScene: *collection,
     }
   - {
-      artworkCode: PS-013,
+      sku: PS-PR-013,
       title: Martello 66,
-      handle: martello-66-ps-013,
+      handle: martello-66-ps-pr-013,
       description: 'A familiar Martello tower held against the changing light of the East Sussex coast.',
       placeName: Eastbourne,
       publishedOrder: 1,
@@ -224,9 +226,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-015,
+      sku: PS-PR-015,
       title: Devils Dyke,
-      handle: devils-dyke-ps-015,
+      handle: devils-dyke-ps-pr-015,
       description: 'Layered hills and open sky above the dramatic downland valley of Devils Dyke.',
       placeName: Devils Dyke,
       publishedOrder: 1,
@@ -241,9 +243,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-016,
+      sku: PS-PR-016,
       title: Parapente in the South Downs,
-      handle: parapente-south-downs-ps-016,
+      handle: parapente-south-downs-ps-pr-016,
       description: 'A vertical glimpse of flight, hillside and open Sussex air above the South Downs.',
       placeName: South Downs,
       publishedOrder: 1,
@@ -258,9 +260,9 @@ artworks:
       roomScene: *portrait,
     }
   - {
-      artworkCode: PS-003,
+      sku: PS-PR-003,
       title: Sovereign Harbour,
-      handle: sovereign-harbour-ps-003,
+      handle: sovereign-harbour-ps-pr-003,
       description: 'A detailed harbour view with boats, water and the calm geometry of Sovereign Harbour.',
       placeName: Sovereign Harbour,
       publishedOrder: 98,
@@ -275,9 +277,9 @@ artworks:
       roomScene: *landscape,
     }
   - {
-      artworkCode: PS-018,
+      sku: PS-PR-018,
       title: 'South Downs, Jeeps and Bike',
-      handle: south-downs-jeeps-and-bike-ps-018,
+      handle: south-downs-jeeps-and-bike-ps-pr-018,
       description: 'A lively South Downs scene of paths, vehicles and the everyday adventure of the hills.',
       placeName: South Downs,
       publishedOrder: 1,

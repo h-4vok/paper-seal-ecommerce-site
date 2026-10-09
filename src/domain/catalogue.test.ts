@@ -15,7 +15,7 @@ import {
 describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
     expect(artworks).toHaveLength(16);
-    expect(new Set(artworks.map(({ artworkCode }) => artworkCode)).size).toBe(16);
+    expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(16);
   });
 
   it('maps artwork prices to Snipcart base price and size modifiers', () => {
@@ -24,14 +24,14 @@ describe('catalogue model', () => {
     const url = `/artworks/${artwork.handle}`;
 
     expect(snipcartItemAttributes(artwork, image, url)).toEqual({
-      'data-item-id': artwork.artworkCode,
+      'data-item-id': artwork.sku,
       'data-item-description': artwork.description,
       'data-item-name': artwork.title,
       'data-item-image': image,
       'data-item-url': url,
-      'data-item-price': '8.00',
+      'data-item-price': '7.00',
       'data-item-custom1-name': 'Size',
-      'data-item-custom1-options': 'Small|Medium[+6.00]|Large[+20.00]',
+      'data-item-custom1-options': 'Small|Medium[+7.00]|Large[+21.00]',
     });
   });
 
@@ -45,8 +45,9 @@ describe('catalogue model', () => {
     [[], 'Catalogue must contain'],
     [[null], 'must be an object'],
     [[{ ...artworks[0], title: '' }], 'invalid title'],
-    [[{ ...artworks[0], artworkCode: 'bad' }], 'invalid artworkCode'],
-    [[{ ...artworks[0], handle: 'bad' }], 'invalid handle'],
+    [[{ ...artworks[0], sku: 'bad' }], 'invalid sku'],
+    [[{ ...artworks[0], handle: 'Bad Handle' }], 'invalid handle'],
+    [[{ ...artworks[0], handle: 'seven-sisters-wrong-sku-suffix' }], 'invalid handle'],
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
@@ -55,6 +56,10 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
     [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
+    [
+      [artworks[0], { ...artworks[1], sku: artworks[0].sku, handle: 'amber-harbour-ps-pr-001' }],
+      'duplicates',
+    ],
   ])('rejects invalid data %#', (input, message) => {
     expect(() => validateCatalogue(input)).toThrow(message as string);
   });
@@ -62,6 +67,7 @@ describe('catalogue model', () => {
   it('normalizes and fuzzy-matches useful local metadata', () => {
     expect(normalizeSearch('  Seven—Sísters  ')).toBe('seven sisters');
     expect(artworkMatches(artworks[1], 'svn sstrs')).toBe(true);
+    expect(artworkMatches(artworks[1], 'PS-PR-002')).toBe(true);
     expect(artworkMatches(artworks[1], 'Harbour')).toBe(false);
     expect(artworkMatches(artworks[0], '')).toBe(true);
   });
@@ -69,9 +75,9 @@ describe('catalogue model', () => {
   it('filters and sorts a local catalogue for every filter state', () => {
     const items = [
       {
-        artworkCode: 'PS-003',
+        sku: 'PS-PR-003',
         title: 'Zebra Coast',
-        handle: 'zebra-coast-ps-003',
+        handle: 'zebra-coast-ps-pr-003',
         description: 'A coastal study.',
         placeName: 'Brighton',
         publishedOrder: 2,
@@ -82,9 +88,9 @@ describe('catalogue model', () => {
         gallery: ['flat'],
       },
       {
-        artworkCode: 'PS-002',
+        sku: 'PS-PR-002',
         title: 'Amber Harbour',
-        handle: 'amber-harbour-ps-002',
+        handle: 'amber-harbour-ps-pr-002',
         description: 'A harbour study.',
         placeName: 'Brighton',
         publishedOrder: 2,
@@ -95,9 +101,9 @@ describe('catalogue model', () => {
         gallery: ['room'],
       },
       {
-        artworkCode: 'PS-001',
+        sku: 'PS-PR-001',
         title: 'Quiet Moor',
-        handle: 'quiet-moor-ps-001',
+        handle: 'quiet-moor-ps-pr-001',
         description: 'A moorland study.',
         placeName: 'Yorkshire',
         publishedOrder: 1,
@@ -115,23 +121,23 @@ describe('catalogue model', () => {
       place: 'all',
       sort: 'newest',
     });
-    expect(allNewest.map(({ artworkCode }) => artworkCode)).toEqual(['PS-002', 'PS-003', 'PS-001']);
+    expect(allNewest.map(({ sku }) => sku)).toEqual(['PS-PR-002', 'PS-PR-003', 'PS-PR-001']);
     expect(allNewest).not.toBe(catalogue);
-    expect(catalogue.map(({ artworkCode }) => artworkCode)).toEqual(['PS-003', 'PS-002', 'PS-001']);
+    expect(catalogue.map(({ sku }) => sku)).toEqual(['PS-PR-003', 'PS-PR-002', 'PS-PR-001']);
 
     const filteredByQueryAndPlace = filterCatalogue(catalogue, {
       query: 'harbour',
       place: 'Brighton',
       sort: 'title',
     });
-    expect(filteredByQueryAndPlace.map(({ artworkCode }) => artworkCode)).toEqual(['PS-002']);
+    expect(filteredByQueryAndPlace.map(({ sku }) => sku)).toEqual(['PS-PR-002']);
 
     const filteredByPlace = filterCatalogue(catalogue, {
       query: '',
       place: 'Yorkshire',
       sort: 'title',
     });
-    expect(filteredByPlace.map(({ artworkCode }) => artworkCode)).toEqual(['PS-001']);
+    expect(filteredByPlace.map(({ sku }) => sku)).toEqual(['PS-PR-001']);
 
     expect(
       filterCatalogue(catalogue, {
@@ -170,7 +176,7 @@ describe('catalogue model', () => {
     expect(galleryIndex(0, 3, -1)).toBe(2);
     expect(galleryIndex(0, 0, 1)).toBe(0);
     const data = productStructuredData(artworks[0], 'https://paperseal.co.uk/a', '/image.jpg');
-    expect(data).toMatchObject({ '@type': 'Product', sku: 'PS-001' });
+    expect(data).toMatchObject({ '@type': 'Product', sku: artworks[0].sku });
     expect(data).not.toHaveProperty('offers');
     expect(JSON.stringify(data)).not.toMatch(/price|availability|review/i);
   });

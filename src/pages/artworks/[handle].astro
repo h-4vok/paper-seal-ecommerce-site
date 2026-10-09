@@ -185,9 +185,7 @@ const gallery = [
       </div>
 
       <article class="product-information">
-        <p class="eyebrow">
-          {artwork.collections[0]} · {artwork.artworkCode}
-        </p>
+        <p class="eyebrow">{artwork.collections[0]}</p>
         <h1>{artwork.title}</h1>
         <a class="product-place" href={`/artworks?place=${encodeURIComponent(artwork.placeName)}`}>
           {artwork.placeName}

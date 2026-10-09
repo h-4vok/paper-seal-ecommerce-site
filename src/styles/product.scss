@@ -338,6 +338,7 @@ dialog.product-lightbox {
   z-index: 0;
   width: 100%;
   min-height: 4.25rem;
+  cursor: pointer;
   display: grid;
   grid-template-columns: 3rem minmax(0, 1fr) minmax(5.25rem, auto);
   gap: 0.8rem;
