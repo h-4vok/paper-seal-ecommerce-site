@@ -38,6 +38,16 @@
   background: var(--color-paper-deep);
 }
 
+.product-lightbox__image-wrap img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(94vh - 2rem);
+  border-radius: 0.15rem;
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 48%);
+  object-fit: contain;
+}
+
 .product-gallery__stage {
   position: relative;
   aspect-ratio: 7 / 5;
@@ -52,11 +62,29 @@
   place-items: center;
 }
 
-.product-gallery__slide picture {
+.product-gallery__slide .artwork-picture {
   display: grid;
-  height: 100%;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
+  max-height: 100%;
   place-items: center;
+}
+
+.product-gallery__zoom-trigger {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  place-items: center;
+  min-width: 0;
+}
+
+.product-gallery__zoom-trigger:focus-visible {
+  outline: 0.2rem solid var(--color-focus);
+  outline-offset: -0.3rem;
 }
 
 .product-gallery__slide[hidden] {
@@ -72,13 +100,11 @@
   object-fit: contain;
 }
 
-.product-gallery__zoom-trigger {
-  display: contents;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: zoom-in;
+.product-gallery__slide .artwork-picture > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .product-lightbox {
@@ -111,14 +137,13 @@ dialog.product-lightbox {
   place-items: center;
 }
 
-.product-lightbox__surface img {
-  width: auto;
-  height: auto;
+.product-lightbox__image-wrap {
+  position: relative;
+  display: grid;
   max-width: calc(94vw - 2rem);
   max-height: calc(94vh - 2rem);
-  border-radius: 0.15rem;
-  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 48%);
-  object-fit: contain;
+  overflow: hidden;
+  place-items: center;
 }
 
 @keyframes lightbox-in {
