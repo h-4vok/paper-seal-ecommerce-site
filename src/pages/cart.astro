@@ -7,12 +7,13 @@ import { copy } from '../content/copy';
 const { cart } = copy;
 const title = cart.seo.title;
 const description = cart.seo.description;
+const siteOrigin = Astro.site ?? Astro.url.origin;
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
-    { '@type': 'ListItem', position: 2, name: 'Cart', item: 'https://paperseal.co.uk/cart' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', siteOrigin).href },
+    { '@type': 'ListItem', position: 2, name: 'Cart', item: new URL('/cart', siteOrigin).href },
   ],
 };
 ---

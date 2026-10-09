@@ -30,6 +30,7 @@ const catalogue = {
 };
 const title = catalogue.title;
 const description = catalogue.description;
+const siteOrigin = Astro.site ?? Astro.url.origin;
 const places = [...new Set(artworks.map(({ placeName }) => placeName))].sort((a, b) =>
   a.localeCompare(b, 'en-GB'),
 );
@@ -39,14 +40,14 @@ const structuredData = [
     '@type': 'CollectionPage',
     name: 'The Paper Seal Studio artworks',
     description,
-    url: 'https://paperseal.co.uk/artworks',
+    url: new URL('/artworks', siteOrigin).href,
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: artworks.map((artwork, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         name: artwork.title,
-        url: `https://paperseal.co.uk/artworks/${artwork.handle}`,
+        url: new URL(`/artworks/${artwork.handle}`, siteOrigin).href,
       })),
     },
   },
@@ -54,12 +55,12 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', siteOrigin).href },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Artworks',
-        item: 'https://paperseal.co.uk/artworks',
+        item: new URL('/artworks', siteOrigin).href,
       },
     ],
   },

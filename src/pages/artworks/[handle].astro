@@ -20,6 +20,7 @@ const { product } = copy;
 const productLabels = product.labels;
 const showFramingSelector = false;
 const canonical = `/artworks/${artwork.handle}`;
+const siteOrigin = Astro.site ?? Astro.url.origin;
 const shareImage = `/images/artworks/${artwork.assetBase}/room-1440.jpg`;
 const snipcartAttributes = snipcartItemAttributes(artwork, shareImage, canonical);
 const initialAddToCartLabel = copyText(productLabels.addToCart, {
@@ -30,25 +31,25 @@ const description = `${artwork.description} Explore this Paper Seal Studio print
 const structuredData = [
   productStructuredData(
     artwork,
-    `https://paperseal.co.uk${canonical}`,
-    `https://paperseal.co.uk${shareImage}`,
+    new URL(canonical, siteOrigin).href,
+    new URL(shareImage, siteOrigin).href,
   ),
   {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', siteOrigin).href },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Artworks',
-        item: 'https://paperseal.co.uk/artworks',
+        item: new URL('/artworks', siteOrigin).href,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: artwork.title,
-        item: `https://paperseal.co.uk${canonical}`,
+        item: new URL(canonical, siteOrigin).href,
       },
     ],
   },

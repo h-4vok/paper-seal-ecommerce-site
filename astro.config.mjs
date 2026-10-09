@@ -1,9 +1,15 @@
 import react from '@astrojs/react';
 import { defineConfig } from 'astro/config';
 import { resolve } from 'node:path';
+import { resolveSiteOrigin } from './scripts/site-origin.mjs';
 
 const copyDirectory = resolve('content/copy/en-GB').replaceAll('\\', '/');
 const copyLoader = resolve('src/content/copy.ts').replaceAll('\\', '/');
+const site = resolveSiteOrigin({
+  context: process.env.CONTEXT,
+  deployPrimeUrl: process.env.DEPLOY_PRIME_URL,
+  siteOrigin: process.env.SITE_ORIGIN,
+});
 
 const copyHotReload = {
   name: 'copy-hot-reload',
@@ -21,7 +27,7 @@ const copyHotReload = {
 };
 
 export default defineConfig({
-  site: 'https://paperseal.co.uk',
+  site,
   integrations: [react()],
   vite: {
     plugins: [copyHotReload],
