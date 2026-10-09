@@ -10,6 +10,7 @@ const settings = JSON.stringify({
   modalStyle: 'side',
 }).replaceAll('<', '\\u003c');
 ---
+
 <script is:inline set:html={`window.SnipcartSettings = ${settings};`} />
 <script is:inline>
   const events = ['focus', 'mouseover', 'touchmove', 'scroll', 'keydown'];
