@@ -1,0 +1,1256 @@
+{
+  "version": 1,
+  "outputPixels": [1440, 1080],
+  "paperIsFullBleed": true,
+  "frameIsIllustrativeOnly": true,
+  "scenes": [
+    {
+      "id": "01",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 314,
+            "top": 302,
+            "width": 685,
+            "height": 489
+          },
+          "template": "01-ivory-shelf/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 697,
+            "top": 276,
+            "width": 383,
+            "height": 537
+          },
+          "template": "01-ivory-shelf/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 259,
+            "top": 216,
+            "width": 821,
+            "height": 581
+          },
+          "template": "01-ivory-shelf/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 351,
+            "top": 90,
+            "width": 593,
+            "height": 838
+          },
+          "template": "01-ivory-shelf/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 500,
+            "top": 259,
+            "width": 788,
+            "height": 557
+          },
+          "template": "01-ivory-shelf/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 172,
+            "top": 134,
+            "width": 577,
+            "height": 816
+          },
+          "template": "01-ivory-shelf/portrait-a3.jpg"
+        }
+      ],
+      "slug": "01-ivory-shelf"
+    },
+    {
+      "id": "02",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 216,
+            "top": 403,
+            "width": 685,
+            "height": 490
+          },
+          "template": "02-charcoal-gallery/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 282,
+            "top": 116,
+            "width": 572,
+            "height": 801
+          },
+          "template": "02-charcoal-gallery/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 313,
+            "top": 238,
+            "width": 774,
+            "height": 547
+          },
+          "template": "02-charcoal-gallery/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 409,
+            "top": 134,
+            "width": 540,
+            "height": 764
+          },
+          "template": "02-charcoal-gallery/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 254,
+            "top": 322,
+            "width": 896,
+            "height": 634
+          },
+          "template": "02-charcoal-gallery/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 386,
+            "top": 110,
+            "width": 586,
+            "height": 828
+          },
+          "template": "02-charcoal-gallery/portrait-a3.jpg"
+        }
+      ],
+      "slug": "02-charcoal-gallery"
+    },
+    {
+      "id": "03",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 633,
+            "top": 453,
+            "width": 440,
+            "height": 315
+          },
+          "template": "03-pale-blue-ledge/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 627,
+            "top": 400,
+            "width": 318,
+            "height": 446
+          },
+          "template": "03-pale-blue-ledge/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 655,
+            "top": 289,
+            "width": 644,
+            "height": 455
+          },
+          "template": "03-pale-blue-ledge/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 752,
+            "top": 155,
+            "width": 542,
+            "height": 767
+          },
+          "template": "03-pale-blue-ledge/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 612,
+            "top": 295,
+            "width": 676,
+            "height": 478
+          },
+          "template": "03-pale-blue-ledge/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 717,
+            "top": 135,
+            "width": 575,
+            "height": 813
+          },
+          "template": "03-pale-blue-ledge/portrait-a3.jpg"
+        }
+      ],
+      "slug": "03-pale-blue-ledge"
+    },
+    {
+      "id": "04",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 300,
+            "top": 232,
+            "width": 601,
+            "height": 429
+          },
+          "template": "04-terracotta-bench/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 490,
+            "top": 92,
+            "width": 427,
+            "height": 597
+          },
+          "template": "04-terracotta-bench/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 301,
+            "top": 215,
+            "width": 733,
+            "height": 518
+          },
+          "template": "04-terracotta-bench/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 513,
+            "top": 185,
+            "width": 391,
+            "height": 553
+          },
+          "template": "04-terracotta-bench/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 329,
+            "top": 234,
+            "width": 693,
+            "height": 490
+          },
+          "template": "04-terracotta-bench/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 394,
+            "top": 113,
+            "width": 520,
+            "height": 735
+          },
+          "template": "04-terracotta-bench/portrait-a3.jpg"
+        }
+      ],
+      "slug": "04-terracotta-bench"
+    },
+    {
+      "id": "05",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 422,
+            "top": 546,
+            "width": 462,
+            "height": 330
+          },
+          "template": "05-oak-console/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 288,
+            "top": 195,
+            "width": 440,
+            "height": 616
+          },
+          "template": "05-oak-console/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 373,
+            "top": 240,
+            "width": 686,
+            "height": 485
+          },
+          "template": "05-oak-console/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 605,
+            "top": 350,
+            "width": 410,
+            "height": 579
+          },
+          "template": "05-oak-console/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 325,
+            "top": 161,
+            "width": 785,
+            "height": 555
+          },
+          "template": "05-oak-console/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 419,
+            "top": 102,
+            "width": 579,
+            "height": 819
+          },
+          "template": "05-oak-console/portrait-a3.jpg"
+        }
+      ],
+      "slug": "05-oak-console"
+    },
+    {
+      "id": "06",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 763,
+            "top": 416,
+            "width": 541,
+            "height": 387
+          },
+          "template": "06-sage-reading/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 801,
+            "top": 150,
+            "width": 441,
+            "height": 618
+          },
+          "template": "06-sage-reading/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 411,
+            "top": 259,
+            "width": 612,
+            "height": 433
+          },
+          "template": "06-sage-reading/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 670,
+            "top": 112,
+            "width": 524,
+            "height": 742
+          },
+          "template": "06-sage-reading/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 438,
+            "top": 251,
+            "width": 887,
+            "height": 627
+          },
+          "template": "06-sage-reading/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 473,
+            "top": 86,
+            "width": 579,
+            "height": 821
+          },
+          "template": "06-sage-reading/portrait-a3.jpg"
+        }
+      ],
+      "slug": "06-sage-reading"
+    },
+    {
+      "id": "07",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 593,
+            "top": 331,
+            "width": 601,
+            "height": 430
+          },
+          "template": "07-rose-bedroom/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 211,
+            "top": 249,
+            "width": 488,
+            "height": 682
+          },
+          "template": "07-rose-bedroom/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 224,
+            "top": 161,
+            "width": 733,
+            "height": 518
+          },
+          "template": "07-rose-bedroom/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 134,
+            "top": 167,
+            "width": 531,
+            "height": 752
+          },
+          "template": "07-rose-bedroom/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 445,
+            "top": 211,
+            "width": 824,
+            "height": 582
+          },
+          "template": "07-rose-bedroom/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 423,
+            "top": 170,
+            "width": 555,
+            "height": 786
+          },
+          "template": "07-rose-bedroom/portrait-a3.jpg"
+        }
+      ],
+      "slug": "07-rose-bedroom"
+    },
+    {
+      "id": "08",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 421,
+            "top": 282,
+            "width": 613,
+            "height": 438
+          },
+          "template": "08-ink-studio/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 461,
+            "top": 115,
+            "width": 524,
+            "height": 734
+          },
+          "template": "08-ink-studio/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 370,
+            "top": 266,
+            "width": 713,
+            "height": 504
+          },
+          "template": "08-ink-studio/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 439,
+            "top": 81,
+            "width": 557,
+            "height": 788
+          },
+          "template": "08-ink-studio/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 343,
+            "top": 269,
+            "width": 763,
+            "height": 540
+          },
+          "template": "08-ink-studio/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 187,
+            "top": 71,
+            "width": 658,
+            "height": 929
+          },
+          "template": "08-ink-studio/portrait-a3.jpg"
+        }
+      ],
+      "slug": "08-ink-studio"
+    },
+    {
+      "id": "09",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 650,
+            "top": 489,
+            "width": 605,
+            "height": 432
+          },
+          "template": "09-diagonal-table/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 737,
+            "top": 402,
+            "width": 432,
+            "height": 605
+          },
+          "template": "09-diagonal-table/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 593,
+            "top": 299,
+            "width": 784,
+            "height": 554
+          },
+          "template": "09-diagonal-table/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 707,
+            "top": 185,
+            "width": 554,
+            "height": 784
+          },
+          "template": "09-diagonal-table/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 488,
+            "top": 214,
+            "width": 924,
+            "height": 653
+          },
+          "template": "09-diagonal-table/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 624,
+            "top": 78,
+            "width": 653,
+            "height": 924
+          },
+          "template": "09-diagonal-table/portrait-a3.jpg"
+        }
+      ],
+      "slug": "09-diagonal-table"
+    },
+    {
+      "id": "10",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 733,
+            "top": 241,
+            "width": 600,
+            "height": 429
+          },
+          "template": "10-light-concrete/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 674,
+            "top": 200,
+            "width": 522,
+            "height": 731
+          },
+          "template": "10-light-concrete/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 587,
+            "top": 266,
+            "width": 622,
+            "height": 440
+          },
+          "template": "10-light-concrete/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 537,
+            "top": 105,
+            "width": 539,
+            "height": 763
+          },
+          "template": "10-light-concrete/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 357,
+            "top": 133,
+            "width": 734,
+            "height": 519
+          },
+          "template": "10-light-concrete/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 551,
+            "top": 109,
+            "width": 528,
+            "height": 747
+          },
+          "template": "10-light-concrete/portrait-a3.jpg"
+        }
+      ],
+      "slug": "10-light-concrete"
+    },
+    {
+      "id": "11",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 656,
+            "top": 378,
+            "width": 279,
+            "height": 200
+          },
+          "template": "11-muted-yellow-hall/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 341,
+            "top": 174,
+            "width": 381,
+            "height": 532
+          },
+          "template": "11-muted-yellow-hall/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 523,
+            "top": 302,
+            "width": 466,
+            "height": 330
+          },
+          "template": "11-muted-yellow-hall/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 670,
+            "top": 245,
+            "width": 330,
+            "height": 466
+          },
+          "template": "11-muted-yellow-hall/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 376,
+            "top": 210,
+            "width": 660,
+            "height": 466
+          },
+          "template": "11-muted-yellow-hall/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 553,
+            "top": 149,
+            "width": 466,
+            "height": 660
+          },
+          "template": "11-muted-yellow-hall/portrait-a3.jpg"
+        }
+      ],
+      "slug": "11-muted-yellow-hall"
+    },
+    {
+      "id": "12",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 763,
+            "top": 306,
+            "width": 468,
+            "height": 334
+          },
+          "template": "12-coastal-cottage/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 824,
+            "top": 188,
+            "width": 425,
+            "height": 595
+          },
+          "template": "12-coastal-cottage/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 542,
+            "top": 151,
+            "width": 754,
+            "height": 533
+          },
+          "template": "12-coastal-cottage/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 499,
+            "top": 142,
+            "width": 437,
+            "height": 618
+          },
+          "template": "12-coastal-cottage/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 468,
+            "top": 152,
+            "width": 841,
+            "height": 595
+          },
+          "template": "12-coastal-cottage/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 402,
+            "top": 122,
+            "width": 528,
+            "height": 746
+          },
+          "template": "12-coastal-cottage/portrait-a3.jpg"
+        }
+      ],
+      "slug": "12-coastal-cottage"
+    },
+    {
+      "id": "13",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 737,
+            "top": 321,
+            "width": 340,
+            "height": 243
+          },
+          "template": "13-window-green/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 816,
+            "top": 217,
+            "width": 463,
+            "height": 649
+          },
+          "template": "13-window-green/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 729,
+            "top": 271,
+            "width": 445,
+            "height": 315
+          },
+          "template": "13-window-green/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 717,
+            "top": 154,
+            "width": 546,
+            "height": 773
+          },
+          "template": "13-window-green/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 665,
+            "top": 334,
+            "width": 472,
+            "height": 334
+          },
+          "template": "13-window-green/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 697,
+            "top": 147,
+            "width": 535,
+            "height": 757
+          },
+          "template": "13-window-green/portrait-a3.jpg"
+        }
+      ],
+      "slug": "13-window-green"
+    },
+    {
+      "id": "14",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 688,
+            "top": 169,
+            "width": 602,
+            "height": 430
+          },
+          "template": "14-burgundy-library/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 708,
+            "top": 164,
+            "width": 521,
+            "height": 729
+          },
+          "template": "14-burgundy-library/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 626,
+            "top": 164,
+            "width": 677,
+            "height": 479
+          },
+          "template": "14-burgundy-library/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 533,
+            "top": 125,
+            "width": 541,
+            "height": 765
+          },
+          "template": "14-burgundy-library/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 477,
+            "top": 179,
+            "width": 766,
+            "height": 541
+          },
+          "template": "14-burgundy-library/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 445,
+            "top": 114,
+            "width": 566,
+            "height": 799
+          },
+          "template": "14-burgundy-library/portrait-a3.jpg"
+        }
+      ],
+      "slug": "14-burgundy-library"
+    },
+    {
+      "id": "15",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 239,
+            "top": 500,
+            "width": 543,
+            "height": 388
+          },
+          "template": "15-chalk-workshop/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 243,
+            "top": 332,
+            "width": 401,
+            "height": 562
+          },
+          "template": "15-chalk-workshop/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 330,
+            "top": 466,
+            "width": 594,
+            "height": 420
+          },
+          "template": "15-chalk-workshop/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 462,
+            "top": 306,
+            "width": 420,
+            "height": 594
+          },
+          "template": "15-chalk-workshop/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 327,
+            "top": 408,
+            "width": 571,
+            "height": 403
+          },
+          "template": "15-chalk-workshop/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 455,
+            "top": 253,
+            "width": 403,
+            "height": 571
+          },
+          "template": "15-chalk-workshop/portrait-a3.jpg"
+        }
+      ],
+      "slug": "15-chalk-workshop"
+    },
+    {
+      "id": "16",
+      "variants": [
+        {
+          "orientation": "landscape",
+          "size": "7x5",
+          "paperMm": [177.8, 127],
+          "paperRectPx": {
+            "left": 668,
+            "top": 158,
+            "width": 604,
+            "height": 431
+          },
+          "template": "16-eclectic-living/landscape-7x5.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "7x5",
+          "paperMm": [127, 177.8],
+          "paperRectPx": {
+            "left": 718,
+            "top": 253,
+            "width": 458,
+            "height": 640
+          },
+          "template": "16-eclectic-living/portrait-7x5.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a4",
+          "paperMm": [297, 210],
+          "paperRectPx": {
+            "left": 707,
+            "top": 160,
+            "width": 608,
+            "height": 430
+          },
+          "template": "16-eclectic-living/landscape-a4.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a4",
+          "paperMm": [210, 297],
+          "paperRectPx": {
+            "left": 670,
+            "top": 110,
+            "width": 606,
+            "height": 858
+          },
+          "template": "16-eclectic-living/portrait-a4.jpg"
+        },
+        {
+          "orientation": "landscape",
+          "size": "a3",
+          "paperMm": [420, 297],
+          "paperRectPx": {
+            "left": 603,
+            "top": 140,
+            "width": 689,
+            "height": 488
+          },
+          "template": "16-eclectic-living/landscape-a3.jpg"
+        },
+        {
+          "orientation": "portrait",
+          "size": "a3",
+          "paperMm": [297, 420],
+          "paperRectPx": {
+            "left": 681,
+            "top": 130,
+            "width": 460,
+            "height": 650
+          },
+          "template": "16-eclectic-living/portrait-a3.jpg"
+        }
+      ],
+      "slug": "16-eclectic-living"
+    }
+  ]
+}
