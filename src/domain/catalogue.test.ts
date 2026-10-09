@@ -175,7 +175,7 @@ describe('catalogue model', () => {
     expect(galleryIndex(2, 3, 1)).toBe(0);
     expect(galleryIndex(0, 3, -1)).toBe(2);
     expect(galleryIndex(0, 0, 1)).toBe(0);
-    const data = productStructuredData(artworks[0], 'https://paperseal.co.uk/a', '/image.jpg');
+    const data = productStructuredData(artworks[0], 'https://paperseal.uk/a', '/image.jpg');
     expect(data).toMatchObject({ '@type': 'Product', sku: artworks[0].sku });
     expect(data).not.toHaveProperty('offers');
     expect(JSON.stringify(data)).not.toMatch(/price|availability|review/i);
