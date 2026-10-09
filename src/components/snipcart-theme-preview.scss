@@ -36,6 +36,7 @@
   align-items: center;
   flex: 0 0 auto;
   justify-content: space-between;
+  min-height: var(--header-height);
 }
 
 .snipcart-theme-preview__drawer .snipcart-cart__secondary-header-title {

@@ -157,7 +157,7 @@
 }
 
 #snipcart .snipcart-cart__secondary-header {
-  min-height: 5.5rem;
+  min-height: var(--header-height);
   padding-inline: clamp(1.25rem, 3vw, 2rem);
 }
 
@@ -233,7 +233,7 @@
 
 @media (width < 620px) {
   #snipcart .snipcart-cart__secondary-header {
-    min-height: 4.5rem;
+    min-height: var(--header-height);
     padding-inline: 1.1rem;
   }
 
