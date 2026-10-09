@@ -35,26 +35,7 @@
 }
 
 html {
-  scrollbar-gutter: stable;
   scroll-behavior: smooth;
-}
-
-html:is(.snipcart-sidecart--opened, .snipcart-cart--opened)::-webkit-scrollbar {
-  width: auto;
-}
-
-html.snipcart-sidecart--opened body::after {
-  position: fixed;
-  z-index: 99998;
-  background: rgb(11 37 65 / 56%);
-  content: '';
-  inset: 0;
-  pointer-events: auto;
-}
-
-html.snipcart-sidecart--opened #snipcart {
-  position: relative;
-  z-index: 99999;
 }
 
 body {
