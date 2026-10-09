@@ -17,6 +17,8 @@ dist/
 .netlify/
 .vercel/
 coverage/
+playwright-report/
+test-results/
 
 # Local editor and OS files
 .DS_Store
