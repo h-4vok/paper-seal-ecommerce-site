@@ -16,8 +16,8 @@ const collectionHeading = home.collection.heading;
 const browseHeading = home.browse.heading;
 const browseAnnotation = home.browse.annotation;
 const [featuredBeachHuts, featuredHarbour] = [
-  artworks.find((artwork) => artwork.artworkCode === 'PS-007'),
-  artworks.find((artwork) => artwork.artworkCode === 'PS-003'),
+  artworks.find((artwork) => artwork.sku === 'PS-PR-007'),
+  artworks.find((artwork) => artwork.sku === 'PS-PR-003'),
 ];
 if (!featuredBeachHuts || !featuredHarbour) throw new Error('Featured home artworks are missing from the catalogue.');
 const canonical = new URL('/', Astro.site ?? Astro.url.origin).href;

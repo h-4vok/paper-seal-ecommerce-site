@@ -16,12 +16,7 @@ dist/
 .astro/
 .netlify/
 .vercel/
-storybook-build/
-storybook-static/
-visual-evidence/
 coverage/
-playwright-report/
-test-results/
 
 # Local editor and OS files
 .DS_Store

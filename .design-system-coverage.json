@@ -1,96 +1,76 @@
 {
   "foundations": {
     "tokens": "src/styles/global.scss",
-    "story": "src/components/DesignSystem.stories.tsx",
     "sharedClasses": ["eyebrow", "section-shell", "button-link", "text-link"]
   },
   "exceptions": [
     {
       "name": "JsonLd",
-      "reason": "head-only structured-data primitive; no visual story"
+      "reason": "head-only structured-data primitive; not a reusable visual component"
     },
     {
       "name": "SeoHead",
-      "reason": "head-only metadata primitive; no visual story"
+      "reason": "head-only metadata primitive; not a reusable visual component"
     },
     {
       "name": "SnipcartIntegration",
-      "reason": "The production Astro integration loads vendor-owned checkout markup, so the Storybook theme specimen shows representative vendor classes and states rather than importing the live Snipcart application.",
-      "story": "src/components/SnipcartTheme.stories.tsx",
-      "owner": "Storefront maintainers",
-      "scope": "Snipcart cart states",
-      "parity": "Theme variables and class selectors are shared from src/styles/snipcart.scss; the live Snipcart smoke test verifies the actual side cart."
+      "reason": "Vendor integration boundary; not a reusable presentation component."
     }
   ],
   "components": [
     {
       "name": "ArtworkCard",
       "source": "src/components/ArtworkCard.astro",
-      "story": "src/components/ArtworkCard.stories.tsx",
       "level": "Molecules",
       "useFor": "Catalogue artwork link with mounted image and caption."
     },
     {
       "name": "ArtworkPicture",
       "source": "src/components/ArtworkPicture.astro",
-      "story": "src/components/ArtworkPicture.stories.tsx",
       "level": "Atoms",
       "useFor": "Responsive flat or room artwork derivative."
     },
     {
       "name": "BrandMark",
       "source": "src/components/BrandMark.astro",
-      "story": "src/components/BrandMark.stories.tsx",
       "level": "Atoms",
       "useFor": "Seal and wordmark lockup."
     },
     {
       "name": "InstitutionalPage",
       "source": "src/components/InstitutionalPage.astro",
-      "story": "src/components/InstitutionalPage.stories.tsx",
       "level": "Templates",
-      "useFor": "Our Story and policy page layout."
+      "useFor": "Our Story, Collabs and policy page layout, including the shared content update notice."
     },
     {
       "name": "PaperQuality",
       "source": "src/components/PaperQuality.astro",
-      "story": "src/components/PaperQuality.stories.tsx",
       "level": "Organisms",
       "useFor": "Timed editorial paper and quality carousel."
     },
     {
       "name": "PlaceholderPage",
       "source": "src/components/PlaceholderPage.astro",
-      "story": "src/components/PlaceholderPage.stories.tsx",
       "level": "Templates",
       "useFor": "Shared not-yet-available route state."
     },
     {
       "name": "SiteFooter",
       "source": "src/components/SiteFooter.astro",
-      "story": "src/components/SiteFooter.stories.tsx",
       "level": "Organisms",
       "useFor": "Global footer navigation and small print."
     },
     {
       "name": "SiteHeader",
       "source": "src/components/SiteHeader.astro",
-      "story": "src/components/SiteHeader.stories.tsx",
       "level": "Organisms",
       "useFor": "Global desktop header and mobile navigation."
     },
     {
       "name": "CartTrigger",
       "source": "src/components/CartTrigger.astro",
-      "story": "src/components/CartTrigger.stories.tsx",
       "level": "Molecules",
-      "useFor": "Header bag that opens the Snipcart cart and displays its item count.",
-      "boundary": {
-        "reason": "CartTrigger.astro is static Astro markup; its Storybook preview mirrors the button, icon, badge classes and production CSS because Storybook React cannot import Astro.",
-        "owner": "Storefront maintainers",
-        "scope": "CartTrigger stories and header previews",
-        "parity": "The SVG, button classes and CSS are kept aligned; desktop/mobile Storybook viewports cover the static trigger."
-      }
+      "useFor": "Header bag that opens the Snipcart cart and displays its item count."
     }
   ]
 }
