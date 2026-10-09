@@ -229,6 +229,10 @@
   letter-spacing: 0.04em;
 }
 
+#snipcart .snipcart-cart__secondary-header > button {
+  cursor: pointer;
+}
+
 #snipcart .snipcart-form__field,
 #snipcart .snipcart-item-quantity__quantity {
   border-radius: var(--radius-small);

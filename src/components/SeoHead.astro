@@ -22,6 +22,7 @@ const {
 const resolvedCanonical = new URL(canonical, Astro.site ?? Astro.url.origin).href;
 const resolvedImage = image ? new URL(image, Astro.site ?? Astro.url.origin).href : undefined;
 ---
+
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={resolvedCanonical} />

@@ -16,10 +16,11 @@ const collectionHeading = home.collection.heading;
 const browseHeading = home.browse.heading;
 const browseAnnotation = home.browse.annotation;
 const [featuredBeachHuts, featuredHarbour] = [
-  artworks.find((artwork) => artwork.artworkCode === 'PS-007'),
-  artworks.find((artwork) => artwork.artworkCode === 'PS-003'),
+  artworks.find((artwork) => artwork.sku === 'PS-PR-007'),
+  artworks.find((artwork) => artwork.sku === 'PS-PR-003'),
 ];
-if (!featuredBeachHuts || !featuredHarbour) throw new Error('Featured home artworks are missing from the catalogue.');
+if (!featuredBeachHuts || !featuredHarbour)
+  throw new Error('Featured home artworks are missing from the catalogue.');
 const canonical = new URL('/', Astro.site ?? Astro.url.origin).href;
 const socialImage = new URL(heroImage.src, Astro.site ?? Astro.url.origin).href;
 const structuredData = [
@@ -40,6 +41,7 @@ const structuredData = [
   },
 ];
 ---
+
 <BaseLayout
   {title}
   {description}
@@ -73,14 +75,21 @@ const structuredData = [
         <figcaption>{home.hero.caption}</figcaption>
       </figure>
 
-      <p class="home-hero__note" aria-hidden="true">{home.hero.note}</p>
+      <p class="home-hero__note" aria-hidden="true">
+        {home.hero.note}
+      </p>
     </section>
 
     <section class="promise-strip" aria-label={home.promise.label}>
       {home.promise.items.map((promise) => (
         <article>
-          <span class="promise-strip__icon" aria-hidden="true">{promise.icon}</span>
-          <div><h2>{promise.heading}</h2><p>{promise.body}</p></div>
+          <span class="promise-strip__icon" aria-hidden="true">
+            {promise.icon}
+          </span>
+          <div>
+            <h2>{promise.heading}</h2>
+            <p>{promise.body}</p>
+          </div>
         </article>
       ))}
     </section>
@@ -91,10 +100,13 @@ const structuredData = [
         <h2 id="manifesto-title">{home.manifesto.heading}</h2>
       </div>
       <div class="manifesto__copy">
-        {home.manifesto.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}
+        {home.manifesto.paragraphs.map((paragraph: string) => (
+          <p>{paragraph}</p>
+        ))}
       </div>
       <div class="manifesto__stamp" aria-hidden="true">
-        <span class="manifesto__stamp-name">{copy.shared.brand.name}</span><span>{home.manifesto.stamp}</span>
+        <span class="manifesto__stamp-name">{copy.shared.brand.name}</span>
+        <span>{home.manifesto.stamp}</span>
       </div>
     </section>
 
@@ -104,7 +116,11 @@ const structuredData = [
       <header class="section-heading">
         <div>
           <p class="eyebrow">{home.collection.eyebrow}</p>
-          <h2 id="collection-title">{collectionHeading[0]}<br />{collectionHeading[1]}</h2>
+          <h2 id="collection-title">
+            {collectionHeading[0]}
+            <br />
+            {collectionHeading[1]}
+          </h2>
         </div>
         <p>{home.collection.intro}</p>
       </header>
@@ -121,7 +137,12 @@ const structuredData = [
             loading="lazy"
           />
           <span class="artwork-feature__caption">
-            <span><strong>{featuredBeachHuts.title}</strong><small>{featuredBeachHuts.placeName} · {copy.shared.brand.region}</small></span>
+            <span>
+              <strong>{featuredBeachHuts.title}</strong>
+              <small>
+                {featuredBeachHuts.placeName} · {copy.shared.brand.region}
+              </small>
+            </span>
             <span aria-hidden="true">{home.collection.view}</span>
           </span>
         </a>
@@ -137,7 +158,12 @@ const structuredData = [
             loading="lazy"
           />
           <span class="artwork-feature__caption">
-            <span><strong>{featuredHarbour.title}</strong><small>{featuredHarbour.placeName} · {copy.shared.brand.region}</small></span>
+            <span>
+              <strong>{featuredHarbour.title}</strong>
+              <small>
+                {featuredHarbour.placeName} · {copy.shared.brand.region}
+              </small>
+            </span>
             <span aria-hidden="true">{home.collection.view}</span>
           </span>
         </a>
@@ -146,11 +172,19 @@ const structuredData = [
 
     <section class="browse-callout section-shell" aria-labelledby="browse-title">
       <p class="eyebrow">{home.browse.eyebrow}</p>
-      <h2 id="browse-title">{browseHeading[0]}<br />{browseHeading[1]}</h2>
+      <h2 id="browse-title">
+        {browseHeading[0]}
+        <br />
+        {browseHeading[1]}
+      </h2>
       <a class="button-link button-link--darkblue" href="/artworks">
         {home.browse.cta} <span aria-hidden="true">→</span>
       </a>
-      <p class="browse-callout__annotation" aria-hidden="true">{browseAnnotation[0]}<br />{browseAnnotation[1]}</p>
+      <p class="browse-callout__annotation" aria-hidden="true">
+        {browseAnnotation[0]}
+        <br />
+        {browseAnnotation[1]}
+      </p>
     </section>
 
     <section class="process section-shell" aria-labelledby="process-title">
@@ -158,11 +192,19 @@ const structuredData = [
         <p class="eyebrow">{home.process.eyebrow}</p>
         <h2 id="process-title">{home.process.heading}</h2>
         <p class="process__body">{home.process.body}</p>
-        <a class="text-link" href="/our-story">{home.process.cta} <span aria-hidden="true">→</span></a>
+        <a class="text-link" href="/our-story">
+          {home.process.cta} <span aria-hidden="true">→</span>
+        </a>
       </div>
       <ol class="process__steps">
         {home.process.steps.map((step) => (
-          <li><span class="process__number">{step.number}</span><div><h3>{step.heading}</h3><p class="process__description">{step.body}</p></div></li>
+          <li>
+            <span class="process__number">{step.number}</span>
+            <div>
+              <h3>{step.heading}</h3>
+              <p class="process__description">{step.body}</p>
+            </div>
+          </li>
         ))}
       </ol>
     </section>

@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "24.13.0"
   NPM_FLAGS = "--version"
+  SITE_ORIGIN = "https://paperseal.uk"
+
+[context.staging.environment]
+  SITE_ORIGIN = "https://staging.paperseal.uk"
 
 [context.deploy-preview]
   command = "bun run build"
