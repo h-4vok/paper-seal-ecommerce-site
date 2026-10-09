@@ -28,6 +28,9 @@ function SnipcartThemePreview({ populated }: PreviewProps) {
           aria-modal="true"
           aria-label="Cart preview"
         >
+          <div className="snipcart-test-banner" aria-label="Test mode">
+            <span className="snipcart-test-banner__message">TEST MODE</span>
+          </div>
           <div className="snipcart-cart__secondary-header">
             <div>
               <span className="snipcart-theme-preview__eyebrow">Your selection</span>

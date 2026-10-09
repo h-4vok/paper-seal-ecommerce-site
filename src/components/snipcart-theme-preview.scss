@@ -39,6 +39,26 @@
   min-height: var(--header-height);
 }
 
+.snipcart-theme-preview__drawer .snipcart-test-banner {
+  position: sticky;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.snipcart-theme-preview__drawer .snipcart-test-banner__message {
+  position: absolute;
+  margin-top: 0;
+  padding: 6px 8px;
+  border-radius: 0 0 5px 5px;
+  background: orange;
+  color: var(--color-navy);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .snipcart-theme-preview__drawer .snipcart-cart__secondary-header-title {
   margin: 0.3rem 0 0;
 }
