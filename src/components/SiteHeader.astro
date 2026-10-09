@@ -13,6 +13,7 @@ const navItems = navigation.items;
 
 const isCurrent = (href: string) => currentPath === href || currentPath.startsWith(`${href}/`);
 ---
+
 <header class="site-header" data-site-header>
   <div class="site-header__inner">
     <a class="site-header__brand" href="/" aria-label={brand.homeAriaLabel}>
@@ -31,7 +32,11 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       </ul>
     </nav>
 
-    <p class="site-header__note" aria-hidden="true">{brand.headerNote[0]}<br />{brand.headerNote[1]}</p>
+    <p class="site-header__note" aria-hidden="true">
+      {brand.headerNote[0]}
+      <br />
+      {brand.headerNote[1]}
+    </p>
 
     <div class="site-header__actions">
       <CartTrigger />
@@ -44,19 +49,36 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
         data-menu-open
       >
         <svg viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M5 9h22M5 16h22M5 23h22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          <path
+            d="M5 9h22M5 16h22M5 23h22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
         </svg>
       </button>
     </div>
   </div>
 
-  <dialog class="mobile-menu" id="mobile-navigation" aria-labelledby="mobile-menu-title" data-mobile-menu>
+  <dialog
+    class="mobile-menu"
+    id="mobile-navigation"
+    aria-labelledby="mobile-menu-title"
+    data-mobile-menu
+  >
     <div class="mobile-menu__header">
       <p id="mobile-menu-title">{navigation.explore}</p>
       <form method="dialog">
         <button class="icon-button" type="submit" aria-label={navigation.closeMenu} data-menu-close>
           <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M7 7l18 18M25 7 7 25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path
+              d="M7 7l18 18M25 7 7 25"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
           </svg>
         </button>
       </form>
@@ -66,7 +88,8 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
         {navItems.map((item, index) => (
           <li>
             <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
-              <span aria-hidden="true">0{index + 1}</span>{item.label}
+              <span aria-hidden="true">0{index + 1}</span>
+              {item.label}
             </a>
           </li>
         ))}
@@ -74,7 +97,9 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     </nav>
     <div class="mobile-menu__footer">
       <p>{navigation.mobileIntro}</p>
-      <a href="/contact">{navigation.contact} <span aria-hidden="true">→</span></a>
+      <a href="/contact">
+        {navigation.contact} <span aria-hidden="true">→</span>
+      </a>
     </div>
   </dialog>
 </header>
