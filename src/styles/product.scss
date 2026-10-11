@@ -398,6 +398,16 @@ dialog.product-lightbox {
   animation: product-add-to-cart-halo 3.2s ease-in-out infinite;
 }
 
+.button-link.product-add-to-cart:disabled,
+.button-link.product-add-to-cart:disabled:hover {
+  border-color: var(--color-rule);
+  color: var(--color-muted);
+  background: var(--color-paper-deep);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
 @keyframes product-add-to-cart-halo {
   0%,
   100% {

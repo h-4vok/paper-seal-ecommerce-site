@@ -4,7 +4,6 @@ import ArtworkMockupPicture from '../../components/ArtworkMockupPicture.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   artworks,
-  formatPrice,
   mockupImagePath,
   productGallery,
   productStructuredData,
@@ -26,9 +25,9 @@ const canonical = `/artworks/${artwork.handle}`;
 const siteOrigin = Astro.site ?? Astro.url.origin;
 const shareImage = mockupImagePath(artwork, 'a3');
 const snipcartAttributes = snipcartItemAttributes(artwork, shareImage, canonical);
-const initialAddToCartLabel = copyText(productLabels.addToCart, {
-  price: formatPrice(artwork.price.small),
-});
+const selectSizeCta = productLabels.selectSizeCta;
+const selectSizePrompt = productLabels.selectSizePrompt;
+const unselectedPrice = productLabels.unselectedPrice;
 const title = `${artwork.title} — East Sussex art print | The Paper Seal Studio`;
 const description = `${artwork.description} Explore this Paper Seal Studio print inspired by ${artwork.placeName}.`;
 const structuredData = [
@@ -84,6 +83,7 @@ const gallery = productGallery(artwork).map((image) => {
     data-product-page
     data-framing-enabled={showFramingSelector}
     data-selection-suffix={productLabels.selectionSuffix}
+    data-size-prompt={selectSizePrompt}
     data-link-copied={productLabels.linkCopied}
     data-share-opened={productLabels.shareOpened}
     data-size-options={JSON.stringify(product.sizes)}
@@ -233,9 +233,9 @@ const gallery = productGallery(artwork).map((image) => {
           <fieldset>
             <legend>{productLabels.size}</legend>
             <div class="option-grid option-grid--three">
-              {product.sizes.map((size, index) => (
+              {product.sizes.map((size) => (
                 <label>
-                  <input type="radio" name="size" value={size.id} checked={index === 0} />
+                  <input type="radio" name="size" value={size.id} required />
                   <span>
                     <strong>{size.label}</strong>
                     <small>{size.dimensions}</small>
@@ -261,16 +261,15 @@ const gallery = productGallery(artwork).map((image) => {
             </fieldset>
           )}
           <p class="option-announcement" aria-live="polite" data-option-announcement>
-            {product.sizes[0].label}, {product.sizes[0].dimensions}
-            {showFramingSelector ? `, ${product.framing[0].label}` : ''}
-            {productLabels.selectionSuffix}
+            {selectSizePrompt}
           </p>
         </form>
         <div class="product-add-to-cart-container">
           <button
             class="button-link button-link--darkblue product-add-to-cart snipcart-add-item"
             type="button"
-            aria-label={initialAddToCartLabel}
+            aria-label={selectSizePrompt}
+            disabled
             {...snipcartAttributes}
           >
             <svg
@@ -282,11 +281,9 @@ const gallery = productGallery(artwork).map((image) => {
               <path d="M6.5 8h11l1 13h-13l1-13Z" />
               <path d="M9 8V6a3 3 0 0 1 6 0v2" />
             </svg>
-            <span class="product-add-to-cart__label">
-              {initialAddToCartLabel.split('—')[0].trim()}
-            </span>
+            <span class="product-add-to-cart__label">{selectSizeCta}</span>
             <span class="product-add-to-cart__price" data-add-to-cart-price>
-              {initialAddToCartLabel.split('—').slice(1).join('—').trim()}
+              {unselectedPrice}
             </span>
           </button>
         </div>
@@ -324,6 +321,11 @@ const gallery = productGallery(artwork).map((image) => {
 
 <script>
   import { galleryIndex } from '../../domain/catalogue';
+  import {
+    initialProductSelection,
+    navigateProductGallery,
+    selectProductSize,
+  } from '../../lib/productSelection';
   const productRoot = document.querySelector('[data-product-page]');
   const framingEnabled = productRoot?.getAttribute('data-framing-enabled') === 'true';
   const selectionSuffix = productRoot?.getAttribute('data-selection-suffix') ?? '';
@@ -354,10 +356,12 @@ const gallery = productGallery(artwork).map((image) => {
   const lightboxSurface = lightbox?.querySelector<HTMLElement>('[data-lightbox-surface]');
   const lightboxImage = lightbox?.querySelector<HTMLImageElement>('[data-lightbox-image]');
   const lightboxWatermark = lightbox?.querySelector<HTMLElement>('[data-lightbox-watermark]');
-  let current = 0;
+  let productSelection = { ...initialProductSelection };
+  let current = productSelection.activeSlide;
   let touchStart = 0;
   function showSlide(index: number) {
-    current = index;
+    productSelection = navigateProductGallery(productSelection, index);
+    current = productSelection.activeSlide;
     slides.forEach((slide, slideIndex) => {
       slide.hidden = slideIndex !== current;
     });
@@ -429,7 +433,23 @@ const gallery = productGallery(artwork).map((image) => {
 
   const optionForm = document.querySelector('[data-product-options]');
   const optionAnnouncement = optionForm?.querySelector('[data-option-announcement]');
-  let selectedGallerySize = 'small';
+  const sizeInputs = [
+    ...(optionForm?.querySelectorAll<HTMLInputElement>('input[name="size"]') ?? []),
+  ];
+  const gallerySizeByOption = { small: '7x5', medium: 'a4', large: 'a3' } as const;
+  function activateSize(sizeId: keyof typeof gallerySizeByOption) {
+    const gallerySize = gallerySizeByOption[sizeId];
+    const firstMockupIndex = slides.findIndex((slide) => slide.dataset.gallerySize === gallerySize);
+    if (firstMockupIndex < 0) return;
+    productSelection = selectProductSize(productSelection, sizeId, firstMockupIndex);
+    showSlide(productSelection.activeSlide);
+  }
+  sizeInputs.forEach((input) => {
+    input.addEventListener('click', () => {
+      if (input.checked && productSelection.selectedSize === input.value)
+        activateSize(input.value as keyof typeof gallerySizeByOption);
+    });
+  });
   optionForm?.addEventListener('change', () => {
     if (!(optionForm instanceof HTMLFormElement) || !(optionAnnouncement instanceof HTMLElement))
       return;
@@ -440,23 +460,25 @@ const gallery = productGallery(artwork).map((image) => {
       ? framingOptions.find((option) => option.id === data.get('framing'))
       : undefined;
     const selectedPrice = artworkPrices[String(data.get('size'))];
-    if (Number.isFinite(selectedPrice) && addToCartButton) {
+    if (
+      Number.isFinite(selectedPrice) &&
+      addToCartButton &&
+      size &&
+      selectedSizeId in gallerySizeByOption
+    ) {
       const updatedLabel = addToCartTemplate.replace('{price}', selectedPrice.toFixed(2));
+      const label = addToCartButton.querySelector('.product-add-to-cart__label');
+      if (label) label.textContent = updatedLabel.split('—')[0].trim();
       addToCartButton.setAttribute('aria-label', updatedLabel);
       const priceLabel = addToCartButton.querySelector('[data-add-to-cart-price]');
       if (priceLabel) priceLabel.textContent = updatedLabel.split('—').slice(1).join('—').trim();
-      if (size) addToCartButton.setAttribute('data-item-custom1-value', size.label);
+      addToCartButton.setAttribute('data-item-custom1-value', size.label);
+      addToCartButton.disabled = false;
     }
     const sizeDescription = size ? `${size.label}, ${size.dimensions}` : '';
     optionAnnouncement.textContent = `${[sizeDescription, frame?.label].filter(Boolean).join(', ')}${selectionSuffix}`;
-    if (selectedSizeId !== selectedGallerySize) {
-      selectedGallerySize = selectedSizeId;
-      const gallerySize = { small: '7x5', medium: 'a4', large: 'a3' }[selectedSizeId];
-      const firstMockupIndex = slides.findIndex(
-        (slide) => slide.dataset.gallerySize === gallerySize,
-      );
-      if (firstMockupIndex >= 0) showSlide(firstMockupIndex);
-    }
+    if (selectedSizeId in gallerySizeByOption)
+      activateSize(selectedSizeId as keyof typeof gallerySizeByOption);
   });
   const shareStatus = document.querySelector('[data-share-status]');
   async function copyLink() {

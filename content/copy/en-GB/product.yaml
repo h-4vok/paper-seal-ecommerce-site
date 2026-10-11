@@ -1,5 +1,8 @@
 labels:
   addToCart: 'Add to cart — £{price}'
+  selectSizeCta: Select size
+  selectSizePrompt: Choose a print size to see the price and mockup.
+  unselectedPrice: '£--'
   breadcrumb: Breadcrumb
   breadcrumbLink: Artworks
   gallery: image gallery
