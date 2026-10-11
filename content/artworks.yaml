@@ -34,7 +34,6 @@ artworks:
       assetBase: flower-bed,
       mockups: { '7x5': ['14'], A4: ['14'], A3: ['14'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: flower-bed.png,
       driveFileId: 1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh,
     }
   - {
@@ -50,7 +49,6 @@ artworks:
       assetBase: seven-sisters,
       mockups: { '7x5': ['07'], A4: ['07'], A3: ['07'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: seven-sisters.png,
       driveFileId: 18cTMmpaADGFHePTpStBlNmSj8nCf15Ey,
     }
   - {
@@ -66,7 +64,6 @@ artworks:
       assetBase: beachy-head,
       mockups: { '7x5': ['10'], A4: ['10'], A3: ['10'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: beachy-head.png,
       driveFileId: 1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT,
     }
   - {
@@ -82,7 +79,6 @@ artworks:
       assetBase: meet-me-eastbourne,
       mockups: { '7x5': ['01'], A4: ['01'], A3: ['01'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: meet-me-eastbourne.png,
       driveFileId: 1SbtW06ZUnQtbKqcJ948nlUZSFW-vOVqO,
     }
   - {
@@ -98,7 +94,6 @@ artworks:
       assetBase: eastbourne-pier,
       mockups: { '7x5': ['03'], A4: ['03'], A3: ['03'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: eastbourne-pier.png,
       driveFileId: 1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa,
     }
   - {
@@ -115,7 +110,6 @@ artworks:
       watermark: high-contrast,
       mockups: { '7x5': ['08'], A4: ['08'], A3: ['08'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: beach-huts.png,
       driveFileId: 1mJfI805ySV2gHLXa0j8WM20svUxeeAPO,
     }
   - {
@@ -131,7 +125,6 @@ artworks:
       assetBase: south-downs-1,
       mockups: { '7x5': ['11'], A4: ['11'], A3: ['11'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: south-downs-1.png,
       driveFileId: 11ghqYTjjogWachHOW2EmnXSpVe4dMJmn,
     }
   - {
@@ -147,7 +140,6 @@ artworks:
       assetBase: battle-abbey,
       mockups: { '7x5': ['14'], A4: ['14'], A3: ['14'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: battle-abbey.png,
       driveFileId: 15S4jRQMCVgRIyEIu9uUbtqpes7qatdeu,
     }
   - {
@@ -163,7 +155,6 @@ artworks:
       assetBase: sovereign-harbour-waterfront,
       mockups: { '7x5': ['05'], A4: ['05'], A3: ['05'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: sovereign-harbour-waterfront.png,
       driveFileId: 1DaJd8VMFSNSG207bMTiJM7ksoDdYV3S-,
     }
   - {
@@ -179,7 +170,6 @@ artworks:
       assetBase: long-man,
       mockups: { '7x5': ['06'], A4: ['06'], A3: ['06'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: long-man.png,
       driveFileId: 1EXlV-GfTOigNwuX9Sn1OV8dropkpvkI0,
     }
   - {
@@ -195,7 +185,6 @@ artworks:
       assetBase: eastbourne-sunset,
       mockups: { '7x5': ['02'], A4: ['02'], A3: ['02'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: eastbourne-sunset.png,
       driveFileId: 1Fl-4xj-nHMqDzx-YycYfxjHF8pajjgvS,
     }
   - {
@@ -211,7 +200,6 @@ artworks:
       assetBase: martello-66,
       mockups: { '7x5': ['04'], A4: ['04'], A3: ['04'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: martello-66.png,
       driveFileId: 1LbKstBbKrXIEAF4MyA9X9PN8tRefzb9M,
     }
   - {
@@ -227,7 +215,6 @@ artworks:
       assetBase: devils-dyke,
       mockups: { '7x5': ['16'], A4: ['16'], A3: ['16'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: devils-dyke.png,
       driveFileId: 1OZno2NSnheCNBJ5WB4NU6MIImYT7dedO,
     }
   - {
@@ -243,7 +230,6 @@ artworks:
       assetBase: parapente-south-downs,
       mockups: { '7x5': ['13'], A4: ['13'], A3: ['13'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: parapente-south-downs.png,
       driveFileId: 1W-0e0QJZhYlmC8qZsdpLXcEFMBF9SFFI,
     }
   - {
@@ -259,7 +245,6 @@ artworks:
       assetBase: sovereign-harbour-high-res,
       mockups: { '7x5': ['12'], A4: ['12'], A3: ['12'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: sovereign-harbour-high-res.png,
       driveFileId: 1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO,
     }
   - {
@@ -275,6 +260,5 @@ artworks:
       assetBase: south-downs-jeeps-bike,
       mockups: { '7x5': ['09'], A4: ['09'], A3: ['09'] },
       price: { small: 7, medium: 14, large: 28 },
-      masterFile: south-downs-jeeps-bike.png,
       driveFileId: 1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz,
     }

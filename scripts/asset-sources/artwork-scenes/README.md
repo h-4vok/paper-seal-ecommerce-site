@@ -32,7 +32,7 @@ selected template and master inputs before staging outputs, then publishes the f
 selected mockups together. Regenerate with:
 
 ```sh
-PAPERSEAL_MASTER_DIR=/path/to/approved-masters bun run assets:artworks
+bun run assets:artworks
 ```
 
 Never commit the production master artwork files.

@@ -15,6 +15,7 @@ node_modules/
 dist/
 .astro/
 .design-mocks/
+.upscayl/
 .netlify/
 .vercel/
 coverage/

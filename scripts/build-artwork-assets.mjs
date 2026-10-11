@@ -2,6 +2,7 @@ import { access, cp, mkdir, readFile, rename, rm } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import sharp from 'sharp';
+import { resolveDriveMasterPath } from './drive-masters.mjs';
 import {
   MOCKUP_SIZES,
   MOCKUP_WIDTHS,
@@ -29,19 +30,11 @@ async function readImageMetadata(filePath, label) {
   }
 }
 
-export async function validateAssetInputs({
-  root = projectRoot,
-  masterDirectory,
-  manifest,
-  registry,
-}) {
+export async function validateAssetInputs({ root = projectRoot, manifest, registry, driveRoots }) {
   const validatedRegistry = validateMockupRegistry(registry);
   if (!Array.isArray(manifest.artworks) || manifest.artworks.length === 0) {
     throw new Error('Asset metadata must contain at least one artwork.');
   }
-  if (!masterDirectory)
-    throw new Error('Set PAPERSEAL_MASTER_DIR to the approved local master directory.');
-
   const templatePaths = new Set(
     validatedRegistry.scenes.flatMap((scene) => scene.variants.map(({ template }) => template)),
   );
@@ -54,10 +47,7 @@ export async function validateAssetInputs({
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(artwork.assetBase)) {
       throw new Error(`Artwork ${artwork.title} has an invalid asset base.`);
     }
-    const masterPath = path.join(masterDirectory, artwork.masterFile);
-    if (!(await fileExists(masterPath))) {
-      throw new Error(`Missing master for artwork "${artwork.title}": ${masterPath}`);
-    }
+    const masterPath = await resolveDriveMasterPath(artwork, { driveRoots });
     const masterMetadata = await readImageMetadata(
       masterPath,
       `master for artwork "${artwork.title}"`,
@@ -170,9 +160,9 @@ async function publishStagedDirectories(stagingRoot, publicDirectory, stagedDire
 
 export async function buildArtworkAssets({
   root = projectRoot,
-  masterDirectory = process.env.PAPERSEAL_MASTER_DIR,
   manifest,
   registry,
+  driveRoots,
 } = {}) {
   if (!manifest) {
     manifest = JSON.parse(
@@ -193,7 +183,7 @@ export async function buildArtworkAssets({
     );
   }
 
-  const inputs = await validateAssetInputs({ root, masterDirectory, manifest, registry });
+  const inputs = await validateAssetInputs({ root, manifest, registry, driveRoots });
   const outputDirectoryRoot = path.join(root, 'public', 'images', 'artworks');
   const templatesDirectory = path.join(
     root,

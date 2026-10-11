@@ -19,7 +19,7 @@ describe('artwork content metadata', () => {
     expect(outputs.catalogue[0].imageDimensions).toMatchObject({ width: 720, height: 510 });
     expect(outputs.assets.artworks[0]).toMatchObject({
       assetBase: 'flower-bed',
-      masterFile: 'flower-bed.png',
+      driveFileId: '1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh',
       watermark: 'standard',
       mockups: { a3: [{ sceneId: '14' }] },
     });

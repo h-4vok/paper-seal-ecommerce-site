@@ -2,22 +2,18 @@ import { access, mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import sharp from 'sharp';
+import { resolveDriveMasterPath } from './drive-masters.mjs';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const manifestPath = path.join(projectRoot, 'data', 'assets', 'home-scenes.json');
-const masterDirectory = process.env.PAPERSEAL_MASTER_DIR;
-
-if (!masterDirectory) {
-  throw new Error(
-    'Set PAPERSEAL_MASTER_DIR to a local directory containing the approved production masters.',
-  );
-}
-
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
 
 for (const scene of manifest.scenes) {
   const scenePath = path.join(projectRoot, scene.scene);
-  const masterPath = path.join(masterDirectory, scene.masterFile);
+  const masterPath = await resolveDriveMasterPath({
+    ...scene,
+    title: scene.id,
+  });
   const outputPath = path.join(projectRoot, scene.output);
 
   await Promise.all([access(scenePath), access(masterPath)]);

@@ -49,7 +49,6 @@ export function validateArtworkManifest(input, registry = approvedRegistry) {
       'placeName',
       'alt',
       'assetBase',
-      'masterFile',
       'driveFileId',
     ]) {
       if (typeof item[field] !== 'string' || item[field].trim() === '')
@@ -94,7 +93,7 @@ export function validateArtworkManifest(input, registry = approvedRegistry) {
 
 export function deriveOutputs(artworks, registry = approvedRegistry, imageDimensions = new Map()) {
   return {
-    catalogue: artworks.map(({ masterFile, driveFileId, mockups, ...catalogue }, index) => ({
+    catalogue: artworks.map(({ driveFileId, mockups, ...catalogue }, index) => ({
       ...catalogue,
       mockups: resolveMockupSelections({ ...catalogue, mockups }, index, registry),
       imageDimensions: imageDimensions.get(catalogue.assetBase) ?? {
