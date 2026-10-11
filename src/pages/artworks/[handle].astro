@@ -129,6 +129,7 @@ const gallery = productGallery(artwork).map((image) => {
                     imageWidth={artwork.imageDimensions.width}
                     imageHeight={artwork.imageDimensions.height}
                     alt={image.label}
+                    watermarkProfile={artwork.watermark}
                     resolution={1440}
                     sizes="(min-width: 64rem) 62vw, 100vw"
                     eager
@@ -306,7 +307,13 @@ const gallery = productGallery(artwork).map((image) => {
       <div class="product-lightbox__surface" data-lightbox-surface>
         <div class="product-lightbox__image-wrap">
           <img data-lightbox-image alt="" />
-          <span class="artwork-watermark" data-lightbox-watermark aria-hidden="true" hidden>
+          <span
+            class="artwork-watermark"
+            data-watermark-profile={artwork.watermark}
+            data-lightbox-watermark
+            aria-hidden="true"
+            hidden
+          >
             {Array.from({ length: 7 }, () => (
               <span class="artwork-watermark__line">
                 PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL

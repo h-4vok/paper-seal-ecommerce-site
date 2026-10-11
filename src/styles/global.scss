@@ -115,6 +115,11 @@ img {
   display: none;
 }
 
+.artwork-watermark[data-watermark-profile='high-contrast'] {
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 40%));
+  opacity: 0.32;
+}
+
 .artwork-watermark__line {
   width: max-content;
   font-family: var(--font-ui);

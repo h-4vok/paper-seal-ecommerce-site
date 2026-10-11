@@ -14,13 +14,21 @@ describe('artwork content metadata', () => {
     expect(outputs.catalogue).toHaveLength(16);
     expect(outputs.catalogue[0]).not.toHaveProperty('masterFile');
     expect(outputs.catalogue[0].price).toEqual({ small: 7, medium: 14, large: 28 });
+    expect(outputs.catalogue[0].watermark).toBe('standard');
     expect(outputs.catalogue[0].mockups['7x5'].map(({ sceneId }) => sceneId)).toEqual(['14']);
     expect(outputs.catalogue[0].imageDimensions).toMatchObject({ width: 720, height: 510 });
     expect(outputs.assets.artworks[0]).toMatchObject({
       assetBase: 'flower-bed',
       masterFile: 'flower-bed.png',
+      watermark: 'standard',
       mockups: { a3: [{ sceneId: '14' }] },
     });
+    expect(outputs.catalogue.find(({ assetBase }) => assetBase === 'beach-huts')?.watermark).toBe(
+      'high-contrast',
+    );
+    expect(
+      outputs.assets.artworks.find(({ assetBase }) => assetBase === 'beach-huts')?.watermark,
+    ).toBe('high-contrast');
     expect(JSON.stringify(deriveOutputs(artworks, registry))).toBe(
       JSON.stringify(deriveOutputs(artworks, registry)),
     );
@@ -31,6 +39,7 @@ describe('artwork content metadata', () => {
     [{ handle: 'Bad Handle' }, 'invalid handle'],
     [{ handle: 'seven-sisters-wrong-sku-suffix' }, 'invalid handle'],
     [{ orientation: 'square' }, 'invalid orientation'],
+    [{ watermark: 'unknown' }, 'invalid watermark profile'],
     [{ mockups: { '7x5': [], A4: ['13'], A3: ['13'] } }, 'empty or missing 7x5'],
     [{ mockups: { '7x5': ['99'], A4: ['13'], A3: ['13'] } }, 'unknown mockup scene 99'],
     [{ mockups: { '7x5': ['13', '13'], A4: ['13'], A3: ['13'] } }, 'duplicates scene 13'],

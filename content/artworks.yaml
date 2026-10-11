@@ -112,6 +112,7 @@ artworks:
       orientation: landscape,
       alt: 'Colourful beach huts arranged along Eastbourne seafront',
       assetBase: beach-huts,
+      watermark: high-contrast,
       mockups: { '7x5': ['08'], A4: ['08'], A3: ['08'] },
       price: { small: 7, medium: 14, large: 28 },
       masterFile: beach-huts.png,

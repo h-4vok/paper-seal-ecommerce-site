@@ -7,6 +7,10 @@ display images from approved masters.
 The generated JSON files and public image derivatives are build outputs. Do not edit them
 manually.
 
+An artwork may set `watermark` to `high-contrast` when its image needs a more visible
+overlay. Omitted values default to `standard`. Profile definitions live in the shared
+watermark styles, so one artwork can use the stronger treatment without changing the others.
+
 ## Pipeline
 
 ```mermaid

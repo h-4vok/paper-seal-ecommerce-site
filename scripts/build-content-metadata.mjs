@@ -10,6 +10,7 @@ import {
 
 export const projectRoot = path.resolve(import.meta.dirname, '..');
 const priceFields = ['small', 'medium', 'large'];
+const watermarkProfiles = ['standard', 'high-contrast'];
 const registryPath = (root) =>
   path.join(root, 'scripts', 'asset-sources', 'artwork-scenes', 'approved', 'manifest.json');
 const approvedRegistry = validateMockupRegistry(
@@ -72,6 +73,8 @@ export function validateArtworkManifest(input, registry = approvedRegistry) {
       fail(index, 'has invalid collections.');
     if (!['landscape', 'portrait'].includes(item.orientation))
       fail(index, 'has an invalid orientation.');
+    if (item.watermark !== undefined && !watermarkProfiles.includes(item.watermark))
+      fail(index, 'has an invalid watermark profile.');
     if (
       !item.price ||
       typeof item.price !== 'object' ||
@@ -83,7 +86,10 @@ export function validateArtworkManifest(input, registry = approvedRegistry) {
     handles.add(item.handle);
     assets.add(item.assetBase);
   }
-  return input.artworks;
+  return input.artworks.map((artwork) => ({
+    ...artwork,
+    watermark: artwork.watermark ?? 'standard',
+  }));
 }
 
 export function deriveOutputs(artworks, registry = approvedRegistry, imageDimensions = new Map()) {

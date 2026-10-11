@@ -3,6 +3,7 @@ import generatedCatalogue from '../data/artworks.json';
 export type Orientation = 'landscape' | 'portrait';
 export type ArtworkSize = 'small' | 'medium' | 'large';
 export type MockupSize = '7x5' | 'a4' | 'a3';
+export type WatermarkProfile = 'standard' | 'high-contrast';
 
 export interface ArtworkMockup {
   sceneId: string;
@@ -30,6 +31,7 @@ export interface Artwork {
   alt: string;
   assetBase: string;
   mockups: ArtworkMockups;
+  watermark: WatermarkProfile;
   imageDimensions: { width: number; height: number };
   price: ArtworkPrices;
 }
@@ -115,6 +117,9 @@ export function validateCatalogue(input: unknown): Artwork[] {
     }
     if (item.orientation !== 'landscape' && item.orientation !== 'portrait') {
       throw new Error(`Artwork ${index + 1} has an invalid orientation.`);
+    }
+    if (item.watermark !== 'standard' && item.watermark !== 'high-contrast') {
+      throw new Error(`Artwork ${index + 1} has an invalid watermark profile.`);
     }
     const price = item.price as Record<string, unknown> | undefined;
     if (

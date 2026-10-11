@@ -8,6 +8,7 @@ interface Props {
   sizes?: string;
   eager?: boolean;
   watermark?: boolean;
+  watermarkProfile?: 'standard' | 'high-contrast';
   resolution?: 720 | 1440;
 }
 
@@ -20,6 +21,7 @@ const {
   sizes = '(min-width: 64rem) 42vw, 92vw',
   eager = false,
   watermark = true,
+  watermarkProfile = 'standard',
   resolution = 720,
 } = Astro.props;
 const src = `/images/artworks/${assetBase}/flat-${resolution}.jpg`;
@@ -38,7 +40,7 @@ const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
     fetchpriority={eager ? 'high' : 'auto'}
   />
   {watermark && (
-    <span class="artwork-watermark" aria-hidden="true">
+    <span class="artwork-watermark" data-watermark-profile={watermarkProfile} aria-hidden="true">
       {watermarkRows.map(() => (
         <span class="artwork-watermark__line">
           PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL

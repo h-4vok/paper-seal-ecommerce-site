@@ -9,6 +9,7 @@
       "assetBase": "flower-bed",
       "masterFile": "flower-bed.png",
       "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -38,6 +39,7 @@
       "assetBase": "seven-sisters",
       "masterFile": "seven-sisters.png",
       "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -67,6 +69,7 @@
       "assetBase": "beachy-head",
       "masterFile": "beachy-head.png",
       "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -96,6 +99,7 @@
       "assetBase": "meet-me-eastbourne",
       "masterFile": "meet-me-eastbourne.png",
       "driveFileId": "1SbtW06ZUnQtbKqcJ948nlUZSFW-vOVqO",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -125,6 +129,7 @@
       "assetBase": "eastbourne-pier",
       "masterFile": "eastbourne-pier.png",
       "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -152,6 +157,7 @@
     {
       "orientation": "landscape",
       "assetBase": "beach-huts",
+      "watermark": "high-contrast",
       "masterFile": "beach-huts.png",
       "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
       "mockups": {
@@ -183,6 +189,7 @@
       "assetBase": "south-downs-1",
       "masterFile": "south-downs-1.png",
       "driveFileId": "11ghqYTjjogWachHOW2EmnXSpVe4dMJmn",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -212,6 +219,7 @@
       "assetBase": "battle-abbey",
       "masterFile": "battle-abbey.png",
       "driveFileId": "15S4jRQMCVgRIyEIu9uUbtqpes7qatdeu",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -241,6 +249,7 @@
       "assetBase": "sovereign-harbour-waterfront",
       "masterFile": "sovereign-harbour-waterfront.png",
       "driveFileId": "1DaJd8VMFSNSG207bMTiJM7ksoDdYV3S-",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -270,6 +279,7 @@
       "assetBase": "long-man",
       "masterFile": "long-man.png",
       "driveFileId": "1EXlV-GfTOigNwuX9Sn1OV8dropkpvkI0",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -299,6 +309,7 @@
       "assetBase": "eastbourne-sunset",
       "masterFile": "eastbourne-sunset.png",
       "driveFileId": "1Fl-4xj-nHMqDzx-YycYfxjHF8pajjgvS",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -328,6 +339,7 @@
       "assetBase": "martello-66",
       "masterFile": "martello-66.png",
       "driveFileId": "1LbKstBbKrXIEAF4MyA9X9PN8tRefzb9M",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -357,6 +369,7 @@
       "assetBase": "devils-dyke",
       "masterFile": "devils-dyke.png",
       "driveFileId": "1OZno2NSnheCNBJ5WB4NU6MIImYT7dedO",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -386,6 +399,7 @@
       "assetBase": "parapente-south-downs",
       "masterFile": "parapente-south-downs.png",
       "driveFileId": "1W-0e0QJZhYlmC8qZsdpLXcEFMBF9SFFI",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -415,6 +429,7 @@
       "assetBase": "sovereign-harbour-high-res",
       "masterFile": "sovereign-harbour-high-res.png",
       "driveFileId": "1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -444,6 +459,7 @@
       "assetBase": "south-downs-jeeps-bike",
       "masterFile": "south-downs-jeeps-bike.png",
       "driveFileId": "1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz",
+      "watermark": "standard",
       "mockups": {
         "7x5": [
           {

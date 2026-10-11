@@ -57,6 +57,14 @@ describe('catalogue model', () => {
     ]).toEqual(['14', '14', '14']);
   });
 
+  it('assigns the stronger watermark profile only to Beach Huts', () => {
+    const beachHuts = artworks.find(({ sku }) => sku === 'PS-PR-007');
+    const flowerBed = artworks.find(({ sku }) => sku === 'PS-PR-001');
+
+    expect(beachHuts?.watermark).toBe('high-contrast');
+    expect(flowerBed?.watermark).toBe('standard');
+  });
+
   it('formats selected product prices to two decimal places', () => {
     expect(formatPrice(14)).toBe('14.00');
     expect(formatPrice(8.5)).toBe('8.50');
@@ -73,6 +81,7 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
+    [[{ ...artworks[0], watermark: 'bold' }], 'invalid watermark profile'],
     [[{ ...artworks[0], mockups: { ...artworks[0].mockups, '7x5': [] } }], 'invalid mockup'],
     [[{ ...artworks[0], mockups: { ...artworks[0].mockups, '7x5': [null] } }], 'invalid mockup'],
     [
