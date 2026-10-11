@@ -1,8 +1,9 @@
 # Artwork scene templates
 
 These artwork-free, versioned templates are reusable sources for product-gallery mockups. The
-approved registry assigns stable scene IDs `01`–`16` and stores each orientation/size template and
-its measured paper rectangle in `approved/manifest.json`.
+approved registry assigns stable scene IDs `01`–`14` and `16` and stores each orientation/size
+template and its measured paper rectangle in `approved/manifest.json`. Scene `15` is archived because
+no artwork uses it; its artwork-free templates remain in `archived/`.
 
 Edit `content/artworks.yaml` to select scenes. Each artwork needs ordered, non-empty lists for all
 three sizes; for example:
@@ -19,9 +20,9 @@ To add a second mockup at one size, append its scene ID to only that size list, 
 catalogue and asset metadata are generated from the YAML; do not edit the generated JSON manually.
 Run `bun run content:build:metadata` before generating derivatives.
 
-The `approved/` directory contains 96 artwork-free templates: 16 scenes × two orientations × three
-sizes. Each image is 1440 × 1080 and the manifest records the physical paper size and its pixel
-rectangle. The product gallery uses these new scenes. Existing pale-oak and home-scene assets remain
+The `approved/` directory contains 90 artwork-free templates: 15 active scenes × two orientations ×
+three sizes. Each image is 1440 × 1080 and the manifest records the physical paper size and its pixel
+rectangle. The product gallery uses these active scenes. Existing pale-oak and home-scene assets remain
 in place for their current uses and are not part of the product selector; see [issue #92](https://github.com/h-4vok/paper-seal-ecommerce-site/issues/92).
 The local `.design-mocks/` review page, example-artwork composites, and contact sheets are not
 production inputs.

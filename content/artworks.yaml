@@ -32,7 +32,7 @@ artworks:
       orientation: landscape,
       alt: 'Colourful flower beds in Eastbourne rendered as a painterly local scene',
       assetBase: flower-bed,
-      mockups: { '7x5': ['15'], A4: ['15'], A3: ['15'] },
+      mockups: { '7x5': ['14'], A4: ['14'], A3: ['14'] },
       price: { small: 7, medium: 14, large: 28 },
       masterFile: flower-bed.png,
       driveFileId: 1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh,

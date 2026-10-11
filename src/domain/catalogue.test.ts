@@ -29,12 +29,32 @@ describe('catalogue model', () => {
       'data-item-id': artwork.sku,
       'data-item-description': artwork.description,
       'data-item-name': artwork.title,
-      'data-item-image': `/images/artworks/${artwork.assetBase}/mock-a3-15-1440.jpg`,
+      'data-item-image': `/images/artworks/${artwork.assetBase}/mock-a3-14-1440.jpg`,
       'data-item-url': url,
       'data-item-price': '7.00',
       'data-item-custom1-name': 'Size',
       'data-item-custom1-options': 'Small|Medium[+7.00]|Large[+21.00]',
     });
+  });
+
+  it('uses the Battle mockup scene for Flower Bed A3', () => {
+    const flowerBed = artworks.find(({ sku }) => sku === 'PS-PR-001');
+    const battle = artworks.find(({ sku }) => sku === 'PS-PR-009');
+
+    expect([
+      flowerBed?.mockups['7x5'][0]?.sceneId,
+      flowerBed?.mockups.a4[0]?.sceneId,
+      flowerBed?.mockups.a3[0]?.sceneId,
+    ]).toEqual([
+      battle?.mockups['7x5'][0]?.sceneId,
+      battle?.mockups.a4[0]?.sceneId,
+      battle?.mockups.a3[0]?.sceneId,
+    ]);
+    expect([
+      flowerBed?.mockups['7x5'][0]?.sceneId,
+      flowerBed?.mockups.a4[0]?.sceneId,
+      flowerBed?.mockups.a3[0]?.sceneId,
+    ]).toEqual(['14', '14', '14']);
   });
 
   it('formats selected product prices to two decimal places', () => {

@@ -14,12 +14,12 @@ describe('artwork content metadata', () => {
     expect(outputs.catalogue).toHaveLength(16);
     expect(outputs.catalogue[0]).not.toHaveProperty('masterFile');
     expect(outputs.catalogue[0].price).toEqual({ small: 7, medium: 14, large: 28 });
-    expect(outputs.catalogue[0].mockups['7x5'].map(({ sceneId }) => sceneId)).toEqual(['15']);
+    expect(outputs.catalogue[0].mockups['7x5'].map(({ sceneId }) => sceneId)).toEqual(['14']);
     expect(outputs.catalogue[0].imageDimensions).toMatchObject({ width: 720, height: 510 });
     expect(outputs.assets.artworks[0]).toMatchObject({
       assetBase: 'flower-bed',
       masterFile: 'flower-bed.png',
-      mockups: { a3: [{ sceneId: '15' }] },
+      mockups: { a3: [{ sceneId: '14' }] },
     });
     expect(JSON.stringify(deriveOutputs(artworks, registry))).toBe(
       JSON.stringify(deriveOutputs(artworks, registry)),
@@ -49,7 +49,7 @@ describe('artwork content metadata', () => {
   it('preserves editorial ordering when an artwork uses multiple scenes at one size', () => {
     const artwork = {
       ...source.artworks[0],
-      mockups: { '7x5': ['13', '01'], A4: ['15'], A3: ['15'] },
+      mockups: { '7x5': ['13', '01'], A4: ['14'], A3: ['14'] },
     };
     expect(
       resolveMockupSelections(artwork, 0, registry)['7x5'].map(({ sceneId }) => sceneId),
@@ -60,7 +60,7 @@ describe('artwork content metadata', () => {
     const incompleteScene = {
       ...registry,
       scenes: registry.scenes.map((scene) =>
-        scene.id === '15'
+        scene.id === '14'
           ? {
               ...scene,
               variants: scene.variants.filter((variant) => variant.orientation !== 'landscape'),
@@ -69,7 +69,7 @@ describe('artwork content metadata', () => {
       ),
     };
     expect(() => resolveMockupSelections(source.artworks[0], 0, incompleteScene)).toThrow(
-      'scene 15 has no landscape 7x5 mockup variant',
+      'scene 14 has no landscape 7x5 mockup variant',
     );
   });
 

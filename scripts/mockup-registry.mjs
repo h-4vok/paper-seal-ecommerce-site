@@ -33,19 +33,17 @@ export function validateMockupRegistry(registry) {
   ) {
     throw new Error('Approved mockup templates must use a 1440 × 1080 output canvas.');
   }
-  if (registry.scenes.length !== 16) {
-    throw new Error('Approved mockup registry must contain exactly the 16 selectable scenes.');
+  if (registry.scenes.length > 16) {
+    throw new Error('Approved mockup registry cannot contain more than 16 selectable scenes.');
   }
   const ids = new Set();
   const slugs = new Set();
   for (const [sceneIndex, scene] of registry.scenes.entries()) {
-    if (!/^\d{2}$/.test(scene.id) || ids.has(scene.id)) {
+    if (!/^\d{2}$/.test(scene.id) || Number(scene.id) > 16 || ids.has(scene.id)) {
       throw new Error(`Mockup scene has an invalid or duplicate ID: ${scene.id}`);
     }
-    if (scene.id !== String(sceneIndex + 1).padStart(2, '0')) {
-      throw new Error(
-        `Mockup scenes must keep their stable sequence from 01 to 16; found ${scene.id}.`,
-      );
+    if (sceneIndex > 0 && Number(scene.id) <= Number(registry.scenes[sceneIndex - 1].id)) {
+      throw new Error(`Mockup scenes must stay in ascending stable ID order; found ${scene.id}.`);
     }
     if (!/^[0-9]{2}-[a-z0-9]+(?:-[a-z0-9]+)*$/.test(scene.slug) || slugs.has(scene.slug)) {
       throw new Error(`Mockup scene ${scene.id} has an invalid or duplicate slug.`);

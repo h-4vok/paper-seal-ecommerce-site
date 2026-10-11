@@ -12,23 +12,23 @@
       "mockups": {
         "7x5": [
           {
-            "sceneId": "15",
-            "sceneName": "Chalk Workshop",
-            "sceneSlug": "15-chalk-workshop"
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
           }
         ],
         "a4": [
           {
-            "sceneId": "15",
-            "sceneName": "Chalk Workshop",
-            "sceneSlug": "15-chalk-workshop"
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
           }
         ],
         "a3": [
           {
-            "sceneId": "15",
-            "sceneName": "Chalk Workshop",
-            "sceneSlug": "15-chalk-workshop"
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
           }
         ]
       }
