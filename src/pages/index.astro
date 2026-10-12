@@ -61,19 +61,25 @@ const structuredData = [
         </a>
       </div>
 
-      <figure class="home-hero__art">
-        <Picture
-          src={heroImage}
-          widths={[480, 768, 1024, 1484]}
-          sizes="(min-width: 64rem) 68vw, 100vw"
-          formats={['avif', 'webp']}
-          fallbackFormat="jpg"
-          alt={home.hero.imageAlt}
-          loading="eager"
-          fetchpriority="high"
-        />
-        <figcaption>{home.hero.caption}</figcaption>
-      </figure>
+      <a
+        class="home-hero__art-link"
+        href="/artworks?q=Eastbourne%20flower%20bed"
+        aria-label="Search artworks for Eastbourne flower bed"
+      >
+        <figure class="home-hero__art">
+          <Picture
+            src={heroImage}
+            widths={[480, 768, 1024, 1484]}
+            sizes="(min-width: 64rem) 68vw, 100vw"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpg"
+            alt={home.hero.imageAlt}
+            loading="eager"
+            fetchpriority="high"
+          />
+          <figcaption>{home.hero.caption}</figcaption>
+        </figure>
+      </a>
 
       <p class="home-hero__note" aria-hidden="true">
         {home.hero.note}
