@@ -6,7 +6,7 @@ type LoadedCopy = {
   home: { seo: { title: string } };
   catalogue: { controls: { searchPlaceholder: string } };
   cart: { header: { heading: string } };
-  product: { labels: { addToCart: string } };
+  product: { labels: { addToCart: string; selectSizeCta: string; selectSizePrompt: string } };
   institutional: { pages: unknown[] };
 };
 
@@ -23,6 +23,8 @@ describe('editorial copy', () => {
     expect(loaded.catalogue.controls.searchPlaceholder).toBeTruthy();
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();
+    expect(loaded.product.labels.selectSizeCta).toBe('Select size');
+    expect(loaded.product.labels.selectSizePrompt).toBeTruthy();
     expect(loaded.institutional.pages).toHaveLength(8);
   });
 

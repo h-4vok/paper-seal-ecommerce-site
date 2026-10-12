@@ -28,7 +28,13 @@
       "name": "ArtworkPicture",
       "source": "src/components/ArtworkPicture.astro",
       "level": "Atoms",
-      "useFor": "Responsive flat or room artwork derivative."
+      "useFor": "Responsive flat artwork derivative with an optional Paper Seal watermark."
+    },
+    {
+      "name": "ArtworkMockupPicture",
+      "source": "src/components/ArtworkMockupPicture.astro",
+      "level": "Atoms",
+      "useFor": "Responsive size-and-scene artwork mockup derivative without a watermark."
     },
     {
       "name": "BrandMark",

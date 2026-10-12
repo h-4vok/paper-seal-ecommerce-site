@@ -7,6 +7,10 @@ display images from approved masters.
 The generated JSON files and public image derivatives are build outputs. Do not edit them
 manually.
 
+An artwork may set `watermark` to `high-contrast` when its image needs a more visible
+overlay. Omitted values default to `standard`. Profile definitions live in the shared
+watermark styles, so one artwork can use the stronger treatment without changing the others.
+
 ## Pipeline
 
 ```mermaid
@@ -18,7 +22,7 @@ flowchart TD
     C -->|valid| F[data/assets/artworks.json<br/>generated asset manifest]
 
     F --> G[content:build:assets]
-    H[PAPERSEAL_MASTER_DIR<br/>private approved PNG masters] --> G
+    H[Google Drive desktop<br/>driveFileId lookup] --> G
     I[Versioned scene templates<br/>scripts/asset-sources] --> G
     G --> J[Sharp composites<br/>flat / room]
     J --> K[720px and 1440px]
@@ -39,29 +43,24 @@ From the repository root:
 # Validate the YAML and generate both JSON manifests.
 bun run content:build:metadata
 
-# Generate public image derivatives from local private masters.
-PAPERSEAL_MASTER_DIR=C:/path/to/approved-masters bun run content:build:assets
+# Generate public image derivatives from masters referenced by driveFileId.
+bun run content:build:assets
 
 # Run both steps in order.
-PAPERSEAL_MASTER_DIR=C:/path/to/approved-masters bun run content:build
-```
-
-On Windows PowerShell, set the master directory for the current session first:
-
-```powershell
-$env:PAPERSEAL_MASTER_DIR = 'C:\path\to\approved-masters'
 bun run content:build
 ```
 
-`PAPERSEAL_MASTER_DIR` must point to a local directory containing every `masterFile` named
-in `artworks.yaml`. Production masters are not committed or served by the site.
+Each artwork's `driveFileId` in `artworks.yaml` is the sole master identity. Asset generation
+resolves that ID through Google Drive for desktop's local index, so the files may live in
+different Drive folders. Start Drive for desktop and make sure every referenced master is
+available locally before generating assets. Production masters are not committed or served.
 
 ## What each step does
 
 1. `content:build:metadata` parses and validates the YAML, checks scene templates, and
    writes `src/data/artworks.json` plus `data/assets/artworks.json`.
-2. `content:build:assets` reads the generated asset manifest, loads masters from
-   `PAPERSEAL_MASTER_DIR`, composes `flat` and `room` variants, and writes four JPG
+2. `content:build:assets` reads the generated asset manifest, resolves each master by its
+   Google Drive file ID, composes `flat` and `room` variants, and writes four JPG
    derivatives per artwork: two variants × two widths.
 3. Astro reads the generated catalogue metadata and serves the generated derivatives from
    `public/images/artworks/`.

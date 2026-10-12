@@ -5,9 +5,7 @@
     {
       "id": "home-hero-flower-bed",
       "scene": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-      "masterFile": "flower-bed.png",
-      "masterTitle": "Eastbourne New Flower Bed",
-      "masterDriveId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
+      "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
       "output": "src/assets/home/hero-eastbourne-flower-bed.jpg",
       "placement": {
         "left": 546,
@@ -21,9 +19,7 @@
     {
       "id": "home-current-beach-huts",
       "scene": "scripts/asset-sources/home-scenes/templates/collection-pale-oak-landscape.jpg",
-      "masterFile": "beach-huts.png",
-      "masterTitle": "Beach Huts, Eastbourne",
-      "masterDriveId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
+      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
       "output": "src/assets/home/current-beach-huts.jpg",
       "placement": {
         "left": 313,
@@ -37,9 +33,7 @@
     {
       "id": "home-current-sovereign-harbour",
       "scene": "scripts/asset-sources/home-scenes/templates/hero-pale-oak-landscape.jpg",
-      "masterFile": "sovereign-harbour.png",
-      "masterTitle": "Sovereign Harbour",
-      "masterDriveId": "1ogcwYqFkL1KAAzc9zrbr8MNXdXmavLu4",
+      "driveFileId": "1ogcwYqFkL1KAAzc9zrbr8MNXdXmavLu4",
       "output": "src/assets/home/current-sovereign-harbour.jpg",
       "placement": {
         "left": 546,
