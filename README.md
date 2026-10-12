@@ -61,8 +61,10 @@ If using Umami, add `PUBLIC_UMAMI_URL` (the Umami script URL, for example
 `https://analytics.example.com/script.js`) and `PUBLIC_UMAMI_WEBSITE_ID` (the website ID)
 in the same **Project configuration → Environment variables** screen. Set each variable's
 scope to **Builds**, then select the `staging` branch and **Deploy Previews** as its
-deploy contexts. These are optional: the storefront currently does not load Umami, and
-empty or obsolete Umami values do not block a build. Configure the public Snipcart Test
+deploy contexts. These are optional: the storefront loads Umami only when both values
+are set and the script URL uses HTTPS. For Umami Cloud, use
+`https://cloud.umami.is/script.js`; for self-hosted Umami, copy the script URL from
+the site's Tracking code. Empty or invalid values do not block a build. Configure the public Snipcart Test
 key there as described above; never add a Snipcart secret or Live key to the frontend.
 
 Trigger a fresh build/deploy after setting or changing the variable. Astro embeds the

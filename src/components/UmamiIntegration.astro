@@ -1,0 +1,8 @@
+---
+import { env } from '../lib/env';
+import { getUmamiScriptConfig } from '../lib/umami';
+
+const config = getUmamiScriptConfig(env.PUBLIC_UMAMI_WEBSITE_ID, env.PUBLIC_UMAMI_URL);
+---
+
+{config && <script defer src={config.scriptUrl} data-website-id={config.websiteId}></script>}
