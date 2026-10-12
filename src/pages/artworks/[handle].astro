@@ -110,21 +110,26 @@ const gallery = productGallery(artwork).map((image) => {
         >
           {gallery.map((image, index) => (
             <div
-              class:list={[
-                'product-gallery__slide',
-                'artwork-media-fill',
-                `product-gallery__slide--${image.kind}`,
-              ]}
-              style={`--artwork-media-image: url('${
+              class:list={['product-gallery__slide', `product-gallery__slide--${image.kind}`]}
+              style={
                 image.kind === 'flat'
-                  ? `/images/artworks/${artwork.assetBase}/flat-720.jpg`
-                  : mockupImagePath(artwork, image.size, image.scene.sceneId, 720)
-              }')`}
+                  ? `--artwork-ratio: ${artwork.imageDimensions.width} / ${artwork.imageDimensions.height}`
+                  : undefined
+              }
               data-slide={index}
               data-gallery-size={image.kind === 'mockup' ? image.size : undefined}
               data-scene-id={image.kind === 'mockup' ? image.scene.sceneId : undefined}
               hidden={index !== 0}
             >
+              <div
+                class="product-gallery__backdrop"
+                aria-hidden="true"
+                style={`background-image: url('${
+                  image.kind === 'flat'
+                    ? `/images/artworks/${artwork.assetBase}/flat-720.jpg`
+                    : mockupImagePath(artwork, image.size, image.scene.sceneId, 720)
+                }')`}
+              ></div>
               <button
                 class="product-gallery__zoom-trigger"
                 type="button"

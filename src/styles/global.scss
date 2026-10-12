@@ -96,26 +96,6 @@ img {
   height: auto;
 }
 
-.artwork-media-fill {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  container-type: size;
-}
-
-.artwork-media-fill::before {
-  position: absolute;
-  z-index: -1;
-  inset: -2rem;
-  background-color: var(--color-paper-deep);
-  background-image: var(--artwork-media-image);
-  background-position: center;
-  background-size: cover;
-  content: '';
-  filter: blur(1.5rem);
-  pointer-events: none;
-}
-
 .artwork-watermark {
   position: absolute;
   inset: -10%;

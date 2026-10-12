@@ -28,10 +28,7 @@ const src = `/images/artworks/${assetBase}/flat-${resolution}.jpg`;
 const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
 ---
 
-<span
-  class:list={['artwork-picture', `artwork-picture--${orientation}`]}
-  style={`--artwork-ratio: ${imageWidth} / ${imageHeight}`}
->
+<span class:list={['artwork-picture', `artwork-picture--${orientation}`]}>
   <img
     src={src}
     {sizes}

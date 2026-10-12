@@ -20,10 +20,7 @@ const { catalogue } = copy;
     href={`/artworks/${artwork.handle}`}
     aria-label={`View ${artwork.title}, ${artwork.placeName}`}
   >
-    <div
-      class="artwork-card__media artwork-media-fill"
-      style={`--artwork-media-image: url('/images/artworks/${artwork.assetBase}/flat-720.jpg')`}
-    >
+    <div class="artwork-card__media">
       <ArtworkPicture
         assetBase={artwork.assetBase}
         orientation={artwork.orientation}

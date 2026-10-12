@@ -168,12 +168,6 @@ export function validateCatalogue(input: unknown): Artwork[] {
     ) {
       throw new Error(`Artwork ${index + 1} has invalid image dimensions.`);
     }
-    if (
-      (item.orientation === 'portrait') !==
-      Number(imageDimensions.height) > Number(imageDimensions.width)
-    ) {
-      throw new Error(`Artwork ${index + 1} orientation does not match image dimensions.`);
-    }
     skus.add(item.sku as string);
     handles.add(item.handle as string);
     return item as unknown as Artwork;

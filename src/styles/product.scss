@@ -53,28 +53,55 @@
   width: 100%;
   aspect-ratio: 7 / 5;
   min-height: 18rem;
+  overflow: hidden;
   background: #d2c3b2;
 }
 
 .product-gallery__slide {
   position: absolute;
   inset: 0;
+  isolation: isolate;
+  overflow: hidden;
 }
 
-.product-gallery__slide .artwork-picture {
-  width: min(100cqw, 100cqh * (var(--artwork-ratio)));
+.product-gallery__backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: -2rem;
+  background-position: center;
+  background-size: cover;
+  filter: blur(1.5rem);
+  pointer-events: none;
+}
+
+.product-gallery__slide--flat .artwork-picture {
+  max-width: 100%;
+  max-height: 100%;
   aspect-ratio: var(--artwork-ratio);
 }
 
+.product-gallery__slide--flat .artwork-picture--portrait {
+  width: auto;
+  height: 100%;
+}
+
+.product-gallery__slide--flat .artwork-picture--landscape {
+  width: 100%;
+  height: auto;
+}
+
 .product-gallery__zoom-trigger {
-  display: grid;
+  position: relative;
+  z-index: 1;
+  display: flex;
   width: 100%;
   height: 100%;
   padding: 0;
   border: 0;
   background: transparent;
   cursor: zoom-in;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
 }
 
@@ -89,8 +116,8 @@
 
 .product-gallery__slide img {
   display: block;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -100,9 +127,8 @@
 }
 
 .product-gallery__slide--mockup .product-gallery__zoom-trigger > img {
-  width: min(100cqw, 100cqh * 4 / 3);
+  width: auto;
   height: auto;
-  aspect-ratio: 4 / 3;
 }
 
 .product-lightbox {
@@ -164,6 +190,7 @@ dialog.product-lightbox {
 
 .gallery-arrow {
   position: absolute;
+  z-index: 2;
   top: 50%;
   display: grid;
   width: 3rem;
