@@ -3,7 +3,7 @@ import { artworks } from '../domain/catalogue';
 import { institutionalPages } from '../domain/institutional';
 
 export const GET: APIRoute = ({ site }) => {
-  const origin = site ?? new URL('https://paperseal.co.uk');
+  const origin = site ?? new URL('https://paperseal.uk');
   const paths = [
     '/',
     '/artworks',

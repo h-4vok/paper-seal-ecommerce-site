@@ -9,9 +9,8 @@ interface Props {
 
 const { compact = false } = Astro.props;
 ---
-<span
-  class:list={['brand-mark', { 'brand-mark--compact': compact }]}
->
+
+<span class:list={['brand-mark', { 'brand-mark--compact': compact }]}>
   <Image
     class="brand-mark__seal"
     src={seal}

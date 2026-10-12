@@ -10,8 +10,20 @@ const settings = JSON.stringify({
   modalStyle: 'side',
 }).replaceAll('<', '\\u003c');
 ---
+
 <script is:inline set:html={`window.SnipcartSettings = ${settings};`} />
 <script is:inline>
+  function showZeroTaxTotal() {
+    window.Snipcart?.api?.session?.setLanguage('en', {
+      cart_summary: {
+        calculated_at_checkout: '£0.00',
+      },
+    });
+  }
+
+  document.addEventListener('snipcart.ready', showZeroTaxTotal);
+  document.addEventListener('snipcart.language.updated', showZeroTaxTotal);
+
   const events = ['focus', 'mouseover', 'touchmove', 'scroll', 'keydown'];
   let loaded = false;
   let timeout;

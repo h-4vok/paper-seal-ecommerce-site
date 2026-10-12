@@ -105,7 +105,7 @@ the internal asset-generation configuration. Generated JSON files in `src/data/`
 
 ```sh
 bun run content:build:metadata
-PAPERSEAL_MASTER_DIR=/path/to/approved-masters bun run content:build:assets
+bun run content:build:assets
 ```
 
 `bun run content:build` runs both commands in that order. Production masters remain local

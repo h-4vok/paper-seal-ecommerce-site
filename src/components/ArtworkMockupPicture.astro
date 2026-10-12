@@ -1,0 +1,32 @@
+---
+interface Props {
+  assetBase: string;
+  size: '7x5' | 'a4' | 'a3';
+  sceneId: string;
+  alt: string;
+  sizes?: string;
+  eager?: boolean;
+}
+
+const {
+  assetBase,
+  size,
+  sceneId,
+  alt,
+  sizes = '(min-width: 64rem) 62vw, 100vw',
+  eager = false,
+} = Astro.props;
+const base = `/images/artworks/${assetBase}/mock-${size}-${sceneId}`;
+---
+
+<img
+  src={`${base}-1440.jpg`}
+  srcset={`${base}-720.jpg 720w, ${base}-1440.jpg 1440w`}
+  {sizes}
+  {alt}
+  width="1440"
+  height="1080"
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+  fetchpriority={eager ? 'high' : 'auto'}
+/>

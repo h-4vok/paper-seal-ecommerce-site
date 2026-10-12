@@ -33,6 +33,7 @@ const {
   showChrome = true,
 } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -44,7 +45,9 @@ const {
     {showChrome && <SnipcartIntegration />}
   </head>
   <body class={bodyClass}>
-    <a class="skip-link" href="#main-content">{copy.shared.skipLink}</a>
+    <a class="skip-link" href="#main-content">
+      {copy.shared.skipLink}
+    </a>
     {showChrome && <SiteHeader currentPath={Astro.url.pathname} />}
     <slot />
     {showChrome && <SiteFooter />}

@@ -143,6 +143,9 @@ const cartSchema = z.object({
 const productSchema = z.object({
   labels: z.object({
     addToCart: text,
+    selectSizeCta: text,
+    selectSizePrompt: text,
+    unselectedPrice: text,
     breadcrumb: text,
     breadcrumbLink: text,
     gallery: text,

@@ -10,14 +10,31 @@ export function getStaticPaths() {
 
 const { page } = Astro.props as { page: Page };
 const canonical = `/${page.slug}`;
+const siteOrigin = Astro.site ?? Astro.url.origin;
 const title = `${page.eyebrow} — The Paper Seal Studio`;
 const structuredData = [
-  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://paperseal.co.uk/' },
-    { '@type': 'ListItem', position: 2, name: page.eyebrow, item: `https://paperseal.co.uk${canonical}` },
-  ] },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', siteOrigin).href },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: page.eyebrow,
+        item: new URL(canonical, siteOrigin).href,
+      },
+    ],
+  },
 ];
 ---
-<BaseLayout {title} description={page.description} {canonical} indexable={page.indexable} {structuredData}>
+
+<BaseLayout
+  {title}
+  description={page.description}
+  {canonical}
+  indexable={page.indexable}
+  {structuredData}
+>
   <InstitutionalPage {page} />
 </BaseLayout>

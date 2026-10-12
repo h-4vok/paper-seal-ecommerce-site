@@ -1,29 +1,51 @@
 ---
 interface Props {
   assetBase: string;
-  kind?: 'flat' | 'room';
   alt: string;
+  orientation: 'landscape' | 'portrait';
+  imageWidth: number;
+  imageHeight: number;
   sizes?: string;
   eager?: boolean;
+  watermark?: boolean;
+  watermarkProfile?: 'standard' | 'high-contrast';
+  resolution?: 720 | 1440;
 }
 
 const {
   assetBase,
-  kind = 'room',
   alt,
+  orientation,
+  imageWidth,
+  imageHeight,
   sizes = '(min-width: 64rem) 42vw, 92vw',
   eager = false,
+  watermark = true,
+  watermarkProfile = 'standard',
+  resolution = 720,
 } = Astro.props;
-const base = `/images/artworks/${assetBase}/${kind}`;
+const src = `/images/artworks/${assetBase}/flat-${resolution}.jpg`;
+const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
 ---
-<img
-    src={`${base}-1440.jpg`}
-    srcset={`${base}-720.jpg 720w, ${base}-1440.jpg 1440w`}
+
+<span class:list={['artwork-picture', `artwork-picture--${orientation}`]}>
+  <img
+    src={src}
     {sizes}
     {alt}
-    width="1440"
-    height="1080"
+    width={imageWidth}
+    height={imageHeight}
     loading={eager ? 'eager' : 'lazy'}
     decoding="async"
     fetchpriority={eager ? 'high' : 'auto'}
   />
+  {watermark && (
+    <span class="artwork-watermark" data-watermark-profile={watermarkProfile} aria-hidden="true">
+      {watermarkRows.map(() => (
+        <span class="artwork-watermark__line">
+          PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL
+        </span>
+      ))}
+    </span>
+  )}
+</span>
