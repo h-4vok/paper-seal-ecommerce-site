@@ -15,6 +15,10 @@
     {
       "name": "SnipcartIntegration",
       "reason": "Vendor integration boundary; not a reusable presentation component."
+    },
+    {
+      "name": "UmamiIntegration",
+      "reason": "Head-only analytics integration; not a reusable presentation component."
     }
   ],
   "components": [

@@ -4,6 +4,7 @@ import JsonLd from '../components/JsonLd.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SnipcartIntegration from '../components/SnipcartIntegration.astro';
+import UmamiIntegration from '../components/UmamiIntegration.astro';
 import { copy } from '../content/copy';
 import '../styles/global.scss';
 
@@ -43,6 +44,7 @@ const {
     <SeoHead {title} {description} {canonical} {image} {imageAlt} {indexable} {ogType} />
     {structuredData && <JsonLd data={structuredData} />}
     {showChrome && <SnipcartIntegration />}
+    <UmamiIntegration />
   </head>
   <body class={bodyClass}>
     <a class="skip-link" href="#main-content">
