@@ -97,6 +97,14 @@ describe('catalogue model', () => {
       'invalid mockup',
     ],
     [[{ ...artworks[0], imageDimensions: { width: 0, height: 500 } }], 'invalid image dimensions'],
+    [
+      [{ ...artworks[0], imageDimensions: { width: 720, height: 1290 } }],
+      'orientation does not match image dimensions',
+    ],
+    [
+      [{ ...artworks[2], imageDimensions: { width: 720, height: 512 } }],
+      'orientation does not match image dimensions',
+    ],
     [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
     [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
