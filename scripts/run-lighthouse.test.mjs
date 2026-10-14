@@ -49,9 +49,23 @@ describe('Lighthouse audit helpers', () => {
     const summary = summarizeReport(
       {
         finalUrl: 'https://paperseal.uk/',
-        categories: Object.fromEntries(
-          CATEGORIES.map((key) => [key, { score: scoreSet()[key] / 100 }]),
-        ),
+        categories: {
+          ...Object.fromEntries(CATEGORIES.map((key) => [key, { score: scoreSet()[key] / 100 }])),
+          performance: {
+            score: 0.91,
+            auditRefs: [{ id: 'render-blocking', group: 'diagnostics', weight: 1 }],
+            groups: { diagnostics: { title: 'Diagnostics' } },
+          },
+        },
+        audits: {
+          'render-blocking': {
+            title: 'Render-blocking requests',
+            description: 'Fix <script> & style loading.',
+            score: 0,
+            scoreDisplayMode: 'binary',
+            displayValue: 'Potential savings of 200 ms',
+          },
+        },
       },
       'https://paperseal.uk/',
     );
@@ -60,6 +74,12 @@ describe('Lighthouse audit helpers', () => {
       accessibility: 88,
       'best-practices': 94,
       seo: 100,
+    });
+    expect(summary.auditsByCategory.performance[0]).toMatchObject({
+      title: 'Render-blocking requests',
+      group: 'Diagnostics',
+      status: 'failed',
+      displayValue: 'Potential savings of 200 ms',
     });
     expect(() => summarizeReport({ finalUrl: 'x', categories: {} }, 'x')).toThrow(
       /Missing performance score/,
@@ -83,14 +103,38 @@ describe('Lighthouse audit helpers', () => {
   it('generates an HTML route summary with four score columns and escaped text', () => {
     const html = buildSummaryHtml(
       '<prod>',
-      [{ url: 'https://paperseal.uk/?a=1&b=2', scores: scoreSet() }],
+      [
+        {
+          url: 'https://paperseal.uk/?a=1&b=2',
+          reportPath: 'index.report.html',
+          scores: scoreSet(),
+          auditsByCategory: {
+            performance: [
+              {
+                group: 'Diagnostics',
+                title: 'Render-blocking requests',
+                status: 'failed',
+                score: 0,
+                scoreDisplayMode: 'binary',
+                weight: 1,
+                displayValue: 'Potential savings of 200 ms',
+                description: 'Fix <script> & style loading.',
+              },
+            ],
+          },
+        },
+      ],
       [],
       [],
     );
-    expect(html).toContain('<th>performance</th>');
-    expect(html).toContain('<th>accessibility</th>');
-    expect(html).toContain('<th>best-practices</th>');
-    expect(html).toContain('<th>seo</th>');
+    expect(html).toContain('<th>Performance</th>');
+    expect(html).toContain('<th>Accessibility</th>');
+    expect(html).toContain('<th>Best Practices</th>');
+    expect(html).toContain('<th>SEO</th>');
+    expect(html).toContain('All Lighthouse checks (1)');
+    expect(html).toContain('Render-blocking requests');
+    expect(html).toContain('Potential savings of 200 ms');
+    expect(html).toContain('Fix &lt;script&gt; &amp; style loading.');
     expect(html).toContain('&lt;prod&gt;');
     expect(html).toContain('&amp;b=2');
   });
@@ -136,7 +180,7 @@ describe('runAudit', () => {
     expect(lighthouse).toHaveBeenCalledTimes(2);
     const outputDir = path.join(reportRoot, 'production', '2026-10-12T10-20-30Z');
     expect(await readFile(path.join(outputDir, 'summary.html'), 'utf8')).toContain(
-      'best-practices',
+      'Best Practices',
     );
     expect(await readFile(path.join(outputDir, 'artworks.report.html'), 'utf8')).toContain(
       'full report',
