@@ -21,6 +21,7 @@ dist/
 coverage/
 playwright-report/
 test-results/
+lighthouse-reports/
 
 # Local editor and OS files
 .DS_Store
