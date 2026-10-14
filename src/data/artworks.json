@@ -10,9 +10,7 @@
       "description": "The new Eastbourne flower bed by Grand Parade, gathered into a joyful study of colour, leaves and late-season light.",
       "placeName": "Eastbourne",
       "publishedOrder": 100,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "A bright Eastbourne flower bed gathered into a joyful study of colour, leaves and late-season light.",
       "assetBase": "flower-bed",
@@ -57,9 +55,7 @@
       "description": "Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast, seen from the Eastbourne Promenade.",
       "placeName": "Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast, seen from the Eastbourne Promenade.",
       "assetBase": "seven-sisters",
@@ -104,9 +100,7 @@
       "description": "Ever enjoyed a pint at The Beachy Head Pub?",
       "placeName": "The Beachy Head Pub, Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "portrait",
       "alt": "Ever enjoyed a pint at The Beachy Head Pub?",
       "assetBase": "beachy-head",
@@ -151,9 +145,7 @@
       "description": "The residential area of Sovereign Harbour always invites a pause, a retrospection...",
       "placeName": "Sovereign Harbour, Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "A wide painterly view across the residential area of Sovereign Harbour",
       "assetBase": "meet-me-eastbourne",
@@ -198,9 +190,7 @@
       "description": "The pier held against sea and sky: a familiar Eastbourne silhouette seen with fresh attention.",
       "placeName": "Eastbourne",
       "publishedOrder": 2,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "Eastbourne Pier extending into the sea beneath a bright sky",
       "assetBase": "eastbourne-pier",
@@ -245,9 +235,7 @@
       "description": "A row of Eastbourne beach huts in front of Princes Park. Turned into a small celebration of colour, rhythm and seaside days.",
       "placeName": "Eastbourne",
       "publishedOrder": 99,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "Colourful beach huts arranged along Eastbourne seafront",
       "assetBase": "beach-huts",
@@ -292,9 +280,7 @@
       "description": "A wide South Downs landscape of open fields, soft light and rolling Sussex horizons.",
       "placeName": "Beachy Head, Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "Open fields and rolling hills across the South Downs in Sussex",
       "assetBase": "south-downs-1",
@@ -339,9 +325,7 @@
       "description": "Historic stone, green grounds and the quiet atmosphere of Battle Abbey in East Sussex.",
       "placeName": "Battle",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "The historic grounds and stone architecture of Battle Abbey in East Sussex",
       "assetBase": "battle-abbey",
@@ -386,9 +370,7 @@
       "description": "A spacious waterfront view where boats, buildings and open Eastbourne light meet.",
       "placeName": "Sovereign Harbour, Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "A wide waterfront view of boats and buildings at Sovereign Harbour",
       "assetBase": "sovereign-harbour-waterfront",
@@ -433,9 +415,7 @@
       "description": "The Long Man of Wilmington standing quietly against the chalk downland of Sussex.",
       "placeName": "Wilmington",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "The Long Man of Wilmington figure set into the Sussex chalk hills",
       "assetBase": "long-man",
@@ -480,9 +460,7 @@
       "description": "Warm evening colour settling over the Eastbourne Pier, the sea and the edge of the day.",
       "placeName": "Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "A warm sunset over Eastbourne and the Sussex coast",
       "assetBase": "eastbourne-sunset",
@@ -527,9 +505,7 @@
       "description": "A familiar Martello tower held against the changing light of the East Sussex coast.",
       "placeName": "Sovereign Harbour, Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Colleciton"
-      ],
+      "collections": ["True Strokes Colleciton"],
       "orientation": "landscape",
       "alt": "Martello tower 66 on the East Sussex coast, with a characteristic Seagull standing on a rock.",
       "assetBase": "martello-66",
@@ -574,9 +550,7 @@
       "description": "Layered hills and open sky above the dramatic downland valley of Devils Dyke.",
       "placeName": "Devil's Dyke, Brighton",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "The rolling hills and valley of Devils Dyke in Sussex",
       "assetBase": "devils-dyke",
@@ -621,9 +595,7 @@
       "description": "A vertical glimpse of flight, hillside and open Sussex air above the High & Over Park.",
       "placeName": "High & Over, Seaford",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "portrait",
       "alt": "A paraglider flying above the South Downs landscape",
       "assetBase": "parapente-south-downs",
@@ -668,9 +640,7 @@
       "description": "A detailed harbour view with boats, water and the calm geometry of Sovereign Harbour.",
       "placeName": "Sovereign Harbour, Eastbourne",
       "publishedOrder": 98,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "Boats and water at Sovereign Harbour in a detailed coastal view",
       "assetBase": "sovereign-harbour-high-res",
@@ -715,9 +685,7 @@
       "description": "A lively South Downs scene of paths, bikes and the everyday adventure of the sheeps.",
       "placeName": "Beachy Head, Eastbourne",
       "publishedOrder": 1,
-      "collections": [
-        "True Strokes Collection"
-      ],
+      "collections": ["True Strokes Collection"],
       "orientation": "landscape",
       "alt": "Sheeps and a bike on a South Downs track beneath open hills",
       "assetBase": "south-downs-jeeps-bike",
