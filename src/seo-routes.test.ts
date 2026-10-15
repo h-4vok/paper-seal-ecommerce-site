@@ -13,8 +13,11 @@ describe('SEO route bodies', () => {
       .map((line) => line.split(/\s+/));
     const currentHandles = new Set(artworks.map(({ handle }) => `/artworks/${handle}`));
 
-    expect(entries).toHaveLength(artworks.length);
-    const currentEntries = entries.filter(([, destination]) => currentHandles.has(destination));
+    const legacyEntries = entries.filter(([source]) => source.startsWith('/artworks/'));
+    expect(legacyEntries).toHaveLength(artworks.length);
+    const currentEntries = legacyEntries.filter(([, destination]) =>
+      currentHandles.has(destination),
+    );
 
     expect(currentEntries).toHaveLength(10);
     for (const [source, destination, status] of currentEntries) {
@@ -22,6 +25,50 @@ describe('SEO route bodies', () => {
       expect(destination).toMatch(/^\/artworks\/.+-ps-pr-\d{3}$/);
       expect(status).toBe('301');
     }
+  });
+
+  it('temporarily redirects each Comfort Season QR route to its assigned artwork', async () => {
+    const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
+    const entries = redirects
+      .trim()
+      .split('\n')
+      .map((line) => line.split(/\s+/));
+    const qrEntries = entries.filter(([source]) => source.startsWith('/redirect/'));
+    const expected = [
+      [
+        '/redirect/collab-comfort-season-chipping-norton',
+        '/artworks/new-eastbourne-flower-bed-ps-pr-001',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-minster-lovell',
+        '/artworks/seven-sisters-from-the-eastbourne-promenade-ps-pr-002',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-stow-on-the-wold',
+        '/artworks/the-beachy-head-pub-ps-pr-004',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-the-everyday-cotswolds',
+        '/artworks/meet-me-in-eastbourne-ps-pr-005',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-the-old-swan-pub',
+        '/artworks/eastbourne-pier-ps-pr-006',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-snowshill',
+        '/artworks/beach-huts-eastbourne-ps-pr-007',
+        '302',
+      ],
+    ];
+
+    expect(qrEntries).toEqual(expected);
+    expect(new Set(qrEntries.map(([, destination]) => destination)).size).toBe(expected.length);
   });
 
   it.each([new URL('https://preview.example'), undefined])(
@@ -55,6 +102,7 @@ describe('SEO route bodies', () => {
       if (site) expect(body).not.toContain('paperseal.uk');
       expect(body).not.toContain('/cart</loc>');
       expect(body).not.toContain('/privacy</loc>');
+      expect(body).not.toContain('/redirect/');
     },
   );
 });
