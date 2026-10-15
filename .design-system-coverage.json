@@ -26,7 +26,7 @@
       "name": "ArtworkCard",
       "source": "src/components/ArtworkCard.astro",
       "level": "Molecules",
-      "useFor": "Catalogue artwork link with a consistent 4:3 image mount and aligned caption."
+      "useFor": "Catalogue artwork link with a consistent 4:3 image mount, aligned caption and initially hidden state for deferred results."
     },
     {
       "name": "ArtworkPicture",

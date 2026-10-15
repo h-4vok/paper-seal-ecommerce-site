@@ -6,8 +6,9 @@ import ArtworkPicture from './ArtworkPicture.astro';
 interface Props {
   artwork: Artwork;
   eager?: boolean;
+  initiallyHidden?: boolean;
 }
-const { artwork, eager = false } = Astro.props;
+const { artwork, eager = false, initiallyHidden = false } = Astro.props;
 const { catalogue } = copy;
 ---
 
@@ -15,6 +16,7 @@ const { catalogue } = copy;
   class:list={['artwork-card', `artwork-card--${artwork.orientation}`]}
   data-artwork-card
   data-handle={artwork.handle}
+  hidden={initiallyHidden}
 >
   <a
     href={`/artworks/${artwork.handle}`}
