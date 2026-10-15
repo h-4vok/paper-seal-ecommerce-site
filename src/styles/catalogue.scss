@@ -148,8 +148,7 @@
 
 .artwork-card__media img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
   transition: transform 300ms ease;
 }
 
@@ -238,10 +237,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
     gap: clamp(2rem, 4vw, 4rem) clamp(1.2rem, 2.4vw, 2.5rem);
-  }
-
-  .artwork-card--portrait .artwork-card__media img {
-    object-fit: cover;
   }
 }
 

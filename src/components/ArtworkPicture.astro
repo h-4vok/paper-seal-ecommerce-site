@@ -31,6 +31,7 @@ const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
 <span class:list={['artwork-picture', `artwork-picture--${orientation}`]}>
   <img
     src={src}
+    srcset={`/images/artworks/${assetBase}/flat-720.jpg 720w, /images/artworks/${assetBase}/flat-1440.jpg 1440w`}
     {sizes}
     {alt}
     width={imageWidth}

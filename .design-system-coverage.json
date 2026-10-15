@@ -26,13 +26,13 @@
       "name": "ArtworkCard",
       "source": "src/components/ArtworkCard.astro",
       "level": "Molecules",
-      "useFor": "Catalogue artwork link with mounted image and caption."
+      "useFor": "Catalogue artwork link with an uncropped, proportionate image and caption."
     },
     {
       "name": "ArtworkPicture",
       "source": "src/components/ArtworkPicture.astro",
       "level": "Atoms",
-      "useFor": "Responsive flat artwork derivative with an optional Paper Seal watermark."
+      "useFor": "Resolution-aware flat artwork derivatives with an optional Paper Seal watermark."
     },
     {
       "name": "ArtworkMockupPicture",
