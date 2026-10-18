@@ -27,7 +27,7 @@ describe('SEO route bodies', () => {
     }
   });
 
-  it('temporarily redirects each Comfort Season QR route to its assigned artwork', async () => {
+  it('temporarily redirects each Comfort Season QR route to its assigned Stripe payment link', async () => {
     const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
     const entries = redirects
       .trim()
@@ -37,32 +37,32 @@ describe('SEO route bodies', () => {
     const expected = [
       [
         '/redirect/collab-comfort-season-chipping-norton',
-        '/artworks/new-eastbourne-flower-bed-ps-pr-001',
+        'https://buy.stripe.com/6oU3co4kgaP06Uoc88b3q03',
         '302',
       ],
       [
         '/redirect/collab-comfort-season-minster-lovell',
-        '/artworks/seven-sisters-from-the-eastbourne-promenade-ps-pr-002',
+        'https://buy.stripe.com/4gM4gsg2Y4qCdiM4FGb3q01',
         '302',
       ],
       [
         '/redirect/collab-comfort-season-stow-on-the-wold',
-        '/artworks/the-beachy-head-pub-ps-pr-004',
+        'https://buy.stripe.com/4gM5kwbMIe1c5Qk4FGb3q02',
         '302',
       ],
       [
         '/redirect/collab-comfort-season-the-everyday-cotswolds',
-        '/artworks/meet-me-in-eastbourne-ps-pr-005',
+        'https://buy.stripe.com/dRm9AMcQMf5g3Ic1tub3q00',
         '302',
       ],
       [
         '/redirect/collab-comfort-season-the-old-swan-pub',
-        '/artworks/eastbourne-pier-ps-pr-006',
+        'https://buy.stripe.com/dRm4gsg2Y7CO2E82xyb3q05',
         '302',
       ],
       [
         '/redirect/collab-comfort-season-snowshill',
-        '/artworks/beach-huts-eastbourne-ps-pr-007',
+        'https://buy.stripe.com/14A6oA6so3my6Uofkkb3q04',
         '302',
       ],
     ];
