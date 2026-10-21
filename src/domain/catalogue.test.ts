@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   artworkMatches,
   artworks,
+  catalogueProducts,
   filterCatalogue,
   formatPrice,
   galleryIndex,
@@ -9,6 +10,7 @@ import {
   nextVisibleCount,
   normalizeSearch,
   productGallery,
+  productPath,
   productStructuredData,
   snipcartItemAttributes,
   validateCatalogue,
@@ -19,6 +21,23 @@ describe('catalogue model', () => {
     expect(artworks).toHaveLength(16);
     expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(16);
     expect(new Set(artworks.map(({ family }) => family))).toEqual(new Set(['artwork']));
+  });
+
+  it('includes the greeting card in the searchable product collection', () => {
+    expect(catalogueProducts).toHaveLength(17);
+    expect(catalogueProducts[0]?.family).toBe('artwork');
+    expect(catalogueProducts.find(({ family }) => family === 'greeting-card')?.handle).toBe(
+      'bodiam-castle-greeting-card-ps-gc-001',
+    );
+    const matches = filterCatalogue(catalogueProducts, {
+      query: 'Bodiam',
+      place: 'all',
+      sort: 'newest',
+    });
+    expect(matches.map(({ title }) => title)).toEqual(['Bodiam Castle']);
+    expect(productPath(catalogueProducts.find(({ family }) => family === 'greeting-card')!)).toBe(
+      '/greeting-cards/bodiam-castle-greeting-card-ps-gc-001',
+    );
   });
 
   it('maps artwork prices to Snipcart base price and size modifiers', () => {

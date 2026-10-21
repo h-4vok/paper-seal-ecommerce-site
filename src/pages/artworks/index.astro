@@ -1,7 +1,8 @@
 ---
 import ArtworkCard from '../../components/ArtworkCard.astro';
+import GreetingCardCard from '../../components/GreetingCardCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { artworks, mockupImagePath } from '../../domain/catalogue';
+import { artworks, catalogueProducts, mockupImagePath, productPath } from '../../domain/catalogue';
 import { copy } from '../../content/copy';
 import '../../styles/catalogue.scss';
 
@@ -31,23 +32,23 @@ const catalogue = {
 const title = catalogue.title;
 const description = catalogue.description;
 const siteOrigin = Astro.site ?? Astro.url.origin;
-const places = [...new Set(artworks.map(({ placeName }) => placeName))].sort((a, b) =>
+const places = [...new Set(catalogueProducts.map(({ placeName }) => placeName))].sort((a, b) =>
   a.localeCompare(b, 'en-GB'),
 );
 const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'The Paper Seal Studio artworks',
+    name: 'The Paper Seal Studio artworks and greeting cards',
     description,
     url: new URL('/artworks', siteOrigin).href,
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: artworks.map((artwork, index) => ({
+      itemListElement: catalogueProducts.map((product, index) => ({
         '@type': 'ListItem',
         position: index + 1,
-        name: artwork.title,
-        url: new URL(`/artworks/${artwork.handle}`, siteOrigin).href,
+        name: product.title,
+        url: new URL(productPath(product), siteOrigin).href,
       })),
     },
   },
@@ -137,13 +138,17 @@ const structuredData = [
       <div class="catalogue-results-heading">
         <p class="eyebrow">{catalogue.collectionLabel}</p>
         <p aria-live="polite" aria-atomic="true" data-result-count>
-          {artworks.length} {catalogue.resultCountLabel}
+          {catalogueProducts.length} {catalogue.resultCountLabel}
         </p>
       </div>
       <div class="artwork-grid" data-artwork-grid>
-        {artworks.map((artwork, index) => (
-          <ArtworkCard {artwork} eager={index < 2} />
-        ))}
+        {catalogueProducts.map((product, index) =>
+          product.family === 'artwork' ? (
+            <ArtworkCard artwork={product} eager={index < 2} />
+          ) : (
+            <GreetingCardCard card={product} eager={index < 2} />
+          ),
+        )}
       </div>
       <div class="catalogue-empty" hidden data-empty-state>
         <p class="eyebrow">{catalogue.emptyEyebrow}</p>
@@ -159,7 +164,7 @@ const structuredData = [
 
 <script>
   import {
-    artworks,
+    catalogueProducts,
     filterCatalogue,
     nextVisibleCount,
     type CatalogueState,
@@ -183,7 +188,7 @@ const structuredData = [
     ]),
   );
   let visibleCount = 4;
-  let currentMatches = artworks;
+  let currentMatches = catalogueProducts;
   const controlsReady =
     form instanceof HTMLFormElement &&
     search instanceof HTMLInputElement &&
@@ -210,7 +215,7 @@ const structuredData = [
   function render({ announce = true } = {}) {
     if (!controlsReady) return;
     const state = readState();
-    currentMatches = filterCatalogue(artworks, state);
+    currentMatches = filterCatalogue(catalogueProducts, state);
     currentMatches.forEach((artwork) => {
       const card = cardMap.get(artwork.handle);
       if (card) grid.append(card);

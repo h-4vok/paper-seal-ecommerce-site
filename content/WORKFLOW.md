@@ -35,8 +35,8 @@ flowchart TD
     M --> O[public/images/artworks/<assetBase>/]
     N --> P[public/images/greeting-cards/<assetBase>/]
 
-    E --> Q[Existing artwork catalogue and routes]
-    F --> R[Greeting-card routes added in a later stage]
+    E --> Q[Artwork-print catalogue and routes]
+    F --> R[Greeting-card catalogue and routes]
 ```
 
 ## Commands
@@ -82,12 +82,23 @@ The asset writer retries individual Sharp writes because large image processing 
 transient Windows filesystem or antivirus locks. The retry protects local regeneration; it
 does not replace the requirement for enough free disk space and memory.
 
-## Current catalogue
+## Product search and page archetypes
 
-Artwork page routes continue to read `src/data/artworks.json`. Greeting cards are emitted to their
-own generated catalogue file and asset folder; their storefront page is a later implementation
-stage. Add a product by assigning its family and required family-specific fields in `artworks.yaml`,
-then run `bun run content:build`.
+The `/artworks` search index is the shared product search for currently published families. It
+keeps family-specific result cards and product routes while searching common fields such as title,
+place, description, SKU, and collection.
+
+`src/domain/product-families.ts` maps each product family to a route base and a page archetype.
+These are separate concepts: several families may use one page archetype when their product
+experience is shared. Add a family mapping to this registry and provide or reuse the corresponding
+archetype page. Greeting cards use the `greeting-card-detail` archetype at `/greeting-cards/<handle>`;
+artwork prints keep their existing `artwork-detail` archetype and `/artworks/<handle>` routes.
+
+Product pages are static Astro routes generated from family-specific catalogue data. They expose
+unique metadata and structured product data, include their indexable routes in the sitemap, and
+connect purchase buttons to Snipcart with stable SKUs and prices. Stock and availability enforcement
+remain a separate Snipcart configuration task. Add a product by assigning its family and required
+family-specific fields in `artworks.yaml`, then run `bun run content:build`.
 
 # Editorial copy workflow
 

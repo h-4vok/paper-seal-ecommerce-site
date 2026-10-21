@@ -1,6 +1,6 @@
 seo:
-  title: Artworks — East Sussex art prints by The Paper Seal Studio
-  description: Browse Paper Seal Studio art prints inspired by Eastbourne, the Seven Sisters and familiar places across East Sussex.
+  title: Artworks & greeting cards — The Paper Seal Studio
+  description: Browse Paper Seal Studio prints and greeting cards inspired by Eastbourne, Bodiam and familiar places across East Sussex.
 aside:
   sealName: The Paper Seal Studio · East Sussex
   label: Curated catalogue paths
@@ -14,12 +14,12 @@ aside:
     - Locally curated
     - Always meaningful
 intro:
-  heading: Artworks
-  eyebrow: A curated selection of local art prints
-  copy: Original scenes. Lasting impressions. Fine-art prints inspired by real places — from Eastbourne and beyond.
+  heading: Artworks & cards
+  eyebrow: A curated selection of prints and greeting cards
+  copy: Original scenes. Lasting impressions. Art and paper goods inspired by real places across East Sussex.
 controls:
-  searchLabel: Search artworks and places
-  searchPlaceholder: Search artworks, places, or themes…
+  searchLabel: Search artworks, cards and places
+  searchPlaceholder: Search artworks, greeting cards, places, or themes…
   placeLabel: Place
   allPlaces: All places
   availabilityLabel: Availability
@@ -30,8 +30,10 @@ controls:
   title: Title A–Z
 results:
   label: The collection
-  countLabel: artworks
+  countLabel: products
   cardLink: View print
-  emptyEyebrow: No artworks found
+  greetingCardLink: View card
+  greetingCardLabel: Greeting card
+  emptyEyebrow: No products found
   emptyHeading: Try another place or a broader search.
   reset: Reset catalogue

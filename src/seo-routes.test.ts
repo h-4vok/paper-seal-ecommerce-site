@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { readFile } from 'node:fs/promises';
 import { artworks } from './domain/catalogue';
+import { greetingCards, greetingCardPagePath } from './domain/greeting-cards';
 import { GET as getRobots } from './pages/robots.txt';
 import { GET as getSitemap } from './pages/sitemap.xml';
 
@@ -48,6 +49,7 @@ describe('SEO route bodies', () => {
       );
       expect(body).toContain('/artworks</loc>');
       expect(body).toContain('/artworks/new-eastbourne-flower-bed-ps-pr-001</loc>');
+      expect(body).toContain(`${greetingCardPagePath(greetingCards[0])}</loc>`);
       expect(body).toContain('/our-story</loc>');
       expect(body).toContain('/delivery</loc>');
       expect(body).toContain('/returns</loc>');

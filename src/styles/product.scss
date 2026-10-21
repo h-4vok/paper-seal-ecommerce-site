@@ -596,3 +596,140 @@ dialog.product-lightbox {
     font-size: 0.82rem;
   }
 }
+
+.greeting-card-product-layout {
+  gap: 0;
+}
+
+.greeting-card-gallery {
+  min-width: 0;
+  padding: clamp(0.8rem, 2.8vw, 2.5rem);
+  background: var(--color-paper-deep);
+}
+
+.greeting-card-gallery__stage {
+  position: relative;
+  display: grid;
+  min-height: clamp(17rem, 52vw, 35rem);
+  overflow: hidden;
+  background: #e8dfd2;
+  place-items: center;
+}
+
+.greeting-card-gallery__slide {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  padding: clamp(0.5rem, 2vw, 1.5rem);
+  place-items: center;
+}
+
+.greeting-card-gallery__slide[hidden] {
+  display: none;
+}
+
+.greeting-card-gallery__slide .artwork-picture {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+}
+
+.greeting-card-gallery__slide--perspective .artwork-picture > img {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.greeting-card-gallery__slide--front .artwork-picture,
+.greeting-card-gallery__slide--back .artwork-picture {
+  width: min(100%, 42rem);
+  height: auto;
+  aspect-ratio: 3 / 2;
+}
+
+.greeting-card-gallery__slide--front .artwork-picture > img,
+.greeting-card-gallery__slide--back .artwork-picture > img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.greeting-card-gallery__thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.75rem;
+}
+
+.greeting-card-gallery__thumbnail {
+  min-width: 0;
+  padding: 0.35rem;
+  border: 0.1rem solid transparent;
+  color: var(--color-ink);
+  background: var(--color-paper-light);
+  cursor: pointer;
+}
+
+.greeting-card-gallery__thumbnail[aria-pressed='true'] {
+  border-color: var(--color-garden-dark);
+}
+
+.greeting-card-gallery__thumbnail:focus-visible {
+  outline: 0.18rem solid var(--color-focus);
+  outline-offset: 0.12rem;
+}
+
+.greeting-card-gallery__thumbnail-image,
+.greeting-card-gallery__thumbnail-image .artwork-picture {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.greeting-card-gallery__thumbnail-image .artwork-picture > img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.greeting-card-gallery__thumbnail-label {
+  display: block;
+  padding: 0.35rem 0.1rem 0.2rem;
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.greeting-card-specifications {
+  margin-block: 1.8rem;
+}
+
+.greeting-card-specifications dd {
+  line-height: 1.45;
+}
+
+.greeting-card-information .product-place {
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+@media (width >= 64rem) {
+  .greeting-card-product-layout {
+    grid-template-columns: minmax(0, 1.65fr) minmax(26rem, 1fr);
+    align-items: start;
+  }
+
+  .greeting-card-gallery {
+    position: sticky;
+    top: 0;
+  }
+
+  .greeting-card-gallery__stage {
+    min-height: clamp(25rem, 42vw, 38rem);
+  }
+
+  .greeting-card-gallery__thumbnail-label {
+    font-size: 0.58rem;
+  }
+}

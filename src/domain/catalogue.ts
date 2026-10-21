@@ -1,4 +1,6 @@
 import generatedCatalogue from '../data/artworks.json';
+import { greetingCards, type GreetingCard } from './greeting-cards';
+import { productPagePath } from './product-families';
 
 export type Orientation = 'landscape' | 'portrait';
 export type ArtworkSize = 'small' | 'medium' | 'large';
@@ -35,6 +37,23 @@ export interface Artwork {
   watermark: WatermarkProfile;
   imageDimensions: { width: number; height: number };
   price: ArtworkPrices;
+}
+
+export type CatalogueProduct = Artwork | GreetingCard;
+export type CatalogueSearchItem = Pick<
+  CatalogueProduct,
+  | 'family'
+  | 'sku'
+  | 'title'
+  | 'description'
+  | 'placeName'
+  | 'publishedOrder'
+  | 'collections'
+  | 'handle'
+>;
+
+export function productPath(product: Pick<CatalogueSearchItem, 'family' | 'handle'>): string {
+  return productPagePath(product.family, product.handle);
 }
 
 export function formatPrice(amount: number): string {
@@ -179,6 +198,7 @@ export function validateCatalogue(input: unknown): Artwork[] {
 }
 
 export const artworks = validateCatalogue(generatedCatalogue.artworks);
+export const catalogueProducts: CatalogueProduct[] = [...artworks, ...greetingCards];
 
 export function mockupImagePath(
   artwork: Artwork,
@@ -220,7 +240,7 @@ function fuzzyIncludes(haystack: string, needle: string): boolean {
   });
 }
 
-export function artworkMatches(artwork: Artwork, query: string): boolean {
+export function artworkMatches(artwork: CatalogueSearchItem, query: string): boolean {
   const normalizedQuery = normalizeSearch(query);
   if (!normalizedQuery) return true;
   const searchable = normalizeSearch(
@@ -235,7 +255,10 @@ export function artworkMatches(artwork: Artwork, query: string): boolean {
   return normalizedQuery.split(' ').every((token) => fuzzyIncludes(searchable, token));
 }
 
-export function filterCatalogue(items: Artwork[], state: CatalogueState): Artwork[] {
+export function filterCatalogue<T extends CatalogueSearchItem>(
+  items: T[],
+  state: CatalogueState,
+): T[] {
   const filtered = items.filter(
     (artwork) =>
       artworkMatches(artwork, state.query) &&

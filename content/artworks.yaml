@@ -285,7 +285,7 @@ products:
       handle: bodiam-castle-greeting-card-ps-gc-001,
       description: 'A folded 6 × 4 inch greeting card featuring Bodiam Castle, supplied with an envelope and individually wrapped in clear cellophane.',
       placeName: 'Bodiam, Robertsbridge',
-      publishedOrder: 1,
+      publishedOrder: 101,
       collections: [East Sussex Heritage Series],
       orientation: landscape,
       alt: 'A folded greeting card featuring Bodiam Castle, with its printed front displayed on a warm stone surface.',

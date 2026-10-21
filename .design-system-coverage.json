@@ -32,7 +32,19 @@
       "name": "ArtworkPicture",
       "source": "src/components/ArtworkPicture.astro",
       "level": "Atoms",
-      "useFor": "Responsive flat artwork derivative with an optional Paper Seal watermark."
+      "useFor": "Responsive flat product image with the shared Paper Seal watermark and a visible load-error fallback."
+    },
+    {
+      "name": "GreetingCardCard",
+      "source": "src/components/GreetingCardCard.astro",
+      "level": "Molecules",
+      "useFor": "Search result for a greeting card, with a 4:3 watermarked image, location, price and route."
+    },
+    {
+      "name": "GreetingCardGallery",
+      "source": "src/components/GreetingCardGallery.astro",
+      "level": "Organisms",
+      "useFor": "Accessible greeting-card image gallery for the perspective mockup, front and back."
     },
     {
       "name": "ArtworkMockupPicture",

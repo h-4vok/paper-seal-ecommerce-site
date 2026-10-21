@@ -1,6 +1,7 @@
 ---
 interface Props {
   assetBase: string;
+  sourceBase?: string;
   alt: string;
   orientation: 'landscape' | 'portrait';
   imageWidth: number;
@@ -14,6 +15,7 @@ interface Props {
 
 const {
   assetBase,
+  sourceBase = `/images/artworks/${assetBase}/flat`,
   alt,
   orientation,
   imageWidth,
@@ -24,13 +26,14 @@ const {
   watermarkProfile = 'standard',
   resolution = 720,
 } = Astro.props;
-const src = `/images/artworks/${assetBase}/flat-${resolution}.jpg`;
+const src = `${sourceBase}-${resolution}.jpg`;
 const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
 ---
 
 <span class:list={['artwork-picture', `artwork-picture--${orientation}`]}>
   <img
     src={src}
+    srcset={`${sourceBase}-720.jpg 720w, ${sourceBase}-1440.jpg 1440w`}
     {sizes}
     {alt}
     width={imageWidth}
@@ -38,7 +41,17 @@ const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
     loading={eager ? 'eager' : 'lazy'}
     decoding="async"
     fetchpriority={eager ? 'high' : 'auto'}
+    data-image-source
   />
+  <span
+    class="artwork-picture__fallback"
+    role="img"
+    aria-label={alt || 'Product image unavailable'}
+    hidden
+    data-image-fallback
+  >
+    Image unavailable
+  </span>
   {watermark && (
     <span class="artwork-watermark" data-watermark-profile={watermarkProfile} aria-hidden="true">
       {watermarkRows.map(() => (
@@ -49,3 +62,20 @@ const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
     </span>
   )}
 </span>
+
+<script>
+  document.querySelectorAll<HTMLImageElement>('[data-image-source]').forEach((image) => {
+    image.addEventListener(
+      'error',
+      () => {
+        image.hidden = true;
+        const fallback = image.parentElement?.querySelector<HTMLElement>('[data-image-fallback]');
+        if (fallback) fallback.hidden = false;
+        image.parentElement
+          ?.querySelector<HTMLElement>('.artwork-watermark')
+          ?.setAttribute('hidden', '');
+      },
+      { once: true },
+    );
+  });
+</script>
