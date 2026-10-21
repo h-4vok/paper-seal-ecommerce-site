@@ -29,6 +29,7 @@ const {
   variant = 'flat',
 } = Astro.props;
 const src = `${sourceBase}-${resolution}.jpg`;
+const flatSrcset = [720, 1440].map((width) => `${sourceBase}-${width}.jpg ${width}w`).join(', ');
 const catalogueBase = `/images/artworks/${assetBase}/card`;
 const catalogueSrcset = (format: 'webp' | 'jpg') =>
   [480, 960, 1440].map((width) => `${catalogueBase}-${width}.${format} ${width}w`).join(', ');
@@ -55,7 +56,7 @@ const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
   ) : (
     <img
       src={src}
-      srcset={`/images/artworks/${assetBase}/flat-720.jpg 720w, /images/artworks/${assetBase}/flat-1440.jpg 1440w`}
+      srcset={flatSrcset}
       {sizes}
       {alt}
       width={imageWidth}
