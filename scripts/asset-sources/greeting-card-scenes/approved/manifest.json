@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "outputPixels": [1894, 830],
+  "background": "folded-card-blank.png",
+  "frontQuad": [
+    [590, 174],
+    [1360, 118],
+    [1415, 621],
+    [631, 692]
+  ],
+  "outputWidths": [720, 1440]
+}
