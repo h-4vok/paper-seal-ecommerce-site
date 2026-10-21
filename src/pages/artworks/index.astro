@@ -2,7 +2,13 @@
 import ArtworkCard from '../../components/ArtworkCard.astro';
 import GreetingCardCard from '../../components/GreetingCardCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { artworks, catalogueProducts, mockupImagePath, productPath } from '../../domain/catalogue';
+import {
+  artworks,
+  catalogueProducts,
+  filterCatalogue,
+  mockupImagePath,
+  productPath,
+} from '../../domain/catalogue';
 import { copy } from '../../content/copy';
 import '../../styles/catalogue.scss';
 
@@ -35,6 +41,11 @@ const siteOrigin = Astro.site ?? Astro.url.origin;
 const places = [...new Set(catalogueProducts.map(({ placeName }) => placeName))].sort((a, b) =>
   a.localeCompare(b, 'en-GB'),
 );
+const initialProducts = filterCatalogue(catalogueProducts, {
+  query: '',
+  place: 'all',
+  sort: 'newest',
+});
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -142,14 +153,21 @@ const structuredData = [
         </p>
       </div>
       <div class="artwork-grid" data-artwork-grid>
-        {catalogueProducts.map((product, index) =>
+        {initialProducts.map((product, index) =>
           product.family === 'artwork' ? (
-            <ArtworkCard artwork={product} eager={index < 2} />
+            <ArtworkCard artwork={product} eager={index === 0} initiallyHidden={index >= 4} />
           ) : (
-            <GreetingCardCard card={product} eager={index < 2} />
+            <GreetingCardCard card={product} eager={index === 0} initiallyHidden={index >= 4} />
           ),
         )}
       </div>
+      <noscript>
+        <style>
+          .artwork-card[hidden] {
+            display: block;
+          }
+        </style>
+      </noscript>
       <div class="catalogue-empty" hidden data-empty-state>
         <p class="eyebrow">{catalogue.emptyEyebrow}</p>
         <h2>{catalogue.emptyHeading}</h2>

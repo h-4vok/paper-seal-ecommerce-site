@@ -11,6 +11,7 @@ interface Props {
   watermark?: boolean;
   watermarkProfile?: 'standard' | 'high-contrast';
   resolution?: 720 | 1440;
+  variant?: 'flat' | 'catalogue';
 }
 
 const {
@@ -25,24 +26,46 @@ const {
   watermark = true,
   watermarkProfile = 'standard',
   resolution = 720,
+  variant = 'flat',
 } = Astro.props;
 const src = `${sourceBase}-${resolution}.jpg`;
+const catalogueBase = `/images/artworks/${assetBase}/card`;
+const catalogueSrcset = (format: 'webp' | 'jpg') =>
+  [480, 960, 1440].map((width) => `${catalogueBase}-${width}.${format} ${width}w`).join(', ');
 const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
 ---
 
 <span class:list={['artwork-picture', `artwork-picture--${orientation}`]}>
-  <img
-    src={src}
-    srcset={`${sourceBase}-720.jpg 720w, ${sourceBase}-1440.jpg 1440w`}
-    {sizes}
-    {alt}
-    width={imageWidth}
-    height={imageHeight}
-    loading={eager ? 'eager' : 'lazy'}
-    decoding="async"
-    fetchpriority={eager ? 'high' : 'auto'}
-    data-image-source
-  />
+  {variant === 'catalogue' ? (
+    <picture>
+      <source type="image/webp" srcset={catalogueSrcset('webp')} {sizes} />
+      <img
+        src={`${catalogueBase}-480.jpg`}
+        srcset={catalogueSrcset('jpg')}
+        {sizes}
+        {alt}
+        width="480"
+        height="360"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchpriority={eager ? 'high' : 'auto'}
+        data-image-source
+      />
+    </picture>
+  ) : (
+    <img
+      src={src}
+      srcset={`/images/artworks/${assetBase}/flat-720.jpg 720w, /images/artworks/${assetBase}/flat-1440.jpg 1440w`}
+      {sizes}
+      {alt}
+      width={imageWidth}
+      height={imageHeight}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      fetchpriority={eager ? 'high' : 'auto'}
+      data-image-source
+    />
+  )}
   <span
     class="artwork-picture__fallback"
     role="img"

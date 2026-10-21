@@ -12,6 +12,7 @@ import {
 } from './mockup-registry.mjs';
 
 export const projectRoot = path.resolve(import.meta.dirname, '..');
+export const CATALOGUE_WIDTHS = [480, 960, 1440];
 
 async function fileExists(filePath) {
   try {
@@ -133,6 +134,30 @@ async function writeDerivatives(image, outputDirectory, filenameForWidth) {
   }
 }
 
+export async function writeCatalogueDerivatives(masterPath, outputDirectory) {
+  const image = sharp(masterPath, { failOn: 'error' });
+  const metadata = await image.metadata();
+  if ((metadata.width ?? 0) < 1440 || (metadata.height ?? 0) < 1080) {
+    throw new Error(`Catalogue master must be at least 1440×1080: ${masterPath}`);
+  }
+
+  const crop = await image
+    .resize(1440, 1080, { fit: 'cover', position: 'centre' })
+    .png()
+    .toBuffer();
+  for (const width of CATALOGUE_WIDTHS) {
+    const resized = sharp(crop).resize(width, (width * 3) / 4);
+    await resized
+      .clone()
+      .webp({ quality: 82, effort: 5 })
+      .toFile(path.join(outputDirectory, `card-${width}.webp`));
+    await resized
+      .clone()
+      .jpeg({ quality: 88, mozjpeg: true })
+      .toFile(path.join(outputDirectory, `card-${width}.jpg`));
+  }
+}
+
 async function publishStagedDirectories(stagingRoot, publicDirectory, stagedDirectoryNames) {
   const backupRoot = path.join(stagingRoot, 'backup');
   await mkdir(backupRoot, { recursive: true });
@@ -209,6 +234,7 @@ export async function buildArtworkAssets({
         withoutEnlargement: true,
       });
       await writeDerivatives(flat, outputDirectory, (width) => `flat-${width}.jpg`);
+      await writeCatalogueDerivatives(masterPath, outputDirectory);
       const selections = artwork.mockups;
       for (const size of MOCKUP_SIZES) {
         for (const selection of selections[size]) {
@@ -232,7 +258,7 @@ export async function buildArtworkAssets({
         }
       }
       process.stdout.write(
-        `Built flat image and ${Object.values(selections).flat().length} selected mockups for ${artwork.assetBase}\n`,
+        `Built flat and catalogue images plus ${Object.values(selections).flat().length} selected mockups for ${artwork.assetBase}\n`,
       );
     }
     await mkdir(outputDirectoryRoot, { recursive: true });

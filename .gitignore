@@ -21,6 +21,8 @@ dist/
 coverage/
 playwright-report/
 test-results/
+storybook-build/
+visual-evidence/
 lighthouse-reports/
 
 # Local editor and OS files

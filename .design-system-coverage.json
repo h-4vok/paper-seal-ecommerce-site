@@ -26,13 +26,13 @@
       "name": "ArtworkCard",
       "source": "src/components/ArtworkCard.astro",
       "level": "Molecules",
-      "useFor": "Catalogue artwork link with mounted image and caption."
+      "useFor": "Catalogue artwork link with a consistent 4:3 image mount, aligned caption and initially hidden state for deferred results."
     },
     {
       "name": "ArtworkPicture",
       "source": "src/components/ArtworkPicture.astro",
       "level": "Atoms",
-      "useFor": "Responsive flat product image with the shared Paper Seal watermark and a visible load-error fallback."
+      "useFor": "Responsive artwork and product image with catalogue, flat-image, and optional watermark variants plus a visible load-error fallback."
     },
     {
       "name": "GreetingCardCard",

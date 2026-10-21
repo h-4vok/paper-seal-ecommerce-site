@@ -14,8 +14,11 @@ describe('SEO route bodies', () => {
       .map((line) => line.split(/\s+/));
     const currentHandles = new Set(artworks.map(({ handle }) => `/artworks/${handle}`));
 
-    expect(entries).toHaveLength(artworks.length);
-    const currentEntries = entries.filter(([, destination]) => currentHandles.has(destination));
+    const legacyEntries = entries.filter(([source]) => source.startsWith('/artworks/'));
+    expect(legacyEntries).toHaveLength(artworks.length);
+    const currentEntries = legacyEntries.filter(([, destination]) =>
+      currentHandles.has(destination),
+    );
 
     expect(currentEntries).toHaveLength(10);
     for (const [source, destination, status] of currentEntries) {
@@ -23,6 +26,50 @@ describe('SEO route bodies', () => {
       expect(destination).toMatch(/^\/artworks\/.+-ps-pr-\d{3}$/);
       expect(status).toBe('301');
     }
+  });
+
+  it('temporarily redirects each Comfort Season QR route to its assigned Stripe payment link', async () => {
+    const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
+    const entries = redirects
+      .trim()
+      .split('\n')
+      .map((line) => line.split(/\s+/));
+    const qrEntries = entries.filter(([source]) => source.startsWith('/redirect/'));
+    const expected = [
+      [
+        '/redirect/collab-comfort-season-chipping-norton',
+        'https://buy.stripe.com/6oU3co4kgaP06Uoc88b3q03',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-minster-lovell',
+        'https://buy.stripe.com/4gM4gsg2Y4qCdiM4FGb3q01',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-stow-on-the-wold',
+        'https://buy.stripe.com/4gM5kwbMIe1c5Qk4FGb3q02',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-the-everyday-cotswolds',
+        'https://buy.stripe.com/dRm9AMcQMf5g3Ic1tub3q00',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-the-old-swan-pub',
+        'https://buy.stripe.com/dRm4gsg2Y7CO2E82xyb3q05',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-snowshill',
+        'https://buy.stripe.com/14A6oA6so3my6Uofkkb3q04',
+        '302',
+      ],
+    ];
+
+    expect(qrEntries).toEqual(expected);
+    expect(new Set(qrEntries.map(([, destination]) => destination)).size).toBe(expected.length);
   });
 
   it.each([new URL('https://preview.example'), undefined])(
@@ -57,6 +104,7 @@ describe('SEO route bodies', () => {
       if (site) expect(body).not.toContain('paperseal.uk');
       expect(body).not.toContain('/cart</loc>');
       expect(body).not.toContain('/privacy</loc>');
+      expect(body).not.toContain('/redirect/');
     },
   );
 });
