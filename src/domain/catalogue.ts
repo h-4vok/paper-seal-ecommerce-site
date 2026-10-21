@@ -20,6 +20,7 @@ export interface ArtworkPrices {
 }
 
 export interface Artwork {
+  family: 'artwork';
   sku: string;
   title: string;
   handle: string;
@@ -89,6 +90,9 @@ export function validateCatalogue(input: unknown): Artwork[] {
       throw new Error(`Artwork ${index + 1} must be an object.`);
     }
     const item = candidate as Record<string, unknown>;
+    if (item.family !== undefined && item.family !== 'artwork') {
+      throw new Error(`Artwork ${index + 1} has an invalid family.`);
+    }
     for (const field of requiredText) {
       if (typeof item[field] !== 'string' || item[field].trim() === '') {
         throw new Error(`Artwork ${index + 1} has an invalid ${field}.`);
@@ -170,7 +174,7 @@ export function validateCatalogue(input: unknown): Artwork[] {
     }
     skus.add(item.sku as string);
     handles.add(item.handle as string);
-    return item as unknown as Artwork;
+    return { ...item, family: 'artwork' } as unknown as Artwork;
   });
 }
 

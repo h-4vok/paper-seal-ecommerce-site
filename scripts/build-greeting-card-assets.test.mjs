@@ -1,8 +1,28 @@
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
-import { extractPanel, warpPerspective } from './build-greeting-card-assets.mjs';
+import {
+  extractPanel,
+  makeSearchDerivative,
+  validateCard,
+  warpPerspective,
+} from './build-greeting-card-assets.mjs';
 
 describe('greeting card image generation', () => {
+  it('validates greeting-card family asset metadata', () => {
+    const card = {
+      family: 'greeting-card',
+      assetBase: 'bodiam-castle',
+      title: 'Bodiam Castle',
+      driveFileId: 'master-id',
+      panels: {
+        back: { left: 0, top: 0, width: 0.25, height: 1, rotation: 270 },
+        front: { left: 0.25, top: 0, width: 0.25, height: 1, rotation: 90 },
+      },
+    };
+    expect(validateCard(card)).toBe(card);
+    expect(() => validateCard({ ...card, family: 'artwork' })).toThrow('not in the greeting-card');
+  });
+
   it('extracts the two left-side panels and rotates them independently', async () => {
     const width = 8;
     const height = 4;
@@ -62,5 +82,40 @@ describe('greeting card image generation', () => {
 
     expect([...data.subarray(inside, inside + 4)]).toEqual([220, 30, 20, 255]);
     expect([...data.subarray(outside, outside + 4)]).toEqual([0, 0, 0, 0]);
+  });
+
+  it('keeps the perspective warp at the requested supersampled resolution', async () => {
+    const source = await sharp({
+      create: { width: 8, height: 8, channels: 3, background: { r: 220, g: 30, b: 20 } },
+    })
+      .png()
+      .toBuffer();
+    const output = await warpPerspective(
+      source,
+      6,
+      6,
+      [
+        [1, 1],
+        [4, 1],
+        [4, 4],
+        [1, 4],
+      ],
+      4,
+    );
+    const { width, height } = await sharp(output).metadata();
+
+    expect({ width, height }).toEqual({ width: 24, height: 24 });
+  });
+
+  it('creates a centred 4:3 product-search image', async () => {
+    const source = await sharp({
+      create: { width: 1200, height: 526, channels: 3, background: { r: 220, g: 30, b: 20 } },
+    })
+      .png()
+      .toBuffer();
+    const output = await makeSearchDerivative(source, 720);
+    const { width, height } = await sharp(output).metadata();
+
+    expect({ width, height }).toEqual({ width: 720, height: 540 });
   });
 });

@@ -1,8 +1,9 @@
-# Artwork content and asset workflow
+# Product content and asset workflow
 
-`artworks.yaml` is the single editable source of truth for the Paperseal artwork catalogue.
-It contains both public editorial metadata and the private configuration needed to build
-display images from approved masters.
+`artworks.yaml` is the single editable source of truth for product families. Each product has a
+`family` discriminator that selects its metadata validation and image-generation pipeline. Artwork
+prints and greeting cards share stable editorial and catalogue fields while keeping their family
+specific pricing, product details, and image instructions.
 
 The generated JSON files and public image derivatives are build outputs. Do not edit them
 manually.
@@ -18,21 +19,24 @@ flowchart TD
     A[content/artworks.yaml<br/>single source of truth] --> B[content:build:metadata]
     B --> C{Validate YAML}
     C -->|invalid| D[Stop with actionable error]
-    C -->|valid| E[src/data/artworks.json<br/>public catalogue data]
-    C -->|valid| F[data/assets/artworks.json<br/>generated asset manifest]
+    C -->|valid| E[src/data/artworks.json<br/>artwork catalogue]
+    C -->|valid| F[src/data/greeting-cards.json<br/>card catalogue]
+    C -->|valid| G[data/assets/artworks.json<br/>artwork manifest]
+    C -->|valid| H[data/assets/greeting-cards.json<br/>card manifest]
 
-    F --> G[content:build:assets]
-    H[Google Drive desktop<br/>driveFileId lookup] --> G
-    I[Versioned scene templates<br/>scripts/asset-sources] --> G
-    G --> J[Sharp composites<br/>flat / room]
-    J --> K[720px and 1440px]
-    K --> L[JPG quality 94]
-    L --> M[public/images/artworks/<assetBase>/]
+    G --> I[content:build:assets:artworks]
+    H --> J[content:build:assets:greeting-cards]
+    K[Google Drive desktop<br/>driveFileId lookup] --> I
+    K --> J
+    L[Versioned scene templates<br/>scripts/asset-sources] --> I
+    L --> J
+    I --> M[Flat and room mockups]
+    J --> N[Flat sides, perspective mockup, 4:3 search image]
+    M --> O[public/images/artworks/<assetBase>/]
+    N --> P[public/images/greeting-cards/<assetBase>/]
 
-    E --> N[Astro catalogue and product routes]
-    M --> O[ArtworkPicture and product galleries]
-    N --> P[Dev server and static build]
-    O --> P
+    E --> Q[Existing artwork catalogue and routes]
+    F --> R[Greeting-card routes added in a later stage]
 ```
 
 ## Commands
@@ -43,27 +47,36 @@ From the repository root:
 # Validate the YAML and generate both JSON manifests.
 bun run content:build:metadata
 
-# Generate public image derivatives from masters referenced by driveFileId.
+# Generate the artwork-print image family.
+bun run content:build:assets:artworks
+
+# Generate the greeting-card image family.
+bun run content:build:assets:greeting-cards
+
+# Generate both image families from their respective manifests.
 bun run content:build:assets
 
 # Run both steps in order.
 bun run content:build
 ```
 
-Each artwork's `driveFileId` in `artworks.yaml` is the sole master identity. Asset generation
+Each product's `driveFileId` in `artworks.yaml` is the sole master identity. Asset generation
 resolves that ID through Google Drive for desktop's local index, so the files may live in
 different Drive folders. Start Drive for desktop and make sure every referenced master is
 available locally before generating assets. Production masters are not committed or served.
 
 ## What each step does
 
-1. `content:build:metadata` parses and validates the YAML, checks scene templates, and
-   writes `src/data/artworks.json` plus `data/assets/artworks.json`.
-2. `content:build:assets` reads the generated asset manifest, resolves each master by its
-   Google Drive file ID, composes `flat` and `room` variants, and writes four JPG
-   derivatives per artwork: two variants × two widths.
-3. Astro reads the generated catalogue metadata and serves the generated derivatives from
-   `public/images/artworks/`.
+1. `content:build:metadata` validates every product and its family-specific fields, then writes
+   separate catalogue and asset manifests for artwork prints and greeting cards.
+2. `content:build:assets:artworks` reads the artwork manifest, resolves each master by its Google
+   Drive ID, and writes flat and selected room mockup images to `public/images/artworks/`.
+3. `content:build:assets:greeting-cards` reads the greeting-card manifest and writes flat front,
+   flat back, perspective mockup, and centre-cropped 4:3 search images to
+   `public/images/greeting-cards/`.
+4. `content:build:assets` runs both family pipelines. `content:build` first refreshes metadata, then
+   runs both pipelines in order. The regular `bun run build` command only builds Astro and does not
+   regenerate content assets.
 
 The asset writer retries individual Sharp writes because large image processing can expose
 transient Windows filesystem or antivirus locks. The retry protects local regeneration; it
@@ -71,8 +84,10 @@ does not replace the requirement for enough free disk space and memory.
 
 ## Current catalogue
 
-The current catalogue contains 17 artworks. Editorial titles, descriptions, and ordering
-can be refined later by editing only `artworks.yaml` and rerunning the metadata build.
+Artwork page routes continue to read `src/data/artworks.json`. Greeting cards are emitted to their
+own generated catalogue file and asset folder; their storefront page is a later implementation
+stage. Add a product by assigning its family and required family-specific fields in `artworks.yaml`,
+then run `bun run content:build`.
 
 # Editorial copy workflow
 

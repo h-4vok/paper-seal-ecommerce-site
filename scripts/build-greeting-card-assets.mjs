@@ -1,8 +1,7 @@
-import { access, mkdir, readFile, rename, rm } from 'node:fs/promises';
+import { access, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import sharp from 'sharp';
-import { parse } from 'yaml';
 import { resolveDriveMasterPath } from './drive-masters.mjs';
 
 export const projectRoot = path.resolve(import.meta.dirname, '..');
@@ -14,9 +13,14 @@ function validateId(id) {
 }
 
 export function validateCard(card) {
-  validateId(card?.id);
+  validateId(card?.assetBase);
+  if (card?.family !== 'greeting-card') {
+    throw new Error(
+      `Product ${card?.title ?? card?.assetBase} is not in the greeting-card family.`,
+    );
+  }
   if (typeof card.title !== 'string' || !card.title.trim()) {
-    throw new Error(`Greeting card ${card.id} needs a title.`);
+    throw new Error(`Greeting card ${card.assetBase} needs a title.`);
   }
   if (typeof card.driveFileId !== 'string' || !card.driveFileId.trim()) {
     throw new Error(`Greeting card "${card.title}" needs a Google Drive file ID.`);
@@ -38,6 +42,20 @@ export function validateCard(card) {
     }
   }
   return card;
+}
+
+export async function makeSearchDerivative(imageBuffer, width) {
+  if (!Number.isInteger(width) || width <= 0) {
+    throw new Error('Greeting card search image width must be a positive integer.');
+  }
+  return sharp(imageBuffer, { failOn: 'error' })
+    .resize(width, Math.round((width * 3) / 4), {
+      fit: 'cover',
+      position: 'centre',
+      kernel: 'lanczos3',
+    })
+    .jpeg({ quality: 94, chromaSubsampling: '4:4:4', mozjpeg: true })
+    .toBuffer();
 }
 
 function validateScene(scene) {
@@ -158,20 +176,25 @@ function sampleBilinear(data, width, height, x, y, target, offset) {
   }
 }
 
-export async function warpPerspective(sourceBuffer, canvasWidth, canvasHeight, quad) {
+export async function warpPerspective(sourceBuffer, canvasWidth, canvasHeight, quad, scale = 1) {
+  if (!Number.isInteger(scale) || scale < 1) {
+    throw new Error('Perspective warp scale must be a positive integer.');
+  }
   const source = await sharp(sourceBuffer, { failOn: 'error' })
-    .resize({ width: 1800, height: 1200, fit: 'inside', withoutEnlargement: true })
     .ensureAlpha()
     .raw()
     .toBuffer({ resolveWithObject: true });
   const { data, info } = source;
-  const transform = destinationToSourceTransform(info.width, info.height, quad);
+  const renderWidth = canvasWidth * scale;
+  const renderHeight = canvasHeight * scale;
+  const scaledQuad = quad.map(([x, y]) => [x * scale, y * scale]);
+  const transform = destinationToSourceTransform(info.width, info.height, scaledQuad);
   const [a, b, c, d, e, f, g, h] = transform;
-  const output = Buffer.alloc(canvasWidth * canvasHeight * 4);
-  const minX = Math.max(0, Math.floor(Math.min(...quad.map(([x]) => x))));
-  const maxX = Math.min(canvasWidth - 1, Math.ceil(Math.max(...quad.map(([x]) => x))));
-  const minY = Math.max(0, Math.floor(Math.min(...quad.map(([, y]) => y))));
-  const maxY = Math.min(canvasHeight - 1, Math.ceil(Math.max(...quad.map(([, y]) => y))));
+  const output = Buffer.alloc(renderWidth * renderHeight * 4);
+  const minX = Math.max(0, Math.floor(Math.min(...scaledQuad.map(([x]) => x))));
+  const maxX = Math.min(renderWidth - 1, Math.ceil(Math.max(...scaledQuad.map(([x]) => x))));
+  const minY = Math.max(0, Math.floor(Math.min(...scaledQuad.map(([, y]) => y))));
+  const maxY = Math.min(renderHeight - 1, Math.ceil(Math.max(...scaledQuad.map(([, y]) => y))));
   for (let y = minY; y <= maxY; y += 1) {
     for (let x = minX; x <= maxX; x += 1) {
       const px = x + 0.5;
@@ -190,22 +213,28 @@ export async function warpPerspective(sourceBuffer, canvasWidth, canvasHeight, q
         sourceX,
         sourceY,
         output,
-        (y * canvasWidth + x) * 4,
+        (y * renderWidth + x) * 4,
       );
     }
   }
   return sharp(output, {
-    raw: { width: canvasWidth, height: canvasHeight, channels: 4 },
+    raw: { width: renderWidth, height: renderHeight, channels: 4 },
   })
     .png()
     .toBuffer();
 }
 
-async function writeDerivatives(buffer, outputDirectory, name, outputWidths) {
+async function writeDerivatives(
+  buffer,
+  outputDirectory,
+  name,
+  outputWidths,
+  chromaSubsampling = '4:2:0',
+) {
   for (const width of outputWidths) {
     await sharp(buffer, { failOn: 'error' })
       .resize({ width, withoutEnlargement: true })
-      .jpeg({ quality: 94, mozjpeg: true })
+      .jpeg({ quality: 94, chromaSubsampling, mozjpeg: true })
       .toFile(path.join(outputDirectory, `${name}-${width}.jpg`));
   }
 }
@@ -233,8 +262,15 @@ export async function buildGreetingCardAssets({
   driveRoots,
 } = {}) {
   if (!cards) {
-    const source = parse(await readFile(path.join(root, 'content', 'greeting-cards.yaml'), 'utf8'));
-    cards = source?.cards;
+    const manifest = JSON.parse(
+      await readFile(path.join(root, 'data', 'assets', 'greeting-cards.json'), 'utf8'),
+    );
+    if (manifest.generated !== true || !Array.isArray(manifest.cards)) {
+      throw new Error(
+        'Greeting-card metadata is generated; run `bun run content:build:metadata` first.',
+      );
+    }
+    cards = manifest.cards;
   }
   if (!Array.isArray(cards) || cards.length === 0) {
     throw new Error('Greeting card asset source needs at least one card.');
@@ -302,7 +338,7 @@ export async function buildGreetingCardAssets({
   await mkdir(stageRoot, { recursive: true });
   try {
     for (const { card, back, front } of inputs) {
-      const cardStage = path.join(stageRoot, card.id);
+      const cardStage = path.join(stageRoot, card.assetBase);
       await mkdir(cardStage, { recursive: true });
       const backFlat = await sharp(back.buffer).flatten({ background: '#ffffff' }).png().toBuffer();
       const frontFlat = await sharp(front.buffer)
@@ -317,20 +353,35 @@ export async function buildGreetingCardAssets({
         scene.outputPixels[0],
         scene.outputPixels[1],
         scene.frontQuad,
+        4,
       );
-      const mockup = await sharp(templatePath)
-        .composite([{ input: perspective, blend: 'multiply' }])
-        .jpeg({ quality: 94, mozjpeg: true })
+      const highResolutionTemplate = await sharp(templatePath)
+        .resize(scene.outputPixels[0] * 4, scene.outputPixels[1] * 4, { kernel: 'lanczos3' })
+        .png()
         .toBuffer();
-      await writeDerivatives(mockup, cardStage, 'mockup-perspective', scene.outputWidths);
-      process.stdout.write(`Built flat front, flat back, and perspective mockup for ${card.id}.\n`);
+      const highResolutionMockup = await sharp(highResolutionTemplate)
+        .composite([{ input: perspective, blend: 'multiply' }])
+        .png()
+        .toBuffer();
+      const mockup = await sharp(highResolutionMockup)
+        .resize(scene.outputPixels[0], scene.outputPixels[1], { kernel: 'lanczos3' })
+        .jpeg({ quality: 94, chromaSubsampling: '4:4:4', mozjpeg: true })
+        .toBuffer();
+      await writeDerivatives(mockup, cardStage, 'mockup-perspective', scene.outputWidths, '4:4:4');
+      for (const width of scene.outputWidths) {
+        const searchImage = await makeSearchDerivative(mockup, width);
+        await writeFile(path.join(cardStage, `search-${width}.jpg`), searchImage);
+      }
+      process.stdout.write(
+        `Built flat front, flat back, perspective mockup, and 4:3 search image for ${card.assetBase}.\n`,
+      );
     }
 
     await mkdir(outputRoot, { recursive: true });
     for (const { card } of inputs) {
-      const destination = path.join(outputRoot, card.id);
-      const staged = path.join(stageRoot, card.id);
-      const backup = path.join(stageRoot, `${card.id}-backup`);
+      const destination = path.join(outputRoot, card.assetBase);
+      const staged = path.join(stageRoot, card.assetBase);
+      const backup = path.join(stageRoot, `${card.assetBase}-backup`);
       let hadPrevious = false;
       try {
         await rename(destination, backup);

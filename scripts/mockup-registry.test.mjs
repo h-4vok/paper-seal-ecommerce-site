@@ -8,7 +8,7 @@ import {
   resolveMockupSelections,
   validateMockupRegistry,
 } from './mockup-registry.mjs';
-import { validateArtworkManifest } from './build-content-metadata.mjs';
+import { validateProductManifest } from './build-content-metadata.mjs';
 import { parse } from 'yaml';
 import { readFile } from 'node:fs/promises';
 
@@ -97,10 +97,10 @@ describe('approved mockup registry', () => {
   });
 
   it('requires a non-empty list for every product size and validates scene IDs and orientations', () => {
-    const artwork = source.artworks[0];
+    const artwork = source.products[0];
     expect(() =>
-      validateArtworkManifest(
-        { artworks: [{ ...artwork, mockups: { '7x5': ['14'], A4: ['14'] } }] },
+      validateProductManifest(
+        { products: [{ ...artwork, mockups: { '7x5': ['14'], A4: ['14'] } }] },
         registry,
       ),
     ).toThrow('empty or missing A3');
@@ -136,7 +136,7 @@ describe('approved mockup registry', () => {
 
   it('preserves multiple scene choices in YAML order per size', () => {
     const selection = resolveMockupSelections(
-      { ...source.artworks[0], mockups: { '7x5': ['13', '01'], A4: ['14'], A3: ['14'] } },
+      { ...source.products[0], mockups: { '7x5': ['13', '01'], A4: ['14'], A3: ['14'] } },
       0,
       registry,
     );

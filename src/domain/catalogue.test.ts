@@ -18,6 +18,7 @@ describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
     expect(artworks).toHaveLength(16);
     expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(16);
+    expect(new Set(artworks.map(({ family }) => family))).toEqual(new Set(['artwork']));
   });
 
   it('maps artwork prices to Snipcart base price and size modifiers', () => {
@@ -78,6 +79,7 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], sku: 'bad' }], 'invalid sku'],
     [[{ ...artworks[0], handle: 'Bad Handle' }], 'invalid handle'],
     [[{ ...artworks[0], handle: 'seven-sisters-wrong-sku-suffix' }], 'invalid handle'],
+    [[{ ...artworks[0], family: 'greeting-card' }], 'invalid family'],
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],

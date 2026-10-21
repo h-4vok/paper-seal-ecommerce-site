@@ -1,0 +1,47 @@
+{
+  "generated": true,
+  "source": "content/artworks.yaml",
+  "generator": "content:build:metadata",
+  "cards": [
+    {
+      "family": "greeting-card",
+      "title": "Bodiam Castle",
+      "description": "A folded 6 × 4 inch greeting card featuring Bodiam Castle, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Bodiam, Robertsbridge",
+      "publishedOrder": 1,
+      "orientation": "landscape",
+      "alt": "A folded greeting card featuring Bodiam Castle, with its printed front displayed on a warm stone surface.",
+      "assetBase": "bodiam-castle",
+      "watermark": "standard",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "17rkhgD2Eby1lJ_KtMqUVhG5JfWSNuX43",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "generated": true,
+  "source": "content/artworks.yaml",
+  "generator": "content:build:metadata",
+  "greetingCards": [
+    {
+      "family": "greeting-card",
+      "sku": "PS-GC-001",
+      "title": "Bodiam Castle",
+      "handle": "bodiam-castle-greeting-card-ps-gc-001",
+      "description": "A folded 6 × 4 inch greeting card featuring Bodiam Castle, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Bodiam, Robertsbridge",
+      "publishedOrder": 1,
+      "collections": ["East Sussex Heritage Series"],
+      "orientation": "landscape",
+      "alt": "A folded greeting card featuring Bodiam Castle, with its printed front displayed on a warm stone surface.",
+      "assetBase": "bodiam-castle",
+      "watermark": "standard",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 540
+      }
+    }
+  ]
+}
