@@ -5,126 +5,174 @@
   "provenance": "Display-only composites generated from approved Google Drive masters. Production masters are never committed or served.",
   "artworks": [
     {
+      "family": "artwork",
+      "title": "New Eastbourne Flower Bed",
+      "description": "The new Eastbourne flower bed by Grand Parade, gathered into a joyful study of colour, leaves and late-season light.",
+      "placeName": "Eastbourne",
+      "publishedOrder": 100,
       "orientation": "landscape",
+      "alt": "A bright Eastbourne flower bed gathered into a joyful study of colour, leaves and late-season light.",
       "assetBase": "flower-bed",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "14",
-            "sceneName": "Burgundy Library",
-            "sceneSlug": "14-burgundy-library"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "14",
-            "sceneName": "Burgundy Library",
-            "sceneSlug": "14-burgundy-library"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "14",
-            "sceneName": "Burgundy Library",
-            "sceneSlug": "14-burgundy-library"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Seven Sisters from the Eastbourne Promenade",
+      "description": "Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast, seen from the Eastbourne Promenade.",
+      "placeName": "Eastbourne",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "Chalk cliffs, changing skies and a view that opens slowly from the gardens above the Sussex coast, seen from the Eastbourne Promenade.",
       "assetBase": "seven-sisters",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "07",
+            "sceneName": "Rose Bedroom",
+            "sceneSlug": "07-rose-bedroom"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "07",
-            "sceneName": "Rose Bedroom",
-            "sceneSlug": "07-rose-bedroom"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "07",
-            "sceneName": "Rose Bedroom",
-            "sceneSlug": "07-rose-bedroom"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "07",
-            "sceneName": "Rose Bedroom",
-            "sceneSlug": "07-rose-bedroom"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "The Beachy Head Pub",
+      "description": "Ever enjoyed a pint at The Beachy Head Pub?",
+      "placeName": "The Beachy Head Pub, Eastbourne",
+      "publishedOrder": 1,
       "orientation": "portrait",
+      "alt": "Ever enjoyed a pint at The Beachy Head Pub?",
       "assetBase": "beachy-head",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "10",
+            "sceneName": "Light Concrete",
+            "sceneSlug": "10-light-concrete"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "10",
-            "sceneName": "Light Concrete",
-            "sceneSlug": "10-light-concrete"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "10",
-            "sceneName": "Light Concrete",
-            "sceneSlug": "10-light-concrete"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "10",
-            "sceneName": "Light Concrete",
-            "sceneSlug": "10-light-concrete"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Meet Me in Eastbourne",
+      "description": "The residential area of Sovereign Harbour always invites a pause, a retrospection...",
+      "placeName": "Sovereign Harbour, Eastbourne",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "A wide painterly view across the residential area of Sovereign Harbour",
       "assetBase": "meet-me-eastbourne",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1SbtW06ZUnQtbKqcJ948nlUZSFW-vOVqO",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "01",
-            "sceneName": "Ivory Shelf",
-            "sceneSlug": "01-ivory-shelf"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "01",
-            "sceneName": "Ivory Shelf",
-            "sceneSlug": "01-ivory-shelf"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "01",
-            "sceneName": "Ivory Shelf",
-            "sceneSlug": "01-ivory-shelf"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Eastbourne Pier",
+      "description": "The pier held against sea and sky: a familiar Eastbourne silhouette seen with fresh attention.",
+      "placeName": "Eastbourne",
+      "publishedOrder": 2,
       "orientation": "landscape",
+      "alt": "Eastbourne Pier extending into the sea beneath a bright sky",
       "assetBase": "eastbourne-pier",
-      "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
-      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -147,13 +195,25 @@
             "sceneSlug": "03-pale-blue-ledge"
           }
         ]
-      }
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Beach Huts, Eastbourne",
+      "description": "A row of Eastbourne beach huts in front of Princes Park. Turned into a small celebration of colour, rhythm and seaside days.",
+      "placeName": "Eastbourne",
+      "publishedOrder": 99,
       "orientation": "landscape",
+      "alt": "Colourful beach huts arranged along Eastbourne seafront",
       "assetBase": "beach-huts",
       "watermark": "high-contrast",
-      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
       "mockups": {
         "7x5": [
           {
@@ -176,245 +236,343 @@
             "sceneSlug": "08-ink-studio"
           }
         ]
-      }
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO"
     },
     {
+      "family": "artwork",
+      "title": "South Downs I",
+      "description": "A wide South Downs landscape of open fields, soft light and rolling Sussex horizons.",
+      "placeName": "Beachy Head, Eastbourne",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "Open fields and rolling hills across the South Downs in Sussex",
       "assetBase": "south-downs-1",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "11",
+            "sceneName": "Muted Yellow Hall",
+            "sceneSlug": "11-muted-yellow-hall"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "11ghqYTjjogWachHOW2EmnXSpVe4dMJmn",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "11",
-            "sceneName": "Muted Yellow Hall",
-            "sceneSlug": "11-muted-yellow-hall"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "11",
-            "sceneName": "Muted Yellow Hall",
-            "sceneSlug": "11-muted-yellow-hall"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "11",
-            "sceneName": "Muted Yellow Hall",
-            "sceneSlug": "11-muted-yellow-hall"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Battle Abbey",
+      "description": "Historic stone, green grounds and the quiet atmosphere of Battle Abbey in East Sussex.",
+      "placeName": "Battle",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "The historic grounds and stone architecture of Battle Abbey in East Sussex",
       "assetBase": "battle-abbey",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "15S4jRQMCVgRIyEIu9uUbtqpes7qatdeu",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "14",
-            "sceneName": "Burgundy Library",
-            "sceneSlug": "14-burgundy-library"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "14",
-            "sceneName": "Burgundy Library",
-            "sceneSlug": "14-burgundy-library"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "14",
-            "sceneName": "Burgundy Library",
-            "sceneSlug": "14-burgundy-library"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Sovereign Harbour Waterfront",
+      "description": "A spacious waterfront view where boats, buildings and open Eastbourne light meet.",
+      "placeName": "Sovereign Harbour, Eastbourne",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "A wide waterfront view of boats and buildings at Sovereign Harbour",
       "assetBase": "sovereign-harbour-waterfront",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "05",
+            "sceneName": "Oak Console",
+            "sceneSlug": "05-oak-console"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1DaJd8VMFSNSG207bMTiJM7ksoDdYV3S-",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "05",
-            "sceneName": "Oak Console",
-            "sceneSlug": "05-oak-console"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "05",
-            "sceneName": "Oak Console",
-            "sceneSlug": "05-oak-console"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "05",
-            "sceneName": "Oak Console",
-            "sceneSlug": "05-oak-console"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Long Man",
+      "description": "The Long Man of Wilmington standing quietly against the chalk downland of Sussex.",
+      "placeName": "Wilmington",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "The Long Man of Wilmington figure set into the Sussex chalk hills",
       "assetBase": "long-man",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "06",
+            "sceneName": "Sage Reading",
+            "sceneSlug": "06-sage-reading"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1EXlV-GfTOigNwuX9Sn1OV8dropkpvkI0",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "06",
-            "sceneName": "Sage Reading",
-            "sceneSlug": "06-sage-reading"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "06",
-            "sceneName": "Sage Reading",
-            "sceneSlug": "06-sage-reading"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "06",
-            "sceneName": "Sage Reading",
-            "sceneSlug": "06-sage-reading"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "The Eastbourne Sunset",
+      "description": "Warm evening colour settling over the Eastbourne Pier, the sea and the edge of the day.",
+      "placeName": "Eastbourne",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "A warm sunset over Eastbourne and the Sussex coast",
       "assetBase": "eastbourne-sunset",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "02",
+            "sceneName": "Charcoal Gallery",
+            "sceneSlug": "02-charcoal-gallery"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1Fl-4xj-nHMqDzx-YycYfxjHF8pajjgvS",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "02",
-            "sceneName": "Charcoal Gallery",
-            "sceneSlug": "02-charcoal-gallery"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "02",
-            "sceneName": "Charcoal Gallery",
-            "sceneSlug": "02-charcoal-gallery"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "02",
-            "sceneName": "Charcoal Gallery",
-            "sceneSlug": "02-charcoal-gallery"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Martello 66",
+      "description": "A familiar Martello tower held against the changing light of the East Sussex coast.",
+      "placeName": "Sovereign Harbour, Eastbourne",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "Martello tower 66 on the East Sussex coast, with a characteristic Seagull standing on a rock.",
       "assetBase": "martello-66",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "04",
+            "sceneName": "Terracotta Bench",
+            "sceneSlug": "04-terracotta-bench"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1LbKstBbKrXIEAF4MyA9X9PN8tRefzb9M",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "04",
-            "sceneName": "Terracotta Bench",
-            "sceneSlug": "04-terracotta-bench"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "04",
-            "sceneName": "Terracotta Bench",
-            "sceneSlug": "04-terracotta-bench"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "04",
-            "sceneName": "Terracotta Bench",
-            "sceneSlug": "04-terracotta-bench"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Devil's Dyke",
+      "description": "Layered hills and open sky above the dramatic downland valley of Devils Dyke.",
+      "placeName": "Devil's Dyke, Brighton",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "The rolling hills and valley of Devils Dyke in Sussex",
       "assetBase": "devils-dyke",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "16",
+            "sceneName": "Eclectic Living",
+            "sceneSlug": "16-eclectic-living"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1OZno2NSnheCNBJ5WB4NU6MIImYT7dedO",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "16",
-            "sceneName": "Eclectic Living",
-            "sceneSlug": "16-eclectic-living"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "16",
-            "sceneName": "Eclectic Living",
-            "sceneSlug": "16-eclectic-living"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "16",
-            "sceneName": "Eclectic Living",
-            "sceneSlug": "16-eclectic-living"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Paragliding in High & Over",
+      "description": "A vertical glimpse of flight, hillside and open Sussex air above the High & Over Park.",
+      "placeName": "High & Over, Seaford",
+      "publishedOrder": 1,
       "orientation": "portrait",
+      "alt": "A paraglider flying above the South Downs landscape",
       "assetBase": "parapente-south-downs",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "13",
+            "sceneName": "Window Green",
+            "sceneSlug": "13-window-green"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
       "driveFileId": "1W-0e0QJZhYlmC8qZsdpLXcEFMBF9SFFI",
-      "watermark": "standard",
-      "mockups": {
-        "7x5": [
-          {
-            "sceneId": "13",
-            "sceneName": "Window Green",
-            "sceneSlug": "13-window-green"
-          }
-        ],
-        "a4": [
-          {
-            "sceneId": "13",
-            "sceneName": "Window Green",
-            "sceneSlug": "13-window-green"
-          }
-        ],
-        "a3": [
-          {
-            "sceneId": "13",
-            "sceneName": "Window Green",
-            "sceneSlug": "13-window-green"
-          }
-        ]
-      }
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "Sovereign Harbour",
+      "description": "A detailed harbour view with boats, water and the calm geometry of Sovereign Harbour.",
+      "placeName": "Sovereign Harbour, Eastbourne",
+      "publishedOrder": 98,
       "orientation": "landscape",
+      "alt": "Boats and water at Sovereign Harbour in a detailed coastal view",
       "assetBase": "sovereign-harbour-high-res",
-      "driveFileId": "1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO",
-      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -437,13 +595,24 @@
             "sceneSlug": "12-coastal-cottage"
           }
         ]
-      }
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO",
+      "watermark": "standard"
     },
     {
+      "family": "artwork",
+      "title": "South Downs II",
+      "description": "A lively South Downs scene of paths, bikes and the everyday adventure of the sheeps.",
+      "placeName": "Beachy Head, Eastbourne",
+      "publishedOrder": 1,
       "orientation": "landscape",
+      "alt": "Sheeps and a bike on a South Downs track beneath open hills",
       "assetBase": "south-downs-jeeps-bike",
-      "driveFileId": "1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz",
-      "watermark": "standard",
       "mockups": {
         "7x5": [
           {
@@ -466,6 +635,55 @@
             "sceneSlug": "09-diagonal-table"
           }
         ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz",
+      "watermark": "standard"
+    }
+  ],
+  "greetingCards": [
+    {
+      "family": "greeting-card",
+      "title": "Bodiam Castle",
+      "description": "A folded 6 × 4 inch greeting card featuring Bodiam Castle, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Bodiam, Robertsbridge",
+      "publishedOrder": 101,
+      "orientation": "landscape",
+      "alt": "A folded greeting card featuring Bodiam Castle, with its printed front displayed on a warm stone surface.",
+      "assetBase": "bodiam-castle",
+      "watermark": "standard",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "17rkhgD2Eby1lJ_KtMqUVhG5JfWSNuX43",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
       }
     }
   ]

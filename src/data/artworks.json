@@ -4,6 +4,7 @@
   "generator": "content:build:metadata",
   "artworks": [
     {
+      "family": "artwork",
       "sku": "PS-PR-001",
       "title": "New Eastbourne Flower Bed",
       "handle": "new-eastbourne-flower-bed-ps-pr-001",
@@ -49,6 +50,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-002",
       "title": "Seven Sisters from the Eastbourne Promenade",
       "handle": "seven-sisters-from-the-eastbourne-promenade-ps-pr-002",
@@ -94,6 +96,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-004",
       "title": "The Beachy Head Pub",
       "handle": "the-beachy-head-pub-ps-pr-004",
@@ -139,6 +142,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-005",
       "title": "Meet Me in Eastbourne",
       "handle": "meet-me-in-eastbourne-ps-pr-005",
@@ -184,6 +188,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-006",
       "title": "Eastbourne Pier",
       "handle": "eastbourne-pier-ps-pr-006",
@@ -229,6 +234,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-007",
       "title": "Beach Huts, Eastbourne",
       "handle": "beach-huts-eastbourne-ps-pr-007",
@@ -274,6 +280,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-008",
       "title": "South Downs I",
       "handle": "south-downs-i-ps-pr-008",
@@ -319,6 +326,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-009",
       "title": "Battle Abbey",
       "handle": "battle-abbey-ps-pr-009",
@@ -364,6 +372,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-010",
       "title": "Sovereign Harbour Waterfront",
       "handle": "sovereign-harbour-waterfront-ps-pr-010",
@@ -409,6 +418,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-011",
       "title": "Long Man",
       "handle": "long-man-ps-pr-011",
@@ -454,6 +464,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-012",
       "title": "The Eastbourne Sunset",
       "handle": "the-eastbourne-sunset-ps-pr-012",
@@ -499,6 +510,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-013",
       "title": "Martello 66",
       "handle": "martello-66-ps-pr-013",
@@ -544,6 +556,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-015",
       "title": "Devil's Dyke",
       "handle": "devils-dyke-ps-pr-015",
@@ -589,6 +602,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-016",
       "title": "Paragliding in High & Over",
       "handle": "paragliding-in-high-and-over-ps-pr-016",
@@ -634,6 +648,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-003",
       "title": "Sovereign Harbour",
       "handle": "sovereign-harbour-ps-pr-003",
@@ -679,6 +694,7 @@
       }
     },
     {
+      "family": "artwork",
       "sku": "PS-PR-018",
       "title": "South Downs II",
       "handle": "south-downs-2-ps-pr-018",

@@ -1,0 +1,57 @@
+---
+import type { GreetingCard } from '../domain/greeting-cards';
+import { greetingCardImagePath, greetingCardPagePath } from '../domain/greeting-cards';
+import { productFamilyRegistry } from '../domain/product-families';
+import { copy } from '../content/copy';
+import ArtworkPicture from './ArtworkPicture.astro';
+
+interface Props {
+  card: GreetingCard;
+  eager?: boolean;
+  initiallyHidden?: boolean;
+}
+
+const { card, eager = false, initiallyHidden = false } = Astro.props;
+const { catalogue } = copy;
+---
+
+<article
+  class="artwork-card artwork-card--landscape greeting-card-card"
+  data-artwork-card
+  data-handle={card.handle}
+  data-product-family={card.family}
+  hidden={initiallyHidden}
+>
+  <a
+    href={greetingCardPagePath(card)}
+    aria-label={`View ${card.title} greeting card, ${card.placeName}`}
+  >
+    <div class="artwork-card__media">
+      <ArtworkPicture
+        assetBase={card.assetBase}
+        sourceBase={greetingCardImagePath(card, 'search', 720).replace(/-720\.jpg$/, '')}
+        orientation="landscape"
+        imageWidth={card.imageDimensions.width}
+        imageHeight={card.imageDimensions.height}
+        alt={card.alt}
+        watermarkProfile={card.watermark}
+        watermark={productFamilyRegistry[card.family].searchWatermark}
+        {eager}
+        sizes="(min-width: 64rem) 46vw, 100vw"
+      />
+    </div>
+    <div class="artwork-card__caption">
+      <div>
+        <h2>{card.title}</h2>
+        <p>
+          {catalogue.results.greetingCardLabel} · {card.placeName}
+        </p>
+      </div>
+      <p class="artwork-card__description">{card.description}</p>
+      <span class="artwork-card__link">
+        £{card.price.toFixed(2)} · {catalogue.results.greetingCardLink}
+        <span aria-hidden="true"> →</span>
+      </span>
+    </div>
+  </a>
+</article>

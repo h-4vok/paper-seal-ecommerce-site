@@ -101,16 +101,21 @@ Copy/localisation sources are YAML-only under `content/copy/en-GB`; repository J
 See [`content/WORKFLOW.md`](./content/WORKFLOW.md) for the full content and asset pipeline,
 including the Mermaid diagram.
 
-Edit `content/artworks.yaml` as the single source of truth for editorial artwork data and
-the internal asset-generation configuration. Generated JSON files in `src/data/` and
-`data/assets/` are committed build outputs and must not be edited manually.
+Edit `content/artworks.yaml` as the single source of truth for all product families, including
+artwork prints and greeting cards. Each entry's `family` selects its metadata and image pipeline.
+Generated JSON files in `src/data/` and `data/assets/` are committed build outputs and must not be
+edited manually.
 
 ```sh
 bun run content:build:metadata
 bun run content:build:assets
+# or run the metadata and both asset steps together
+bun run content:build
 ```
 
-`bun run content:build` runs both commands in that order. Production masters remain local
+The image-family commands can also be run individually as
+`bun run content:build:assets:artworks` and `bun run content:build:assets:greeting-cards`.
+Production masters remain local
 or in approved storage; only public display derivatives are written to `public/images/`.
 
 # Content editing

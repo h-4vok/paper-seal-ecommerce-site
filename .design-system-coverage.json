@@ -1,7 +1,13 @@
 {
   "foundations": {
     "tokens": "src/styles/global.scss",
-    "sharedClasses": ["eyebrow", "section-shell", "button-link", "text-link"]
+    "sharedClasses": [
+      "eyebrow",
+      "section-shell",
+      "button-link",
+      "text-link",
+      "gallery-image-backdrop"
+    ]
   },
   "exceptions": [
     {
@@ -32,7 +38,19 @@
       "name": "ArtworkPicture",
       "source": "src/components/ArtworkPicture.astro",
       "level": "Atoms",
-      "useFor": "Responsive flat or catalogue artwork derivatives with an optional Paper Seal watermark."
+      "useFor": "Responsive artwork and product image with catalogue, flat-image, and optional watermark variants plus a visible load-error fallback."
+    },
+    {
+      "name": "GreetingCardCard",
+      "source": "src/components/GreetingCardCard.astro",
+      "level": "Molecules",
+      "useFor": "Search result for a greeting card, with a 4:3 watermarked image, location, price and route."
+    },
+    {
+      "name": "GreetingCardGallery",
+      "source": "src/components/GreetingCardGallery.astro",
+      "level": "Organisms",
+      "useFor": "Page-width greeting-card image gallery with accessible thumbnail selection for the perspective mockup, front and back."
     },
     {
       "name": "ArtworkMockupPicture",

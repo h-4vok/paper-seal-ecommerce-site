@@ -96,6 +96,32 @@ img {
   height: auto;
 }
 
+.gallery-image-backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: -2rem;
+  background-position: center;
+  background-size: cover;
+  filter: blur(1.5rem);
+  pointer-events: none;
+}
+
+.artwork-picture__fallback {
+  display: grid;
+  min-height: 10rem;
+  place-items: center;
+  padding: 1rem;
+  color: var(--color-muted);
+  background: var(--color-paper-deep);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.artwork-picture__fallback[hidden] {
+  display: none;
+}
+
 .artwork-watermark {
   position: absolute;
   inset: -10%;
