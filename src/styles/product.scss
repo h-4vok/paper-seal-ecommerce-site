@@ -64,16 +64,6 @@
   overflow: hidden;
 }
 
-.product-gallery__backdrop {
-  position: absolute;
-  z-index: 0;
-  inset: -2rem;
-  background-position: center;
-  background-size: cover;
-  filter: blur(1.5rem);
-  pointer-events: none;
-}
-
 .product-gallery__slide--flat .artwork-picture {
   max-width: 100%;
   max-height: 100%;
@@ -643,8 +633,13 @@ dialog.product-lightbox {
 
 .greeting-card-gallery__slide--front .artwork-picture,
 .greeting-card-gallery__slide--back .artwork-picture {
+  z-index: 1;
   display: block;
   padding: clamp(1rem, 4vw, 3rem);
+}
+
+.greeting-card-gallery__slide--back .gallery-image-backdrop {
+  background-position: center bottom;
 }
 
 .greeting-card-gallery__slide--front .artwork-picture > img,

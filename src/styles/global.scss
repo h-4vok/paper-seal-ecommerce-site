@@ -96,6 +96,16 @@ img {
   height: auto;
 }
 
+.gallery-image-backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: -2rem;
+  background-position: center;
+  background-size: cover;
+  filter: blur(1.5rem);
+  pointer-events: none;
+}
+
 .artwork-picture__fallback {
   display: grid;
   min-height: 10rem;

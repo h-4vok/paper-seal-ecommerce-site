@@ -1,7 +1,13 @@
 {
   "foundations": {
     "tokens": "src/styles/global.scss",
-    "sharedClasses": ["eyebrow", "section-shell", "button-link", "text-link"]
+    "sharedClasses": [
+      "eyebrow",
+      "section-shell",
+      "button-link",
+      "text-link",
+      "gallery-image-backdrop"
+    ]
   },
   "exceptions": [
     {
