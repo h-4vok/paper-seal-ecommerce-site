@@ -61,6 +61,8 @@ const slides = [
           watermark={slide.watermark}
           watermarkProfile={card.watermark}
           resolution={1440}
+          srcsetWidths={slide.kind === 'perspective' ? [720, 1440, 2880] : [720, 1440]}
+          modernFormat={slide.kind === 'perspective' ? 'avif' : undefined}
           sizes="100vw"
           eager={index === 0}
         />

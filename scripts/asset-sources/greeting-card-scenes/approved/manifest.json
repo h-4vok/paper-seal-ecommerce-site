@@ -8,5 +8,6 @@
     [1415, 621],
     [631, 692]
   ],
-  "outputWidths": [720, 1440]
+  "outputWidths": [720, 1440],
+  "perspectiveHighWidths": [2880]
 }

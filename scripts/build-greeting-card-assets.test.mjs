@@ -1,8 +1,11 @@
+import { readFile, stat } from 'node:fs/promises';
+import path from 'node:path';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import {
   extractPanel,
   makeSearchDerivative,
+  projectRoot,
   validateCard,
   warpPerspective,
 } from './build-greeting-card-assets.mjs';
@@ -105,6 +108,34 @@ describe('greeting card image generation', () => {
     const { width, height } = await sharp(output).metadata();
 
     expect({ width, height }).toEqual({ width: 24, height: 24 });
+  });
+
+  it('ships the perspective widths used by the responsive hero', async () => {
+    const scene = JSON.parse(
+      await readFile(
+        path.join(projectRoot, 'scripts/asset-sources/greeting-card-scenes/approved/manifest.json'),
+        'utf8',
+      ),
+    );
+    const widths = [...scene.outputWidths, ...scene.perspectiveHighWidths];
+
+    for (const width of widths) {
+      const sizes = {};
+      for (const format of ['jpg', 'avif']) {
+        const file = path.join(
+          projectRoot,
+          `public/images/greeting-cards/bodiam-castle/mockup-perspective-${width}.${format}`,
+        );
+        const image = await sharp(file).metadata();
+        expect(image.width).toBe(width);
+        expect(image.height).toBe(
+          Math.round((width * scene.outputPixels[1]) / scene.outputPixels[0]),
+        );
+        sizes[format] = (await stat(file)).size;
+      }
+      expect(sizes.avif).toBeLessThan(sizes.jpg);
+      expect(sizes.jpg).toBeLessThan(1_500_000);
+    }
   });
 
   it('creates a centred 4:3 product-search image', async () => {

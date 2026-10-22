@@ -85,6 +85,17 @@ function validateScene(scene) {
   if (!Array.isArray(scene.outputWidths) || scene.outputWidths.some((width) => width <= 0)) {
     throw new Error('Greeting card scene needs valid output widths.');
   }
+  if (
+    !Array.isArray(scene.perspectiveHighWidths) ||
+    scene.perspectiveHighWidths.some(
+      (width) =>
+        !Number.isInteger(width) ||
+        width <= Math.max(...scene.outputWidths) ||
+        width > scene.outputPixels[0] * 4,
+    )
+  ) {
+    throw new Error('Greeting card scene needs valid high-resolution perspective widths.');
+  }
   return scene;
 }
 
@@ -239,6 +250,15 @@ async function writeDerivatives(
   }
 }
 
+async function writePerspectiveAvifDerivatives(buffer, outputDirectory, widths) {
+  for (const width of widths) {
+    await sharp(buffer, { failOn: 'error' })
+      .resize({ width, withoutEnlargement: true })
+      .avif({ quality: 80, effort: 6, chromaSubsampling: '4:4:4' })
+      .toFile(path.join(outputDirectory, `mockup-perspective-${width}.avif`));
+  }
+}
+
 function validateFrontQuad(quad) {
   const crosses = quad.map((point, index) => {
     const next = quad[(index + 1) % quad.length];
@@ -363,6 +383,17 @@ export async function buildGreetingCardAssets({
         .composite([{ input: perspective, blend: 'multiply' }])
         .png()
         .toBuffer();
+      await writePerspectiveAvifDerivatives(highResolutionMockup, cardStage, [
+        ...scene.outputWidths,
+        ...scene.perspectiveHighWidths,
+      ]);
+      await writeDerivatives(
+        highResolutionMockup,
+        cardStage,
+        'mockup-perspective',
+        scene.perspectiveHighWidths,
+        '4:4:4',
+      );
       const mockup = await sharp(highResolutionMockup)
         .resize(scene.outputPixels[0], scene.outputPixels[1], { kernel: 'lanczos3' })
         .jpeg({ quality: 94, chromaSubsampling: '4:4:4', mozjpeg: true })

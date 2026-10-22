@@ -11,6 +11,8 @@ interface Props {
   watermark?: boolean;
   watermarkProfile?: 'standard' | 'high-contrast';
   resolution?: 720 | 1440;
+  srcsetWidths?: readonly (720 | 1440 | 2880)[];
+  modernFormat?: 'avif';
   variant?: 'flat' | 'catalogue';
 }
 
@@ -26,10 +28,15 @@ const {
   watermark = true,
   watermarkProfile = 'standard',
   resolution = 720,
+  srcsetWidths = [720, 1440],
+  modernFormat,
   variant = 'flat',
 } = Astro.props;
 const src = `${sourceBase}-${resolution}.jpg`;
-const flatSrcset = [720, 1440].map((width) => `${sourceBase}-${width}.jpg ${width}w`).join(', ');
+const flatSrcset = srcsetWidths.map((width) => `${sourceBase}-${width}.jpg ${width}w`).join(', ');
+const modernSrcset = modernFormat
+  ? srcsetWidths.map((width) => `${sourceBase}-${width}.${modernFormat} ${width}w`).join(', ')
+  : undefined;
 const catalogueBase = `/images/artworks/${assetBase}/card`;
 const catalogueSrcset = (format: 'webp' | 'jpg') =>
   [480, 960, 1440].map((width) => `${catalogueBase}-${width}.${format} ${width}w`).join(', ');
@@ -47,6 +54,22 @@ const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
         {alt}
         width="480"
         height="360"
+        loading={eager ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchpriority={eager ? 'high' : 'auto'}
+        data-image-source
+      />
+    </picture>
+  ) : modernFormat ? (
+    <picture>
+      <source type={`image/${modernFormat}`} srcset={modernSrcset} {sizes} />
+      <img
+        src={src}
+        srcset={flatSrcset}
+        {sizes}
+        {alt}
+        width={imageWidth}
+        height={imageHeight}
         loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         fetchpriority={eager ? 'high' : 'auto'}
@@ -93,11 +116,10 @@ const watermarkRows = Array.from({ length: 7 }, (_, index) => index);
       'error',
       () => {
         image.hidden = true;
-        const fallback = image.parentElement?.querySelector<HTMLElement>('[data-image-fallback]');
+        const picture = image.closest<HTMLElement>('.artwork-picture');
+        const fallback = picture?.querySelector<HTMLElement>('[data-image-fallback]');
         if (fallback) fallback.hidden = false;
-        image.parentElement
-          ?.querySelector<HTMLElement>('.artwork-watermark')
-          ?.setAttribute('hidden', '');
+        picture?.querySelector<HTMLElement>('.artwork-watermark')?.setAttribute('hidden', '');
       },
       { once: true },
     );
