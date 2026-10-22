@@ -650,7 +650,10 @@ dialog.product-lightbox {
 
 .greeting-card-gallery__slide--front .artwork-picture > img,
 .greeting-card-gallery__slide--back .artwork-picture > img {
-  height: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
