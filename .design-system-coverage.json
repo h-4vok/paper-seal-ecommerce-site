@@ -44,7 +44,7 @@
       "name": "GreetingCardGallery",
       "source": "src/components/GreetingCardGallery.astro",
       "level": "Organisms",
-      "useFor": "Accessible greeting-card image gallery for the perspective mockup, front and back."
+      "useFor": "Page-width greeting-card image gallery with accessible thumbnail selection for the perspective mockup, front and back."
     },
     {
       "name": "ArtworkMockupPicture",

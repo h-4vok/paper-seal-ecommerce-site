@@ -77,44 +77,62 @@ const structuredData = [
     <section class="product-layout greeting-card-product-layout">
       <GreetingCardGallery {card} />
       <article class="product-information greeting-card-information">
-        <p class="eyebrow">{card.collections[0]}</p>
-        <h1>{card.title}</h1>
-        <p class="product-place">{card.placeName}</p>
-        <p class="product-description">{card.description}</p>
-        <dl class="product-trust greeting-card-specifications">
-          <div>
-            <dt>Size</dt>
-            <dd>{labels.closedSize}</dd>
+        <div class="greeting-card-information__summary">
+          <div class="greeting-card-information__identity">
+            <h1>{card.title}</h1>
+            <p class="greeting-card-information__category">
+              Greeting card{' '}
+              <span class="greeting-card-information__separator" aria-hidden="true">
+                ·
+              </span>{' '}
+              {card.collections[0]}
+            </p>
           </div>
-          <div>
-            <dt>Included</dt>
-            <dd>{labels.included}</dd>
+          <div class="greeting-card-information__purchase">
+            <div class="product-add-to-cart-container">
+              <button
+                class="button-link button-link--darkblue product-add-to-cart snipcart-add-item"
+                type="button"
+                aria-label={labels.addToCart.replace('{price}', price)}
+                {...snipcartAttributes}
+              >
+                <svg
+                  class="product-add-to-cart__icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M6.5 8h11l1 13h-13l1-13Z" />
+                  <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+                </svg>
+                <span class="product-add-to-cart__label">Add to cart</span>
+                <span class="product-add-to-cart__price">£{price}</span>
+              </button>
+            </div>
           </div>
-        </dl>
-        <div class="product-add-to-cart-container">
-          <button
-            class="button-link button-link--darkblue product-add-to-cart snipcart-add-item"
-            type="button"
-            aria-label={labels.addToCart.replace('{price}', price)}
-            {...snipcartAttributes}
-          >
-            <svg
-              class="product-add-to-cart__icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path d="M6.5 8h11l1 13h-13l1-13Z" />
-              <path d="M9 8V6a3 3 0 0 1 6 0v2" />
-            </svg>
-            <span class="product-add-to-cart__label">Add to cart</span>
-            <span class="product-add-to-cart__price">£{price}</span>
-          </button>
         </div>
-        <p class="product-policy-links">
-          <a href="/delivery">{copy.product.labels.delivery}</a> ·{' '}
-          <a href="/returns">{copy.product.labels.returns}</a>
-        </p>
+        <section class="greeting-card-information__details" aria-labelledby="card-details-heading">
+          <h2 id="card-details-heading">About the card</h2>
+          <p class="product-description">{card.description}</p>
+          <dl class="product-trust greeting-card-specifications">
+            <div>
+              <dt>Location</dt>
+              <dd>{card.placeName}</dd>
+            </div>
+            <div>
+              <dt>Size</dt>
+              <dd>{labels.closedSize}</dd>
+            </div>
+            <div>
+              <dt>Included</dt>
+              <dd>{labels.included}</dd>
+            </div>
+          </dl>
+          <p class="product-policy-links">
+            <a href="/delivery">{copy.product.labels.delivery}</a> ·{' '}
+            <a href="/returns">{copy.product.labels.returns}</a>
+          </p>
+        </section>
       </article>
     </section>
   </main>

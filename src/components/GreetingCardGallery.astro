@@ -54,27 +54,11 @@ const slides = [
           watermark={slide.watermark}
           watermarkProfile={card.watermark}
           resolution={1440}
-          sizes="(min-width: 64rem) 62vw, 100vw"
+          sizes="100vw"
           eager={index === 0}
         />
       </div>
     ))}
-    <button
-      type="button"
-      class="gallery-arrow gallery-arrow--previous"
-      aria-label={labels.previous}
-      data-gallery-previous
-    >
-      ←
-    </button>
-    <button
-      type="button"
-      class="gallery-arrow gallery-arrow--next"
-      aria-label={labels.next}
-      data-gallery-next
-    >
-      →
-    </button>
   </div>
   <div class="greeting-card-gallery__thumbs" aria-label={labels.chooseImage}>
     {slides.map((slide, index) => (
@@ -136,12 +120,6 @@ const slides = [
 
     thumbnails.forEach((thumbnail) => {
       thumbnail.addEventListener('click', () => show(Number(thumbnail.dataset.galleryThumbnail)));
-    });
-    gallery.querySelector('[data-gallery-previous]')?.addEventListener('click', () => {
-      show(galleryIndex(active, slides.length, -1));
-    });
-    gallery.querySelector('[data-gallery-next]')?.addEventListener('click', () => {
-      show(galleryIndex(active, slides.length, 1));
     });
     stage?.addEventListener('keydown', (event) => {
       if ((event as KeyboardEvent).key === 'ArrowLeft')
