@@ -1,6 +1,7 @@
 ---
 import type { GreetingCard } from '../domain/greeting-cards';
 import { greetingCardImagePath, greetingCardPagePath } from '../domain/greeting-cards';
+import { productFamilyRegistry } from '../domain/product-families';
 import { copy } from '../content/copy';
 import ArtworkPicture from './ArtworkPicture.astro';
 
@@ -34,6 +35,7 @@ const { catalogue } = copy;
         imageHeight={card.imageDimensions.height}
         alt={card.alt}
         watermarkProfile={card.watermark}
+        watermark={productFamilyRegistry[card.family].searchWatermark}
         {eager}
         sizes="(min-width: 64rem) 46vw, 100vw"
       />

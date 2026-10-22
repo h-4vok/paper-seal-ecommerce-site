@@ -6,11 +6,19 @@ export type ProductPageArchetype = 'artwork-detail' | 'greeting-card-detail';
  * than one family can point to the same archetype as the catalogue grows.
  */
 export const productFamilyRegistry = {
-  artwork: { routeBase: '/artworks', pageArchetype: 'artwork-detail' },
-  'greeting-card': { routeBase: '/greeting-cards', pageArchetype: 'greeting-card-detail' },
+  artwork: {
+    routeBase: '/artworks',
+    pageArchetype: 'artwork-detail',
+    searchWatermark: true,
+  },
+  'greeting-card': {
+    routeBase: '/greeting-cards',
+    pageArchetype: 'greeting-card-detail',
+    searchWatermark: false,
+  },
 } as const satisfies Record<
   ProductFamily,
-  { routeBase: string; pageArchetype: ProductPageArchetype }
+  { routeBase: string; pageArchetype: ProductPageArchetype; searchWatermark: boolean }
 >;
 
 export function productPagePath(family: ProductFamily, handle: string): string {

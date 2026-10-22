@@ -8,9 +8,10 @@ specific pricing, product details, and image instructions.
 The generated JSON files and public image derivatives are build outputs. Do not edit them
 manually.
 
-An artwork may set `watermark` to `high-contrast` when its image needs a more visible
-overlay. Omitted values default to `standard`. Profile definitions live in the shared
-watermark styles, so one artwork can use the stronger treatment without changing the others.
+The product `watermark` field chooses the overlay profile (`standard` by default, or
+`high-contrast` when an image needs more visibility). The product-family registry separately
+controls whether Product Search applies a watermark: artworks do; greeting cards do not. Product
+detail galleries can still choose their own watermark treatment for each image.
 
 ## Pipeline
 
@@ -88,11 +89,12 @@ The `/artworks` search index is the shared product search for currently publishe
 keeps family-specific result cards and product routes while searching common fields such as title,
 place, description, SKU, and collection.
 
-`src/domain/product-families.ts` maps each product family to a route base and a page archetype.
-These are separate concepts: several families may use one page archetype when their product
-experience is shared. Add a family mapping to this registry and provide or reuse the corresponding
-archetype page. Greeting cards use the `greeting-card-detail` archetype at `/greeting-cards/<handle>`;
-artwork prints keep their existing `artwork-detail` archetype and `/artworks/<handle>` routes.
+`src/domain/product-families.ts` maps each product family to a route base, a page archetype, and
+family-wide Product Search presentation settings such as `searchWatermark`. Routes and archetypes
+are separate concepts: several families may use one page archetype when their product experience is
+shared. Add a family mapping to this registry and provide or reuse the corresponding archetype page.
+Greeting cards use the `greeting-card-detail` archetype at `/greeting-cards/<handle>`; artwork prints
+keep their existing `artwork-detail` archetype and `/artworks/<handle>` routes.
 
 Product pages are static Astro routes generated from family-specific catalogue data. They expose
 unique metadata and structured product data, include their indexable routes in the sitemap, and

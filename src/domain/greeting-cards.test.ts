@@ -58,6 +58,8 @@ describe('greeting-card product family', () => {
     );
     expect(pageArchetypeForFamily('greeting-card')).toBe('greeting-card-detail');
     expect(pageArchetypeForFamily('artwork')).toBe('artwork-detail');
+    expect(productFamilyRegistry.artwork.searchWatermark).toBe(true);
+    expect(productFamilyRegistry['greeting-card'].searchWatermark).toBe(false);
     expect(
       Object.values(productFamilyRegistry).every(({ pageArchetype }) =>
         ['artwork-detail', 'greeting-card-detail'].includes(pageArchetype),
