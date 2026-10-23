@@ -25,6 +25,7 @@ describe('editorial copy', () => {
     expect(loaded.product.labels.addToCart).toBeTruthy();
     expect(loaded.product.labels.selectSizeCta).toBe('Select size');
     expect(loaded.product.labels.selectSizePrompt).toBeTruthy();
+    expect(copy.product.greetingCard.gallery).toBe('Greeting card images');
     expect(loaded.institutional.pages).toHaveLength(8);
   });
 
