@@ -2,7 +2,7 @@
 
 - Repo content: English.
 - Read `CONTEXT.md` before repo work; load only relevant source docs.
-- Runtime: Bun 1.3.10, Node 24.13.0; npm fallback.
+- Runtime: Bun 1.4.4, Node 24.22.1; npm fallback.
 - Branches: all feature pull requests target `staging`; `main` is reserved for human releases.
 
 ## Delivery
