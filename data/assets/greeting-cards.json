@@ -42,6 +42,406 @@
           "rotation": 90
         }
       }
+    },
+    {
+      "family": "greeting-card",
+      "title": "High & Over",
+      "description": "A folded 6 × 4 inch greeting card featuring High & Over above Seaford, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "High & Over, Seaford",
+      "publishedOrder": 1,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of High & Over.",
+      "assetBase": "high-and-over",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1AkGCdADPgol3wOLpBqCSo1UATKTryN-_",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Airbourne",
+      "description": "A folded 6 × 4 inch greeting card featuring Airbourne in Eastbourne, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Eastbourne",
+      "publishedOrder": 2,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Airbourne.",
+      "assetBase": "airbourne",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1nQud9cfpyNZWLnVpGyBRnIxEFyqg4osF",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Lewes Priory",
+      "description": "A folded 6 × 4 inch greeting card featuring the historic ruins of Lewes Priory, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Lewes",
+      "publishedOrder": 3,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Lewes Priory.",
+      "assetBase": "lewes-priory",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1uK8iDMej9nBy1tltUS-jfc26bjdcMYfU",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "East Dean",
+      "description": "A folded 6 × 4 inch greeting card featuring East Dean in an expressive inkwash, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "East Dean",
+      "publishedOrder": 4,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of East Dean.",
+      "assetBase": "east-dean",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1sETdgRUEOswyhxwwC5sxMjpps0vcu1ar",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Cuckmere Haven",
+      "description": "A folded 6 × 4 inch greeting card featuring the sweeping coast at Cuckmere Haven, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Cuckmere Haven, East Sussex",
+      "publishedOrder": 5,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Cuckmere Haven.",
+      "assetBase": "cuckmere-haven",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1LlI63BsFyLZx8Y9_eRebq322Pq-7aJgz",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Birling Gap",
+      "description": "A folded 6 × 4 inch greeting card featuring the chalk coast at Birling Gap, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Birling Gap, East Sussex",
+      "publishedOrder": 6,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Birling Gap.",
+      "assetBase": "birling-gap",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1xe48jFsBFTTXIN83v0h61ZU_tcrY7rIN",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Royal Pavilion",
+      "description": "A folded 6 × 4 inch greeting card featuring Brighton’s Royal Pavilion, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Brighton",
+      "publishedOrder": 102,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Royal Pavilion.",
+      "assetBase": "royal-pavilion",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "17yd_azvEBzstbNqxXyBVqC-MGYcs_YeZ",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Battle Abbey",
+      "description": "A folded 6 × 4 inch greeting card featuring the historic grounds of Battle Abbey, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Battle",
+      "publishedOrder": 103,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Battle Abbey.",
+      "assetBase": "battle-abbey",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1EjNhrnAOnXBKxFERbff74sjbdtcJnr5E",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Pevensey Castle",
+      "description": "A folded 6 × 4 inch greeting card featuring the ancient walls of Pevensey Castle, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Pevensey",
+      "publishedOrder": 104,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Pevensey Castle.",
+      "assetBase": "pevensey-castle",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1istabHAmOQS7zSzAYOjgI3vR4I1F-5VN",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
+    },
+    {
+      "family": "greeting-card",
+      "title": "Church Square, Rye",
+      "description": "A folded 6 × 4 inch greeting card featuring the historic streetscape of Church Square in Rye, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "Church Square, Rye",
+      "publishedOrder": 105,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring an inkwash view of Church Square, Rye.",
+      "assetBase": "church-square-rye",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1vvHkPr5JkOhohGT8E50rgXZDYV55IB8U",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard"
     }
   ]
 }

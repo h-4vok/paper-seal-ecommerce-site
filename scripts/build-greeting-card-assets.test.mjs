@@ -54,9 +54,15 @@ describe('greeting card image generation', () => {
       height: 1,
       rotation: 90,
     });
+    const resizedFront = await extractPanel(
+      master,
+      { left: 0.25, top: 0, width: 0.25, height: 1, rotation: 90 },
+      0.5,
+    );
 
     expect(back).toMatchObject({ width: 4, height: 2 });
     expect(front).toMatchObject({ width: 4, height: 2 });
+    expect(resizedFront).toMatchObject({ width: 2, height: 1 });
     const readCentre = async (buffer) => {
       const { data, info } = await sharp(buffer).raw().toBuffer({ resolveWithObject: true });
       const offset =
