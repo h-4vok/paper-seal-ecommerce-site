@@ -12,7 +12,7 @@ describe('product content metadata', () => {
     const products = validateProductManifest(source, registry);
     const outputs = deriveOutputs(products, registry);
     expect(outputs.catalogue).toHaveLength(16);
-    expect(outputs.greetingCardCatalogue).toHaveLength(1);
+    expect(outputs.greetingCardCatalogue).toHaveLength(11);
     expect(outputs.catalogue[0]).toMatchObject({
       family: 'artwork',
       price: { small: 7, medium: 14, large: 28 },
@@ -40,6 +40,19 @@ describe('product content metadata', () => {
       price: 2,
       imageDimensions: { width: 720, height: 540 },
     });
+    expect(outputs.greetingCardCatalogue.map(({ assetBase }) => assetBase)).toEqual([
+      'bodiam-castle',
+      'high-and-over',
+      'airbourne',
+      'lewes-priory',
+      'east-dean',
+      'cuckmere-haven',
+      'birling-gap',
+      'royal-pavilion',
+      'battle-abbey',
+      'pevensey-castle',
+      'church-square-rye',
+    ]);
     expect(outputs.assets.greetingCards[0]).toMatchObject({
       family: 'greeting-card',
       driveFileId: '17rkhgD2Eby1lJ_KtMqUVhG5JfWSNuX43',

@@ -99,7 +99,10 @@ function validateScene(scene) {
   return scene;
 }
 
-export async function extractPanel(masterPath, panel) {
+export async function extractPanel(masterPath, panel, masterScale = 1) {
+  if (!Number.isFinite(masterScale) || masterScale <= 0 || masterScale > 1) {
+    throw new Error('Greeting card master scale must be greater than zero and at most one.');
+  }
   const metadata = await sharp(masterPath, { failOn: 'error' }).metadata();
   if (!metadata.width || !metadata.height)
     throw new Error('Greeting card master has no dimensions.');
@@ -112,6 +115,11 @@ export async function extractPanel(masterPath, panel) {
   }
   const cropped = await sharp(masterPath, { failOn: 'error' })
     .extract({ left, top, width, height })
+    .resize({
+      width: Math.max(1, Math.round(width * masterScale)),
+      height: Math.max(1, Math.round(height * masterScale)),
+      kernel: 'lanczos3',
+    })
     .png()
     .toBuffer();
   const oriented = await sharp(cropped).rotate(panel.rotation).png().toBuffer();
@@ -281,6 +289,8 @@ export async function buildGreetingCardAssets({
   scene,
   driveRoots,
 } = {}) {
+  sharp.cache({ memory: 128, files: 20, items: 20 });
+  sharp.concurrency(1);
   if (!cards) {
     const manifest = JSON.parse(
       await readFile(path.join(root, 'data', 'assets', 'greeting-cards.json'), 'utf8'),
@@ -340,16 +350,19 @@ export async function buildGreetingCardAssets({
     if (!metadata.width || !metadata.height) {
       throw new Error(`Master for "${card.title}" has invalid dimensions.`);
     }
-    const back = await extractPanel(masterPath, card.panels.back);
-    const front = await extractPanel(masterPath, card.panels.front);
-    const backAspect = back.width / back.height;
-    const frontAspect = front.width / front.height;
+    const panelAspect = (panel) => {
+      const width = Math.round(panel.width * metadata.width);
+      const height = Math.round(panel.height * metadata.height);
+      return [90, 270].includes(panel.rotation) ? height / width : width / height;
+    };
+    const backAspect = panelAspect(card.panels.back);
+    const frontAspect = panelAspect(card.panels.front);
     if (Math.abs(backAspect - 1.5) > 0.02 || Math.abs(frontAspect - 1.5) > 0.02) {
       throw new Error(
         `Master panels for "${card.title}" do not resolve to the expected 6×4 landscape ratio.`,
       );
     }
-    inputs.push({ card, back, front });
+    inputs.push({ card, masterPath });
   }
 
   const outputRoot = path.join(root, 'public', 'images', 'greeting-cards');
@@ -357,7 +370,9 @@ export async function buildGreetingCardAssets({
   await rm(stageRoot, { recursive: true, force: true });
   await mkdir(stageRoot, { recursive: true });
   try {
-    for (const { card, back, front } of inputs) {
+    for (const { card, masterPath } of inputs) {
+      const back = await extractPanel(masterPath, card.panels.back, 0.5);
+      const front = await extractPanel(masterPath, card.panels.front, 0.5);
       const cardStage = path.join(stageRoot, card.assetBase);
       await mkdir(cardStage, { recursive: true });
       const backFlat = await sharp(back.buffer).flatten({ background: '#ffffff' }).png().toBuffer();

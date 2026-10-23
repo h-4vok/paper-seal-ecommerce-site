@@ -23,12 +23,16 @@ describe('catalogue model', () => {
     expect(new Set(artworks.map(({ family }) => family))).toEqual(new Set(['artwork']));
   });
 
-  it('includes the greeting card in the searchable product collection', () => {
-    expect(catalogueProducts).toHaveLength(17);
+  it('includes greeting cards in the searchable product collection', () => {
+    expect(catalogueProducts).toHaveLength(27);
     expect(catalogueProducts[0]?.family).toBe('artwork');
-    expect(catalogueProducts.find(({ family }) => family === 'greeting-card')?.handle).toBe(
-      'bodiam-castle-greeting-card-ps-gc-001',
-    );
+    const greetingCards = catalogueProducts.filter(({ family }) => family === 'greeting-card');
+    expect(greetingCards).toHaveLength(11);
+    expect(greetingCards.find(({ assetBase }) => assetBase === 'east-dean')?.collections).toEqual([
+      'East Sussex Heritage Series',
+      'Original Inkwash Series',
+    ]);
+    expect(greetingCards[0]?.handle).toBe('bodiam-castle-greeting-card-ps-gc-001');
     const matches = filterCatalogue(catalogueProducts, {
       query: 'Bodiam',
       place: 'all',
