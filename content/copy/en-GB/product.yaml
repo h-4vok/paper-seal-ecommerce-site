@@ -46,3 +46,18 @@ framing:
   - id: framed
     label: Framed
     detail: One frame style
+greetingCard:
+  breadcrumb: Artworks & cards
+  gallery: Greeting card images
+  perspective: Folded card
+  front: Front
+  back: Back
+  frontAlt: Front of the {title} greeting card, shown flat.
+  backAlt: Back of the {title} greeting card, shown flat.
+  previous: Previous product image
+  next: Next product image
+  chooseImage: Choose a product image
+  showImage: 'Show image {number}: {image}'
+  closedSize: 6 × 4 in (15.2 × 10.2 cm) when closed
+  included: Includes an envelope and comes individually wrapped in a clear cellophane sleeve.
+  addToCart: 'Add to cart — £{price}'

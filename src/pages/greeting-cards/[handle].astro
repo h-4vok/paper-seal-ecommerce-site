@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GreetingCardGallery from '../../components/GreetingCardGallery.astro';
+import { copy } from '../../content/copy';
+import {
+  greetingCards,
+  greetingCardImagePath,
+  greetingCardPagePath,
+  greetingCardSnipcartAttributes,
+  greetingCardStructuredData,
+} from '../../domain/greeting-cards';
+import { pageArchetypeForFamily } from '../../domain/product-families';
+import '../../styles/product.scss';
+
+export function getStaticPaths() {
+  return greetingCards.map((card) => ({ params: { handle: card.handle }, props: { card } }));
+}
+
+const { card } = Astro.props;
+const labels = copy.product.greetingCard;
+const canonical = greetingCardPagePath(card);
+const siteOrigin = Astro.site ?? Astro.url.origin;
+const perspectiveImage = greetingCardImagePath(card, 'perspective', 1440);
+const searchImage = greetingCardImagePath(card, 'search', 1440);
+const price = card.price.toFixed(2);
+const title = `${card.title} Greeting Card — The Paper Seal Studio`;
+const description = `${card.description} ${labels.closedSize}`;
+const snipcartAttributes = greetingCardSnipcartAttributes(card, searchImage);
+const structuredData = [
+  greetingCardStructuredData(
+    card,
+    new URL(canonical, siteOrigin).href,
+    new URL(perspectiveImage, siteOrigin).href,
+  ),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', siteOrigin).href },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: labels.breadcrumb,
+        item: new URL('/artworks', siteOrigin).href,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: card.title,
+        item: new URL(canonical, siteOrigin).href,
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  {title}
+  {description}
+  {canonical}
+  image={perspectiveImage}
+  imageAlt={card.alt}
+  ogType="product"
+  {structuredData}
+  bodyClass="product-body greeting-card-body"
+>
+  <main
+    id="main-content"
+    class="product-page greeting-card-product-page"
+    data-page-archetype={pageArchetypeForFamily(card.family)}
+  >
+    <nav class="product-breadcrumbs" aria-label={copy.product.labels.breadcrumb}>
+      <a href="/artworks">{labels.breadcrumb}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{card.title}</span>
+    </nav>
+    <section class="product-layout greeting-card-product-layout">
+      <GreetingCardGallery {card} />
+      <article class="product-information greeting-card-information">
+        <div class="greeting-card-information__summary">
+          <div class="greeting-card-information__identity">
+            <h1>{card.title}</h1>
+            <p class="greeting-card-information__category">
+              Greeting card{' '}
+              <span class="greeting-card-information__separator" aria-hidden="true">
+                ·
+              </span>{' '}
+              {card.collections[0]}
+            </p>
+          </div>
+          <div class="greeting-card-information__purchase">
+            <div class="product-add-to-cart-container">
+              <button
+                class="button-link button-link--darkblue product-add-to-cart snipcart-add-item"
+                type="button"
+                aria-label={labels.addToCart.replace('{price}', price)}
+                {...snipcartAttributes}
+              >
+                <svg
+                  class="product-add-to-cart__icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path d="M6.5 8h11l1 13h-13l1-13Z" />
+                  <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+                </svg>
+                <span class="product-add-to-cart__label">Add to cart</span>
+                <span class="product-add-to-cart__price">£{price}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <section class="greeting-card-information__details" aria-labelledby="card-details-heading">
+          <h2 id="card-details-heading">About the card</h2>
+          <p class="product-description">{card.description}</p>
+          <dl class="product-trust greeting-card-specifications">
+            <div>
+              <dt>Location</dt>
+              <dd>{card.placeName}</dd>
+            </div>
+            <div>
+              <dt>Size</dt>
+              <dd>{labels.closedSize}</dd>
+            </div>
+            <div>
+              <dt>Included</dt>
+              <dd>{labels.included}</dd>
+            </div>
+          </dl>
+          <p class="product-policy-links">
+            <a href="/delivery">{copy.product.labels.delivery}</a> ·{' '}
+            <a href="/returns">{copy.product.labels.returns}</a>
+          </p>
+        </section>
+      </article>
+    </section>
+  </main>
+</BaseLayout>

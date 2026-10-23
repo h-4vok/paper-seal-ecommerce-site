@@ -1,0 +1,140 @@
+---
+import type { GreetingCard } from '../domain/greeting-cards';
+import { greetingCardImagePath } from '../domain/greeting-cards';
+import { copy } from '../content/copy';
+import ArtworkPicture from './ArtworkPicture.astro';
+
+interface Props {
+  card: GreetingCard;
+}
+
+const { card } = Astro.props;
+const labels = copy.product.greetingCard;
+const slides = [
+  {
+    kind: 'perspective',
+    label: labels.perspective,
+    alt: card.alt,
+    srcBase: greetingCardImagePath(card, 'perspective', 720).replace(/-720\.jpg$/, ''),
+    watermark: false,
+  },
+  {
+    kind: 'front',
+    label: labels.front,
+    alt: labels.frontAlt.replace('{title}', card.title),
+    srcBase: greetingCardImagePath(card, 'front', 720).replace(/-720\.jpg$/, ''),
+    watermark: true,
+  },
+  {
+    kind: 'back',
+    label: labels.back,
+    alt: labels.backAlt.replace('{title}', card.title),
+    srcBase: greetingCardImagePath(card, 'back', 720).replace(/-720\.jpg$/, ''),
+    watermark: true,
+  },
+];
+---
+
+<section class="greeting-card-gallery" data-greeting-card-gallery aria-label={labels.gallery}>
+  <div class="greeting-card-gallery__stage" data-gallery-stage tabindex="0">
+    {slides.map((slide, index) => (
+      <div
+        class:list={['greeting-card-gallery__slide', `greeting-card-gallery__slide--${slide.kind}`]}
+        data-gallery-slide
+        data-slide-kind={slide.kind}
+        hidden={index !== 0}
+      >
+        {slide.kind !== 'perspective' && (
+          <div
+            class="gallery-image-backdrop"
+            aria-hidden="true"
+            style={`background-image: url('${slide.srcBase}-720.jpg')`}
+          />
+        )}
+        <ArtworkPicture
+          assetBase={card.assetBase}
+          sourceBase={slide.srcBase}
+          orientation="landscape"
+          imageWidth={1440}
+          imageHeight={slide.kind === 'perspective' ? 631 : 958}
+          alt={slide.alt}
+          watermark={slide.watermark}
+          watermarkProfile={card.watermark}
+          resolution={1440}
+          srcsetWidths={slide.kind === 'perspective' ? [720, 1440, 2880] : [720, 1440]}
+          modernFormat={slide.kind === 'perspective' ? 'avif' : undefined}
+          sizes="100vw"
+          eager={index === 0}
+        />
+      </div>
+    ))}
+  </div>
+  <div class="greeting-card-gallery__thumbs" aria-label={labels.chooseImage}>
+    {slides.map((slide, index) => (
+      <button
+        type="button"
+        class="greeting-card-gallery__thumbnail"
+        aria-label={labels.showImage
+          .replace('{number}', String(index + 1))
+          .replace('{image}', slide.label)}
+        aria-pressed={index === 0 ? 'true' : 'false'}
+        data-gallery-thumbnail={index}
+      >
+        <span class="greeting-card-gallery__thumbnail-image">
+          <ArtworkPicture
+            assetBase={card.assetBase}
+            sourceBase={slide.srcBase}
+            orientation="landscape"
+            imageWidth={1440}
+            imageHeight={slide.kind === 'perspective' ? 631 : 958}
+            alt=""
+            watermark={slide.watermark}
+            watermarkProfile={card.watermark}
+            sizes="8rem"
+          />
+        </span>
+        <span class="greeting-card-gallery__thumbnail-label">{slide.label}</span>
+      </button>
+    ))}
+  </div>
+  <p class="visually-hidden" aria-live="polite" aria-atomic="true" data-gallery-announcement>
+    {labels.showImage.replace('{number}', '1').replace('{image}', slides[0].label)}
+  </p>
+</section>
+
+<script>
+  import { galleryIndex } from '../domain/catalogue';
+
+  document.querySelectorAll<HTMLElement>('[data-greeting-card-gallery]').forEach((gallery) => {
+    const slides = [...gallery.querySelectorAll<HTMLElement>('[data-gallery-slide]')];
+    const thumbnails = [...gallery.querySelectorAll<HTMLButtonElement>('[data-gallery-thumbnail]')];
+    const stage = gallery.querySelector<HTMLElement>('[data-gallery-stage]');
+    const announcement = gallery.querySelector<HTMLElement>('[data-gallery-announcement]');
+    let active = 0;
+
+    function show(index: number) {
+      active = ((index % slides.length) + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        slide.hidden = slideIndex !== active;
+      });
+      thumbnails.forEach((thumbnail, thumbnailIndex) => {
+        thumbnail.setAttribute('aria-pressed', String(thumbnailIndex === active));
+      });
+      const label =
+        thumbnails[active]?.querySelector('.greeting-card-gallery__thumbnail-label')?.textContent ??
+        '';
+      if (announcement)
+        announcement.textContent = `Image ${active + 1} of ${slides.length}: ${label}`;
+    }
+
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener('click', () => show(Number(thumbnail.dataset.galleryThumbnail)));
+    });
+    stage?.addEventListener('keydown', (event) => {
+      if ((event as KeyboardEvent).key === 'ArrowLeft')
+        show(galleryIndex(active, slides.length, -1));
+      if ((event as KeyboardEvent).key === 'ArrowRight')
+        show(galleryIndex(active, slides.length, 1));
+    });
+  });
+</script>

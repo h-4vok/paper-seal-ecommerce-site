@@ -3,7 +3,8 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "24.13.0"
+  NODE_VERSION = "24.22.1"
+  BUN_VERSION = "1.4.4"
   NPM_FLAGS = "--version"
   SITE_ORIGIN = "https://paperseal.uk"
 

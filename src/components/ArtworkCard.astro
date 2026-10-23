@@ -1,5 +1,6 @@
 ---
 import type { Artwork } from '../domain/catalogue';
+import { productFamilyRegistry } from '../domain/product-families';
 import { copy } from '../content/copy';
 import ArtworkPicture from './ArtworkPicture.astro';
 
@@ -32,6 +33,7 @@ const { catalogue } = copy;
         sizes="(min-width: 112rem) 52rem, (min-width: 64rem) 42vw, 92vw"
         alt={artwork.alt}
         watermarkProfile={artwork.watermark}
+        watermark={productFamilyRegistry[artwork.family].searchWatermark}
         {eager}
       />
     </div>

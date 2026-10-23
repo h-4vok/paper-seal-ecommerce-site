@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   artworkMatches,
   artworks,
+  catalogueProducts,
   filterCatalogue,
   formatPrice,
   galleryIndex,
@@ -9,6 +10,7 @@ import {
   nextVisibleCount,
   normalizeSearch,
   productGallery,
+  productPath,
   productStructuredData,
   snipcartItemAttributes,
   validateCatalogue,
@@ -18,6 +20,28 @@ describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
     expect(artworks).toHaveLength(16);
     expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(16);
+    expect(new Set(artworks.map(({ family }) => family))).toEqual(new Set(['artwork']));
+  });
+
+  it('includes greeting cards in the searchable product collection', () => {
+    expect(catalogueProducts).toHaveLength(27);
+    expect(catalogueProducts[0]?.family).toBe('artwork');
+    const greetingCards = catalogueProducts.filter(({ family }) => family === 'greeting-card');
+    expect(greetingCards).toHaveLength(11);
+    expect(greetingCards.find(({ assetBase }) => assetBase === 'east-dean')?.collections).toEqual([
+      'East Sussex Heritage Series',
+      'Original Inkwash Series',
+    ]);
+    expect(greetingCards[0]?.handle).toBe('bodiam-castle-greeting-card-ps-gc-001');
+    const matches = filterCatalogue(catalogueProducts, {
+      query: 'Bodiam',
+      place: 'all',
+      sort: 'newest',
+    });
+    expect(matches.map(({ title }) => title)).toEqual(['Bodiam Castle']);
+    expect(productPath(catalogueProducts.find(({ family }) => family === 'greeting-card')!)).toBe(
+      '/greeting-cards/bodiam-castle-greeting-card-ps-gc-001',
+    );
   });
 
   it('maps artwork prices to Snipcart base price and size modifiers', () => {
@@ -78,6 +102,7 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], sku: 'bad' }], 'invalid sku'],
     [[{ ...artworks[0], handle: 'Bad Handle' }], 'invalid handle'],
     [[{ ...artworks[0], handle: 'seven-sisters-wrong-sku-suffix' }], 'invalid handle'],
+    [[{ ...artworks[0], family: 'greeting-card' }], 'invalid family'],
     [[{ ...artworks[0], publishedOrder: -1 }], 'invalid publishedOrder'],
     [[{ ...artworks[0], collections: [1] }], 'invalid collections'],
     [[{ ...artworks[0], orientation: 'square' }], 'invalid orientation'],
