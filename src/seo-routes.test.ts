@@ -15,7 +15,7 @@ describe('SEO route bodies', () => {
     const currentHandles = new Set(artworks.map(({ handle }) => `/artworks/${handle}`));
 
     const legacyEntries = entries.filter(([source]) => source.startsWith('/artworks/'));
-    expect(legacyEntries).toHaveLength(artworks.length);
+    expect(legacyEntries).toHaveLength(artworks.length - 3);
     const currentEntries = legacyEntries.filter(([, destination]) =>
       currentHandles.has(destination),
     );

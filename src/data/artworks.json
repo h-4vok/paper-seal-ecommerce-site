@@ -738,6 +738,144 @@
         "width": 720,
         "height": 512
       }
+    },
+    {
+      "family": "artwork",
+      "sku": "PS-PR-019",
+      "title": "Brighton West Pier",
+      "handle": "brighton-west-pier-ps-pr-019",
+      "description": "Brighton West Pier reaching into the sea, captured in the expressive coastal style of the True Strokes Collection.",
+      "placeName": "West Pier, Brighton",
+      "publishedOrder": 1,
+      "collections": ["True Strokes Collection"],
+      "orientation": "landscape",
+      "alt": "Brighton West Pier extending into the sea in a painterly coastal scene.",
+      "assetBase": "brighton-west-pier",
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "watermark": "standard",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
+      }
+    },
+    {
+      "family": "artwork",
+      "sku": "PS-PR-020",
+      "title": "King Charles III Coastal Path, Seven Sisters",
+      "handle": "king-charles-iii-coastal-path-seven-sisters-ps-pr-020",
+      "description": "The King Charles III Coastal Path crossing the Seven Sisters landscape, rendered in the expressive style of the True Strokes Collection.",
+      "placeName": "Seven Sisters, East Sussex",
+      "publishedOrder": 1,
+      "collections": ["True Strokes Collection"],
+      "orientation": "landscape",
+      "alt": "The King Charles III Coastal Path winding through the Seven Sisters coastal landscape.",
+      "assetBase": "king-charles-iii-coastal-path-seven-sisters",
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "watermark": "standard",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
+      }
+    },
+    {
+      "family": "artwork",
+      "sku": "PS-PR-021",
+      "title": "Kings Road, Brighton",
+      "handle": "kings-road-brighton-ps-pr-021",
+      "description": "A Brighton streetscape along Kings Road, captured in the expressive style of the True Strokes Collection.",
+      "placeName": "Kings Road, Brighton",
+      "publishedOrder": 1,
+      "collections": ["True Strokes Collection"],
+      "orientation": "landscape",
+      "alt": "A painterly view along Kings Road in Brighton.",
+      "assetBase": "kings-road-brighton",
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "watermark": "standard",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 512
+      }
     }
   ]
 }

@@ -11,7 +11,10 @@ describe('product content metadata', () => {
   it('derives catalogue and asset shapes for each family deterministically', () => {
     const products = validateProductManifest(source, registry);
     const outputs = deriveOutputs(products, registry);
-    expect(outputs.catalogue).toHaveLength(16);
+    expect(outputs.catalogue).toHaveLength(19);
+    expect(outputs.catalogue.map(({ sku }) => sku)).toEqual(
+      expect.arrayContaining(['PS-PR-019', 'PS-PR-020', 'PS-PR-021']),
+    );
     expect(outputs.greetingCardCatalogue).toHaveLength(11);
     expect(outputs.catalogue[0]).toMatchObject({
       family: 'artwork',
