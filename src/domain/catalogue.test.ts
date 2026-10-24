@@ -18,13 +18,16 @@ import {
 
 describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
-    expect(artworks).toHaveLength(16);
-    expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(16);
+    expect(artworks).toHaveLength(19);
+    expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(19);
+    expect(artworks.map(({ sku }) => sku)).toEqual(
+      expect.arrayContaining(['PS-PR-019', 'PS-PR-020', 'PS-PR-021']),
+    );
     expect(new Set(artworks.map(({ family }) => family))).toEqual(new Set(['artwork']));
   });
 
   it('includes greeting cards in the searchable product collection', () => {
-    expect(catalogueProducts).toHaveLength(27);
+    expect(catalogueProducts).toHaveLength(30);
     expect(catalogueProducts[0]?.family).toBe('artwork');
     const greetingCards = catalogueProducts.filter(({ family }) => family === 'greeting-card');
     expect(greetingCards).toHaveLength(11);
