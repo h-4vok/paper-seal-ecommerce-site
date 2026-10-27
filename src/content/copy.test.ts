@@ -5,6 +5,7 @@ type LoadedCopy = {
   shared: { navigation: { items: unknown[] } };
   home: { seo: { title: string } };
   catalogue: { controls: { searchPlaceholder: string } };
+  commissions: { seo: { title: string }; galleryLabel: string };
   cart: { header: { heading: string } };
   product: { labels: { addToCart: string; selectSizeCta: string; selectSizePrompt: string } };
   institutional: { pages: unknown[] };
@@ -18,9 +19,18 @@ describe('editorial copy', () => {
 
   it('provides validated shared navigation and home SEO copy', () => {
     const loaded = copy as unknown as LoadedCopy;
-    expect(loaded.shared.navigation.items).toHaveLength(3);
+    expect(loaded.shared.navigation.items).toHaveLength(4);
+    expect(loaded.shared.navigation.items).toMatchObject([
+      { href: '/artworks', label: 'Our Artwork' },
+      { href: '/our-story', label: 'Our Story' },
+      { href: '/collabs', label: 'Collabs' },
+      { href: '/commissions', label: 'Commissions' },
+    ]);
+    expect(copy.shared.footer.commissions).toBe('Commissions');
     expect(loaded.home.seo.title).toContain('The Paper Seal Studio');
     expect(loaded.catalogue.controls.searchPlaceholder).toBeTruthy();
+    expect(copy.commissions.seo.title).toContain('Commissioned Artworks');
+    expect(copy.commissions.galleryLabel).toBeTruthy();
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();
     expect(loaded.product.labels.selectSizeCta).toBe('Select size');
@@ -69,6 +79,7 @@ describe('editorial copy', () => {
         'institutional.yaml',
         'placeholder.yaml',
         'stories.yaml',
+        'commissions.yaml',
         'unexpected.yaml',
       ]),
     ).toThrow('Unknown copy YAML files');

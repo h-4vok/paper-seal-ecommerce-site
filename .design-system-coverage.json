@@ -99,6 +99,12 @@
       "source": "src/components/CartTrigger.astro",
       "level": "Molecules",
       "useFor": "Header bag that opens the Snipcart cart and displays its item count."
+    },
+    {
+      "name": "CommissionsGallery",
+      "source": "src/components/CommissionsGallery.astro",
+      "level": "Organisms",
+      "useFor": "Editorial portfolio gallery for commissioned artwork, with alternating image and caption placement and no commerce controls."
     }
   ]
 }

@@ -20,6 +20,8 @@ describe('product content metadata', () => {
       family: 'artwork',
       price: { small: 7, medium: 14, large: 28 },
       watermark: 'standard',
+      showInProductSearch: true,
+      showInCommissions: false,
       mockups: { '7x5': [{ sceneId: '14' }] },
       imageDimensions: { width: 720, height: 510 },
     });
@@ -41,6 +43,8 @@ describe('product content metadata', () => {
       sku: 'PS-GC-001',
       assetBase: 'bodiam-castle',
       price: 2,
+      showInProductSearch: true,
+      showInCommissions: false,
       imageDimensions: { width: 720, height: 540 },
     });
     expect(outputs.greetingCardCatalogue.map(({ assetBase }) => assetBase)).toEqual([
@@ -73,6 +77,8 @@ describe('product content metadata', () => {
     [{ family: 'unknown' }, 'invalid family'],
     [{ orientation: 'square' }, 'invalid orientation'],
     [{ watermark: 'unknown' }, 'invalid watermark profile'],
+    [{ showInProductSearch: 'false' }, 'invalid showInProductSearch'],
+    [{ showInCommissions: 1 }, 'invalid showInCommissions'],
     [{ mockups: { '7x5': [], A4: ['13'], A3: ['13'] } }, 'empty or missing 7x5'],
     [{ mockups: { '7x5': ['99'], A4: ['13'], A3: ['13'] } }, 'unknown mockup scene 99'],
     [{ mockups: { '7x5': ['13', '13'], A4: ['13'], A3: ['13'] } }, 'duplicates scene 13'],
@@ -86,6 +92,20 @@ describe('product content metadata', () => {
   ])('rejects invalid artwork fields: %s', (change, message) => {
     const candidate = { ...source.products[0], ...change };
     expect(() => validateProductManifest({ products: [candidate] }, registry)).toThrow(message);
+  });
+
+  it('uses independent product-search and commissions visibility defaults', () => {
+    const defaulted = validateProductManifest({ products: [source.products[0]] }, registry)[0];
+    const commission = source.products.find(({ title }) => title === 'Meet Me in Eastbourne');
+    const commissioned = validateProductManifest({ products: [commission] }, registry)[0];
+    const output = deriveOutputs([commissioned], registry);
+
+    expect(defaulted).toMatchObject({ showInProductSearch: true, showInCommissions: false });
+    expect(commissioned).toMatchObject({ showInProductSearch: false, showInCommissions: true });
+    expect(output.catalogue[0]).toMatchObject({
+      showInProductSearch: false,
+      showInCommissions: true,
+    });
   });
 
   it('preserves editorial ordering when an artwork uses multiple scenes at one size', () => {

@@ -3,7 +3,7 @@ import ArtworkPicture from '../../components/ArtworkPicture.astro';
 import ArtworkMockupPicture from '../../components/ArtworkMockupPicture.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
-  artworks,
+  productPageArtworks,
   mockupImagePath,
   productGallery,
   productStructuredData,
@@ -14,7 +14,10 @@ import { copy, copyText } from '../../content/copy';
 import '../../styles/product.scss';
 
 export function getStaticPaths() {
-  return artworks.map((artwork) => ({ params: { handle: artwork.handle }, props: { artwork } }));
+  return productPageArtworks.map((artwork) => ({
+    params: { handle: artwork.handle },
+    props: { artwork },
+  }));
 }
 
 const { artwork } = Astro.props as { artwork: Artwork };

@@ -74,6 +74,8 @@ products:
       sku: PS-PR-005,
       title: Meet Me in Eastbourne,
       handle: meet-me-in-eastbourne-ps-pr-005,
+      showInProductSearch: false,
+      showInCommissions: true,
       description: 'The residential area of Sovereign Harbour always invites a pause, a retrospection...',
       placeName: 'Sovereign Harbour, Eastbourne',
       publishedOrder: 1,

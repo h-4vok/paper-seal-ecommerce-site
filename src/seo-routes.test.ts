@@ -20,12 +20,17 @@ describe('SEO route bodies', () => {
       currentHandles.has(destination),
     );
 
-    expect(currentEntries).toHaveLength(10);
+    expect(currentEntries).toHaveLength(9);
     for (const [source, destination, status] of currentEntries) {
       expect(source).toMatch(/^\/artworks\/.+-ps-\d{3}$/);
       expect(destination).toMatch(/^\/artworks\/.+-ps-pr-\d{3}$/);
       expect(status).toBe('301');
     }
+    expect(legacyEntries).toContainEqual([
+      '/artworks/meet-me-in-eastbourne-ps-005',
+      '/commissions',
+      '301',
+    ]);
   });
 
   it('temporarily redirects each Comfort Season QR route to its assigned Stripe payment link', async () => {
@@ -96,6 +101,8 @@ describe('SEO route bodies', () => {
       );
       expect(body).toContain('/artworks</loc>');
       expect(body).toContain('/artworks/new-eastbourne-flower-bed-ps-pr-001</loc>');
+      expect(body).toContain('/commissions</loc>');
+      expect(body).not.toContain('/artworks/meet-me-in-eastbourne-ps-pr-005</loc>');
       expect(body).toContain(`${greetingCardPagePath(greetingCards[0])}</loc>`);
       expect(body).toContain('/our-story</loc>');
       expect(body).toContain('/delivery</loc>');

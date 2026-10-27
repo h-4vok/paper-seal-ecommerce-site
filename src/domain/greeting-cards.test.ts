@@ -17,11 +17,24 @@ describe('greeting-card product family', () => {
       family: 'greeting-card',
       sku: 'PS-GC-001',
       handle: 'bodiam-castle-greeting-card-ps-gc-001',
+      showInProductSearch: true,
+      showInCommissions: false,
       price: 2,
       dimensions: { closed: { width: 6, height: 4, unit: 'inches' } },
       included: { envelope: true, packaging: 'clear cellophane sleeve' },
     });
     expect(validateGreetingCards([card])).toEqual([card]);
+  });
+
+  it('defaults visibility for greeting-card data created before the optional fields existed', () => {
+    const legacyCard = { ...card } as Record<string, unknown>;
+    delete legacyCard.showInProductSearch;
+    delete legacyCard.showInCommissions;
+
+    expect(validateGreetingCards([legacyCard])[0]).toMatchObject({
+      showInProductSearch: true,
+      showInCommissions: false,
+    });
   });
 
   it.each([
@@ -35,6 +48,8 @@ describe('greeting-card product family', () => {
     [{ ...card, collections: [3] }, 'invalid catalogue values'],
     [{ ...card, orientation: 'portrait' }, 'invalid catalogue values'],
     [{ ...card, watermark: 'none' }, 'invalid catalogue values'],
+    [{ ...card, showInProductSearch: 'yes' }, 'invalid showInProductSearch'],
+    [{ ...card, showInCommissions: 1 }, 'invalid showInCommissions'],
     [{ ...card, price: 0 }, 'invalid catalogue values'],
     [
       { ...card, dimensions: { closed: { width: 5, height: 4, unit: 'inches' } } },

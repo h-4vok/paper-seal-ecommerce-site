@@ -89,6 +89,10 @@ export function validateProductManifest(input, registry = approvedRegistry) {
       fail(index, 'has invalid collections.');
     if (!['landscape', 'portrait'].includes(product.orientation))
       fail(index, 'has an invalid orientation.');
+    for (const field of ['showInProductSearch', 'showInCommissions']) {
+      if (product[field] !== undefined && typeof product[field] !== 'boolean')
+        fail(index, `has an invalid ${field}; expected a boolean.`);
+    }
     if (product.watermark !== undefined && !watermarkProfiles.includes(product.watermark))
       fail(index, 'has an invalid watermark profile.');
     if (product.family === 'artwork') {
@@ -143,6 +147,8 @@ export function validateProductManifest(input, registry = approvedRegistry) {
   return input.products.map((product) => ({
     ...product,
     watermark: product.watermark ?? 'standard',
+    showInProductSearch: product.showInProductSearch ?? true,
+    showInCommissions: product.showInCommissions ?? false,
   }));
 }
 

@@ -41,7 +41,9 @@
           "height": 1,
           "rotation": 90
         }
-      }
+      },
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -81,7 +83,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -121,7 +125,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -161,7 +167,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -201,7 +209,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -241,7 +251,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -281,7 +293,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -321,7 +335,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -361,7 +377,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -401,7 +419,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -441,7 +461,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     }
   ]
 }

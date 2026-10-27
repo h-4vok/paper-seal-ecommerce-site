@@ -29,6 +29,8 @@ export interface Artwork {
   description: string;
   placeName: string;
   publishedOrder: number;
+  showInProductSearch: boolean;
+  showInCommissions: boolean;
   collections: string[];
   orientation: Orientation;
   alt: string;
@@ -132,6 +134,11 @@ export function validateCatalogue(input: unknown): Artwork[] {
     if (!Number.isInteger(item.publishedOrder) || (item.publishedOrder as number) < 0) {
       throw new Error(`Artwork ${index + 1} has an invalid publishedOrder.`);
     }
+    for (const field of ['showInProductSearch', 'showInCommissions'] as const) {
+      if (item[field] !== undefined && typeof item[field] !== 'boolean') {
+        throw new Error(`Artwork ${index + 1} has an invalid ${field}.`);
+      }
+    }
     if (
       !Array.isArray(item.collections) ||
       item.collections.some((value) => typeof value !== 'string')
@@ -193,12 +200,28 @@ export function validateCatalogue(input: unknown): Artwork[] {
     }
     skus.add(item.sku as string);
     handles.add(item.handle as string);
-    return { ...item, family: 'artwork' } as unknown as Artwork;
+    return {
+      ...item,
+      family: 'artwork',
+      showInProductSearch: item.showInProductSearch ?? true,
+      showInCommissions: item.showInCommissions ?? false,
+    } as unknown as Artwork;
   });
 }
 
 export const artworks = validateCatalogue(generatedCatalogue.artworks);
-export const catalogueProducts: CatalogueProduct[] = [...artworks, ...greetingCards];
+export const commissionArtworks = artworks.filter(({ showInCommissions }) => showInCommissions);
+// A commission-only artwork has no sellable detail route; a work explicitly shown in Search keeps its PDP.
+export function hasArtworkProductPageVisibility(artwork: {
+  showInProductSearch: boolean;
+  showInCommissions: boolean;
+}): boolean {
+  return artwork.showInProductSearch || !artwork.showInCommissions;
+}
+export const productPageArtworks = artworks.filter(hasArtworkProductPageVisibility);
+export const catalogueProducts: CatalogueProduct[] = [...artworks, ...greetingCards].filter(
+  ({ showInProductSearch }) => showInProductSearch,
+);
 
 export function mockupImagePath(
   artwork: Artwork,

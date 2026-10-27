@@ -38,6 +38,7 @@ const sharedSchema = z.object({
     explore: text,
     allArtworks: text,
     ourStory: text,
+    commissions: text,
     goodToKnow: text,
     delivery: text,
     returns: text,
@@ -136,6 +137,13 @@ const catalogueSchema = z.object({
     reset: text,
   }),
 });
+const commissionsSchema = z.object({
+  seo: z.object({ title: text, description: text }),
+  eyebrow: text,
+  heading: text,
+  intro: text,
+  galleryLabel: text,
+});
 const cartSchema = z.object({
   seo: z.object({ title: text, description: text }),
   header: z.object({ eyebrow: text, itemCount: text, heading: text }),
@@ -221,6 +229,7 @@ export const copySchemas = {
   shared: sharedSchema,
   home: homeSchema,
   catalogue: catalogueSchema,
+  commissions: commissionsSchema,
   cart: cartSchema,
   product: productSchema,
   institutional: institutionalSchema,

@@ -3,7 +3,10 @@ import {
   artworkMatches,
   artworks,
   catalogueProducts,
+  commissionArtworks,
+  productPageArtworks,
   filterCatalogue,
+  hasArtworkProductPageVisibility,
   formatPrice,
   galleryIndex,
   mockupImagePath,
@@ -26,8 +29,41 @@ describe('catalogue model', () => {
     expect(new Set(artworks.map(({ family }) => family))).toEqual(new Set(['artwork']));
   });
 
+  it('keeps search and commissions visibility independent and omits commissioned product pages', () => {
+    const commissioned = artworks.find(({ title }) => title === 'Meet Me in Eastbourne');
+
+    expect(commissioned).toMatchObject({ showInProductSearch: false, showInCommissions: true });
+    expect(catalogueProducts.some(({ title }) => title === 'Meet Me in Eastbourne')).toBe(false);
+    expect(commissionArtworks.map(({ title }) => title)).toEqual(['Meet Me in Eastbourne']);
+    expect(productPageArtworks.some(({ title }) => title === 'Meet Me in Eastbourne')).toBe(false);
+    expect(artworks.find(({ title }) => title === 'New Eastbourne Flower Bed')).toMatchObject({
+      showInProductSearch: true,
+      showInCommissions: false,
+    });
+    expect(
+      hasArtworkProductPageVisibility({ showInProductSearch: false, showInCommissions: false }),
+    ).toBe(true);
+    expect(
+      hasArtworkProductPageVisibility({ showInProductSearch: true, showInCommissions: true }),
+    ).toBe(true);
+    expect(
+      hasArtworkProductPageVisibility({ showInProductSearch: false, showInCommissions: true }),
+    ).toBe(false);
+  });
+
+  it('defaults visibility for artwork data created before the optional fields existed', () => {
+    const legacyArtwork = { ...artworks[0] } as Record<string, unknown>;
+    delete legacyArtwork.showInProductSearch;
+    delete legacyArtwork.showInCommissions;
+
+    expect(validateCatalogue([legacyArtwork])[0]).toMatchObject({
+      showInProductSearch: true,
+      showInCommissions: false,
+    });
+  });
+
   it('includes greeting cards in the searchable product collection', () => {
-    expect(catalogueProducts).toHaveLength(30);
+    expect(catalogueProducts).toHaveLength(29);
     expect(catalogueProducts[0]?.family).toBe('artwork');
     const greetingCards = catalogueProducts.filter(({ family }) => family === 'greeting-card');
     expect(greetingCards).toHaveLength(11);
@@ -128,6 +164,8 @@ describe('catalogue model', () => {
     [[{ ...artworks[0], price: { small: 7, medium: -1, large: 28 } }], 'invalid price'],
     [[{ ...artworks[0], price: { small: 7, medium: 14 } }], 'invalid price'],
     [[artworks[0], { ...artworks[0], title: 'Duplicate' }], 'duplicates'],
+    [[{ ...artworks[0], showInProductSearch: 'yes' }], 'invalid showInProductSearch'],
+    [[{ ...artworks[0], showInCommissions: 1 }], 'invalid showInCommissions'],
     [
       [artworks[0], { ...artworks[1], sku: artworks[0].sku, handle: 'amber-harbour-ps-pr-001' }],
       'duplicates',

@@ -89,6 +89,12 @@ The `/artworks` search index is the shared product search for currently publishe
 keeps family-specific result cards and product routes while searching common fields such as title,
 place, description, SKU, and collection.
 
+Product records may set `showInProductSearch` and `showInCommissions` independently. They default
+to `true` and `false`, respectively. The Commissions gallery includes artworks marked
+`showInCommissions: true` and never shows prices or purchase controls. A commission hidden from
+Product Search is portfolio-only and has no product-detail route; if it is explicitly shown in
+Product Search as well, its normal product route remains available.
+
 `src/domain/product-families.ts` maps each product family to a route base, a page archetype, and
 family-wide Product Search presentation settings such as `searchWatermark`. Routes and archetypes
 are separate concepts: several families may use one page archetype when their product experience is

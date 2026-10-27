@@ -42,7 +42,9 @@
         "large": 28
       },
       "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -82,7 +84,9 @@
         "large": 28
       },
       "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -122,11 +126,15 @@
         "large": 28
       },
       "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
       "title": "Meet Me in Eastbourne",
+      "showInProductSearch": false,
+      "showInCommissions": true,
       "description": "The residential area of Sovereign Harbour always invites a pause, a retrospection...",
       "placeName": "Sovereign Harbour, Eastbourne",
       "publishedOrder": 1,
@@ -202,7 +210,9 @@
         "large": 28
       },
       "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -242,7 +252,9 @@
         "medium": 14,
         "large": 28
       },
-      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO"
+      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -282,7 +294,9 @@
         "large": 28
       },
       "driveFileId": "11ghqYTjjogWachHOW2EmnXSpVe4dMJmn",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -322,7 +336,9 @@
         "large": 28
       },
       "driveFileId": "15S4jRQMCVgRIyEIu9uUbtqpes7qatdeu",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -362,7 +378,9 @@
         "large": 28
       },
       "driveFileId": "1DaJd8VMFSNSG207bMTiJM7ksoDdYV3S-",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -402,7 +420,9 @@
         "large": 28
       },
       "driveFileId": "1EXlV-GfTOigNwuX9Sn1OV8dropkpvkI0",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -442,7 +462,9 @@
         "large": 28
       },
       "driveFileId": "1Fl-4xj-nHMqDzx-YycYfxjHF8pajjgvS",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -482,7 +504,9 @@
         "large": 28
       },
       "driveFileId": "1LbKstBbKrXIEAF4MyA9X9PN8tRefzb9M",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -522,7 +546,9 @@
         "large": 28
       },
       "driveFileId": "1OZno2NSnheCNBJ5WB4NU6MIImYT7dedO",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -562,7 +588,9 @@
         "large": 28
       },
       "driveFileId": "1W-0e0QJZhYlmC8qZsdpLXcEFMBF9SFFI",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -602,7 +630,9 @@
         "large": 28
       },
       "driveFileId": "1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -642,7 +672,9 @@
         "large": 28
       },
       "driveFileId": "1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -682,7 +714,9 @@
         "large": 28
       },
       "driveFileId": "1sDui3t5Vwi4ohrli5quxxIv3r-4hrNP2",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -722,7 +756,9 @@
         "large": 28
       },
       "driveFileId": "1VSEl-rnF03jK1tP7AeE8MFrfgE8k8eiF",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -762,7 +798,9 @@
         "large": 28
       },
       "driveFileId": "10WU8nqP6fiXylrgq3fNxaqQzEve2RYJg",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     }
   ],
   "greetingCards": [
@@ -804,7 +842,9 @@
           "height": 1,
           "rotation": 90
         }
-      }
+      },
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -844,7 +884,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -884,7 +926,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -924,7 +968,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -964,7 +1010,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1004,7 +1052,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1044,7 +1094,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1084,7 +1136,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1124,7 +1178,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1164,7 +1220,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1204,7 +1262,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     }
   ]
 }

@@ -28,6 +28,8 @@
         "envelope": true,
         "packaging": "clear cellophane sleeve"
       },
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -58,6 +60,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -88,6 +92,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -118,6 +124,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -148,6 +156,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -178,6 +188,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -208,6 +220,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -238,6 +252,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -268,6 +284,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -298,6 +316,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540
@@ -328,6 +348,8 @@
         "packaging": "clear cellophane sleeve"
       },
       "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
       "imageDimensions": {
         "width": 720,
         "height": 540

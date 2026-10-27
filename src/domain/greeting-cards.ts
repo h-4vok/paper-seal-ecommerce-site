@@ -9,6 +9,8 @@ export interface GreetingCard {
   description: string;
   placeName: string;
   publishedOrder: number;
+  showInProductSearch: boolean;
+  showInCommissions: boolean;
   collections: string[];
   orientation: 'landscape';
   alt: string;
@@ -73,6 +75,11 @@ export function validateGreetingCards(input: unknown): GreetingCard[] {
     ) {
       throw new Error(`Greeting card ${index + 1} has invalid catalogue values.`);
     }
+    for (const field of ['showInProductSearch', 'showInCommissions'] as const) {
+      if (item[field] !== undefined && typeof item[field] !== 'boolean') {
+        throw new Error(`Greeting card ${index + 1} has invalid ${field}.`);
+      }
+    }
     const dimensions = item.dimensions as Record<string, unknown> | undefined;
     const closed = dimensions?.closed as Record<string, unknown> | undefined;
     const included = item.included as Record<string, unknown> | undefined;
@@ -93,7 +100,11 @@ export function validateGreetingCards(input: unknown): GreetingCard[] {
     }
     handles.add(item.handle as string);
     skus.add(item.sku as string);
-    return item as unknown as GreetingCard;
+    return {
+      ...item,
+      showInProductSearch: item.showInProductSearch ?? true,
+      showInCommissions: item.showInCommissions ?? false,
+    } as unknown as GreetingCard;
   });
 }
 
