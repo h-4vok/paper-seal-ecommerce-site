@@ -171,6 +171,7 @@ const collabsSchema = z.object({
   partnerWebsite: text,
   partnerInstagram: text,
   stayWithPartner: text,
+  uniqueWorksHeading: text,
   uniqueWorksNote: text,
 });
 const cartSchema = z.object({

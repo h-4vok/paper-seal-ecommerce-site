@@ -170,7 +170,10 @@ const title = page.seo.title;
             mapLinkLabel={page.mapLink}
           />
           <aside class="collabs-availability">
-            <p>{page.uniqueWorksNote}</p>
+            <div class="collabs-availability__copy">
+              <h3>{page.uniqueWorksHeading}</h3>
+              <p>{page.uniqueWorksNote}</p>
+            </div>
             <a
               class="collabs-group__link"
               href={collab.websiteRedirect}

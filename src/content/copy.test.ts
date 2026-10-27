@@ -17,6 +17,7 @@ type LoadedCopy = {
       top: { heading: string; copy: string };
       bottom: { heading: string; copy: string };
     };
+    uniqueWorksHeading: string;
     uniqueWorksNote: string;
   };
   cart: { header: { heading: string } };
@@ -58,6 +59,7 @@ describe('editorial copy', () => {
     expect(loaded.collabs.contact.actions.whatsapp).toContain('WhatsApp');
     expect(loaded.collabs.contact.top.copy).toContain('collaboration');
     expect(loaded.collabs.contact.bottom.copy).not.toMatch(/call/i);
+    expect(loaded.collabs.uniqueWorksHeading).toBe('Staying at The Minstrels?');
     expect(loaded.collabs.uniqueWorksNote).toContain('available to buy exclusively to guests');
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();

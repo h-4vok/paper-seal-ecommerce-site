@@ -31,7 +31,13 @@
   line-height: 1.65;
 }
 
-.collabs-availability > p {
+.collabs-availability__copy {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.collabs-availability__copy h3,
+.collabs-availability__copy p {
   max-width: 50rem;
   margin: 0;
   font-family: var(--font-display);
