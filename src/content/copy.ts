@@ -162,6 +162,12 @@ const collabsSchema = z.object({
   openImage: text,
   closeImage: text,
   mapLink: text,
+  contact: z.object({
+    linksLabel: text,
+    actions: z.object({ whatsapp: text, instagram: text }),
+    top: z.object({ eyebrow: text, heading: text, copy: text }),
+    bottom: z.object({ eyebrow: text, heading: text, copy: text }),
+  }),
   partnerWebsite: text,
   partnerInstagram: text,
   stayWithPartner: text,

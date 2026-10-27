@@ -1,5 +1,6 @@
 ---
 import CollabsGallery from '../components/CollabsGallery.astro';
+import CommissionContact from '../components/CommissionContact.astro';
 import { copy } from '../content/copy';
 import { collabs } from '../domain/collabs';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -74,6 +75,13 @@ const title = page.seo.title;
       <h1>{page.heading}</h1>
       <p>{page.intro}</p>
     </header>
+
+    <CommissionContact
+      content={page.contact.top}
+      actions={page.contact.actions}
+      linksLabel={page.contact.linksLabel}
+      position="top"
+    />
 
     {collabs.map((collab) => {
       const reelId = new URL(collab.reelUrl).pathname.split('/').filter(Boolean).at(-1);
@@ -161,5 +169,12 @@ const title = page.seo.title;
         </section>
       );
     })}
+
+    <CommissionContact
+      content={page.contact.bottom}
+      actions={page.contact.actions}
+      linksLabel={page.contact.linksLabel}
+      position="bottom"
+    />
   </main>
 </BaseLayout>

@@ -10,6 +10,12 @@ type LoadedCopy = {
     seo: { title: string };
     galleryLabel: string;
     mapLink: string;
+    contact: {
+      linksLabel: string;
+      actions: { whatsapp: string; instagram: string };
+      top: { heading: string; copy: string };
+      bottom: { heading: string; copy: string };
+    };
     uniqueWorksNote: string;
   };
   cart: { header: { heading: string } };
@@ -45,6 +51,10 @@ describe('editorial copy', () => {
     expect(loaded.collabs.seo.title).toContain('Collaborations');
     expect(loaded.collabs.galleryLabel).toBeTruthy();
     expect(loaded.collabs.mapLink).toContain('Discover');
+    expect(loaded.collabs.contact.linksLabel).toContain('Collaboration');
+    expect(loaded.collabs.contact.actions.whatsapp).toContain('WhatsApp');
+    expect(loaded.collabs.contact.top.copy).toContain('collaboration');
+    expect(loaded.collabs.contact.bottom.copy).not.toMatch(/call/i);
     expect(loaded.collabs.uniqueWorksNote).toContain('not available to buy');
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();

@@ -11,6 +11,19 @@ watchFilm: Watch the reel on Instagram
 openImage: View a larger version of this artwork
 closeImage: Close enlarged artwork
 mapLink: Discover where this was taken
+contact:
+  linksLabel: Collaboration contact options
+  actions:
+    whatsapp: Message us on WhatsApp
+    instagram: Follow us on Instagram
+  top:
+    eyebrow: Have a place in mind?
+    heading: Let’s create something for it.
+    copy: Tell us about your place, stay or business and the story you would love to bring to life. We would love to explore a collaboration with you.
+  bottom:
+    eyebrow: Have a project in mind?
+    heading: Let’s make something together.
+    copy: Whether it is for a guesthouse, a local business or a place close to your heart, send us a message and we can talk through your idea.
 partnerWebsite: Explore The Minstrels with Comfort Season
 partnerInstagram: Follow Comfort Season on Instagram
 stayWithPartner: Discover the stay
