@@ -12,6 +12,7 @@ navigation:
     - { href: /artworks, key: prints, label: Our Artwork }
     - { href: /our-story, key: ourStory, label: Our Story }
     - { href: /collabs, key: collabs, label: Collabs }
+    - { href: /commissions, key: commissions, label: Commissions }
   cart:
     label: Open cart
   openMenu: Open menu
@@ -26,6 +27,7 @@ footer:
   explore: Explore
   allArtworks: All artworks
   ourStory: Our story
+  commissions: Commissions
   goodToKnow: Good to know
   delivery: Delivery
   returns: Returns

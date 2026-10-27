@@ -18,6 +18,10 @@ intro:
   eyebrow: A curated selection of prints and greeting cards
   copy: Original scenes. Lasting impressions. Art and paper goods inspired by real places across East Sussex.
 controls:
+  familyGroupLabel: Choose a product family
+  artworksLabel: Artworks
+  greetingCardsLabel: Greeting Cards
+  selectedLabel: Selected
   searchLabel: Search artworks, cards and places
   searchPlaceholder: Search artworks, greeting cards, places, or themes…
   placeLabel: Place
@@ -35,5 +39,7 @@ results:
   greetingCardLink: View card
   greetingCardLabel: Greeting card
   emptyEyebrow: No products found
-  emptyHeading: Try another place or a broader search.
+  emptyHeading: Try a broader search or explore another product family.
   reset: Reset catalogue
+  otherFamilyInvite: Ready for something different? Explore {family}.
+  otherFamilyAction: See collection

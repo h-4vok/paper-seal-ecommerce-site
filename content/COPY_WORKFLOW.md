@@ -9,6 +9,8 @@ All page and interface copy lives in `content/copy/en-GB` as YAML. The locale is
 - `catalogue.yaml`: catalogue framing, filters, states and SEO metadata.
 - `cart.yaml`: cart and coming-soon commerce messaging.
 - `product.yaml`: product gallery, option, sharing and commerce-interface copy.
+- `commissions.yaml`: Commission gallery and contact prompts.
+- `collabs.yaml`: Collaboration gallery, partner links and media labels.
 - `institutional.yaml`: Our Story, policies, contact, East Sussex and Journal pages.
 - `placeholder.yaml`: shared placeholder state copy.
 

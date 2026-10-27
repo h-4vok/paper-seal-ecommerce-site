@@ -1,0 +1,23 @@
+---
+interface Props {
+  profile?: 'standard' | 'high-contrast';
+  hidden?: boolean;
+  lightbox?: 'product' | 'collab';
+}
+
+const { profile = 'standard', hidden = false, lightbox } = Astro.props;
+const watermarkText = Array.from({ length: 12 }, () => 'PAPER SEAL').join(' · ');
+---
+
+<span
+  class="artwork-watermark"
+  data-watermark-profile={profile}
+  data-lightbox-watermark={lightbox === 'product' ? '' : undefined}
+  data-collab-lightbox-watermark={lightbox === 'collab' ? '' : undefined}
+  aria-hidden="true"
+  hidden={hidden}
+>
+  {Array.from({ length: 7 }, () => (
+    <span class="artwork-watermark__line">{watermarkText}</span>
+  ))}
+</span>

@@ -1,0 +1,131 @@
+---
+import type { CollabArtwork } from '../domain/collabs';
+import ArtworkPicture from './ArtworkPicture.astro';
+import ArtworkWatermark from './ArtworkWatermark.astro';
+
+interface Props {
+  collabGroup: string;
+  artworks: CollabArtwork[];
+  label: string;
+  openImageLabel: string;
+  closeImageLabel: string;
+  mapLinkLabel: string;
+}
+
+const { collabGroup, artworks, label, openImageLabel, closeImageLabel, mapLinkLabel } = Astro.props;
+const artworkBase = (assetBase: string) => `/images/collabs/${collabGroup}/${assetBase}/flat`;
+const mapUrl = (query: string) => {
+  const url = new URL('https://www.google.com/maps/search/');
+  url.searchParams.set('api', '1');
+  url.searchParams.set('query', query);
+  return url.href;
+};
+---
+
+<section class="collabs-gallery" aria-label={label} data-collab-gallery>
+  {artworks.map((artwork, index) => (
+    <article
+      class:list={[
+        'collabs-work',
+        {
+          'collabs-work--alternate': index % 2 === 1,
+          'collabs-work--portrait': artwork.orientation === 'portrait',
+        },
+      ]}
+      data-collab-work
+    >
+      <div class="collabs-work__image">
+        <button
+          class="collabs-work__zoom"
+          type="button"
+          aria-label={`${openImageLabel}: ${artwork.title}`}
+          data-collab-open-image
+          data-image-src={`${artworkBase(artwork.assetBase)}-1440.jpg`}
+          data-image-alt={artwork.alt}
+          data-watermark-profile={artwork.watermark}
+        >
+          <ArtworkPicture
+            assetBase={artwork.assetBase}
+            sourceBase={artworkBase(artwork.assetBase)}
+            alt={artwork.alt}
+            orientation={artwork.orientation}
+            imageWidth={artwork.imageDimensions.width}
+            imageHeight={artwork.imageDimensions.height}
+            sizes={
+              artwork.orientation === 'portrait'
+                ? '(min-width: 64rem) 30rem, 78vw'
+                : '(min-width: 64rem) 52vw, 92vw'
+            }
+            resolution={720}
+            srcsetWidths={[720, 1440]}
+            watermarkProfile={artwork.watermark}
+            watermark
+            eager={index === 0}
+          />
+          <span class="collabs-work__zoom-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M10.8 3.8h-7v7m0-7 7.5 7.5m2.7 8.9h7v-7m0 7-7.5-7.5" />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="collabs-work__caption">
+        <div class="collabs-work__location">
+          <p class="eyebrow">{artwork.placeName}</p>
+          <a
+            class="collabs-work__map-link"
+            href={mapUrl(artwork.mapsQuery)}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${mapLinkLabel}: ${artwork.title}`}
+            data-umami-event="Collab artwork map link"
+            data-umami-event-artwork={artwork.id}
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+              <path
+                d="M4.5 7.5h3l1.2-2h6.6l1.2 2h3A1.5 1.5 0 0 1 21 9v9a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18V9a1.5 1.5 0 0 1 1.5-1.5Z"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+              />
+              <circle cx="12" cy="13" r="3.2" stroke="currentColor" stroke-width="1.6" />
+            </svg>
+            {mapLinkLabel} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <h3>{artwork.title}</h3>
+        <p>{artwork.description}</p>
+      </div>
+    </article>
+  ))}
+  <dialog class="collabs-lightbox" aria-label={label} data-collab-lightbox>
+    <div class="collabs-lightbox__surface">
+      <button
+        class="collabs-lightbox__close"
+        type="button"
+        aria-label={closeImageLabel}
+        data-collab-close-image
+      >
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m5 5 14 14M19 5 5 19" />
+        </svg>
+      </button>
+      <div class="collabs-lightbox__image-wrap">
+        <div class="collabs-lightbox__watermarked-image">
+          <img data-collab-lightbox-image alt="" />
+          <ArtworkWatermark lightbox="collab" hidden />
+        </div>
+        <span class="collabs-lightbox__fallback" role="img" hidden data-collab-lightbox-fallback>
+          Image unavailable
+        </span>
+      </div>
+    </div>
+  </dialog>
+</section>
+
+<script>
+  import { bindCollabGallery } from '../lib/collabGallery';
+
+  document.querySelectorAll<HTMLElement>('[data-collab-gallery]').forEach(bindCollabGallery);
+</script>

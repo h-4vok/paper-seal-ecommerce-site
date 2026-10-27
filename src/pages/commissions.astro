@@ -1,0 +1,61 @@
+---
+import CommissionsGallery from '../components/CommissionsGallery.astro';
+import CommissionContact from '../components/CommissionContact.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { commissionArtworks } from '../domain/catalogue';
+import { copy } from '../content/copy';
+import '../styles/commissions.scss';
+import '../styles/commission-contact.scss';
+
+const commissions = copy.commissions;
+const siteOrigin = Astro.site ?? Astro.url.origin;
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: commissions.seo.title,
+    description: commissions.seo.description,
+    url: new URL('/commissions', siteOrigin).href,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: commissionArtworks.map((artwork, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: artwork.title,
+      })),
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={commissions.seo.title}
+  description={commissions.seo.description}
+  canonical="/commissions"
+  structuredData={structuredData}
+>
+  <main id="main-content" class="commissions-page">
+    <header class="commissions-intro" aria-labelledby="commissions-title">
+      <p class="eyebrow">{commissions.eyebrow}</p>
+      <h1 id="commissions-title">{commissions.heading}</h1>
+      <p>{commissions.intro}</p>
+    </header>
+    <CommissionContact
+      page="commissions"
+      content={commissions.contact.top}
+      actions={commissions.contact.actions}
+      linksLabel={commissions.contact.linksLabel}
+      instagramHref="/redirect/contact-commissions-top-instagram"
+      position="top"
+    />
+    <CommissionsGallery artworks={commissionArtworks} label={commissions.galleryLabel} />
+    <CommissionContact
+      page="commissions"
+      content={commissions.contact.bottom}
+      actions={commissions.contact.actions}
+      linksLabel={commissions.contact.linksLabel}
+      instagramHref="/redirect/contact-commissions-bottom-instagram"
+      position="bottom"
+    />
+  </main>
+</BaseLayout>

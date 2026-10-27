@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { artworks } from './domain/catalogue';
+import { artworks, productPageArtworks } from './domain/catalogue';
 import { greetingCards, greetingCardPagePath } from './domain/greeting-cards';
+import { collabs } from './domain/collabs';
 import { GET as getRobots } from './pages/robots.txt';
 import { GET as getSitemap } from './pages/sitemap.xml';
 
@@ -15,20 +16,25 @@ describe('SEO route bodies', () => {
     const currentHandles = new Set(artworks.map(({ handle }) => `/artworks/${handle}`));
 
     const legacyEntries = entries.filter(([source]) => source.startsWith('/artworks/'));
-    expect(legacyEntries).toHaveLength(artworks.length - 3);
+    expect(legacyEntries).toHaveLength(productPageArtworks.length - 2);
     const currentEntries = legacyEntries.filter(([, destination]) =>
       currentHandles.has(destination),
     );
 
-    expect(currentEntries).toHaveLength(10);
+    expect(currentEntries).toHaveLength(9);
     for (const [source, destination, status] of currentEntries) {
       expect(source).toMatch(/^\/artworks\/.+-ps-\d{3}$/);
       expect(destination).toMatch(/^\/artworks\/.+-ps-pr-\d{3}$/);
       expect(status).toBe('301');
     }
+    expect(legacyEntries).toContainEqual([
+      '/artworks/meet-me-in-eastbourne-ps-005',
+      '/commissions',
+      '301',
+    ]);
   });
 
-  it('temporarily redirects each Comfort Season QR route to its assigned Stripe payment link', async () => {
+  it('registers first-party external redirects with unique Instagram CTA tracking', async () => {
     const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
     const entries = redirects
       .trim()
@@ -66,6 +72,36 @@ describe('SEO route bodies', () => {
         'https://buy.stripe.com/14A6oA6so3my6Uofkkb3q04',
         '302',
       ],
+      [
+        '/redirect/collab-comfort-season-instagram',
+        'https://www.instagram.com/comfortseason.co.uk/reels/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=comfort_season_collab',
+        '302',
+      ],
+      [
+        '/redirect/collab-comfort-season-website',
+        'https://comfortseason.co.uk/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=comfort_season_collab&utm_content=collabs_page',
+        '302',
+      ],
+      [
+        '/redirect/contact-commissions-top-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=commissions_top',
+        '302',
+      ],
+      [
+        '/redirect/contact-commissions-bottom-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=commissions_bottom',
+        '302',
+      ],
+      [
+        '/redirect/contact-collabs-top-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_top',
+        '302',
+      ],
+      [
+        '/redirect/contact-collabs-bottom-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_bottom',
+        '302',
+      ],
     ];
 
     expect(qrEntries).toEqual(expected);
@@ -96,6 +132,9 @@ describe('SEO route bodies', () => {
       );
       expect(body).toContain('/artworks</loc>');
       expect(body).toContain('/artworks/new-eastbourne-flower-bed-ps-pr-001</loc>');
+      expect(body).toContain('/commissions</loc>');
+      expect(body).toContain('/collabs</loc>');
+      expect(body).not.toContain('/artworks/meet-me-in-eastbourne-ps-pr-005</loc>');
       expect(body).toContain(`${greetingCardPagePath(greetingCards[0])}</loc>`);
       expect(body).toContain('/our-story</loc>');
       expect(body).toContain('/delivery</loc>');
@@ -105,6 +144,7 @@ describe('SEO route bodies', () => {
       expect(body).not.toContain('/cart</loc>');
       expect(body).not.toContain('/privacy</loc>');
       expect(body).not.toContain('/redirect/');
+      expect(collabs.flatMap(({ artworks }) => artworks)).toHaveLength(6);
     },
   );
 });

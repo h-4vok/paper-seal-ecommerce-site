@@ -104,13 +104,3 @@ pages:
       - heading: Explore the art first
         paragraphs:
           - The place guide is still being written. Every published local work is already available to browse in the artwork catalogue.
-  - slug: collabs
-    eyebrow: Collabs
-    heading: Our work with other local traders.
-    description: We have worked with local traders. We will soon showcase what we did with them!
-    status: Collabs section coming soon.
-    indexable: false
-    sections:
-      - heading: Collab with local AirBnb owners
-        paragraphs:
-          - Notes and pictures on our collabs coming soon!

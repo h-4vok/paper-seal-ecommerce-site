@@ -1,9 +1,10 @@
 # Product content and asset workflow
 
-`artworks.yaml` is the single editable source of truth for product families. Each product has a
-`family` discriminator that selects its metadata validation and image-generation pipeline. Artwork
-prints and greeting cards share stable editorial and catalogue fields while keeping their family
-specific pricing, product details, and image instructions.
+`artworks.yaml` is the single editable source of truth for product families and grouped collab
+artworks. Each product has a `family` discriminator that selects its metadata validation and
+image-generation pipeline. Collab artworks live in top-level `collabs` groups; their `collabGroup`
+and independent visibility fields keep the portfolio relationship explicit without creating
+product records.
 
 The generated JSON files and public image derivatives are build outputs. Do not edit them
 manually.
@@ -24,6 +25,8 @@ flowchart TD
     C -->|valid| F[src/data/greeting-cards.json<br/>card catalogue]
     C -->|valid| G[data/assets/artworks.json<br/>artwork manifest]
     C -->|valid| H[data/assets/greeting-cards.json<br/>card manifest]
+    C -->|valid| H2[src/data/collabs.json<br/>collab gallery data]
+    C -->|valid| H3[data/assets/collabs.json<br/>collab image manifest]
 
     G --> I[content:build:assets:artworks]
     H --> J[content:build:assets:greeting-cards]
@@ -35,6 +38,9 @@ flowchart TD
     J --> N[Flat sides, perspective mockup, 4:3 search image]
     M --> O[public/images/artworks/<assetBase>/]
     N --> P[public/images/greeting-cards/<assetBase>/]
+    H3 --> I2[content:build:assets:collabs]
+    K --> I2
+    I2 --> P2[public/images/collabs/<collabGroup>/<assetBase>/]
 
     E --> Q[Artwork-print catalogue and routes]
     F --> R[Greeting-card catalogue and routes]
@@ -54,10 +60,13 @@ bun run content:build:assets:artworks
 # Generate the greeting-card image family.
 bun run content:build:assets:greeting-cards
 
-# Generate both image families from their respective manifests.
+# Generate grouped collaboration artwork derivatives.
+bun run content:build:assets:collabs
+
+# Generate product image families and collaboration artwork derivatives.
 bun run content:build:assets
 
-# Run both steps in order.
+# Refresh all manifests and generate all product and collab images.
 bun run content:build
 ```
 
@@ -68,15 +77,17 @@ available locally before generating assets. Production masters are not committed
 
 ## What each step does
 
-1. `content:build:metadata` validates every product and its family-specific fields, then writes
-   separate catalogue and asset manifests for artwork prints and greeting cards.
+1. `content:build:metadata` validates products and collab groups, then writes separate catalogue
+   and asset manifests for artwork prints, greeting cards and collab artworks.
 2. `content:build:assets:artworks` reads the artwork manifest, resolves each master by its Google
    Drive ID, and writes flat and selected room mockup images to `public/images/artworks/`.
 3. `content:build:assets:greeting-cards` reads the greeting-card manifest and writes flat front,
    flat back, perspective mockup, and centre-cropped 4:3 search images to
    `public/images/greeting-cards/`.
-4. `content:build:assets` runs both family pipelines. `content:build` first refreshes metadata, then
-   runs both pipelines in order. The regular `bun run build` command only builds Astro and does not
+4. `content:build:assets:collabs` reads the collab artwork manifest and writes optimised flat
+   images to `public/images/collabs/<collabGroup>/<assetBase>/`.
+5. `content:build:assets` runs all three image pipelines. `content:build` first refreshes metadata,
+   then runs all three in order. The regular `bun run build` command only builds Astro and does not
    regenerate content assets.
 
 The asset writer retries individual Sharp writes because large image processing can expose
@@ -88,6 +99,20 @@ does not replace the requirement for enough free disk space and memory.
 The `/artworks` search index is the shared product search for currently published families. It
 keeps family-specific result cards and product routes while searching common fields such as title,
 place, description, SKU, and collection.
+
+Collab groups are editorial portfolios rather than products. Each artwork belongs to one group by
+`collabGroup`, sets `showInProductSearch: false` and `showInCommissions: false`, and opts into the
+grouped `/collabs` gallery with `showInCollabs: true`. These records have no prices, product routes,
+or purchase controls. Their watermarks are applied to the gallery and enlarged-image views.
+Each group may include a local `reelPoster` at
+`/images/collabs/<collabGroup>/reel-cover.jpg` and a descriptive `reelPosterAlt`. The Reel preview
+uses this image instead of embedding Instagram's page chrome; clicking it opens the Reel externally.
+
+Product records may set `showInProductSearch` and `showInCommissions` independently. They default
+to `true` and `false`, respectively. The Commissions gallery includes artworks marked
+`showInCommissions: true` and never shows prices or purchase controls. A commission hidden from
+Product Search is portfolio-only and has no product-detail route; if it is explicitly shown in
+Product Search as well, its normal product route remains available.
 
 `src/domain/product-families.ts` maps each product family to a route base, a page archetype, and
 family-wide Product Search presentation settings such as `searchWatermark`. Routes and archetypes

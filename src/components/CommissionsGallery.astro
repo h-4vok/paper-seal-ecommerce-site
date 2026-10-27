@@ -1,0 +1,63 @@
+---
+import type { Artwork } from '../domain/catalogue';
+import ArtworkPicture from './ArtworkPicture.astro';
+
+interface Props {
+  artworks: Artwork[];
+  label: string;
+}
+
+const { artworks, label } = Astro.props;
+---
+
+<section class="commissions-gallery" aria-label={label}>
+  {artworks.map((artwork, index) => (
+    <article
+      class:list={['commissions-piece', { 'commissions-piece--alternate': index % 2 === 1 }]}
+      data-commission-piece
+    >
+      <div class="commissions-piece__image">
+        <ArtworkPicture
+          assetBase={artwork.assetBase}
+          alt={artwork.alt}
+          orientation={artwork.orientation}
+          imageWidth={artwork.imageDimensions.width}
+          imageHeight={artwork.imageDimensions.height}
+          sizes="(min-width: 64rem) 48vw, 92vw"
+          resolution={1440}
+          srcsetWidths={[720, 1440]}
+          watermark={false}
+          eager={index === 0}
+        />
+      </div>
+      <div class="commissions-piece__caption">
+        <p class="eyebrow">{artwork.placeName}</p>
+        <h2>{artwork.title}</h2>
+        <p>{artwork.description}</p>
+      </div>
+    </article>
+  ))}
+</section>
+
+<script>
+  const pieces = document.querySelectorAll<HTMLElement>('[data-commission-piece]');
+
+  if (
+    'IntersectionObserver' in window &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            if (entry.target instanceof HTMLElement) entry.target.dataset.revealed = 'true';
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+    );
+
+    pieces.forEach((piece) => observer.observe(piece));
+  }
+</script>
