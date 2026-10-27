@@ -34,7 +34,7 @@ describe('SEO route bodies', () => {
     ]);
   });
 
-  it('temporarily redirects each Comfort Season QR route to its assigned Stripe payment link', async () => {
+  it('registers first-party external redirects with unique Instagram CTA tracking', async () => {
     const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
     const entries = redirects
       .trim()
@@ -80,6 +80,26 @@ describe('SEO route bodies', () => {
       [
         '/redirect/collab-comfort-season-website',
         'https://comfortseason.co.uk/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=comfort_season_collab&utm_content=collabs_page',
+        '302',
+      ],
+      [
+        '/redirect/contact-commissions-top-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=commissions_top',
+        '302',
+      ],
+      [
+        '/redirect/contact-commissions-bottom-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=commissions_bottom',
+        '302',
+      ],
+      [
+        '/redirect/contact-collabs-top-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_top',
+        '302',
+      ],
+      [
+        '/redirect/contact-collabs-bottom-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_bottom',
         '302',
       ],
     ];

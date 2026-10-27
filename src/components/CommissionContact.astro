@@ -11,14 +11,16 @@ interface ContactActions {
 }
 
 interface Props {
+  page: 'commissions' | 'collabs';
   content: ContactCopy;
   actions: ContactActions;
   linksLabel: string;
+  instagramHref: string;
   position: 'top' | 'bottom';
 }
 
-const { content, actions, linksLabel, position } = Astro.props;
-const titleId = `commission-contact-${position}-title`;
+const { page, content, actions, linksLabel, instagramHref, position } = Astro.props;
+const titleId = `contact-${page}-${position}-title`;
 ---
 
 <section
@@ -55,9 +57,12 @@ const titleId = `commission-contact-${position}-title`;
     </a>
     <a
       class="commission-contact__link"
-      href="https://www.instagram.com/thepapersealstudio/"
+      href={instagramHref}
       target="_blank"
       rel="noreferrer"
+      data-umami-event="Instagram CTA Click"
+      data-umami-event-page={page}
+      data-umami-event-position={position}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <rect

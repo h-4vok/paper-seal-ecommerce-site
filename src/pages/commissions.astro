@@ -41,16 +41,20 @@ const structuredData = [
       <p>{commissions.intro}</p>
     </header>
     <CommissionContact
+      page="commissions"
       content={commissions.contact.top}
       actions={commissions.contact.actions}
       linksLabel={commissions.contact.linksLabel}
+      instagramHref="/redirect/contact-commissions-top-instagram"
       position="top"
     />
     <CommissionsGallery artworks={commissionArtworks} label={commissions.galleryLabel} />
     <CommissionContact
+      page="commissions"
       content={commissions.contact.bottom}
       actions={commissions.contact.actions}
       linksLabel={commissions.contact.linksLabel}
+      instagramHref="/redirect/contact-commissions-bottom-instagram"
       position="bottom"
     />
   </main>
