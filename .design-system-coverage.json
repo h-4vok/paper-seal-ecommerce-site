@@ -32,7 +32,7 @@
       "name": "CatalogueFamilySwitch",
       "source": "src/components/CatalogueFamilySwitch.astro",
       "level": "Molecules",
-      "useFor": "Selectable product-family tile and end-of-results invitation with a reusable fan of three product thumbnails."
+      "useFor": "Selectable product-family tile and end-of-results invitation with a reusable five-image fan of product thumbnails."
     },
     {
       "name": "ArtworkCard",

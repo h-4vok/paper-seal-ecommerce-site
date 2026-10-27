@@ -223,6 +223,45 @@ export const catalogueProducts: CatalogueProduct[] = [...artworks, ...greetingCa
   ({ showInProductSearch }) => showInProductSearch,
 );
 
+export function familyPreviewProducts(
+  products: CatalogueProduct[],
+  family: ProductFamily,
+  limit = 5,
+): CatalogueProduct[] {
+  const sorted = products
+    .filter((product) => product.family === family)
+    .sort(
+      (left, right) =>
+        right.publishedOrder - left.publishedOrder || left.sku.localeCompare(right.sku),
+    );
+  if (family !== 'greeting-card' || limit < 2) return sorted.slice(0, limit);
+
+  const heritageCount = Math.ceil(limit / 2);
+  const inkwashCount = Math.floor(limit / 2);
+  const heritage = sorted
+    .filter(({ collections }) => collections.includes('East Sussex Heritage Series'))
+    .slice(0, heritageCount);
+  const heritageSkus = new Set(heritage.map(({ sku }) => sku));
+  const inkwash = sorted
+    .filter(
+      ({ collections, sku }) =>
+        collections.includes('Original Inkwash Series') && !heritageSkus.has(sku),
+    )
+    .slice(0, inkwashCount);
+  const selected = [...heritage, ...inkwash];
+  const selectedSkus = new Set(selected.map(({ sku }) => sku));
+
+  for (const product of sorted) {
+    if (selected.length >= limit) break;
+    if (!selectedSkus.has(product.sku)) {
+      selected.push(product);
+      selectedSkus.add(product.sku);
+    }
+  }
+
+  return selected.slice(0, limit);
+}
+
 export function mockupImagePath(
   artwork: Artwork,
   size: MockupSize,

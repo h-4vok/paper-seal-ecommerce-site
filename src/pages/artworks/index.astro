@@ -6,6 +6,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   artworks,
   catalogueProducts,
+  familyPreviewProducts,
   filterCatalogue,
   mockupImagePath,
   productPath,
@@ -49,21 +50,14 @@ const initialProducts = filterCatalogue(catalogueProducts, {
 });
 const initialVisibleHandles = new Set(initialProducts.slice(0, 4).map(({ handle }) => handle));
 const initialFamilyPreviews = (family: ProductFamily) =>
-  catalogueProducts
-    .filter((product) => product.family === family)
-    .sort(
-      (left, right) =>
-        right.publishedOrder - left.publishedOrder || left.sku.localeCompare(right.sku),
-    )
-    .slice(0, 3)
-    .map((product) => ({
-      assetBase: product.assetBase,
-      sourceBase:
-        product.family === 'greeting-card'
-          ? greetingCardImagePath(product, 'search', 720).replace(/-720\.jpg$/, '')
-          : undefined,
-      alt: product.alt,
-    }));
+  familyPreviewProducts(catalogueProducts, family).map((product) => ({
+    assetBase: product.assetBase,
+    sourceBase:
+      product.family === 'greeting-card'
+        ? greetingCardImagePath(product, 'search', 720).replace(/-720\.jpg$/, '')
+        : undefined,
+    alt: product.alt,
+  }));
 const familyPreviews = {
   artwork: initialFamilyPreviews('artwork'),
   'greeting-card': initialFamilyPreviews('greeting-card'),

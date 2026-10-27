@@ -4,6 +4,7 @@ import {
   artworks,
   catalogueProducts,
   commissionArtworks,
+  familyPreviewProducts,
   productPageArtworks,
   filterCatalogue,
   hasArtworkProductPageVisibility,
@@ -78,6 +79,15 @@ describe('catalogue model', () => {
       title: 'East Dean, South Downs National Park',
       collections: ['East Sussex Heritage Series'],
     });
+    const greetingCardPreviews = familyPreviewProducts(catalogueProducts, 'greeting-card');
+    expect(greetingCardPreviews).toHaveLength(5);
+    expect(greetingCardPreviews.every(({ family }) => family === 'greeting-card')).toBe(true);
+    expect(new Set(greetingCardPreviews.flatMap(({ collections }) => collections))).toEqual(
+      new Set(['East Sussex Heritage Series', 'Original Inkwash Series']),
+    );
+    expect(familyPreviewProducts(greetingCards.slice(0, 4), 'greeting-card')).toHaveLength(4);
+    expect(familyPreviewProducts(greetingCards, 'greeting-card', 1)).toHaveLength(1);
+    expect(familyPreviewProducts(catalogueProducts, 'artwork')).toHaveLength(5);
     expect(greetingCards.find(({ assetBase }) => assetBase === 'east-dean')?.collections).toEqual([
       'East Sussex Heritage Series',
       'Original Inkwash Series',
