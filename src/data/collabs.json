@@ -14,6 +14,8 @@
       "websiteRedirect": "/redirect/collab-comfort-season-website",
       "instagramRedirect": "/redirect/collab-comfort-season-instagram",
       "reelUrl": "https://www.instagram.com/reels/De17j6vuvAS/",
+      "reelPoster": "/images/collabs/comfort-season-cotswolds/reel-cover.jpg",
+      "reelPosterAlt": "A cosy lounge at The Minstrels, featured in Comfort Season's Cotswolds Reel.",
       "artworks": [
         {
           "id": "bliss-tweed-mill",

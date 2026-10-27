@@ -10,6 +10,7 @@ describe('collab catalogue', () => {
       partner: 'Comfort Season Ltd',
       propertyName: 'The Minstrels',
       placeName: 'Moreton-in-Marsh, The Cotswolds',
+      reelPoster: '/images/collabs/comfort-season-cotswolds/reel-cover.jpg',
     });
     expect(comfortSeason.artworks.map(({ title }) => title)).toEqual([
       'Bliss Tweed Mill',
@@ -75,6 +76,9 @@ describe('collab catalogue', () => {
     );
     expect(() => validateCollabs([{ ...collabs[0], reelUrl: 'not a URL' }])).toThrow(
       'invalid reelUrl',
+    );
+    expect(() => validateCollabs([{ ...collabs[0], reelPoster: '/images/other.jpg' }])).toThrow(
+      'invalid reelPoster',
     );
     expect(() => validateCollabs([{ ...collabs[0], instagramRedirect: '//bad/path' }])).toThrow(
       'invalid instagramRedirect',

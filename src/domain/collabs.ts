@@ -31,6 +31,8 @@ export interface CollabGroup {
   websiteRedirect: string;
   instagramRedirect: string;
   reelUrl: string;
+  reelPoster: string;
+  reelPosterAlt: string;
   artworks: CollabArtwork[];
 }
 
@@ -56,6 +58,8 @@ export function validateCollabs(input: unknown): CollabGroup[] {
       'websiteRedirect',
       'instagramRedirect',
       'reelUrl',
+      'reelPoster',
+      'reelPosterAlt',
     ]) {
       if (typeof item[field] !== 'string' || !item[field].trim()) {
         throw new Error(`Collab ${index + 1} has an invalid ${field}.`);
@@ -76,6 +80,9 @@ export function validateCollabs(input: unknown): CollabGroup[] {
     }
     if (!/^\/redirect\/[a-z0-9-]+$/.test(item.websiteRedirect as string)) {
       throw new Error(`Collab ${index + 1} has an invalid websiteRedirect.`);
+    }
+    if (item.reelPoster !== `/images/collabs/${item.id}/reel-cover.jpg`) {
+      throw new Error(`Collab ${index + 1} has an invalid reelPoster.`);
     }
     if (!Array.isArray(item.artworks) || item.artworks.length === 0) {
       throw new Error(`Collab ${index + 1} must contain artwork.`);

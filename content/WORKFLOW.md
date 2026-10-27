@@ -104,6 +104,9 @@ Collab groups are editorial portfolios rather than products. Each artwork belong
 `collabGroup`, sets `showInProductSearch: false` and `showInCommissions: false`, and opts into the
 grouped `/collabs` gallery with `showInCollabs: true`. These records have no prices, product routes,
 or purchase controls. Their watermarks are applied to the gallery and enlarged-image views.
+Each group may include a local `reelPoster` at
+`/images/collabs/<collabGroup>/reel-cover.jpg` and a descriptive `reelPosterAlt`. The Reel preview
+uses this image instead of embedding Instagram's page chrome; clicking it opens the Reel externally.
 
 Product records may set `showInProductSearch` and `showInCommissions` independently. They default
 to `true` and `false`, respectively. The Commissions gallery includes artworks marked

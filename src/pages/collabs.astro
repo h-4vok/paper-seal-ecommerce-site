@@ -87,9 +87,6 @@ const title = page.seo.title;
     />
 
     {collabs.map((collab) => {
-      const reelId = new URL(collab.reelUrl).pathname.split('/').filter(Boolean).at(-1);
-      const reelEmbedUrl = `https://www.instagram.com/reel/${reelId}/embed/`;
-
       return (
         <section class="collabs-group" aria-labelledby={`collab-${collab.id}-title`}>
           <header class="collabs-group__intro">
@@ -128,22 +125,37 @@ const title = page.seo.title;
               <h3>{page.filmLabel}</h3>
               <p>{page.filmDescription}</p>
             </div>
-            <div class="collabs-reel__frame">
-              <iframe
-                src={reelEmbedUrl}
-                title={page.filmLabel}
+            <a
+              class="collabs-reel__preview"
+              href={collab.reelUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${page.watchFilm}: ${collab.title}`}
+              data-umami-event="Comfort Season Instagram reel"
+              data-umami-event-placement="video_preview"
+            >
+              <img
+                src={collab.reelPoster}
+                alt={collab.reelPosterAlt}
+                width="640"
+                height="1137"
                 loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="encrypted-media; picture-in-picture; web-share"
-                allowfullscreen
+                decoding="async"
               />
-            </div>
+              <span class="collabs-reel__scrim" aria-hidden="true"></span>
+              <span class="collabs-reel__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M8 5.5v13l10-6.5z" fill="currentColor" />
+                </svg>
+              </span>
+            </a>
             <a
               class="collabs-reel__link"
               href={collab.reelUrl}
               target="_blank"
               rel="noreferrer"
               data-umami-event="Comfort Season Instagram reel"
+              data-umami-event-placement="text_link"
             >
               {page.watchFilm} <span aria-hidden="true">↗</span>
             </a>

@@ -45,6 +45,8 @@ export function validateCollabManifest(input) {
       'websiteRedirect',
       'instagramRedirect',
       'reelUrl',
+      'reelPoster',
+      'reelPosterAlt',
     ]) {
       if (typeof collab[field] !== 'string' || !collab[field].trim())
         failCollab(`has an invalid ${field}.`);
@@ -65,6 +67,9 @@ export function validateCollabManifest(input) {
     }
     if (!/^\/redirect\/[a-z0-9-]+$/.test(collab.websiteRedirect)) {
       failCollab('has an invalid websiteRedirect.');
+    }
+    if (collab.reelPoster !== `/images/collabs/${collab.id}/reel-cover.jpg`) {
+      failCollab('has an invalid reelPoster.');
     }
     if (!Array.isArray(collab.artworks) || collab.artworks.length === 0)
       failCollab('must contain artwork.');

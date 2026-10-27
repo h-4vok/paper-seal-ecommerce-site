@@ -191,6 +191,7 @@ describe('collab content metadata', () => {
       id: 'comfort-season-cotswolds',
       partner: 'Comfort Season Ltd',
       propertyName: 'The Minstrels',
+      reelPoster: '/images/collabs/comfort-season-cotswolds/reel-cover.jpg',
     });
     expect(output.collabs[0].artworks).toHaveLength(6);
     expect(output.collabs[0].artworks.map(({ order }) => order)).toEqual([1, 2, 3, 4, 5, 6]);
@@ -234,5 +235,13 @@ describe('collab content metadata', () => {
         },
       ]),
     ).toThrow('invalid or duplicate id');
+  });
+
+  it('rejects a reel poster outside the group artwork directory', () => {
+    expect(() =>
+      validateCollabManifest([
+        { ...source.collabs[0], reelPoster: '/images/another-group/reel-cover.jpg' },
+      ]),
+    ).toThrow('invalid reelPoster');
   });
 });
