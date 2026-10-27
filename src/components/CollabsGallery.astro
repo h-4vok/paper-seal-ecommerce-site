@@ -8,10 +8,17 @@ interface Props {
   label: string;
   openImageLabel: string;
   closeImageLabel: string;
+  mapLinkLabel: string;
 }
 
-const { collabGroup, artworks, label, openImageLabel, closeImageLabel } = Astro.props;
+const { collabGroup, artworks, label, openImageLabel, closeImageLabel, mapLinkLabel } = Astro.props;
 const artworkBase = (assetBase: string) => `/images/collabs/${collabGroup}/${assetBase}/flat`;
+const mapUrl = (query: string) => {
+  const url = new URL('https://www.google.com/maps/search/');
+  url.searchParams.set('api', '1');
+  url.searchParams.set('query', query);
+  return url.href;
+};
 ---
 
 <section class="collabs-gallery" aria-label={label} data-collab-gallery>
@@ -62,7 +69,20 @@ const artworkBase = (assetBase: string) => `/images/collabs/${collabGroup}/${ass
         </button>
       </div>
       <div class="collabs-work__caption">
-        <p class="eyebrow">{artwork.placeName}</p>
+        <div class="collabs-work__location">
+          <p class="eyebrow">{artwork.placeName}</p>
+          <a
+            class="collabs-work__map-link"
+            href={mapUrl(artwork.mapsQuery)}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${mapLinkLabel}: ${artwork.title}`}
+            data-umami-event="Collab artwork map link"
+            data-umami-event-artwork={artwork.id}
+          >
+            {mapLinkLabel} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
         <h3>{artwork.title}</h3>
         <p>{artwork.description}</p>
       </div>

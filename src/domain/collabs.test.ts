@@ -36,6 +36,7 @@ describe('collab catalogue', () => {
     expect(comfortSeason.artworks.every(({ imageDimensions }) => imageDimensions.height > 0)).toBe(
       true,
     );
+    expect(comfortSeason.artworks.every(({ mapsQuery }) => mapsQuery.trim().length > 0)).toBe(true);
     expect(comfortSeason.artworks.every((artwork) => !('price' in artwork))).toBe(true);
   });
 
@@ -89,6 +90,7 @@ describe('collab catalogue', () => {
       validateCollabs([{ ...collab, artworks: [{ ...work, ...changes }] }]);
 
     expect(() => invalid({ alt: '' })).toThrow('invalid alt');
+    expect(() => invalid({ mapsQuery: '' })).toThrow('invalid mapsQuery');
     expect(() => invalid({ id: 'Invalid Id' })).toThrow('invalid or duplicate id');
     expect(() => invalid({ assetBase: '../unsafe' })).toThrow('invalid or duplicate assetBase');
     expect(() => invalid({ orientation: 'square' })).toThrow('invalid orientation');

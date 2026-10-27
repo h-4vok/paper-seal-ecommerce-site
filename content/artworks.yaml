@@ -575,6 +575,7 @@ collabs:
         title: Bliss Tweed Mill
         description: Rolling fields and open sky meet around Tweed Mill, a quiet landmark in the countryside near Chipping Norton.
         placeName: Chipping Norton
+        mapsQuery: Bliss Tweed Mill, Chipping Norton, Oxfordshire, United Kingdom
         orientation: landscape
         alt: Rolling green Cotswolds fields with Tweed Mill in the distance beneath a wide blue sky.
         assetBase: bliss-tweed-mill
@@ -588,6 +589,7 @@ collabs:
         title: Minster Lovell Road
         description: Honey-coloured cottages and gardens in bloom bring a familiar village lane to life.
         placeName: Minster Lovell
+        mapsQuery: Minster Lovell, Oxfordshire, United Kingdom
         orientation: landscape
         alt: A quiet lane of honey-coloured cottages with flowering gardens in Minster Lovell.
         assetBase: minster-lovell-road
@@ -601,6 +603,7 @@ collabs:
         title: Snowshill at Broadway
         description: The village green gathers a church, a bench and a bright red telephone box beneath the summer sky.
         placeName: Snowshill, near Broadway
+        mapsQuery: Snowshill village, Broadway, United Kingdom
         orientation: landscape
         alt: A red telephone box and wooden bench beside the church on Snowshill village green.
         assetBase: snowshill-at-broadway
@@ -614,6 +617,7 @@ collabs:
         title: The Everyday Cotswolds
         description: Sheep graze across open hills as a footpath winds through the simple, generous landscape of the region.
         placeName: The Cotswolds
+        mapsQuery: The Cotswolds, United Kingdom
         orientation: landscape
         alt: Sheep grazing in rolling green countryside beside a winding path and flowering hedgerows.
         assetBase: the-everyday-cotswolds
@@ -627,6 +631,7 @@ collabs:
         title: The Old Swan Pub
         description: The Old Swan sits among stone cottages and flower-filled gardens in a sunlit village scene.
         placeName: Minster Lovell
+        mapsQuery: The Old Swan, Minster Lovell, Oxfordshire, United Kingdom
         orientation: portrait
         alt: The Old Swan Pub in Minster Lovell, framed by flowering gardens and stone cottages.
         assetBase: the-old-swan-pub
@@ -640,6 +645,7 @@ collabs:
         title: The Cotswolds Doorway
         description: An old arched doorway, sheltered by the twisting form of a tree, turns stone and branches into a storybook entrance.
         placeName: The Cotswolds
+        mapsQuery: The Cotswolds, United Kingdom
         orientation: portrait
         alt: An arched stone doorway framed by the twisting trunks and branches of an old tree.
         assetBase: the-cotswolds-doorway

@@ -79,6 +79,7 @@ export function validateCollabManifest(input) {
         'title',
         'description',
         'placeName',
+        'mapsQuery',
         'alt',
         'assetBase',
         'driveFileId',

@@ -11,6 +11,7 @@ export interface CollabArtwork {
   title: string;
   description: string;
   placeName: string;
+  mapsQuery: string;
   orientation: Orientation;
   alt: string;
   assetBase: string;
@@ -85,7 +86,15 @@ export function validateCollabs(input: unknown): CollabGroup[] {
         throw new Error(`Collab ${index + 1} artwork ${artworkIndex + 1} must be an object.`);
       }
       const artwork = candidateArtwork as Record<string, unknown>;
-      for (const field of ['id', 'title', 'description', 'placeName', 'alt', 'assetBase']) {
+      for (const field of [
+        'id',
+        'title',
+        'description',
+        'placeName',
+        'mapsQuery',
+        'alt',
+        'assetBase',
+      ]) {
         if (typeof artwork[field] !== 'string' || !artwork[field].trim()) {
           throw new Error(
             `Collab ${index + 1} artwork ${artworkIndex + 1} has an invalid ${field}.`,

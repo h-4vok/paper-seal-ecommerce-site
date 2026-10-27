@@ -161,6 +161,7 @@ const collabsSchema = z.object({
   watchFilm: text,
   openImage: text,
   closeImage: text,
+  mapLink: text,
   partnerWebsite: text,
   partnerInstagram: text,
   stayWithPartner: text,

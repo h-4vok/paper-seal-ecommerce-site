@@ -6,7 +6,12 @@ type LoadedCopy = {
   home: { seo: { title: string } };
   catalogue: { controls: { searchPlaceholder: string } };
   commissions: { seo: { title: string }; galleryLabel: string };
-  collabs: { seo: { title: string }; galleryLabel: string; uniqueWorksNote: string };
+  collabs: {
+    seo: { title: string };
+    galleryLabel: string;
+    mapLink: string;
+    uniqueWorksNote: string;
+  };
   cart: { header: { heading: string } };
   product: { labels: { addToCart: string; selectSizeCta: string; selectSizePrompt: string } };
   institutional: { pages: unknown[] };
@@ -39,6 +44,7 @@ describe('editorial copy', () => {
     expect(copy.commissions.contact.bottom.copy).not.toMatch(/call/i);
     expect(loaded.collabs.seo.title).toContain('Collaborations');
     expect(loaded.collabs.galleryLabel).toBeTruthy();
+    expect(loaded.collabs.mapLink).toContain('Discover');
     expect(loaded.collabs.uniqueWorksNote).toContain('not available to buy');
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();
