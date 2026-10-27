@@ -546,6 +546,23 @@
   }
 }
 
+@media (width < 56rem) {
+  .collabs-work__image,
+  .collabs-work--portrait .collabs-work__image,
+  .collabs-work--alternate .collabs-work__image {
+    width: 100%;
+    justify-self: stretch;
+    margin-inline: 0;
+  }
+
+  .collabs-work__caption,
+  .collabs-work--alternate .collabs-work__caption {
+    width: 100%;
+    margin-inline: 0;
+    padding-block: 0.25rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .collabs-group__link,
   .collabs-reel__play {
