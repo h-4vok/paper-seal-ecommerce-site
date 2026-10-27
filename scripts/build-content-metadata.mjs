@@ -42,6 +42,7 @@ export function validateCollabManifest(input) {
       'placeName',
       'story',
       'websiteUrl',
+      'websiteRedirect',
       'instagramRedirect',
       'reelUrl',
     ]) {
@@ -61,6 +62,9 @@ export function validateCollabManifest(input) {
     }
     if (!/^\/redirect\/[a-z0-9-]+$/.test(collab.instagramRedirect)) {
       failCollab('has an invalid instagramRedirect.');
+    }
+    if (!/^\/redirect\/[a-z0-9-]+$/.test(collab.websiteRedirect)) {
+      failCollab('has an invalid websiteRedirect.');
     }
     if (!Array.isArray(collab.artworks) || collab.artworks.length === 0)
       failCollab('must contain artwork.');

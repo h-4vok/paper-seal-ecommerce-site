@@ -27,6 +27,7 @@ export interface CollabGroup {
   placeName: string;
   story: string;
   websiteUrl: string;
+  websiteRedirect: string;
   instagramRedirect: string;
   reelUrl: string;
   artworks: CollabArtwork[];
@@ -51,6 +52,7 @@ export function validateCollabs(input: unknown): CollabGroup[] {
       'placeName',
       'story',
       'websiteUrl',
+      'websiteRedirect',
       'instagramRedirect',
       'reelUrl',
     ]) {
@@ -70,6 +72,9 @@ export function validateCollabs(input: unknown): CollabGroup[] {
     }
     if (!/^\/redirect\/[a-z0-9-]+$/.test(item.instagramRedirect as string)) {
       throw new Error(`Collab ${index + 1} has an invalid instagramRedirect.`);
+    }
+    if (!/^\/redirect\/[a-z0-9-]+$/.test(item.websiteRedirect as string)) {
+      throw new Error(`Collab ${index + 1} has an invalid websiteRedirect.`);
     }
     if (!Array.isArray(item.artworks) || item.artworks.length === 0) {
       throw new Error(`Collab ${index + 1} must contain artwork.`);

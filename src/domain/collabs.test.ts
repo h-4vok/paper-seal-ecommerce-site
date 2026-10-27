@@ -65,6 +65,9 @@ describe('collab catalogue', () => {
     expect(() => validateCollabs([{ ...collabs[0], websiteUrl: 'http://example.com' }])).toThrow(
       'invalid websiteUrl',
     );
+    expect(() => validateCollabs([{ ...collabs[0], websiteRedirect: 'https://bad/path' }])).toThrow(
+      'invalid websiteRedirect',
+    );
     expect(() => validateCollabs([{ ...collabs[0], reelUrl: 'not a URL' }])).toThrow(
       'invalid reelUrl',
     );

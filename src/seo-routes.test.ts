@@ -77,6 +77,11 @@ describe('SEO route bodies', () => {
         'https://www.instagram.com/comfortseason.co.uk/reels/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=comfort_season_collab',
         '302',
       ],
+      [
+        '/redirect/collab-comfort-season-website',
+        'https://comfortseason.co.uk/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=comfort_season_collab&utm_content=collabs_page',
+        '302',
+      ],
     ];
 
     expect(qrEntries).toEqual(expected);
