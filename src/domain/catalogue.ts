@@ -1,6 +1,6 @@
 import generatedCatalogue from '../data/artworks.json';
 import { greetingCards, type GreetingCard } from './greeting-cards';
-import { productPagePath } from './product-families';
+import { productPagePath, type ProductFamily } from './product-families';
 
 export type Orientation = 'landscape' | 'portrait';
 export type ArtworkSize = 'small' | 'medium' | 'large';
@@ -85,7 +85,7 @@ export function snipcartItemAttributes(artwork: Artwork, image: string, url: str
 
 export interface CatalogueState {
   query: string;
-  place: string;
+  family: ProductFamily;
   sort: 'newest' | 'title';
 }
 
@@ -283,9 +283,7 @@ export function filterCatalogue<T extends CatalogueSearchItem>(
   state: CatalogueState,
 ): T[] {
   const filtered = items.filter(
-    (artwork) =>
-      artworkMatches(artwork, state.query) &&
-      (state.place === 'all' || artwork.placeName === state.place),
+    (artwork) => artwork.family === state.family && artworkMatches(artwork, state.query),
   );
   return [...filtered].sort((left, right) =>
     state.sort === 'title'

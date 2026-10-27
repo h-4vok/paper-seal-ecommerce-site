@@ -74,10 +74,24 @@ describe('catalogue model', () => {
     expect(greetingCards[0]?.handle).toBe('bodiam-castle-greeting-card-ps-gc-001');
     const matches = filterCatalogue(catalogueProducts, {
       query: 'Bodiam',
-      place: 'all',
+      family: 'greeting-card',
       sort: 'newest',
     });
     expect(matches.map(({ title }) => title)).toEqual(['Bodiam Castle']);
+    expect(
+      filterCatalogue(catalogueProducts, {
+        query: '',
+        family: 'artwork',
+        sort: 'newest',
+      }).every(({ family }) => family === 'artwork'),
+    ).toBe(true);
+    expect(
+      filterCatalogue(catalogueProducts, {
+        query: '',
+        family: 'greeting-card',
+        sort: 'newest',
+      }).every(({ family }) => family === 'greeting-card'),
+    ).toBe(true);
     expect(productPath(catalogueProducts.find(({ family }) => family === 'greeting-card')!)).toBe(
       '/greeting-cards/bodiam-castle-greeting-card-ps-gc-001',
     );
@@ -185,6 +199,7 @@ describe('catalogue model', () => {
   it('filters and sorts a local catalogue for every filter state', () => {
     const items = [
       {
+        family: 'artwork',
         sku: 'PS-PR-003',
         title: 'Zebra Coast',
         handle: 'zebra-coast-ps-pr-003',
@@ -198,6 +213,7 @@ describe('catalogue model', () => {
         gallery: ['flat'],
       },
       {
+        family: 'artwork',
         sku: 'PS-PR-002',
         title: 'Amber Harbour',
         handle: 'amber-harbour-ps-pr-002',
@@ -211,6 +227,7 @@ describe('catalogue model', () => {
         gallery: ['room'],
       },
       {
+        family: 'artwork',
         sku: 'PS-PR-001',
         title: 'Quiet Moor',
         handle: 'quiet-moor-ps-pr-001',
@@ -228,45 +245,45 @@ describe('catalogue model', () => {
 
     const allNewest = filterCatalogue(catalogue, {
       query: '',
-      place: 'all',
+      family: 'artwork',
       sort: 'newest',
     });
     expect(allNewest.map(({ sku }) => sku)).toEqual(['PS-PR-002', 'PS-PR-003', 'PS-PR-001']);
     expect(allNewest).not.toBe(catalogue);
     expect(catalogue.map(({ sku }) => sku)).toEqual(['PS-PR-003', 'PS-PR-002', 'PS-PR-001']);
 
-    const filteredByQueryAndPlace = filterCatalogue(catalogue, {
+    const filteredByQuery = filterCatalogue(catalogue, {
       query: 'harbour',
-      place: 'Brighton',
+      family: 'artwork',
       sort: 'title',
     });
-    expect(filteredByQueryAndPlace.map(({ sku }) => sku)).toEqual(['PS-PR-002']);
+    expect(filteredByQuery.map(({ sku }) => sku)).toEqual(['PS-PR-002']);
 
-    const filteredByPlace = filterCatalogue(catalogue, {
+    const familyResults = filterCatalogue(catalogue, {
       query: '',
-      place: 'Yorkshire',
+      family: 'artwork',
       sort: 'title',
     });
-    expect(filteredByPlace.map(({ sku }) => sku)).toEqual(['PS-PR-001']);
+    expect(familyResults.map(({ sku }) => sku)).toEqual(['PS-PR-002', 'PS-PR-001', 'PS-PR-003']);
 
     expect(
       filterCatalogue(catalogue, {
         query: 'not-found',
-        place: 'all',
+        family: 'artwork',
         sort: 'title',
       }),
     ).toEqual([]);
     expect(
       filterCatalogue(catalogue, {
         query: '',
-        place: 'London',
+        family: 'greeting-card',
         sort: 'title',
       }),
     ).toEqual([]);
 
     const alphabetical = filterCatalogue(catalogue, {
       query: '',
-      place: 'all',
+      family: 'artwork',
       sort: 'title',
     });
     expect(alphabetical.map(({ title }) => title)).toEqual([

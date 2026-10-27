@@ -115,6 +115,10 @@ const catalogueSchema = z.object({
   }),
   intro: z.object({ heading: text, eyebrow: text, copy: text }),
   controls: z.object({
+    familyGroupLabel: text,
+    artworksLabel: text,
+    greetingCardsLabel: text,
+    selectedLabel: text,
     searchLabel: text,
     searchPlaceholder: text,
     placeLabel: text,
@@ -135,6 +139,8 @@ const catalogueSchema = z.object({
     emptyEyebrow: text,
     emptyHeading: text,
     reset: text,
+    otherFamilyInvite: text,
+    otherFamilyAction: text,
   }),
 });
 const commissionsSchema = z.object({
