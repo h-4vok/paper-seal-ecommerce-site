@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { deriveOutputs, validateProductManifest } from './build-content-metadata.mjs';
+import {
+  deriveCollabOutputs,
+  deriveOutputs,
+  validateCollabManifest,
+  validateProductManifest,
+} from './build-content-metadata.mjs';
 import { readFile } from 'node:fs/promises';
 import { parse } from 'yaml';
 import { readMockupRegistry, resolveMockupSelections } from './mockup-registry.mjs';
@@ -174,5 +179,60 @@ describe('product content metadata', () => {
     expect(() =>
       validateProductManifest({ products: [{ ...source.products[0], collections: [] }] }),
     ).toThrow('collections');
+  });
+});
+
+describe('collab content metadata', () => {
+  it('groups portfolio-only artworks and preserves the selected order and orientation', () => {
+    const collabs = validateCollabManifest(source.collabs);
+    const output = deriveCollabOutputs(collabs);
+    expect(output.collabs).toHaveLength(1);
+    expect(output.collabs[0]).toMatchObject({
+      id: 'comfort-season-cotswolds',
+      partner: 'Comfort Season Ltd',
+      propertyName: 'The Minstrels',
+    });
+    expect(output.collabs[0].artworks).toHaveLength(6);
+    expect(output.collabs[0].artworks.map(({ order }) => order)).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(
+      output.collabs[0].artworks.filter(({ orientation }) => orientation === 'portrait'),
+    ).toHaveLength(2);
+    expect(
+      output.collabs[0].artworks.every(
+        (artwork) =>
+          artwork.showInProductSearch === false &&
+          artwork.showInCommissions === false &&
+          artwork.showInCollabs === true,
+      ),
+    ).toBe(true);
+    expect(output.assets).toHaveLength(6);
+  });
+
+  it.each([
+    [
+      { ...source.collabs[0].artworks[0], showInProductSearch: 'false' },
+      'invalid showInProductSearch',
+    ],
+    [{ ...source.collabs[0].artworks[0], showInCommissions: 1 }, 'invalid showInCommissions'],
+    [{ ...source.collabs[0].artworks[0], showInCollabs: 'yes' }, 'invalid showInCollabs'],
+    [{ ...source.collabs[0].artworks[0], collabGroup: 'another-project' }, 'invalid collabGroup'],
+  ])('rejects invalid collab artwork values: %s', (change, message) => {
+    expect(() => validateCollabManifest([{ ...source.collabs[0], artworks: [change] }])).toThrow(
+      message,
+    );
+  });
+
+  it('rejects insecure partner URLs and duplicate artwork assets', () => {
+    expect(() =>
+      validateCollabManifest([{ ...source.collabs[0], websiteUrl: 'http://example.com' }]),
+    ).toThrow('expected HTTPS');
+    expect(() =>
+      validateCollabManifest([
+        {
+          ...source.collabs[0],
+          artworks: [source.collabs[0].artworks[0], source.collabs[0].artworks[0]],
+        },
+      ]),
+    ).toThrow('invalid or duplicate id');
   });
 });

@@ -16,7 +16,6 @@ describe('institutional route configuration', () => {
       'privacy',
       'terms',
       'east-sussex',
-      'collabs',
     ]);
     expect(new Set(institutionalPages.map(({ slug }) => slug)).size).toBe(
       institutionalPages.length,
@@ -30,10 +29,9 @@ describe('institutional route configuration', () => {
     expect(getInstitutionalPage('missing')).toBeUndefined();
   });
 
-  it('shows the shared content notice on the seven requested pages only', () => {
+  it('shows the shared content notice on the six requested pages only', () => {
     expect(contentNoticeSlugs).toEqual([
       'our-story',
-      'collabs',
       'delivery',
       'returns',
       'contact',

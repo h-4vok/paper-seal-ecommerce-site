@@ -9,6 +9,7 @@ export const GET: APIRoute = ({ site }) => {
     '/',
     '/artworks',
     '/commissions',
+    '/collabs',
     ...productPageArtworks.map(({ handle }) => `/artworks/${handle}`),
     ...greetingCards.map(greetingCardPagePath),
     ...institutionalPages.filter(({ indexable }) => indexable).map(({ slug }) => `/${slug}`),

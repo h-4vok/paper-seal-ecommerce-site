@@ -150,6 +150,22 @@ const commissionsSchema = z.object({
     bottom: z.object({ eyebrow: text, heading: text, copy: text }),
   }),
 });
+const collabsSchema = z.object({
+  seo: z.object({ title: text, description: text }),
+  eyebrow: text,
+  heading: text,
+  intro: text,
+  galleryLabel: text,
+  filmLabel: text,
+  filmDescription: text,
+  watchFilm: text,
+  openImage: text,
+  closeImage: text,
+  partnerWebsite: text,
+  partnerInstagram: text,
+  stayWithPartner: text,
+  uniqueWorksNote: text,
+});
 const cartSchema = z.object({
   seo: z.object({ title: text, description: text }),
   header: z.object({ eyebrow: text, itemCount: text, heading: text }),
@@ -236,6 +252,7 @@ export const copySchemas = {
   home: homeSchema,
   catalogue: catalogueSchema,
   commissions: commissionsSchema,
+  collabs: collabsSchema,
   cart: cartSchema,
   product: productSchema,
   institutional: institutionalSchema,

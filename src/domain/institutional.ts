@@ -7,7 +7,6 @@ export const institutionalPages = copy.institutional.pages;
 
 export const contentNoticeSlugs = [
   'our-story',
-  'collabs',
   'delivery',
   'returns',
   'contact',

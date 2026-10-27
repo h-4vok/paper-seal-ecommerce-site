@@ -6,6 +6,7 @@ type LoadedCopy = {
   home: { seo: { title: string } };
   catalogue: { controls: { searchPlaceholder: string } };
   commissions: { seo: { title: string }; galleryLabel: string };
+  collabs: { seo: { title: string }; galleryLabel: string; uniqueWorksNote: string };
   cart: { header: { heading: string } };
   product: { labels: { addToCart: string; selectSizeCta: string; selectSizePrompt: string } };
   institutional: { pages: unknown[] };
@@ -36,12 +37,15 @@ describe('editorial copy', () => {
       instagram: expect.stringContaining('Instagram'),
     });
     expect(copy.commissions.contact.bottom.copy).not.toMatch(/call/i);
+    expect(loaded.collabs.seo.title).toContain('Collaborations');
+    expect(loaded.collabs.galleryLabel).toBeTruthy();
+    expect(loaded.collabs.uniqueWorksNote).toContain('not available to buy');
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();
     expect(loaded.product.labels.selectSizeCta).toBe('Select size');
     expect(loaded.product.labels.selectSizePrompt).toBeTruthy();
     expect(copy.product.greetingCard.gallery).toBe('Greeting card images');
-    expect(loaded.institutional.pages).toHaveLength(8);
+    expect(loaded.institutional.pages).toHaveLength(7);
   });
 
   it('supports only controlled interpolation and readable line breaks', () => {
@@ -85,6 +89,7 @@ describe('editorial copy', () => {
         'placeholder.yaml',
         'stories.yaml',
         'commissions.yaml',
+        'collabs.yaml',
         'unexpected.yaml',
       ]),
     ).toThrow('Unknown copy YAML files');

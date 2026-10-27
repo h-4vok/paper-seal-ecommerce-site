@@ -24,6 +24,99 @@ const generated = {
   generator: 'content:build:metadata',
 };
 
+export function validateCollabManifest(input) {
+  if (input === undefined) return [];
+  if (!Array.isArray(input)) throw new Error('Collab manifest must be an array.');
+  const ids = new Set();
+  const assetBases = new Set();
+  return input.map((collab, index) => {
+    const failCollab = (message) => {
+      throw new Error(`Collab ${index + 1}: ${message}`);
+    };
+    if (!collab || typeof collab !== 'object') failCollab('must be an object.');
+    for (const field of [
+      'id',
+      'title',
+      'partner',
+      'propertyName',
+      'placeName',
+      'story',
+      'websiteUrl',
+      'instagramRedirect',
+      'reelUrl',
+    ]) {
+      if (typeof collab[field] !== 'string' || !collab[field].trim())
+        failCollab(`has an invalid ${field}.`);
+    }
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(collab.id)) failCollab('has an invalid id.');
+    if (ids.has(collab.id)) failCollab('duplicates a collab id.');
+    for (const field of ['websiteUrl', 'reelUrl']) {
+      let url;
+      try {
+        url = new URL(collab[field]);
+      } catch {
+        failCollab(`has an invalid ${field}.`);
+      }
+      if (url.protocol !== 'https:') failCollab(`has an invalid ${field}; expected HTTPS.`);
+    }
+    if (!/^\/redirect\/[a-z0-9-]+$/.test(collab.instagramRedirect)) {
+      failCollab('has an invalid instagramRedirect.');
+    }
+    if (!Array.isArray(collab.artworks) || collab.artworks.length === 0)
+      failCollab('must contain artwork.');
+    const artworkIds = new Set();
+    const artworks = collab.artworks.map((artwork, artworkIndex) => {
+      const failArtwork = (message) => {
+        throw new Error(`Collab ${index + 1} artwork ${artworkIndex + 1}: ${message}`);
+      };
+      if (!artwork || typeof artwork !== 'object') failArtwork('must be an object.');
+      for (const field of [
+        'id',
+        'title',
+        'description',
+        'placeName',
+        'alt',
+        'assetBase',
+        'driveFileId',
+      ]) {
+        if (typeof artwork[field] !== 'string' || !artwork[field].trim())
+          failArtwork(`has an invalid ${field}.`);
+      }
+      if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(artwork.id) || artworkIds.has(artwork.id))
+        failArtwork('has an invalid or duplicate id.');
+      if (
+        !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(artwork.assetBase) ||
+        assetBases.has(artwork.assetBase)
+      )
+        failArtwork('has an invalid or duplicate assetBase.');
+      if (artwork.collabGroup !== collab.id) failArtwork('has an invalid collabGroup.');
+      for (const field of ['showInProductSearch', 'showInCommissions', 'showInCollabs']) {
+        if (artwork[field] !== undefined && typeof artwork[field] !== 'boolean')
+          failArtwork(`has an invalid ${field}; expected a boolean.`);
+      }
+      if (
+        artwork.showInProductSearch !== false ||
+        artwork.showInCommissions !== false ||
+        artwork.showInCollabs !== true
+      ) {
+        failArtwork('must be visible only in Collabs.');
+      }
+      if (!['landscape', 'portrait'].includes(artwork.orientation))
+        failArtwork('has an invalid orientation.');
+      if (artwork.watermark !== undefined && !watermarkProfiles.includes(artwork.watermark)) {
+        failArtwork('has an invalid watermark profile.');
+      }
+      if (!Number.isInteger(artwork.order) || artwork.order < 1)
+        failArtwork('has an invalid order.');
+      artworkIds.add(artwork.id);
+      assetBases.add(artwork.assetBase);
+      return { ...artwork, watermark: artwork.watermark ?? 'standard' };
+    });
+    ids.add(collab.id);
+    return { ...collab, artworks: artworks.sort((left, right) => left.order - right.order) };
+  });
+}
+
 async function writeGeneratedJson(filePath, value) {
   const options = (await prettier.resolveConfig(filePath)) ?? {};
   const content = await prettier.format(`${JSON.stringify(value, null, 2)}\n`, {
@@ -197,11 +290,51 @@ export function deriveOutputs(products, registry = approvedRegistry, imageDimens
   };
 }
 
+export function deriveCollabOutputs(collabs, imageDimensions = new Map()) {
+  const visibleCollabs = collabs.map((collab) => ({
+    ...collab,
+    artworks: collab.artworks
+      .filter(({ showInCollabs }) => showInCollabs)
+      .map((artwork) => ({
+        ...artwork,
+        imageDimensions: imageDimensions.get(artwork.assetBase) ?? {
+          width: 720,
+          height: artwork.orientation === 'portrait' ? 1014 : 510,
+        },
+      })),
+  }));
+  return {
+    collabs: visibleCollabs,
+    assets: visibleCollabs.flatMap(({ id: collabGroup, artworks }) =>
+      artworks.map(
+        ({
+          id,
+          order,
+          collabGroup: artworkGroup,
+          showInProductSearch,
+          showInCommissions,
+          showInCollabs,
+          ...artwork
+        }) => ({
+          ...artwork,
+          id,
+          order,
+          collabGroup: artworkGroup ?? collabGroup,
+          showInProductSearch,
+          showInCommissions,
+          showInCollabs,
+        }),
+      ),
+    ),
+  };
+}
+
 export async function buildMetadata({ root = projectRoot } = {}) {
   const sourcePath = path.join(root, 'content', 'artworks.yaml');
   const manifest = parse(await readFile(sourcePath, 'utf8'));
   const registry = validateMockupRegistry(JSON.parse(await readFile(registryPath(root), 'utf8')));
   const products = validateProductManifest(manifest, registry);
+  const collabs = validateCollabManifest(manifest.collabs);
   const artworks = products.filter(({ family }) => family === 'artwork');
   for (const [index, artwork] of artworks.entries()) {
     const selections = resolveMockupSelections(artwork, index, registry);
@@ -260,6 +393,27 @@ export async function buildMetadata({ root = projectRoot } = {}) {
     }
   }
   const outputs = deriveOutputs(products, registry, imageDimensions);
+  const collabImageDimensions = new Map();
+  for (const collab of collabs) {
+    for (const artwork of collab.artworks) {
+      const derivative = path.join(
+        root,
+        'public',
+        'images',
+        'collabs',
+        collab.id,
+        artwork.assetBase,
+        'flat-720.jpg',
+      );
+      try {
+        const { width, height } = await sharp(derivative).metadata();
+        if (width && height) collabImageDimensions.set(artwork.assetBase, { width, height });
+      } catch {
+        // New collab artwork uses its orientation fallback until its derivatives are generated.
+      }
+    }
+  }
+  const collabOutputs = deriveCollabOutputs(collabs, collabImageDimensions);
   await writeGeneratedJson(path.join(root, 'src', 'data', 'artworks.json'), {
     ...generated,
     artworks: outputs.catalogue,
@@ -272,6 +426,16 @@ export async function buildMetadata({ root = projectRoot } = {}) {
   await writeGeneratedJson(path.join(root, 'data', 'assets', 'greeting-cards.json'), {
     ...generated,
     cards: outputs.assets.greetingCards,
+  });
+  await writeGeneratedJson(path.join(root, 'src', 'data', 'collabs.json'), {
+    ...generated,
+    collabs: collabOutputs.collabs,
+  });
+  await writeGeneratedJson(path.join(root, 'data', 'assets', 'collabs.json'), {
+    ...generated,
+    provenance:
+      'Optimised, watermarked-on-display derivatives generated from approved Google Drive masters. Production masters are never committed or served.',
+    artworks: collabOutputs.assets,
   });
   return outputs;
 }

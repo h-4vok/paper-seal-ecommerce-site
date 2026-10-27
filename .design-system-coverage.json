@@ -110,7 +110,13 @@
       "name": "CommissionContact",
       "source": "src/components/CommissionContact.astro",
       "level": "Organisms",
-      "useFor": "Prominent commission contact panel with call, WhatsApp and Instagram actions."
+      "useFor": "Prominent commission contact panel with WhatsApp and Instagram actions."
+    },
+    {
+      "name": "CollabsGallery",
+      "source": "src/components/CollabsGallery.astro",
+      "level": "Organisms",
+      "useFor": "Grouped portfolio gallery of original collaboration artworks with watermarked previews, accessible image zoom and no commerce controls."
     }
   ]
 }

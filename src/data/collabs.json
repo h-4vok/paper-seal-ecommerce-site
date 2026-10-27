@@ -1,0 +1,140 @@
+{
+  "generated": true,
+  "source": "content/artworks.yaml",
+  "generator": "content:build:metadata",
+  "collabs": [
+    {
+      "id": "comfort-season-cotswolds",
+      "title": "The Cotswolds at Home",
+      "partner": "Comfort Season Ltd",
+      "propertyName": "The Minstrels",
+      "placeName": "Moreton-in-Marsh, The Cotswolds",
+      "story": "Created with Comfort Season Ltd for The Minstrels, this collection brings the character of the Cotswolds into a much-loved place to stay. Six original works move between village landmarks and the quieter countryside around them. Curated for the Airbnb, the artworks are part of the guest experience and are not offered for sale online.",
+      "websiteUrl": "https://comfortseason.co.uk/",
+      "instagramRedirect": "/redirect/collab-comfort-season-instagram",
+      "reelUrl": "https://www.instagram.com/reels/De17j6vuvAS/",
+      "artworks": [
+        {
+          "id": "bliss-tweed-mill",
+          "collabGroup": "comfort-season-cotswolds",
+          "showInProductSearch": false,
+          "showInCommissions": false,
+          "showInCollabs": true,
+          "order": 1,
+          "title": "Bliss Tweed Mill",
+          "description": "Rolling fields and open sky meet around Tweed Mill, a quiet landmark in the countryside near Chipping Norton.",
+          "placeName": "Chipping Norton",
+          "orientation": "landscape",
+          "alt": "Rolling green Cotswolds fields with Tweed Mill in the distance beneath a wide blue sky.",
+          "assetBase": "bliss-tweed-mill",
+          "driveFileId": "1TBsXHm0Ik1hX755Q8KvC2Z0JCz7pSnet",
+          "watermark": "standard",
+          "imageDimensions": {
+            "width": 720,
+            "height": 511
+          }
+        },
+        {
+          "id": "minster-lovell-road",
+          "collabGroup": "comfort-season-cotswolds",
+          "showInProductSearch": false,
+          "showInCommissions": false,
+          "showInCollabs": true,
+          "order": 2,
+          "title": "Minster Lovell Road",
+          "description": "Honey-coloured cottages and gardens in bloom bring a familiar village lane to life.",
+          "placeName": "Minster Lovell",
+          "orientation": "landscape",
+          "alt": "A quiet lane of honey-coloured cottages with flowering gardens in Minster Lovell.",
+          "assetBase": "minster-lovell-road",
+          "driveFileId": "1w5eEWqMHR2gpyuBgkDgHJdz7JMnNoXK5",
+          "watermark": "standard",
+          "imageDimensions": {
+            "width": 720,
+            "height": 512
+          }
+        },
+        {
+          "id": "snowshill-at-broadway",
+          "collabGroup": "comfort-season-cotswolds",
+          "showInProductSearch": false,
+          "showInCommissions": false,
+          "showInCollabs": true,
+          "order": 3,
+          "title": "Snowshill at Broadway",
+          "description": "The village green gathers a church, a bench and a bright red telephone box beneath the summer sky.",
+          "placeName": "Snowshill, near Broadway",
+          "orientation": "landscape",
+          "alt": "A red telephone box and wooden bench beside the church on Snowshill village green.",
+          "assetBase": "snowshill-at-broadway",
+          "driveFileId": "1P_R5Tdq4CSg9j2_e4PpHDrYp9V15ns86",
+          "watermark": "standard",
+          "imageDimensions": {
+            "width": 720,
+            "height": 512
+          }
+        },
+        {
+          "id": "the-everyday-cotswolds",
+          "collabGroup": "comfort-season-cotswolds",
+          "showInProductSearch": false,
+          "showInCommissions": false,
+          "showInCollabs": true,
+          "order": 4,
+          "title": "The Everyday Cotswolds",
+          "description": "Sheep graze across open hills as a footpath winds through the simple, generous landscape of the region.",
+          "placeName": "The Cotswolds",
+          "orientation": "landscape",
+          "alt": "Sheep grazing in rolling green countryside beside a winding path and flowering hedgerows.",
+          "assetBase": "the-everyday-cotswolds",
+          "driveFileId": "1Th9qoRG_zWDDjHKsAyui4j0qP_DhtDE7",
+          "watermark": "standard",
+          "imageDimensions": {
+            "width": 720,
+            "height": 512
+          }
+        },
+        {
+          "id": "the-old-swan-pub",
+          "collabGroup": "comfort-season-cotswolds",
+          "showInProductSearch": false,
+          "showInCommissions": false,
+          "showInCollabs": true,
+          "order": 5,
+          "title": "The Old Swan Pub",
+          "description": "The Old Swan sits among stone cottages and flower-filled gardens in a sunlit village scene.",
+          "placeName": "Minster Lovell",
+          "orientation": "portrait",
+          "alt": "The Old Swan Pub in Minster Lovell, framed by flowering gardens and stone cottages.",
+          "assetBase": "the-old-swan-pub",
+          "driveFileId": "1zU52H9bmv48b8NO0ibY-SNYKNtJ8zLs0",
+          "watermark": "standard",
+          "imageDimensions": {
+            "width": 720,
+            "height": 1013
+          }
+        },
+        {
+          "id": "the-cotswolds-doorway",
+          "collabGroup": "comfort-season-cotswolds",
+          "showInProductSearch": false,
+          "showInCommissions": false,
+          "showInCollabs": true,
+          "order": 6,
+          "title": "The Cotswolds Doorway",
+          "description": "An old arched doorway, sheltered by the twisting form of a tree, turns stone and branches into a storybook entrance.",
+          "placeName": "The Cotswolds",
+          "orientation": "portrait",
+          "alt": "An arched stone doorway framed by the twisting trunks and branches of an old tree.",
+          "assetBase": "the-cotswolds-doorway",
+          "driveFileId": "1aifUu0mNshE0idw7JJ8pQBjV2hqm2J7r",
+          "watermark": "standard",
+          "imageDimensions": {
+            "width": 720,
+            "height": 1013
+          }
+        }
+      ]
+    }
+  ]
+}

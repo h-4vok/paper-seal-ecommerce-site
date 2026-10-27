@@ -1,0 +1,164 @@
+---
+import CollabsGallery from '../components/CollabsGallery.astro';
+import { copy } from '../content/copy';
+import { collabs } from '../domain/collabs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/collabs.scss';
+
+const page = copy.collabs;
+const firstArtwork = collabs[0]?.artworks[0];
+const socialImage = firstArtwork
+  ? `/images/collabs/${firstArtwork.collabGroup}/${firstArtwork.assetBase}/flat-1440.jpg`
+  : undefined;
+const siteOrigin = Astro.site ?? Astro.url.origin;
+let artworkPosition = 0;
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', siteOrigin).href },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Collabs',
+        item: new URL('/collabs', siteOrigin).href,
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: page.seo.title,
+    description: page.seo.description,
+    url: new URL('/collabs', siteOrigin).href,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      itemListElement: collabs.flatMap((collab) =>
+        collab.artworks.map((artwork) => ({
+          '@type': 'ListItem',
+          position: ++artworkPosition,
+          item: {
+            '@type': 'VisualArtwork',
+            name: artwork.title,
+            description: artwork.description,
+            image: new URL(
+              `/images/collabs/${collab.id}/${artwork.assetBase}/flat-1440.jpg`,
+              siteOrigin,
+            ).href,
+            creator: { '@type': 'Organization', name: 'The Paper Seal Studio' },
+          },
+        })),
+      ),
+    },
+  },
+];
+
+const title = page.seo.title;
+---
+
+<BaseLayout
+  {title}
+  description={page.seo.description}
+  canonical="/collabs"
+  image={socialImage}
+  imageAlt={firstArtwork?.alt}
+  structuredData={structuredData}
+>
+  <main id="main-content" class="collabs-page">
+    <header class="collabs-hero">
+      <p class="eyebrow">
+        {page.eyebrow} · {copy.shared.brand.name}
+      </p>
+      <h1>{page.heading}</h1>
+      <p>{page.intro}</p>
+    </header>
+
+    {collabs.map((collab) => {
+      const reelId = new URL(collab.reelUrl).pathname.split('/').filter(Boolean).at(-1);
+      const reelEmbedUrl = `https://www.instagram.com/reel/${reelId}/embed/`;
+
+      return (
+        <section class="collabs-group" aria-labelledby={`collab-${collab.id}-title`}>
+          <header class="collabs-group__intro">
+            <div class="collabs-group__copy">
+              <p class="eyebrow">
+                {collab.partner} · {collab.placeName}
+              </p>
+              <h2 id={`collab-${collab.id}-title`}>{collab.title}</h2>
+              <p class="collabs-group__property">{collab.propertyName}</p>
+              <p class="collabs-group__story">{collab.story}</p>
+            </div>
+            <nav class="collabs-group__links" aria-label={`${collab.partner} links`}>
+              <a
+                class="collabs-group__link"
+                href={collab.websiteUrl}
+                target="_blank"
+                rel="noreferrer"
+                data-umami-event="Comfort Season stay link"
+              >
+                {page.partnerWebsite} <span aria-hidden="true">↗</span>
+              </a>
+              <a
+                class="collabs-group__link collabs-group__link--secondary"
+                href={collab.instagramRedirect}
+                target="_blank"
+                rel="noreferrer"
+                data-umami-event="Comfort Season Instagram link"
+              >
+                {page.partnerInstagram} <span aria-hidden="true">↗</span>
+              </a>
+            </nav>
+          </header>
+
+          <section class="collabs-reel" aria-label={page.filmLabel}>
+            <div class="collabs-reel__copy">
+              <h3>{page.filmLabel}</h3>
+              <p>{page.filmDescription}</p>
+            </div>
+            <div class="collabs-reel__frame">
+              <iframe
+                src={reelEmbedUrl}
+                title={page.filmLabel}
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="encrypted-media; picture-in-picture; web-share"
+                allowfullscreen
+              />
+            </div>
+            <a
+              class="collabs-reel__link"
+              href={collab.reelUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-umami-event="Comfort Season Instagram reel"
+            >
+              {page.watchFilm} <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+
+          <CollabsGallery
+            collabGroup={collab.id}
+            artworks={collab.artworks}
+            label={`${collab.partner} artwork gallery`}
+            openImageLabel={page.openImage}
+            closeImageLabel={page.closeImage}
+          />
+          <aside class="collabs-availability">
+            <p>{page.uniqueWorksNote}</p>
+            <a
+              class="collabs-group__link"
+              href={collab.websiteUrl}
+              target="_blank"
+              rel="noreferrer"
+              data-umami-event="Comfort Season stay link"
+            >
+              {page.stayWithPartner} <span aria-hidden="true">↗</span>
+            </a>
+          </aside>
+        </section>
+      );
+    })}
+  </main>
+</BaseLayout>
