@@ -286,6 +286,12 @@
   text-underline-offset: 0.25em;
 }
 
+.collabs-work__map-link svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
 .collabs-work__map-link:hover {
   color: var(--color-terracotta);
 }
