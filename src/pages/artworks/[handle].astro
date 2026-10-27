@@ -1,6 +1,7 @@
 ---
 import ArtworkPicture from '../../components/ArtworkPicture.astro';
 import ArtworkMockupPicture from '../../components/ArtworkMockupPicture.astro';
+import ArtworkWatermark from '../../components/ArtworkWatermark.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   productPageArtworks,
@@ -324,19 +325,7 @@ const gallery = productGallery(artwork).map((image) => {
       <div class="product-lightbox__surface" data-lightbox-surface>
         <div class="product-lightbox__image-wrap">
           <img data-lightbox-image alt="" />
-          <span
-            class="artwork-watermark"
-            data-watermark-profile={artwork.watermark}
-            data-lightbox-watermark
-            aria-hidden="true"
-            hidden
-          >
-            {Array.from({ length: 7 }, () => (
-              <span class="artwork-watermark__line">
-                PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL
-              </span>
-            ))}
-          </span>
+          <ArtworkWatermark profile={artwork.watermark} lightbox="product" hidden />
         </div>
       </div>
     </dialog>

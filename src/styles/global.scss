@@ -124,6 +124,7 @@ img {
 
 .artwork-watermark {
   position: absolute;
+  z-index: 2;
   inset: -10%;
   display: flex;
   flex-direction: column;
@@ -131,7 +132,7 @@ img {
   overflow: hidden;
   color: rgb(255 255 255 / 70%);
   mix-blend-mode: difference;
-  opacity: 0.18;
+  opacity: 0.32;
   pointer-events: none;
   transform: rotate(-24deg) scale(1.15);
   user-select: none;
@@ -143,13 +144,13 @@ img {
 
 .artwork-watermark[data-watermark-profile='high-contrast'] {
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 40%));
-  opacity: 0.32;
+  opacity: 0.48;
 }
 
 .artwork-watermark__line {
   width: max-content;
   font-family: var(--font-ui);
-  font-size: clamp(0.58rem, 1.2vw, 1rem);
+  font-size: clamp(0.68rem, 1.2vw, 1.08rem);
   font-weight: 700;
   letter-spacing: 0.2em;
   white-space: nowrap;

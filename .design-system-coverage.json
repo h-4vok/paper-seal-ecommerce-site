@@ -41,6 +41,12 @@
       "useFor": "Responsive artwork and product image with catalogue, flat-image, and optional watermark variants plus a visible load-error fallback."
     },
     {
+      "name": "ArtworkWatermark",
+      "source": "src/components/ArtworkWatermark.astro",
+      "level": "Atoms",
+      "useFor": "Repeated Paper Seal brand mark layered visibly over artwork previews and lightbox images."
+    },
+    {
       "name": "GreetingCardCard",
       "source": "src/components/GreetingCardCard.astro",
       "level": "Molecules",

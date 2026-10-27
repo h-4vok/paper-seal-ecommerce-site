@@ -230,6 +230,7 @@
 
 .collabs-work__zoom-icon {
   position: absolute;
+  z-index: 3;
   right: clamp(0.55rem, 1.8vw, 1.1rem);
   bottom: clamp(0.55rem, 1.8vw, 1.1rem);
   display: grid;
@@ -400,17 +401,26 @@
   place-items: center;
 }
 
-.collabs-lightbox__image-wrap img {
+.collabs-lightbox__watermarked-image {
+  position: relative;
+  display: grid;
+  width: fit-content;
+  height: fit-content;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  place-items: center;
+}
+
+.collabs-lightbox__watermarked-image img {
   display: block;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
 
-.collabs-lightbox__image-wrap .artwork-watermark {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.collabs-lightbox__watermarked-image .artwork-watermark {
+  inset: -10%;
 }
 
 .collabs-lightbox__fallback {

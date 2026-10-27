@@ -1,6 +1,7 @@
 ---
 import type { CollabArtwork } from '../domain/collabs';
 import ArtworkPicture from './ArtworkPicture.astro';
+import ArtworkWatermark from './ArtworkWatermark.astro';
 
 interface Props {
   collabGroup: string;
@@ -111,14 +112,10 @@ const mapUrl = (query: string) => {
         </svg>
       </button>
       <div class="collabs-lightbox__image-wrap">
-        <img data-collab-lightbox-image alt="" />
-        <span class="artwork-watermark" data-collab-lightbox-watermark aria-hidden="true">
-          {Array.from({ length: 7 }, () => (
-            <span class="artwork-watermark__line">
-              PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL · PAPER SEAL
-            </span>
-          ))}
-        </span>
+        <div class="collabs-lightbox__watermarked-image">
+          <img data-collab-lightbox-image alt="" />
+          <ArtworkWatermark lightbox="collab" hidden />
+        </div>
         <span class="collabs-lightbox__fallback" role="img" hidden data-collab-lightbox-fallback>
           Image unavailable
         </span>
