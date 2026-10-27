@@ -446,7 +446,9 @@
   position: relative;
   display: grid;
   width: min(100%, 100rem);
-  height: min(86dvh, 72rem);
+  height: min(calc(100dvh - 10rem), 72rem);
+  min-width: 0;
+  min-height: 0;
   place-items: center;
 }
 
@@ -463,8 +465,10 @@
 
 .collabs-lightbox__watermarked-image img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
+  width: auto;
+  height: auto;
+  max-width: min(100%, calc(100vw - 2 * var(--page-gutter)), 100rem);
+  max-height: min(86dvh, calc(100dvh - 10rem), 72rem);
   object-fit: contain;
 }
 
