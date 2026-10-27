@@ -644,8 +644,8 @@ collabs:
         order: 6
         title: The Cotswolds Doorway
         description: An old arched doorway, sheltered by the twisting form of a tree, turns stone and branches into a storybook entrance.
-        placeName: The Cotswolds
-        mapsQuery: The Cotswolds, United Kingdom
+        placeName: Stow-on-the-Wold
+        mapsQuery: St Edward's Church, Stow-on-the-Wold, Gloucestershire, United Kingdom
         orientation: portrait
         alt: An arched stone doorway framed by the twisting trunks and branches of an old tree.
         assetBase: the-cotswolds-doorway

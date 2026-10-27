@@ -27,6 +27,10 @@ describe('collab catalogue', () => {
       'portrait',
       'portrait',
     ]);
+    expect(comfortSeason.artworks[5]).toMatchObject({
+      placeName: 'Stow-on-the-Wold',
+      mapsQuery: "St Edward's Church, Stow-on-the-Wold, Gloucestershire, United Kingdom",
+    });
     expect(
       comfortSeason.artworks.every(
         ({ showInProductSearch, showInCommissions, showInCollabs }) =>
