@@ -107,6 +107,17 @@
   gap: 0.8rem;
 }
 
+@media (width < 56rem) {
+  .collabs-group__links {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .collabs-group__link {
+    width: 100%;
+  }
+}
+
 .collabs-group__link {
   display: inline-flex;
   min-height: 3.5rem;
