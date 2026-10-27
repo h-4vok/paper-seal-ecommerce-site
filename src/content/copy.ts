@@ -145,7 +145,7 @@ const commissionsSchema = z.object({
   galleryLabel: text,
   contact: z.object({
     linksLabel: text,
-    actions: z.object({ call: text, whatsapp: text, instagram: text }),
+    actions: z.object({ whatsapp: text, instagram: text }),
     top: z.object({ eyebrow: text, heading: text, copy: text }),
     bottom: z.object({ eyebrow: text, heading: text, copy: text }),
   }),

@@ -8,7 +8,6 @@ galleryLabel: Selected commissions
 contact:
   linksLabel: Commission contact options
   actions:
-    call: Call us · +44 7448 997200
     whatsapp: Message us on WhatsApp
     instagram: Follow us on Instagram
   top:
@@ -18,4 +17,4 @@ contact:
   bottom:
     eyebrow: Every commission starts with a conversation
     heading: We would love to hear your idea.
-    copy: Call, message or follow along on Instagram. We can talk through what you have in mind and how to make it yours.
+    copy: Message us on WhatsApp or follow along on Instagram. We can talk through what you have in mind and how to make it yours.
