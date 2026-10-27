@@ -1,5 +1,6 @@
 ---
 import CommissionsGallery from '../components/CommissionsGallery.astro';
+import CommissionContact from '../components/CommissionContact.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { commissionArtworks } from '../domain/catalogue';
 import { copy } from '../content/copy';
@@ -38,6 +39,18 @@ const structuredData = [
       <h1 id="commissions-title">{commissions.heading}</h1>
       <p>{commissions.intro}</p>
     </header>
+    <CommissionContact
+      content={commissions.contact.top}
+      actions={commissions.contact.actions}
+      linksLabel={commissions.contact.linksLabel}
+      position="top"
+    />
     <CommissionsGallery artworks={commissionArtworks} label={commissions.galleryLabel} />
+    <CommissionContact
+      content={commissions.contact.bottom}
+      actions={commissions.contact.actions}
+      linksLabel={commissions.contact.linksLabel}
+      position="bottom"
+    />
   </main>
 </BaseLayout>

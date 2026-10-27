@@ -31,6 +31,11 @@ describe('editorial copy', () => {
     expect(loaded.catalogue.controls.searchPlaceholder).toBeTruthy();
     expect(copy.commissions.seo.title).toContain('Commissioned Artworks');
     expect(copy.commissions.galleryLabel).toBeTruthy();
+    expect(copy.commissions.contact.actions).toMatchObject({
+      call: expect.stringContaining('+44 7448 997200'),
+      whatsapp: expect.stringContaining('WhatsApp'),
+      instagram: expect.stringContaining('Instagram'),
+    });
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();
     expect(loaded.product.labels.selectSizeCta).toBe('Select size');

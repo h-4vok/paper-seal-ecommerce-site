@@ -105,6 +105,12 @@
       "source": "src/components/CommissionsGallery.astro",
       "level": "Organisms",
       "useFor": "Editorial portfolio gallery for commissioned artwork, with alternating image and caption placement and no commerce controls."
+    },
+    {
+      "name": "CommissionContact",
+      "source": "src/components/CommissionContact.astro",
+      "level": "Organisms",
+      "useFor": "Prominent commission contact panel with call, WhatsApp and Instagram actions."
     }
   ]
 }
