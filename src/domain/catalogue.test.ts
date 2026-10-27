@@ -70,10 +70,14 @@ describe('catalogue model', () => {
   });
 
   it('includes greeting cards in the searchable product collection', () => {
-    expect(catalogueProducts).toHaveLength(29);
+    expect(catalogueProducts).toHaveLength(30);
     expect(catalogueProducts[0]?.family).toBe('artwork');
     const greetingCards = catalogueProducts.filter(({ family }) => family === 'greeting-card');
-    expect(greetingCards).toHaveLength(11);
+    expect(greetingCards).toHaveLength(12);
+    expect(greetingCards.find(({ sku }) => sku === 'PS-GC-012')).toMatchObject({
+      title: 'East Dean, South Downs National Park',
+      collections: ['East Sussex Heritage Series'],
+    });
     expect(greetingCards.find(({ assetBase }) => assetBase === 'east-dean')?.collections).toEqual([
       'East Sussex Heritage Series',
       'Original Inkwash Series',

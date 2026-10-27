@@ -354,6 +354,38 @@
         "width": 720,
         "height": 540
       }
+    },
+    {
+      "family": "greeting-card",
+      "sku": "PS-GC-012",
+      "title": "East Dean, South Downs National Park",
+      "handle": "east-dean-south-downs-national-park-greeting-card-ps-gc-012",
+      "description": "A folded 6 × 4 inch greeting card featuring a detailed illustration of East Dean in the South Downs National Park, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "East Dean, South Downs National Park",
+      "publishedOrder": 106,
+      "collections": ["East Sussex Heritage Series"],
+      "orientation": "landscape",
+      "alt": "A greeting card featuring a detailed monochrome illustration of a cottage and flowering garden around East Dean village green.",
+      "assetBase": "east-dean-south-downs",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false,
+      "imageDimensions": {
+        "width": 720,
+        "height": 540
+      }
     }
   ]
 }

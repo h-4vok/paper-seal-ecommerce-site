@@ -20,7 +20,12 @@ describe('product content metadata', () => {
     expect(outputs.catalogue.map(({ sku }) => sku)).toEqual(
       expect.arrayContaining(['PS-PR-019', 'PS-PR-020', 'PS-PR-021']),
     );
-    expect(outputs.greetingCardCatalogue).toHaveLength(11);
+    expect(outputs.greetingCardCatalogue).toHaveLength(12);
+    expect(outputs.greetingCardCatalogue.find(({ sku }) => sku === 'PS-GC-012')).toMatchObject({
+      title: 'East Dean, South Downs National Park',
+      collections: ['East Sussex Heritage Series'],
+      assetBase: 'east-dean-south-downs',
+    });
     expect(outputs.catalogue[0]).toMatchObject({
       family: 'artwork',
       price: { small: 7, medium: 14, large: 28 },
@@ -64,12 +69,16 @@ describe('product content metadata', () => {
       'battle-abbey',
       'pevensey-castle',
       'church-square-rye',
+      'east-dean-south-downs',
     ]);
     expect(outputs.assets.greetingCards[0]).toMatchObject({
       family: 'greeting-card',
       driveFileId: '17rkhgD2Eby1lJ_KtMqUVhG5JfWSNuX43',
       panels: { back: { rotation: 270 }, front: { rotation: 90 } },
     });
+    expect(
+      outputs.assets.greetingCards.find(({ assetBase }) => assetBase === 'east-dean-south-downs'),
+    ).toMatchObject({ driveFileId: '1tCKaSUK5rPbBU5hKkdn5etLsB1dlCehQ' });
     expect(JSON.stringify(deriveOutputs(products, registry))).toBe(
       JSON.stringify(deriveOutputs(products, registry)),
     );
