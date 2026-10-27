@@ -16,6 +16,7 @@ const { catalogue } = copy;
 <article
   class:list={['artwork-card', `artwork-card--${artwork.orientation}`]}
   data-artwork-card
+  data-product-family={artwork.family}
   data-handle={artwork.handle}
   hidden={initiallyHidden}
 >

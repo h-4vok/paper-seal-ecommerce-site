@@ -29,6 +29,12 @@
   ],
   "components": [
     {
+      "name": "CatalogueFamilySwitch",
+      "source": "src/components/CatalogueFamilySwitch.astro",
+      "level": "Molecules",
+      "useFor": "Selectable product-family tile and end-of-results invitation with a reusable five-image fan of product thumbnails."
+    },
+    {
       "name": "ArtworkCard",
       "source": "src/components/ArtworkCard.astro",
       "level": "Molecules",
@@ -39,6 +45,12 @@
       "source": "src/components/ArtworkPicture.astro",
       "level": "Atoms",
       "useFor": "Responsive artwork and product image with catalogue, flat-image, and optional watermark variants plus a visible load-error fallback."
+    },
+    {
+      "name": "ArtworkWatermark",
+      "source": "src/components/ArtworkWatermark.astro",
+      "level": "Atoms",
+      "useFor": "Repeated Paper Seal brand mark layered visibly over artwork previews and lightbox images."
     },
     {
       "name": "GreetingCardCard",
@@ -99,6 +111,24 @@
       "source": "src/components/CartTrigger.astro",
       "level": "Molecules",
       "useFor": "Header bag that opens the Snipcart cart and displays its item count."
+    },
+    {
+      "name": "CommissionsGallery",
+      "source": "src/components/CommissionsGallery.astro",
+      "level": "Organisms",
+      "useFor": "Editorial portfolio gallery for commissioned artwork, with alternating image and caption placement and no commerce controls."
+    },
+    {
+      "name": "CommissionContact",
+      "source": "src/components/CommissionContact.astro",
+      "level": "Organisms",
+      "useFor": "Prominent contact panel for commission and collaboration enquiries, with WhatsApp and Instagram actions."
+    },
+    {
+      "name": "CollabsGallery",
+      "source": "src/components/CollabsGallery.astro",
+      "level": "Organisms",
+      "useFor": "Grouped portfolio gallery of original collaboration artworks with watermarked previews, accessible image zoom and no commerce controls."
     }
   ]
 }

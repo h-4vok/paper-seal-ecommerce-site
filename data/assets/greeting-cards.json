@@ -41,7 +41,9 @@
           "height": 1,
           "rotation": 90
         }
-      }
+      },
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -81,7 +83,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -121,7 +125,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -161,7 +167,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -201,7 +209,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -241,7 +251,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -281,7 +293,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -321,7 +335,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -361,7 +377,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -401,7 +419,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -441,7 +461,51 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
+    },
+    {
+      "family": "greeting-card",
+      "title": "East Dean, South Downs National Park",
+      "description": "A folded 6 × 4 inch greeting card featuring a detailed illustration of East Dean in the South Downs National Park, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "East Dean, South Downs National Park",
+      "publishedOrder": 106,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring a detailed monochrome illustration of a cottage and flowering garden around East Dean village green.",
+      "assetBase": "east-dean-south-downs",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1tCKaSUK5rPbBU5hKkdn5etLsB1dlCehQ",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     }
   ]
 }

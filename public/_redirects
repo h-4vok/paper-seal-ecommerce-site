@@ -1,7 +1,7 @@
 /artworks/flower-bed-ps-001 /artworks/flower-bed-ps-pr-001 301
 /artworks/seven-sisters-from-the-gardens-ps-002 /artworks/seven-sisters-from-the-gardens-ps-pr-002 301
 /artworks/beachy-head-ps-004 /artworks/beachy-head-ps-pr-004 301
-/artworks/meet-me-in-eastbourne-ps-005 /artworks/meet-me-in-eastbourne-ps-pr-005 301
+/artworks/meet-me-in-eastbourne-ps-005 /commissions 301
 /artworks/eastbourne-pier-ps-006 /artworks/eastbourne-pier-ps-pr-006 301
 /artworks/beach-huts-eastbourne-ps-007 /artworks/beach-huts-eastbourne-ps-pr-007 301
 /artworks/south-downs-i-ps-008 /artworks/south-downs-i-ps-pr-008 301
@@ -20,3 +20,9 @@
 /redirect/collab-comfort-season-the-everyday-cotswolds https://buy.stripe.com/dRm9AMcQMf5g3Ic1tub3q00 302
 /redirect/collab-comfort-season-the-old-swan-pub https://buy.stripe.com/dRm4gsg2Y7CO2E82xyb3q05 302
 /redirect/collab-comfort-season-snowshill https://buy.stripe.com/14A6oA6so3my6Uofkkb3q04 302
+/redirect/collab-comfort-season-instagram https://www.instagram.com/comfortseason.co.uk/reels/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=comfort_season_collab 302
+/redirect/collab-comfort-season-website https://comfortseason.co.uk/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=comfort_season_collab&utm_content=collabs_page 302
+/redirect/contact-commissions-top-instagram https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=commissions_top 302
+/redirect/contact-commissions-bottom-instagram https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=commissions_bottom 302
+/redirect/contact-collabs-top-instagram https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_top 302
+/redirect/contact-collabs-bottom-instagram https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_bottom 302

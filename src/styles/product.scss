@@ -1,19 +1,3 @@
-.product-body .site-header {
-  color: var(--color-paper-light);
-  background: #f3ede2;
-  background: linear-gradient(90deg, rgb(243 237 226 / 100%) 20%, rgb(11 37 65 / 100%) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#F3EDE2", endColorstr="#0B2541", GradientType=1);
-}
-
-.product-body .site-header__actions,
-.product-body .site-header__desktop-nav {
-  color: var(--color-paper-light);
-}
-
-.product-body .site-header__actions .icon-link {
-  color: var(--color-paper-light);
-}
-
 .product-page {
   min-height: 80vh;
 }

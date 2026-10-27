@@ -74,7 +74,9 @@ products:
       sku: PS-PR-005,
       title: Meet Me in Eastbourne,
       handle: meet-me-in-eastbourne-ps-pr-005,
-      description: 'The residential area of Sovereign Harbour always invites a pause, a retrospection...',
+      showInProductSearch: false,
+      showInCommissions: true,
+      description: 'After years apart, a group of friends returned to Sovereign Harbour, where they had first met as girls, to celebrate one of their birthdays. This commission captures the warmth of their reunion and gives them a keepsake of the place, and the friendship, that brought them together.',
       placeName: 'Sovereign Harbour, Eastbourne',
       publishedOrder: 1,
       collections: [True Strokes Collection],
@@ -279,6 +281,72 @@ products:
       driveFileId: 1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz,
     }
   - {
+      family: artwork,
+      sku: PS-PR-019,
+      title: Brighton West Pier,
+      handle: brighton-west-pier-ps-pr-019,
+      description: 'Brighton West Pier reaching into the sea, captured in the expressive coastal style of the True Strokes Collection.',
+      placeName: 'West Pier, Brighton',
+      publishedOrder: 1,
+      collections: [True Strokes Collection],
+      orientation: landscape,
+      alt: 'Brighton West Pier extending into the sea in a painterly coastal scene.',
+      assetBase: brighton-west-pier,
+      mockups: { '7x5': ['14'], A4: ['14'], A3: ['14'] },
+      price: { small: 7, medium: 14, large: 28 },
+      driveFileId: 1sDui3t5Vwi4ohrli5quxxIv3r-4hrNP2,
+    }
+  - {
+      family: artwork,
+      sku: PS-PR-020,
+      title: 'King Charles III Coastal Path, Seven Sisters',
+      handle: king-charles-iii-coastal-path-seven-sisters-ps-pr-020,
+      description: 'The King Charles III Coastal Path crossing the Seven Sisters landscape, rendered in the expressive style of the True Strokes Collection.',
+      placeName: 'Seven Sisters, East Sussex',
+      publishedOrder: 1,
+      collections: [True Strokes Collection],
+      orientation: landscape,
+      alt: 'The King Charles III Coastal Path winding through the Seven Sisters coastal landscape.',
+      assetBase: king-charles-iii-coastal-path-seven-sisters,
+      mockups: { '7x5': ['14'], A4: ['14'], A3: ['14'] },
+      price: { small: 7, medium: 14, large: 28 },
+      driveFileId: 1VSEl-rnF03jK1tP7AeE8MFrfgE8k8eiF,
+    }
+  - {
+      family: artwork,
+      sku: PS-PR-021,
+      title: 'Kings Road, Brighton',
+      handle: kings-road-brighton-ps-pr-021,
+      description: 'A Brighton streetscape along Kings Road, captured in the expressive style of the True Strokes Collection.',
+      placeName: 'Kings Road, Brighton',
+      publishedOrder: 1,
+      collections: [True Strokes Collection],
+      orientation: landscape,
+      alt: 'A painterly view along Kings Road in Brighton.',
+      assetBase: kings-road-brighton,
+      mockups: { '7x5': ['14'], A4: ['14'], A3: ['14'] },
+      price: { small: 7, medium: 14, large: 28 },
+      driveFileId: 10WU8nqP6fiXylrgq3fNxaqQzEve2RYJg,
+    }
+  - {
+      family: artwork,
+      sku: PS-PR-022,
+      title: 'A Gift at Devil’s Dyke',
+      handle: a-gift-at-devils-dyke-ps-pr-022,
+      showInProductSearch: false,
+      showInCommissions: true,
+      description: 'Commissioned from us as a gift for a friend, this portrait captures a personal moment at Devil’s Dyke in the evening light.',
+      placeName: 'Devil’s Dyke, Brighton',
+      publishedOrder: 1,
+      collections: [True Strokes Collection],
+      orientation: landscape,
+      alt: 'A woman in a red dress looking out across the hills at Devil’s Dyke in the evening light.',
+      assetBase: a-gift-at-devils-dyke,
+      mockups: { '7x5': ['01'], A4: ['01'], A3: ['01'] },
+      price: { small: 7, medium: 14, large: 28 },
+      driveFileId: 1xmpvPu0Lz3DSCjP7-bVug5t-7bZil03Q,
+    }
+  - {
       family: greeting-card,
       sku: PS-GC-001,
       title: Bodiam Castle,
@@ -322,6 +390,7 @@ products:
         back: { left: 0, top: 0, width: 0.25, height: 1, rotation: 270 },
         front: { left: 0.25, top: 0, width: 0.25, height: 1, rotation: 90 },
       }
+
   - family: greeting-card
     sku: PS-GC-003
     title: 'Airbourne'
@@ -502,3 +571,122 @@ products:
         back: { left: 0, top: 0, width: 0.25, height: 1, rotation: 270 },
         front: { left: 0.25, top: 0, width: 0.25, height: 1, rotation: 90 },
       }
+  - family: greeting-card
+    sku: PS-GC-012
+    title: 'East Dean, South Downs National Park'
+    handle: east-dean-south-downs-national-park-greeting-card-ps-gc-012
+    description: 'A folded 6 × 4 inch greeting card featuring a detailed illustration of East Dean in the South Downs National Park, supplied with an envelope and individually wrapped in clear cellophane.'
+    placeName: 'East Dean, South Downs National Park'
+    publishedOrder: 106
+    collections: ['East Sussex Heritage Series']
+    orientation: landscape
+    alt: 'A greeting card featuring a detailed monochrome illustration of a cottage and flowering garden around East Dean village green.'
+    assetBase: east-dean-south-downs
+    price: 2
+    dimensions: { closed: { width: 6, height: 4, unit: inches } }
+    included: { envelope: true, packaging: 'clear cellophane sleeve' }
+    driveFileId: 1tCKaSUK5rPbBU5hKkdn5etLsB1dlCehQ
+    panels:
+      {
+        back: { left: 0, top: 0, width: 0.25, height: 1, rotation: 270 },
+        front: { left: 0.25, top: 0, width: 0.25, height: 1, rotation: 90 },
+      }
+
+collabs:
+  - id: comfort-season-cotswolds
+    title: The Cotswolds at Home
+    partner: Comfort Season Ltd
+    propertyName: The Minstrels
+    placeName: Moreton-in-Marsh, The Cotswolds
+    story: Created with Comfort Season Ltd for The Minstrels, this collection brings the character of the Cotswolds into a much-loved place to stay. Six original works move between village landmarks and the quieter countryside around them. Curated for the Airbnb, the artworks are part of the guest experience and are not offered for sale online.
+    websiteUrl: https://comfortseason.co.uk/
+    websiteRedirect: /redirect/collab-comfort-season-website
+    instagramRedirect: /redirect/collab-comfort-season-instagram
+    reelUrl: https://www.instagram.com/reels/De17j6vuvAS/
+    reelPoster: /images/collabs/comfort-season-cotswolds/reel-cover.jpg
+    reelPosterAlt: A cosy lounge at The Minstrels, featured in Comfort Season's Cotswolds Reel.
+    artworks:
+      - id: bliss-tweed-mill
+        collabGroup: comfort-season-cotswolds
+        showInProductSearch: false
+        showInCommissions: false
+        showInCollabs: true
+        order: 1
+        title: Bliss Tweed Mill
+        description: Rolling fields and open sky meet around Tweed Mill, a quiet landmark in the countryside near Chipping Norton.
+        placeName: Chipping Norton
+        mapsQuery: Bliss Tweed Mill, Chipping Norton, Oxfordshire, United Kingdom
+        orientation: landscape
+        alt: Rolling green Cotswolds fields with Tweed Mill in the distance beneath a wide blue sky.
+        assetBase: bliss-tweed-mill
+        driveFileId: 1TBsXHm0Ik1hX755Q8KvC2Z0JCz7pSnet
+      - id: minster-lovell-road
+        collabGroup: comfort-season-cotswolds
+        showInProductSearch: false
+        showInCommissions: false
+        showInCollabs: true
+        order: 2
+        title: Minster Lovell Road
+        description: Honey-coloured cottages and gardens in bloom bring a familiar village lane to life.
+        placeName: Minster Lovell
+        mapsQuery: Minster Lovell, Oxfordshire, United Kingdom
+        orientation: landscape
+        alt: A quiet lane of honey-coloured cottages with flowering gardens in Minster Lovell.
+        assetBase: minster-lovell-road
+        driveFileId: 1w5eEWqMHR2gpyuBgkDgHJdz7JMnNoXK5
+      - id: snowshill-at-broadway
+        collabGroup: comfort-season-cotswolds
+        showInProductSearch: false
+        showInCommissions: false
+        showInCollabs: true
+        order: 3
+        title: Snowshill at Broadway
+        description: The village green gathers a church, a bench and a bright red telephone box beneath the summer sky.
+        placeName: Snowshill, near Broadway
+        mapsQuery: Snowshill village, Broadway, United Kingdom
+        orientation: landscape
+        alt: A red telephone box and wooden bench beside the church on Snowshill village green.
+        assetBase: snowshill-at-broadway
+        driveFileId: 1P_R5Tdq4CSg9j2_e4PpHDrYp9V15ns86
+      - id: the-everyday-cotswolds
+        collabGroup: comfort-season-cotswolds
+        showInProductSearch: false
+        showInCommissions: false
+        showInCollabs: true
+        order: 4
+        title: The Everyday Cotswolds
+        description: Sheep graze across open hills as a footpath winds through the simple, generous landscape of the region.
+        placeName: The Cotswolds
+        mapsQuery: The Cotswolds, United Kingdom
+        orientation: landscape
+        alt: Sheep grazing in rolling green countryside beside a winding path and flowering hedgerows.
+        assetBase: the-everyday-cotswolds
+        driveFileId: 1Th9qoRG_zWDDjHKsAyui4j0qP_DhtDE7
+      - id: the-old-swan-pub
+        collabGroup: comfort-season-cotswolds
+        showInProductSearch: false
+        showInCommissions: false
+        showInCollabs: true
+        order: 5
+        title: The Old Swan Pub
+        description: The Old Swan sits among stone cottages and flower-filled gardens in a sunlit village scene.
+        placeName: Minster Lovell
+        mapsQuery: The Old Swan, Minster Lovell, Oxfordshire, United Kingdom
+        orientation: portrait
+        alt: The Old Swan Pub in Minster Lovell, framed by flowering gardens and stone cottages.
+        assetBase: the-old-swan-pub
+        driveFileId: 1zU52H9bmv48b8NO0ibY-SNYKNtJ8zLs0
+      - id: the-cotswolds-doorway
+        collabGroup: comfort-season-cotswolds
+        showInProductSearch: false
+        showInCommissions: false
+        showInCollabs: true
+        order: 6
+        title: The Cotswolds Doorway
+        description: An old arched doorway, sheltered by the twisting form of a tree, turns stone and branches into a storybook entrance.
+        placeName: Stow-on-the-Wold
+        mapsQuery: St Edward's Church, Stow-on-the-Wold, Gloucestershire, United Kingdom
+        orientation: portrait
+        alt: An arched stone doorway framed by the twisting trunks and branches of an old tree.
+        assetBase: the-cotswolds-doorway
+        driveFileId: 1aifUu0mNshE0idw7JJ8pQBjV2hqm2J7r

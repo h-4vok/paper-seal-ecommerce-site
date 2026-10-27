@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { artworks } from '../domain/catalogue';
+import { productPageArtworks } from '../domain/catalogue';
 import { greetingCards, greetingCardPagePath } from '../domain/greeting-cards';
 import { institutionalPages } from '../domain/institutional';
 
@@ -8,7 +8,9 @@ export const GET: APIRoute = ({ site }) => {
   const paths = [
     '/',
     '/artworks',
-    ...artworks.map(({ handle }) => `/artworks/${handle}`),
+    '/commissions',
+    '/collabs',
+    ...productPageArtworks.map(({ handle }) => `/artworks/${handle}`),
     ...greetingCards.map(greetingCardPagePath),
     ...institutionalPages.filter(({ indexable }) => indexable).map(({ slug }) => `/${slug}`),
   ];

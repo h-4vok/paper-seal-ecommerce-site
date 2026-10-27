@@ -42,7 +42,9 @@
         "large": 28
       },
       "driveFileId": "1OFz5NoIqnCis4zfcXbBr-KtzmKqZseVh",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -82,7 +84,9 @@
         "large": 28
       },
       "driveFileId": "18cTMmpaADGFHePTpStBlNmSj8nCf15Ey",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -122,12 +126,16 @@
         "large": 28
       },
       "driveFileId": "1mkZJq6l1cM-_ZhyOyN_VdXfV2zUzvXQT",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
       "title": "Meet Me in Eastbourne",
-      "description": "The residential area of Sovereign Harbour always invites a pause, a retrospection...",
+      "showInProductSearch": false,
+      "showInCommissions": true,
+      "description": "After years apart, a group of friends returned to Sovereign Harbour, where they had first met as girls, to celebrate one of their birthdays. This commission captures the warmth of their reunion and gives them a keepsake of the place, and the friendship, that brought them together.",
       "placeName": "Sovereign Harbour, Eastbourne",
       "publishedOrder": 1,
       "orientation": "landscape",
@@ -202,7 +210,9 @@
         "large": 28
       },
       "driveFileId": "1iW35Qt-6-gV1ngeK4bwSHaZMHqKOXQNa",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -242,7 +252,9 @@
         "medium": 14,
         "large": 28
       },
-      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO"
+      "driveFileId": "1mJfI805ySV2gHLXa0j8WM20svUxeeAPO",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -282,7 +294,9 @@
         "large": 28
       },
       "driveFileId": "11ghqYTjjogWachHOW2EmnXSpVe4dMJmn",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -322,7 +336,9 @@
         "large": 28
       },
       "driveFileId": "15S4jRQMCVgRIyEIu9uUbtqpes7qatdeu",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -362,7 +378,9 @@
         "large": 28
       },
       "driveFileId": "1DaJd8VMFSNSG207bMTiJM7ksoDdYV3S-",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -402,7 +420,9 @@
         "large": 28
       },
       "driveFileId": "1EXlV-GfTOigNwuX9Sn1OV8dropkpvkI0",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -442,7 +462,9 @@
         "large": 28
       },
       "driveFileId": "1Fl-4xj-nHMqDzx-YycYfxjHF8pajjgvS",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -482,7 +504,9 @@
         "large": 28
       },
       "driveFileId": "1LbKstBbKrXIEAF4MyA9X9PN8tRefzb9M",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -522,7 +546,9 @@
         "large": 28
       },
       "driveFileId": "1OZno2NSnheCNBJ5WB4NU6MIImYT7dedO",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -562,7 +588,9 @@
         "large": 28
       },
       "driveFileId": "1W-0e0QJZhYlmC8qZsdpLXcEFMBF9SFFI",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -602,7 +630,9 @@
         "large": 28
       },
       "driveFileId": "1dqLjnXTx-XmoxKlneqvqJ5YpbGgLQgUO",
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "artwork",
@@ -642,6 +672,176 @@
         "large": 28
       },
       "driveFileId": "1yZab-iaqC-SeWPaXrmiW6vwctHmYMXyz",
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
+    },
+    {
+      "family": "artwork",
+      "title": "Brighton West Pier",
+      "description": "Brighton West Pier reaching into the sea, captured in the expressive coastal style of the True Strokes Collection.",
+      "placeName": "West Pier, Brighton",
+      "publishedOrder": 1,
+      "orientation": "landscape",
+      "alt": "Brighton West Pier extending into the sea in a painterly coastal scene.",
+      "assetBase": "brighton-west-pier",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1sDui3t5Vwi4ohrli5quxxIv3r-4hrNP2",
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
+    },
+    {
+      "family": "artwork",
+      "title": "King Charles III Coastal Path, Seven Sisters",
+      "description": "The King Charles III Coastal Path crossing the Seven Sisters landscape, rendered in the expressive style of the True Strokes Collection.",
+      "placeName": "Seven Sisters, East Sussex",
+      "publishedOrder": 1,
+      "orientation": "landscape",
+      "alt": "The King Charles III Coastal Path winding through the Seven Sisters coastal landscape.",
+      "assetBase": "king-charles-iii-coastal-path-seven-sisters",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1VSEl-rnF03jK1tP7AeE8MFrfgE8k8eiF",
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
+    },
+    {
+      "family": "artwork",
+      "title": "Kings Road, Brighton",
+      "description": "A Brighton streetscape along Kings Road, captured in the expressive style of the True Strokes Collection.",
+      "placeName": "Kings Road, Brighton",
+      "publishedOrder": 1,
+      "orientation": "landscape",
+      "alt": "A painterly view along Kings Road in Brighton.",
+      "assetBase": "kings-road-brighton",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "14",
+            "sceneName": "Burgundy Library",
+            "sceneSlug": "14-burgundy-library"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "10WU8nqP6fiXylrgq3fNxaqQzEve2RYJg",
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
+    },
+    {
+      "family": "artwork",
+      "title": "A Gift at Devil’s Dyke",
+      "showInProductSearch": false,
+      "showInCommissions": true,
+      "description": "Commissioned from us as a gift for a friend, this portrait captures a personal moment at Devil’s Dyke in the evening light.",
+      "placeName": "Devil’s Dyke, Brighton",
+      "publishedOrder": 1,
+      "orientation": "landscape",
+      "alt": "A woman in a red dress looking out across the hills at Devil’s Dyke in the evening light.",
+      "assetBase": "a-gift-at-devils-dyke",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1xmpvPu0Lz3DSCjP7-bVug5t-7bZil03Q",
       "watermark": "standard"
     }
   ],
@@ -684,7 +884,9 @@
           "height": 1,
           "rotation": 90
         }
-      }
+      },
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -724,7 +926,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -764,7 +968,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -804,7 +1010,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -844,7 +1052,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -884,7 +1094,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -924,7 +1136,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -964,7 +1178,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1004,7 +1220,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1044,7 +1262,9 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     },
     {
       "family": "greeting-card",
@@ -1084,7 +1304,51 @@
           "rotation": 90
         }
       },
-      "watermark": "standard"
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
+    },
+    {
+      "family": "greeting-card",
+      "title": "East Dean, South Downs National Park",
+      "description": "A folded 6 × 4 inch greeting card featuring a detailed illustration of East Dean in the South Downs National Park, supplied with an envelope and individually wrapped in clear cellophane.",
+      "placeName": "East Dean, South Downs National Park",
+      "publishedOrder": 106,
+      "orientation": "landscape",
+      "alt": "A greeting card featuring a detailed monochrome illustration of a cottage and flowering garden around East Dean village green.",
+      "assetBase": "east-dean-south-downs",
+      "price": 2,
+      "dimensions": {
+        "closed": {
+          "width": 6,
+          "height": 4,
+          "unit": "inches"
+        }
+      },
+      "included": {
+        "envelope": true,
+        "packaging": "clear cellophane sleeve"
+      },
+      "driveFileId": "1tCKaSUK5rPbBU5hKkdn5etLsB1dlCehQ",
+      "panels": {
+        "back": {
+          "left": 0,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 270
+        },
+        "front": {
+          "left": 0.25,
+          "top": 0,
+          "width": 0.25,
+          "height": 1,
+          "rotation": 90
+        }
+      },
+      "watermark": "standard",
+      "showInProductSearch": true,
+      "showInCommissions": false
     }
   ]
 }

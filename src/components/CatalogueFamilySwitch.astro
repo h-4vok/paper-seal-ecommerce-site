@@ -1,0 +1,82 @@
+---
+import type { ProductFamily } from '../domain/product-families';
+import ArtworkPicture from './ArtworkPicture.astro';
+
+interface Preview {
+  assetBase: string;
+  sourceBase?: string;
+  alt: string;
+}
+
+interface Props {
+  family: ProductFamily;
+  label: string;
+  previews: Preview[];
+  variant: 'choice' | 'invitation';
+  active?: boolean;
+  selectedLabel?: string;
+  invitation?: string;
+  actionLabel?: string;
+}
+
+const {
+  family,
+  label,
+  previews,
+  variant,
+  active = false,
+  selectedLabel = 'Selected',
+  invitation,
+  actionLabel = label,
+} = Astro.props;
+---
+
+<button
+  class:list={[
+    'catalogue-family-switch',
+    `catalogue-family-switch--${variant}`,
+    { 'is-active': active },
+  ]}
+  type="button"
+  data-family={family}
+  data-family-choice={variant === 'choice' ? '' : undefined}
+  data-family-invitation={variant === 'invitation' ? '' : undefined}
+  aria-pressed={variant === 'choice' ? active : undefined}
+  hidden={variant === 'invitation'}
+>
+  <span class="catalogue-family-switch__fan" aria-hidden="true">
+    {previews.map((preview) => (
+      <span class="catalogue-family-switch__fan-card">
+        <ArtworkPicture
+          assetBase={preview.assetBase}
+          sourceBase={preview.sourceBase}
+          alt={preview.alt}
+          orientation="landscape"
+          imageWidth={720}
+          imageHeight={540}
+          sizes="(min-width: 64rem) 10rem, 36vw"
+          eager={variant === 'choice'}
+          watermark={false}
+          resolution={720}
+          srcsetWidths={[720, 1440]}
+          variant={family === 'artwork' ? 'catalogue' : 'flat'}
+        />
+      </span>
+    ))}
+  </span>
+  {variant === 'choice' ? (
+    <span class="catalogue-family-switch__label">
+      {label}
+      <span class="catalogue-family-switch__selected" aria-hidden="true">
+        {selectedLabel}
+      </span>
+    </span>
+  ) : (
+    <span class="catalogue-family-switch__invitation">
+      <span>{invitation}</span>
+      <span class="catalogue-family-switch__action">
+        {actionLabel} <span aria-hidden="true">→</span>
+      </span>
+    </span>
+  )}
+</button>

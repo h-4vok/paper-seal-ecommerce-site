@@ -1,6 +1,6 @@
 import generatedCatalogue from '../data/artworks.json';
 import { greetingCards, type GreetingCard } from './greeting-cards';
-import { productPagePath } from './product-families';
+import { productPagePath, type ProductFamily } from './product-families';
 
 export type Orientation = 'landscape' | 'portrait';
 export type ArtworkSize = 'small' | 'medium' | 'large';
@@ -29,6 +29,8 @@ export interface Artwork {
   description: string;
   placeName: string;
   publishedOrder: number;
+  showInProductSearch: boolean;
+  showInCommissions: boolean;
   collections: string[];
   orientation: Orientation;
   alt: string;
@@ -83,7 +85,7 @@ export function snipcartItemAttributes(artwork: Artwork, image: string, url: str
 
 export interface CatalogueState {
   query: string;
-  place: string;
+  family: ProductFamily;
   sort: 'newest' | 'title';
 }
 
@@ -131,6 +133,11 @@ export function validateCatalogue(input: unknown): Artwork[] {
     }
     if (!Number.isInteger(item.publishedOrder) || (item.publishedOrder as number) < 0) {
       throw new Error(`Artwork ${index + 1} has an invalid publishedOrder.`);
+    }
+    for (const field of ['showInProductSearch', 'showInCommissions'] as const) {
+      if (item[field] !== undefined && typeof item[field] !== 'boolean') {
+        throw new Error(`Artwork ${index + 1} has an invalid ${field}.`);
+      }
     }
     if (
       !Array.isArray(item.collections) ||
@@ -193,12 +200,67 @@ export function validateCatalogue(input: unknown): Artwork[] {
     }
     skus.add(item.sku as string);
     handles.add(item.handle as string);
-    return { ...item, family: 'artwork' } as unknown as Artwork;
+    return {
+      ...item,
+      family: 'artwork',
+      showInProductSearch: item.showInProductSearch ?? true,
+      showInCommissions: item.showInCommissions ?? false,
+    } as unknown as Artwork;
   });
 }
 
 export const artworks = validateCatalogue(generatedCatalogue.artworks);
-export const catalogueProducts: CatalogueProduct[] = [...artworks, ...greetingCards];
+export const commissionArtworks = artworks.filter(({ showInCommissions }) => showInCommissions);
+// A commission-only artwork has no sellable detail route; a work explicitly shown in Search keeps its PDP.
+export function hasArtworkProductPageVisibility(artwork: {
+  showInProductSearch: boolean;
+  showInCommissions: boolean;
+}): boolean {
+  return artwork.showInProductSearch || !artwork.showInCommissions;
+}
+export const productPageArtworks = artworks.filter(hasArtworkProductPageVisibility);
+export const catalogueProducts: CatalogueProduct[] = [...artworks, ...greetingCards].filter(
+  ({ showInProductSearch }) => showInProductSearch,
+);
+
+export function familyPreviewProducts(
+  products: CatalogueProduct[],
+  family: ProductFamily,
+  limit = 5,
+): CatalogueProduct[] {
+  const sorted = products
+    .filter((product) => product.family === family)
+    .sort(
+      (left, right) =>
+        right.publishedOrder - left.publishedOrder || left.sku.localeCompare(right.sku),
+    );
+  if (family !== 'greeting-card' || limit < 2) return sorted.slice(0, limit);
+
+  const heritageCount = Math.ceil(limit / 2);
+  const inkwashCount = Math.floor(limit / 2);
+  const heritage = sorted
+    .filter(({ collections }) => collections.includes('East Sussex Heritage Series'))
+    .slice(0, heritageCount);
+  const heritageSkus = new Set(heritage.map(({ sku }) => sku));
+  const inkwash = sorted
+    .filter(
+      ({ collections, sku }) =>
+        collections.includes('Original Inkwash Series') && !heritageSkus.has(sku),
+    )
+    .slice(0, inkwashCount);
+  const selected = [...heritage, ...inkwash];
+  const selectedSkus = new Set(selected.map(({ sku }) => sku));
+
+  for (const product of sorted) {
+    if (selected.length >= limit) break;
+    if (!selectedSkus.has(product.sku)) {
+      selected.push(product);
+      selectedSkus.add(product.sku);
+    }
+  }
+
+  return selected.slice(0, limit);
+}
 
 export function mockupImagePath(
   artwork: Artwork,
@@ -260,9 +322,7 @@ export function filterCatalogue<T extends CatalogueSearchItem>(
   state: CatalogueState,
 ): T[] {
   const filtered = items.filter(
-    (artwork) =>
-      artworkMatches(artwork, state.query) &&
-      (state.place === 'all' || artwork.placeName === state.place),
+    (artwork) => artwork.family === state.family && artworkMatches(artwork, state.query),
   );
   return [...filtered].sort((left, right) =>
     state.sort === 'title'

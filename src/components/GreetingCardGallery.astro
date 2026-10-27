@@ -16,7 +16,7 @@ const slides = [
     label: labels.perspective,
     alt: card.alt,
     srcBase: greetingCardImagePath(card, 'perspective', 720).replace(/-720\.jpg$/, ''),
-    watermark: false,
+    watermark: true,
   },
   {
     kind: 'front',
@@ -30,7 +30,7 @@ const slides = [
     label: labels.back,
     alt: labels.backAlt.replace('{title}', card.title),
     srcBase: greetingCardImagePath(card, 'back', 720).replace(/-720\.jpg$/, ''),
-    watermark: true,
+    watermark: false,
   },
 ];
 ---

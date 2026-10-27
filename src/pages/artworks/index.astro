@@ -1,14 +1,18 @@
 ---
 import ArtworkCard from '../../components/ArtworkCard.astro';
 import GreetingCardCard from '../../components/GreetingCardCard.astro';
+import CatalogueFamilySwitch from '../../components/CatalogueFamilySwitch.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   artworks,
   catalogueProducts,
+  familyPreviewProducts,
   filterCatalogue,
   mockupImagePath,
   productPath,
 } from '../../domain/catalogue';
+import type { ProductFamily } from '../../domain/product-families';
+import { greetingCardImagePath } from '../../domain/greeting-cards';
 import { copy } from '../../content/copy';
 import '../../styles/catalogue.scss';
 
@@ -19,13 +23,12 @@ const catalogue = {
   heading: rawCatalogue.intro.heading,
   headingEyebrow: rawCatalogue.intro.eyebrow,
   intro: rawCatalogue.intro.copy,
+  familyGroupLabel: rawCatalogue.controls.familyGroupLabel,
+  artworksLabel: rawCatalogue.controls.artworksLabel,
+  greetingCardsLabel: rawCatalogue.controls.greetingCardsLabel,
+  selectedLabel: rawCatalogue.controls.selectedLabel,
   searchLabel: rawCatalogue.controls.searchLabel,
   searchPlaceholder: rawCatalogue.controls.searchPlaceholder,
-  placeFilterLabel: rawCatalogue.controls.placeLabel,
-  allPlacesLabel: rawCatalogue.controls.allPlaces,
-  availabilityLabel: rawCatalogue.controls.availabilityLabel,
-  availabilityBadge: rawCatalogue.controls.availabilityBadge,
-  availabilityNote: rawCatalogue.controls.availabilityNote,
   sortLabel: rawCatalogue.controls.sortLabel,
   newestLabel: rawCatalogue.controls.newest,
   titleSortLabel: rawCatalogue.controls.title,
@@ -34,18 +37,34 @@ const catalogue = {
   emptyEyebrow: rawCatalogue.results.emptyEyebrow,
   emptyHeading: rawCatalogue.results.emptyHeading,
   resetLabel: rawCatalogue.results.reset,
+  otherFamilyInvite: rawCatalogue.results.otherFamilyInvite,
+  otherFamilyAction: rawCatalogue.results.otherFamilyAction,
 };
 const title = catalogue.title;
 const description = catalogue.description;
 const siteOrigin = Astro.site ?? Astro.url.origin;
-const places = [...new Set(catalogueProducts.map(({ placeName }) => placeName))].sort((a, b) =>
-  a.localeCompare(b, 'en-GB'),
-);
 const initialProducts = filterCatalogue(catalogueProducts, {
   query: '',
-  place: 'all',
+  family: 'artwork',
   sort: 'newest',
 });
+const initialVisibleHandles = new Set(initialProducts.slice(0, 4).map(({ handle }) => handle));
+const initialFamilyPreviews = (family: ProductFamily) =>
+  familyPreviewProducts(catalogueProducts, family).map((product) => ({
+    assetBase: product.assetBase,
+    sourceBase:
+      product.family === 'greeting-card'
+        ? greetingCardImagePath(product, 'search', 720).replace(/-720\.jpg$/, '')
+        : undefined,
+    alt: product.alt,
+  }));
+const familyPreviews = {
+  artwork: initialFamilyPreviews('artwork'),
+  'greeting-card': initialFamilyPreviews('greeting-card'),
+};
+const allProducts = [...catalogueProducts].sort(
+  (left, right) => right.publishedOrder - left.publishedOrder || left.sku.localeCompare(right.sku),
+);
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -101,6 +120,35 @@ const structuredData = [
         <p>{catalogue.intro}</p>
       </header>
 
+      <section
+        class="catalogue-family-selector"
+        aria-label={catalogue.familyGroupLabel}
+        data-family-selector
+      >
+        <h2 class="visually-hidden">{catalogue.familyGroupLabel}</h2>
+        <div
+          class="catalogue-family-selector__choices"
+          role="group"
+          aria-label={catalogue.familyGroupLabel}
+        >
+          <CatalogueFamilySwitch
+            family="artwork"
+            label={catalogue.artworksLabel}
+            previews={familyPreviews.artwork}
+            variant="choice"
+            active
+            selectedLabel={catalogue.selectedLabel}
+          />
+          <CatalogueFamilySwitch
+            family="greeting-card"
+            label={catalogue.greetingCardsLabel}
+            previews={familyPreviews['greeting-card']}
+            variant="choice"
+            selectedLabel={catalogue.selectedLabel}
+          />
+        </div>
+      </section>
+
       <form class="catalogue-toolbar" role="search" data-catalogue-controls>
         <label class="catalogue-search">
           <span class="visually-hidden">{catalogue.searchLabel}</span>
@@ -117,27 +165,6 @@ const structuredData = [
           />
         </label>
         <label>
-          <span class="catalogue-toolbar__label">{catalogue.placeFilterLabel}</span>
-          <select name="place" aria-label={catalogue.placeFilterLabel} data-place>
-            <option value="all">{catalogue.allPlacesLabel}</option>
-            {places.map((place) => (
-              <option value={place}>{place}</option>
-            ))}
-          </select>
-        </label>
-        <button
-          class="catalogue-availability"
-          type="button"
-          aria-disabled="true"
-          aria-describedby="availability-note"
-        >
-          {catalogue.availabilityLabel}{' '}
-          <span class="catalogue-availability__badge">{catalogue.availabilityBadge}</span>
-        </button>
-        <span id="availability-note" class="visually-hidden">
-          {catalogue.availabilityNote}
-        </span>
-        <label>
           <span class="catalogue-toolbar__label">{catalogue.sortLabel}</span>
           <select name="sort" aria-label={catalogue.sortLabel} data-sort>
             <option value="newest">{catalogue.newestLabel}</option>
@@ -149,21 +176,28 @@ const structuredData = [
       <div class="catalogue-results-heading">
         <p class="eyebrow">{catalogue.collectionLabel}</p>
         <p aria-live="polite" aria-atomic="true" data-result-count>
-          {catalogueProducts.length} {catalogue.resultCountLabel}
+          {initialProducts.length} {catalogue.resultCountLabel}
         </p>
       </div>
       <div class="artwork-grid" data-artwork-grid>
-        {initialProducts.map((product, index) =>
+        {allProducts.map((product) =>
           product.family === 'artwork' ? (
-            <ArtworkCard artwork={product} eager={index === 0} initiallyHidden={index >= 4} />
+            <ArtworkCard
+              artwork={product}
+              eager={product.handle === initialProducts[0]?.handle}
+              initiallyHidden={!initialVisibleHandles.has(product.handle)}
+            />
           ) : (
-            <GreetingCardCard card={product} eager={index === 0} initiallyHidden={index >= 4} />
+            <GreetingCardCard
+              card={product}
+              initiallyHidden={!initialVisibleHandles.has(product.handle)}
+            />
           ),
         )}
       </div>
       <noscript>
         <style>
-          .artwork-card[hidden] {
+          .artwork-card[hidden][data-product-family='artwork'] {
             display: block;
           }
         </style>
@@ -176,6 +210,22 @@ const structuredData = [
         </button>
       </div>
       <div class="catalogue-sentinel" aria-hidden="true" data-sentinel></div>
+      <CatalogueFamilySwitch
+        family="greeting-card"
+        label={catalogue.greetingCardsLabel}
+        previews={familyPreviews['greeting-card']}
+        variant="invitation"
+        invitation={catalogue.otherFamilyInvite.replace('{family}', catalogue.greetingCardsLabel)}
+        actionLabel={catalogue.otherFamilyAction}
+      />
+      <CatalogueFamilySwitch
+        family="artwork"
+        label={catalogue.artworksLabel}
+        previews={familyPreviews.artwork}
+        variant="invitation"
+        invitation={catalogue.otherFamilyInvite.replace('{family}', catalogue.artworksLabel)}
+        actionLabel={catalogue.otherFamilyAction}
+      />
     </section>
   </main>
 </BaseLayout>
@@ -187,13 +237,19 @@ const structuredData = [
     nextVisibleCount,
     type CatalogueState,
   } from '../../domain/catalogue';
+  import { productFamilyFromQuery } from '../../domain/product-families';
 
   const root = document.querySelector('[data-catalogue]');
   const resultCountLabel = root?.getAttribute('data-result-label') ?? 'artworks';
   const form = root?.querySelector('[data-catalogue-controls]');
   const search = root?.querySelector('[data-search]');
-  const place = root?.querySelector('[data-place]');
   const sort = root?.querySelector('[data-sort]');
+  const familyChoices = [
+    ...(root?.querySelectorAll<HTMLButtonElement>('[data-family-choice]') ?? []),
+  ];
+  const familyInvitations = [
+    ...(root?.querySelectorAll<HTMLButtonElement>('[data-family-invitation]') ?? []),
+  ];
   const grid = root?.querySelector('[data-artwork-grid]');
   const count = root?.querySelector('[data-result-count]');
   const empty = root?.querySelector('[data-empty-state]');
@@ -205,12 +261,12 @@ const structuredData = [
       card,
     ]),
   );
-  let visibleCount = 4;
+  const hasInfiniteScroll = 'IntersectionObserver' in window;
+  let visibleCount = hasInfiniteScroll ? 4 : Number.MAX_SAFE_INTEGER;
   let currentMatches = catalogueProducts;
   const controlsReady =
     form instanceof HTMLFormElement &&
     search instanceof HTMLInputElement &&
-    place instanceof HTMLSelectElement &&
     sort instanceof HTMLSelectElement &&
     grid instanceof HTMLElement &&
     count instanceof HTMLElement &&
@@ -219,14 +275,18 @@ const structuredData = [
   function readState(): CatalogueState {
     return {
       query: search instanceof HTMLInputElement ? search.value : '',
-      place: place instanceof HTMLSelectElement ? place.value : 'all',
+      family:
+        familyChoices.find((choice) => choice.getAttribute('aria-pressed') === 'true')?.dataset
+          .family === 'greeting-card'
+          ? 'greeting-card'
+          : 'artwork',
       sort: sort instanceof HTMLSelectElement && sort.value === 'title' ? 'title' : 'newest',
     };
   }
   function updateUrl(state: CatalogueState) {
     const params = new URLSearchParams();
     if (state.query) params.set('q', state.query);
-    if (state.place !== 'all') params.set('place', state.place);
+    if (state.family !== 'artwork') params.set('family', state.family);
     if (state.sort !== 'newest') params.set('sort', state.sort);
     history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}`);
   }
@@ -234,6 +294,11 @@ const structuredData = [
     if (!controlsReady) return;
     const state = readState();
     currentMatches = filterCatalogue(catalogueProducts, state);
+    for (const choice of familyChoices) {
+      const selected = choice.dataset.family === state.family;
+      choice.setAttribute('aria-pressed', String(selected));
+      choice.classList.toggle('is-active', selected);
+    }
     currentMatches.forEach((artwork) => {
       const card = cardMap.get(artwork.handle);
       if (card) grid.append(card);
@@ -247,31 +312,75 @@ const structuredData = [
     count.setAttribute('aria-live', announce ? 'polite' : 'off');
     empty.hidden = currentMatches.length !== 0;
     if (sentinel instanceof HTMLElement) sentinel.hidden = currentMatches.length <= visibleCount;
+    const otherFamily = state.family === 'artwork' ? 'greeting-card' : 'artwork';
+    familyInvitations.forEach((invitation) => {
+      invitation.hidden =
+        invitation.dataset.family !== otherFamily || currentMatches.length > visibleCount;
+    });
     updateUrl(state);
   }
   if (controlsReady) {
     const params = new URLSearchParams(location.search);
     search.value = params.get('q') ?? '';
-    const requestedPlace = params.get('place') ?? 'all';
-    place.value = [...place.options].some(({ value }) => value === requestedPlace)
-      ? requestedPlace
-      : 'all';
+    const initialFamily = productFamilyFromQuery(params.get('family'));
+    for (const choice of familyChoices) {
+      const selected = choice.dataset.family === initialFamily;
+      choice.setAttribute('aria-pressed', String(selected));
+      choice.classList.toggle('is-active', selected);
+    }
     sort.value = params.get('sort') === 'title' ? 'title' : 'newest';
     render({ announce: false });
     const update = () => {
-      visibleCount = 4;
+      visibleCount = hasInfiniteScroll ? 4 : Number.MAX_SAFE_INTEGER;
       render();
     };
     form.addEventListener('input', update);
     form.addEventListener('change', update);
     form.addEventListener('submit', (event) => event.preventDefault());
+    familyChoices.forEach((choice) => {
+      choice.addEventListener('click', () => {
+        const requestedFamily = choice.dataset.family;
+        if (requestedFamily !== 'artwork' && requestedFamily !== 'greeting-card') return;
+        for (const familyChoice of familyChoices) {
+          const selected = familyChoice.dataset.family === requestedFamily;
+          familyChoice.setAttribute('aria-pressed', String(selected));
+          familyChoice.classList.toggle('is-active', selected);
+        }
+        visibleCount = hasInfiniteScroll ? 4 : Number.MAX_SAFE_INTEGER;
+        render();
+      });
+    });
+    familyInvitations.forEach((familyInvitation) =>
+      familyInvitation.addEventListener('click', () => {
+        const requestedFamily = familyInvitation.dataset.family;
+        if (requestedFamily !== 'artwork' && requestedFamily !== 'greeting-card') return;
+        for (const choice of familyChoices) {
+          const selected = choice.dataset.family === requestedFamily;
+          choice.setAttribute('aria-pressed', String(selected));
+          choice.classList.toggle('is-active', selected);
+        }
+        visibleCount = hasInfiniteScroll ? 4 : Number.MAX_SAFE_INTEGER;
+        render();
+        root?.scrollIntoView({
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'auto'
+            : 'smooth',
+          block: 'start',
+        });
+        familyChoices
+          .find((choice) => choice.dataset.family === requestedFamily)
+          ?.focus({
+            preventScroll: true,
+          });
+      }),
+    );
     reset?.addEventListener('click', () => {
       form.reset();
       visibleCount = 4;
       render();
       search.focus();
     });
-    if (sentinel && 'IntersectionObserver' in window) {
+    if (sentinel && hasInfiniteScroll) {
       const observer = new IntersectionObserver(
         (entries) => {
           if (
@@ -285,6 +394,8 @@ const structuredData = [
         { rootMargin: '400px 0px' },
       );
       observer.observe(sentinel);
+    } else {
+      render({ announce: false });
     }
     history.scrollRestoration = 'auto';
   }

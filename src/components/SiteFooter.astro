@@ -13,7 +13,8 @@ const year = new Date().getFullYear();
       <p>{footer.explore}</p>
       <a href="/artworks">{footer.allArtworks}</a>
       <a href="/our-story">{footer.ourStory}</a>
-      <a href="/journal">{navigation.items[2].label}</a>
+      <a href={navigation.items[2].href}>{navigation.items[2].label}</a>
+      <a href="/commissions">{footer.commissions}</a>
     </nav>
     <nav aria-label={footer.goodToKnow}>
       <p>{footer.goodToKnow}</p>
