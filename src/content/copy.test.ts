@@ -5,9 +5,10 @@ type LoadedCopy = {
   shared: { navigation: { items: unknown[] } };
   home: { seo: { title: string } };
   catalogue: { controls: { searchPlaceholder: string } };
-  commissions: { seo: { title: string }; galleryLabel: string };
+  commissions: { seo: { title: string }; heading: string; galleryLabel: string };
   collabs: {
     seo: { title: string };
+    heading: string;
     galleryLabel: string;
     mapLink: string;
     contact: {
@@ -43,6 +44,8 @@ describe('editorial copy', () => {
     expect(loaded.catalogue.controls.searchPlaceholder).toBeTruthy();
     expect(copy.commissions.seo.title).toContain('Commissioned Artworks');
     expect(copy.commissions.galleryLabel).toBeTruthy();
+    expect(loaded.collabs.heading).not.toBe(loaded.commissions.heading);
+    expect(loaded.collabs.heading).toBe('A shared vision, made visible.');
     expect(copy.commissions.contact.actions).toMatchObject({
       whatsapp: expect.stringContaining('WhatsApp'),
       instagram: expect.stringContaining('Instagram'),
