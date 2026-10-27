@@ -372,6 +372,7 @@
 .collabs-lightbox__image-wrap .artwork-watermark {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 .collabs-lightbox__fallback {

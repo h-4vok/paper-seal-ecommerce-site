@@ -12,10 +12,14 @@ function createGallery() {
           data-watermark-profile="high-contrast"></button>
       </article>
       <dialog data-collab-lightbox aria-label="Artwork gallery">
-        <button type="button" data-collab-close-image>Close</button>
-        <img data-collab-lightbox-image alt="">
-        <span data-collab-lightbox-watermark></span>
-        <span data-collab-lightbox-fallback hidden></span>
+        <div class="collabs-lightbox__surface">
+          <button type="button" data-collab-close-image>Close</button>
+          <div class="collabs-lightbox__image-wrap">
+            <img data-collab-lightbox-image alt="">
+            <span data-collab-lightbox-watermark></span>
+            <span data-collab-lightbox-fallback hidden></span>
+          </div>
+        </div>
       </dialog>
     </section>
   `);
@@ -56,7 +60,22 @@ describe('collab gallery interactions', () => {
     expect(dom.window.document.activeElement).toBe(trigger);
   });
 
-  it('closes from the lightbox backdrop and exposes a clear image error state', () => {
+  it('keeps clicks on the image open and closes clicks outside it', () => {
+    const { dom, gallery, dialog } = createGallery();
+    bindCollabGallery(gallery);
+    const trigger = gallery.querySelector<HTMLButtonElement>('[data-collab-open-image]')!;
+    const image = dialog.querySelector<HTMLImageElement>('[data-collab-lightbox-image]')!;
+
+    trigger.click();
+    image.click();
+    expect(dialog.open).toBe(true);
+
+    const outsideImage = dialog.querySelector<HTMLElement>('.collabs-lightbox__surface')!;
+    outsideImage.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
+    expect(dialog.open).toBe(false);
+  });
+
+  it('exposes a clear image error state and closes a click on the lightbox backdrop', () => {
     const { dom, gallery, dialog } = createGallery();
     bindCollabGallery(gallery);
     const trigger = gallery.querySelector<HTMLButtonElement>('[data-collab-open-image]')!;
@@ -71,7 +90,7 @@ describe('collab gallery interactions', () => {
     expect(fallback.getAttribute('aria-label')).toBe('A painted Cotswolds scene');
     expect(watermark.hidden).toBe(true);
 
-    dialog.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
+    dialog.dispatchEvent(new dom.window.MouseEvent('click'));
     expect(dialog.open).toBe(false);
   });
 

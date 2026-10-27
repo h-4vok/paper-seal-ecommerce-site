@@ -59,7 +59,7 @@ export function bindCollabGallery(gallery: HTMLElement): void {
     dialog.close();
   });
   dialog?.addEventListener('click', (event) => {
-    if (event.target === dialog) dialog.close();
+    if (event.target !== image) dialog.close();
   });
   dialog?.addEventListener('close', () => {
     returnFocusTo?.focus();
