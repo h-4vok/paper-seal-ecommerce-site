@@ -352,7 +352,19 @@ textarea {
   position: relative;
   z-index: 20;
   border-bottom: 0.06rem solid rgb(16 43 59 / 14%);
-  background: rgb(243 237 226 / 95%);
+  color: var(--color-paper-light);
+  background: #f3ede2;
+  background: linear-gradient(90deg, rgb(243 237 226 / 100%) 20%, rgb(11 37 65 / 100%) 100%);
+}
+
+.site-header__actions,
+.site-header__desktop-nav {
+  color: var(--color-paper-light);
+}
+
+.site-header__actions .icon-link,
+.site-header__actions .icon-button {
+  color: var(--color-paper-light);
 }
 
 .site-header__inner {
