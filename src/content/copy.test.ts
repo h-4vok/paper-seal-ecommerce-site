@@ -58,7 +58,7 @@ describe('editorial copy', () => {
     expect(loaded.collabs.contact.actions.whatsapp).toContain('WhatsApp');
     expect(loaded.collabs.contact.top.copy).toContain('collaboration');
     expect(loaded.collabs.contact.bottom.copy).not.toMatch(/call/i);
-    expect(loaded.collabs.uniqueWorksNote).toContain('not available to buy');
+    expect(loaded.collabs.uniqueWorksNote).toContain('available to buy exclusively to guests');
     expect(loaded.cart.header.heading).toBeTruthy();
     expect(loaded.product.labels.addToCart).toBeTruthy();
     expect(loaded.product.labels.selectSizeCta).toBe('Select size');
