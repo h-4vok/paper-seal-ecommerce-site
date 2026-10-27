@@ -21,8 +21,8 @@ import {
 
 describe('catalogue model', () => {
   it('validates the committed catalogue and product presentation constants', () => {
-    expect(artworks).toHaveLength(19);
-    expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(19);
+    expect(artworks).toHaveLength(20);
+    expect(new Set(artworks.map(({ sku }) => sku)).size).toBe(20);
     expect(artworks.map(({ sku }) => sku)).toEqual(
       expect.arrayContaining(['PS-PR-019', 'PS-PR-020', 'PS-PR-021']),
     );
@@ -31,10 +31,17 @@ describe('catalogue model', () => {
 
   it('keeps search and commissions visibility independent and omits commissioned product pages', () => {
     const commissioned = artworks.find(({ title }) => title === 'Meet Me in Eastbourne');
+    const giftCommission = artworks.find(({ title }) => title === 'A Gift at Devil’s Dyke');
 
     expect(commissioned).toMatchObject({ showInProductSearch: false, showInCommissions: true });
     expect(catalogueProducts.some(({ title }) => title === 'Meet Me in Eastbourne')).toBe(false);
-    expect(commissionArtworks.map(({ title }) => title)).toEqual(['Meet Me in Eastbourne']);
+    expect(giftCommission).toMatchObject({ showInProductSearch: false, showInCommissions: true });
+    expect(catalogueProducts.some(({ title }) => title === 'A Gift at Devil’s Dyke')).toBe(false);
+    expect(commissionArtworks.map(({ title }) => title)).toEqual([
+      'Meet Me in Eastbourne',
+      'A Gift at Devil’s Dyke',
+    ]);
+    expect(productPageArtworks.some(({ title }) => title === 'A Gift at Devil’s Dyke')).toBe(false);
     expect(productPageArtworks.some(({ title }) => title === 'Meet Me in Eastbourne')).toBe(false);
     expect(artworks.find(({ title }) => title === 'New Eastbourne Flower Bed')).toMatchObject({
       showInProductSearch: true,

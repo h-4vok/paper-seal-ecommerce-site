@@ -801,6 +801,48 @@
       "watermark": "standard",
       "showInProductSearch": true,
       "showInCommissions": false
+    },
+    {
+      "family": "artwork",
+      "title": "A Gift at Devil’s Dyke",
+      "showInProductSearch": false,
+      "showInCommissions": true,
+      "description": "Commissioned from us as a gift for a friend, this portrait captures a personal moment at Devil’s Dyke in the evening light.",
+      "placeName": "Devil’s Dyke, Brighton",
+      "publishedOrder": 1,
+      "orientation": "landscape",
+      "alt": "A woman in a red dress looking out across the hills at Devil’s Dyke in the evening light.",
+      "assetBase": "a-gift-at-devils-dyke",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ]
+      },
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "driveFileId": "1xmpvPu0Lz3DSCjP7-bVug5t-7bZil03Q",
+      "watermark": "standard"
     }
   ],
   "greetingCards": [

@@ -914,6 +914,54 @@
         "width": 720,
         "height": 512
       }
+    },
+    {
+      "family": "artwork",
+      "sku": "PS-PR-022",
+      "title": "A Gift at Devil’s Dyke",
+      "handle": "a-gift-at-devils-dyke-ps-pr-022",
+      "showInProductSearch": false,
+      "showInCommissions": true,
+      "description": "Commissioned from us as a gift for a friend, this portrait captures a personal moment at Devil’s Dyke in the evening light.",
+      "placeName": "Devil’s Dyke, Brighton",
+      "publishedOrder": 1,
+      "collections": ["True Strokes Collection"],
+      "orientation": "landscape",
+      "alt": "A woman in a red dress looking out across the hills at Devil’s Dyke in the evening light.",
+      "assetBase": "a-gift-at-devils-dyke",
+      "price": {
+        "small": 7,
+        "medium": 14,
+        "large": 28
+      },
+      "watermark": "standard",
+      "mockups": {
+        "7x5": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a4": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ],
+        "a3": [
+          {
+            "sceneId": "01",
+            "sceneName": "Ivory Shelf",
+            "sceneSlug": "01-ivory-shelf"
+          }
+        ]
+      },
+      "imageDimensions": {
+        "width": 720,
+        "height": 510
+      }
     }
   ]
 }

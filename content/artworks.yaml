@@ -329,6 +329,24 @@ products:
       driveFileId: 10WU8nqP6fiXylrgq3fNxaqQzEve2RYJg,
     }
   - {
+      family: artwork,
+      sku: PS-PR-022,
+      title: 'A Gift at Devil’s Dyke',
+      handle: a-gift-at-devils-dyke-ps-pr-022,
+      showInProductSearch: false,
+      showInCommissions: true,
+      description: 'Commissioned from us as a gift for a friend, this portrait captures a personal moment at Devil’s Dyke in the evening light.',
+      placeName: 'Devil’s Dyke, Brighton',
+      publishedOrder: 1,
+      collections: [True Strokes Collection],
+      orientation: landscape,
+      alt: 'A woman in a red dress looking out across the hills at Devil’s Dyke in the evening light.',
+      assetBase: a-gift-at-devils-dyke,
+      mockups: { '7x5': ['01'], A4: ['01'], A3: ['01'] },
+      price: { small: 7, medium: 14, large: 28 },
+      driveFileId: 1xmpvPu0Lz3DSCjP7-bVug5t-7bZil03Q,
+    }
+  - {
       family: greeting-card,
       sku: PS-GC-001,
       title: Bodiam Castle,

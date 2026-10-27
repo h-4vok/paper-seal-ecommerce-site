@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { readFile } from 'node:fs/promises';
-import { artworks } from './domain/catalogue';
+import { artworks, productPageArtworks } from './domain/catalogue';
 import { greetingCards, greetingCardPagePath } from './domain/greeting-cards';
 import { collabs } from './domain/collabs';
 import { GET as getRobots } from './pages/robots.txt';
@@ -16,7 +16,7 @@ describe('SEO route bodies', () => {
     const currentHandles = new Set(artworks.map(({ handle }) => `/artworks/${handle}`));
 
     const legacyEntries = entries.filter(([source]) => source.startsWith('/artworks/'));
-    expect(legacyEntries).toHaveLength(artworks.length - 3);
+    expect(legacyEntries).toHaveLength(productPageArtworks.length - 2);
     const currentEntries = legacyEntries.filter(([, destination]) =>
       currentHandles.has(destination),
     );
