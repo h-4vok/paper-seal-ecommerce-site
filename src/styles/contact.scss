@@ -34,7 +34,7 @@
   margin-top: clamp(1.75rem, 4vw, 2.5rem);
   padding: 1rem 1.5rem;
   color: var(--color-paper-light);
-  background: var(--color-terracotta);
+  background: var(--color-navy);
   font-family: var(--font-ui);
   font-size: 1rem;
   font-weight: 600;
@@ -55,8 +55,7 @@
   gap: clamp(1rem, 3vw, 2rem);
   margin-top: clamp(2rem, 5vw, 3rem);
   padding: clamp(1.25rem, 4vw, 2.5rem);
-  border-left: 0.4rem solid var(--color-terracotta);
-  background: var(--color-garden-dark);
+  background: var(--color-navy);
   box-shadow: var(--shadow-soft);
   text-align: left;
   transition:
@@ -66,7 +65,7 @@
 }
 
 .contact-page__whatsapp--primary:hover {
-  background: var(--color-navy);
+  background: var(--color-garden-dark);
   box-shadow: 0 1.25rem 3rem rgb(35 31 24 / 18%);
   transform: translateY(-0.2rem);
 }
@@ -87,7 +86,7 @@
 }
 
 .contact-page__whatsapp-icon {
-  color: var(--color-garden-dark);
+  color: var(--color-navy);
   background: var(--color-paper-light);
 }
 
@@ -132,6 +131,38 @@
 .contact-page__faqs {
   max-width: 70rem;
   margin-top: clamp(4rem, 9vw, 7rem);
+}
+
+.contact-page__social {
+  display: flex;
+  max-width: 70rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem 1.5rem;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.contact-page__social h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 400;
+}
+
+.contact-page__social nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-page__social a {
+  min-height: 2.75rem;
+  align-content: center;
+  color: var(--color-navy);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-underline-offset: 0.2rem;
 }
 
 .contact-page__faqs > h2,

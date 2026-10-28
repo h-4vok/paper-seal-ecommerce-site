@@ -44,6 +44,28 @@ const { page } = Astro.props;
     </span>
   </a>
 
+  {page.social && (
+    <section class="contact-page__social" aria-labelledby="contact-social-heading">
+      <h2 id="contact-social-heading">{page.social.heading}</h2>
+      <nav aria-label={page.social.heading}>
+        <a
+          href="/redirect/contact-instagram"
+          data-umami-event="Contact social click"
+          data-umami-event-channel="instagram"
+        >
+          {page.social.instagram} <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          href="/redirect/contact-facebook"
+          data-umami-event="Contact social click"
+          data-umami-event-channel="facebook"
+        >
+          {page.social.facebook} <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </section>
+  )}
+
   <section class="contact-page__faqs" aria-labelledby="contact-faq-heading">
     <h2 id="contact-faq-heading">How can we help?</h2>
     {page.sections.map((section, index) => (
@@ -74,7 +96,11 @@ const { page } = Astro.props;
             </a>
           )}
           {index === 3 && (
-            <a class="contact-page__topic-link" href="mailto:hello@paperseal.uk">
+            <a
+              class="contact-page__topic-link"
+              href="/redirect/contact-email"
+              data-umami-event="Contact email click"
+            >
               hello@paperseal.uk
             </a>
           )}

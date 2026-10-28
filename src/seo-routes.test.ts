@@ -34,7 +34,7 @@ describe('SEO route bodies', () => {
     ]);
   });
 
-  it('registers first-party external redirects with unique Instagram CTA tracking', async () => {
+  it('registers first-party external redirects with unique contact tracking', async () => {
     const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
     const entries = redirects
       .trim()
@@ -100,6 +100,17 @@ describe('SEO route bodies', () => {
       [
         '/redirect/contact-collabs-bottom-instagram',
         'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_bottom',
+        '302',
+      ],
+      ['/redirect/contact-email', 'mailto:hello@paperseal.uk', '302'],
+      [
+        '/redirect/contact-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_social&utm_content=instagram',
+        '302',
+      ],
+      [
+        '/redirect/contact-facebook',
+        'https://www.facebook.com/profile.php?id=61596045238215&utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_social&utm_content=facebook',
         '302',
       ],
     ];

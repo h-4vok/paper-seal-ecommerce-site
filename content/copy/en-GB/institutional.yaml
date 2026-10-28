@@ -63,6 +63,10 @@ pages:
     heading: Talk to the studio.
     description: WhatsApp is our main contact channel. Message us about an order, a refund, bespoke work or a collaboration.
     indexable: true
+    social:
+      heading: Follow us on social media
+      instagram: Instagram
+      facebook: Facebook
     sections:
       - heading: Order, delivery or refund question?
         paragraphs:

@@ -28,6 +28,11 @@ describe('institutional route configuration', () => {
     expect(getInstitutionalPage('contact')?.indexable).toBe(true);
     expect(getInstitutionalPage('contact')?.sections).toHaveLength(4);
     expect(getInstitutionalPage('contact')?.sections[3]?.heading).toBe('Prefer email?');
+    expect(getInstitutionalPage('contact')?.social).toEqual({
+      heading: 'Follow us on social media',
+      instagram: 'Instagram',
+      facebook: 'Facebook',
+    });
     expect(getInstitutionalPage('privacy')?.indexable).toBe(false);
     expect(getInstitutionalPage('missing')).toBeUndefined();
   });
