@@ -14,8 +14,34 @@ const { page } = Astro.props;
     <p class="contact-page__description">{page.description}</p>
   </header>
 
-  <a class="contact-page__whatsapp" href="https://wa.me/447448997200">
-    Message us on WhatsApp <span aria-hidden="true">↗</span>
+  <a
+    class="contact-page__whatsapp contact-page__whatsapp--primary"
+    href="https://wa.me/447448997200"
+  >
+    <span class="contact-page__whatsapp-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <path
+          d="M12 3.6a8.1 8.1 0 0 0-6.9 12.4L4 20l4.1-1.1A8.1 8.1 0 1 0 12 3.6Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.6"
+        />
+        <path
+          d="M9.1 8.5c.2-.4.5-.4.8-.4h.4c.2 0 .3.1.4.4l.6 1.4c.1.2.1.4-.1.6l-.5.6c-.2.2-.1.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.3.6c.2.1.3.2.3.4 0 .4-.2 1-.6 1.3-.5.4-1.1.6-1.7.5-1-.2-2.2-.8-3.3-1.8-1-.9-1.7-2.1-1.9-3.1-.2-.8.1-1.5.7-1.9Z"
+          fill="currentColor"
+        />
+      </svg>
+    </span>
+    <span class="contact-page__whatsapp-copy">
+      <span>OUR MAIN CONTACT CHANNEL</span>
+      <strong>Message us on WhatsApp</strong>
+      <span>Orders, refunds, bespoke work and collaborations</span>
+    </span>
+    <span class="contact-page__whatsapp-arrow" aria-hidden="true">
+      ↗
+    </span>
   </a>
 
   <section class="contact-page__faqs" aria-labelledby="contact-faq-heading">
