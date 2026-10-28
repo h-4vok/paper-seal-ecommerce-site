@@ -22,6 +22,36 @@ const year = new Date().getFullYear();
       <a href="/returns">{footer.returns}</a>
       <a href="/contact">{footer.contact}</a>
     </nav>
+    <nav aria-label={footer.socialMedia}>
+      <p>{footer.socialMedia}</p>
+      <a
+        href="/redirect/contact-whatsapp"
+        target="_blank"
+        rel="noreferrer"
+        data-umami-event="Contact social click"
+        data-umami-event-channel="whatsapp"
+      >
+        {footer.whatsapp}
+      </a>
+      <a
+        href="/redirect/contact-instagram"
+        target="_blank"
+        rel="noreferrer"
+        data-umami-event="Contact social click"
+        data-umami-event-channel="instagram"
+      >
+        {footer.instagram}
+      </a>
+      <a
+        href="/redirect/contact-facebook"
+        target="_blank"
+        rel="noreferrer"
+        data-umami-event="Contact social click"
+        data-umami-event-channel="facebook"
+      >
+        {footer.facebook}
+      </a>
+    </nav>
     <nav aria-label={footer.smallPrint}>
       <p>{footer.smallPrint}</p>
       <a href="/privacy">{footer.privacy}</a>

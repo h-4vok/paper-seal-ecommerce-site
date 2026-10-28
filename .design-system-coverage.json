@@ -83,6 +83,12 @@
       "useFor": "Our Story, Collabs and policy page layout, including the shared content update notice."
     },
     {
+      "name": "ContactPage",
+      "source": "src/components/ContactPage.astro",
+      "level": "Templates",
+      "useFor": "Contact landing page with WhatsApp, tracked email and social links, order and returns guidance, commissions and collaborations."
+    },
+    {
       "name": "PaperQuality",
       "source": "src/components/PaperQuality.astro",
       "level": "Organisms",

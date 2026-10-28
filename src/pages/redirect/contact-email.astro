@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Email The Paper Seal Studio"
+  description="Contact The Paper Seal Studio by email."
+  indexable={false}
+  showChrome={false}
+>
+  <main id="main-content" class="contact-email-redirect">
+    <p>Opening your email app…</p>
+    <p>
+      If it doesn’t open, <a href="mailto:hello@paperseal.uk">email hello@paperseal.uk</a>.
+    </p>
+  </main>
+  <script is:inline>
+    window.location.href = 'mailto:hello@paperseal.uk';
+  </script>
+</BaseLayout>
