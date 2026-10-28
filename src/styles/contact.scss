@@ -130,58 +130,62 @@
 
 .contact-page__faqs {
   max-width: 70rem;
-  margin-top: clamp(4rem, 9vw, 7rem);
+  margin: clamp(4rem, 9vw, 7rem) auto 0;
 }
 
-.contact-page__social {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.contact-page__social a {
-  display: grid;
-  width: 3rem;
-  height: 3rem;
-  place-items: center;
-  border-radius: 50%;
-  color: var(--color-paper-light);
-  background: var(--color-navy);
-  transition:
-    background-color 160ms ease,
-    transform 160ms ease;
-}
-
-.contact-page__social a.contact-page__social-link:hover {
-  background: var(--color-garden-dark);
-  transform: translateY(-0.15rem);
-}
-
-.contact-page__social a.contact-page__social-link:focus-visible {
-  outline: 0.2rem solid var(--color-focus);
-  outline-offset: 0.25rem;
-}
-
-.contact-page__social svg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.contact-page__faq-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.contact-page__faq-heading h2 {
-  margin: 0;
+.contact-page__faqs > h2 {
+  margin: 0 0 1.5rem;
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.05;
+}
+
+.contact-page__social {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  margin: clamp(2rem, 5vw, 3.5rem) auto 0;
+  text-align: center;
+}
+
+.contact-page__social > p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.contact-page__social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 4vw, 2.25rem);
+}
+
+.contact-page__social-link {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  color: var(--color-navy);
+  transition: color 160ms ease;
+}
+
+.contact-page__social-link:hover {
+  color: var(--color-garden-dark);
+}
+
+.contact-page__social-link:focus-visible {
+  outline: 0.2rem solid var(--color-focus);
+  outline-offset: 0.25rem;
+}
+
+.contact-page__social svg {
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 .contact-page__faq {
@@ -260,12 +264,6 @@
   .contact-page__whatsapp-arrow {
     display: none;
   }
-
-  .contact-page__faq-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 1rem;
-  }
 }
 
 @media (width >= 56rem) {
@@ -277,7 +275,7 @@
 @media (prefers-reduced-motion: reduce) {
   .contact-page__whatsapp,
   .contact-page__whatsapp--primary,
-  .contact-page__social a {
+  .contact-page__social-link {
     transition: none;
     transform: none;
   }
