@@ -14,38 +14,18 @@ const { page } = Astro.props;
     <p class="contact-page__description">{page.description}</p>
   </header>
 
-  <section class="contact-page__channels" aria-label="Contact the studio">
-    <a
-      class="contact-page__channel contact-page__channel--whatsapp"
-      href="https://wa.me/447448997200"
-    >
-      <span>WhatsApp</span>
-      <span>
-        Message the studio <span aria-hidden="true">↗</span>
-      </span>
-    </a>
-    <a
-      class="contact-page__channel contact-page__channel--email"
-      href="#contact-email"
-      data-contact-email
-    >
-      <span>Email</span>
-      <span>
-        Email the studio <span aria-hidden="true">↗</span>
-      </span>
-    </a>
-    <p class="contact-page__address" id="contact-email">
-      hello [at] paperseal [dot] uk
-    </p>
-  </section>
+  <a class="contact-page__whatsapp" href="https://wa.me/447448997200">
+    Message us on WhatsApp <span aria-hidden="true">↗</span>
+  </a>
 
-  <div class="contact-page__topics">
+  <section class="contact-page__faqs" aria-labelledby="contact-faq-heading">
+    <h2 id="contact-faq-heading">How can we help?</h2>
     {page.sections.map((section, index) => (
-      <section class="contact-page__topic" aria-labelledby={`contact-topic-${index}`}>
-        <h2 id={`contact-topic-${index}`}>{section.heading}</h2>
-        <div>
+      <details class="contact-page__faq">
+        <summary>{section.heading}</summary>
+        <div class="contact-page__answer">
           {section.paragraphs.map((paragraph) => (
-            <p>{paragraph}</p>
+            <p id={index === 3 ? 'contact-email' : undefined}>{paragraph}</p>
           ))}
           {index === 0 && (
             <nav class="contact-page__links" aria-label="Order information">
@@ -67,10 +47,22 @@ const { page } = Astro.props;
               Explore collaborations <span aria-hidden="true">→</span>
             </a>
           )}
+          {index === 3 && (
+            <a class="contact-page__topic-link" href="#contact-email" data-contact-email>
+              Email the studio <span aria-hidden="true">↗</span>
+            </a>
+          )}
         </div>
-      </section>
+      </details>
     ))}
-  </div>
+  </section>
+
+  <section class="contact-page__closing" aria-labelledby="contact-closing-heading">
+    <h2 id="contact-closing-heading">Still need a hand?</h2>
+    <a class="contact-page__whatsapp" href="https://wa.me/447448997200">
+      Message us on WhatsApp <span aria-hidden="true">↗</span>
+    </a>
+  </section>
 </main>
 
 <script>

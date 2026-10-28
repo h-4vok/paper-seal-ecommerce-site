@@ -61,18 +61,21 @@ pages:
   - slug: contact
     eyebrow: Contact
     heading: Talk to the studio.
-    description: For an order, refund, bespoke commission or collaboration, reach the studio on WhatsApp or email.
+    description: WhatsApp is our main contact channel. Message us about an order, a refund, bespoke work or a collaboration.
     indexable: true
     sections:
-      - heading: Orders, delivery and returns
+      - heading: Order, delivery or refund question?
         paragraphs:
           - For delivery, returns or refunds, check our policy pages first. Still need a hand? Message us with your order number.
-      - heading: Bespoke commissions
+      - heading: Interested in a bespoke commission?
         paragraphs:
           - Have an idea for a place you love? See how bespoke commissions work and get in touch.
-      - heading: Collaborations
+      - heading: Have a collaboration in mind?
         paragraphs:
           - Planning a project together? See past collaborations, then message the studio with a few details.
+      - heading: Prefer email?
+        paragraphs:
+          - You can also email us at hello [at] paperseal [dot] uk.
   - slug: privacy
     eyebrow: Privacy
     heading: Privacy notice under review.

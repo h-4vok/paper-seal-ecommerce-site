@@ -25,74 +25,87 @@
   line-height: 1.55;
 }
 
-.contact-page__channels {
-  display: grid;
-  gap: 0.8rem;
-  max-width: 70rem;
-  margin-block: clamp(2.5rem, 6vw, 4.5rem);
-  padding: clamp(1.25rem, 4vw, 3rem);
-  background: var(--color-paper-light);
-}
-
-.contact-page__channel {
-  display: grid;
-  min-height: 4rem;
-  grid-template-columns: 1fr auto;
+.contact-page__whatsapp {
+  display: inline-flex;
+  min-height: 3.5rem;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  padding: 0.8rem 1rem;
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  padding: 1rem 1.5rem;
   color: var(--color-paper-light);
-  background: var(--color-navy);
+  background: var(--color-terracotta);
   font-family: var(--font-ui);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 160ms ease;
 }
 
-.contact-page__channel--email {
-  color: var(--color-ink);
-  background: var(--color-paper-deep);
-}
-
-.contact-page__channel:hover {
+.contact-page__whatsapp:hover {
   background: var(--color-garden-dark);
 }
 
-.contact-page__channel--email:hover {
-  color: var(--color-paper-light);
-}
-
-.contact-page__channel span:last-child {
-  text-align: right;
-}
-
-.contact-page__address {
-  margin: 0;
-  color: var(--color-ink-soft);
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-}
-
-.contact-page__topics {
+.contact-page__faqs {
   max-width: 70rem;
+  margin-top: clamp(4rem, 9vw, 7rem);
 }
 
-.contact-page__topic {
-  display: grid;
-  gap: 0.75rem;
-  padding-block: 1.5rem;
-}
-
-.contact-page__topic h2 {
-  margin: 0;
+.contact-page__faqs > h2,
+.contact-page__closing h2 {
+  margin: 0 0 1.5rem;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.contact-page__faq {
+  border-top: 0.06rem solid var(--color-rule);
+}
+
+.contact-page__faq:last-child {
+  border-bottom: 0.06rem solid var(--color-rule);
+}
+
+.contact-page__faq summary {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3.5vw, 1.8rem);
   font-weight: 400;
   line-height: 1.1;
+  list-style: none;
 }
 
-.contact-page__topic p {
+.contact-page__faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.contact-page__faq summary::after {
+  flex: 0 0 auto;
+  color: var(--color-terracotta);
+  content: '+';
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+}
+
+.contact-page__faq[open] summary::after {
+  content: '−';
+}
+
+.contact-page__answer {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0 2.5rem 1.5rem 0;
+}
+
+.contact-page__answer p {
   max-width: 45rem;
   margin: 0;
   line-height: 1.65;
@@ -116,23 +129,23 @@
   text-underline-offset: 0.2rem;
 }
 
+.contact-page__closing {
+  max-width: 70rem;
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
+.contact-page__closing .contact-page__whatsapp {
+  margin-top: 0;
+}
+
 @media (width >= 56rem) {
-  .contact-page__channels {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .contact-page__address {
-    grid-column: 1 / -1;
-  }
-
-  .contact-page__topic {
-    grid-template-columns: minmax(15rem, 0.7fr) minmax(20rem, 1.3fr);
-    gap: 3rem;
+  .contact-page__faq summary {
+    min-height: 5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .contact-page__channel {
+  .contact-page__whatsapp {
     transition: none;
   }
 }

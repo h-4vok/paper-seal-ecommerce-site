@@ -26,6 +26,8 @@ describe('institutional route configuration', () => {
     expect(institutionalPages.every(({ indexable }) => typeof indexable === 'boolean')).toBe(true);
     expect(getInstitutionalPage('returns')?.indexable).toBe(true);
     expect(getInstitutionalPage('contact')?.indexable).toBe(true);
+    expect(getInstitutionalPage('contact')?.sections).toHaveLength(4);
+    expect(getInstitutionalPage('contact')?.sections[3]?.heading).toBe('Prefer email?');
     expect(getInstitutionalPage('privacy')?.indexable).toBe(false);
     expect(getInstitutionalPage('missing')).toBeUndefined();
   });
