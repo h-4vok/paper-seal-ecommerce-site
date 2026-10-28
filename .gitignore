@@ -24,6 +24,8 @@ test-results/
 storybook-build/
 visual-evidence/
 lighthouse-reports/
+.playwright-mcp/
+.taste-skill/
 
 # Local editor and OS files
 .DS_Store

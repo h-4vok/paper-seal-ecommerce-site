@@ -33,12 +33,13 @@ describe('editorial copy', () => {
 
   it('provides validated shared navigation and home SEO copy', () => {
     const loaded = copy as unknown as LoadedCopy;
-    expect(loaded.shared.navigation.items).toHaveLength(4);
+    expect(loaded.shared.navigation.items).toHaveLength(5);
     expect(loaded.shared.navigation.items).toMatchObject([
       { href: '/artworks', label: 'Our Artwork' },
       { href: '/our-story', label: 'Our Story' },
       { href: '/collabs', label: 'Collabs' },
       { href: '/commissions', label: 'Commissions' },
+      { href: '/contact', label: 'Contact' },
     ]);
     expect(copy.shared.footer.commissions).toBe('Commissions');
     expect(loaded.home.seo.title).toContain('The Paper Seal Studio');

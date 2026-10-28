@@ -34,7 +34,7 @@ describe('SEO route bodies', () => {
     ]);
   });
 
-  it('registers first-party external redirects with unique Instagram CTA tracking', async () => {
+  it('registers first-party external redirects with unique contact tracking', async () => {
     const redirects = await readFile(new URL('../public/_redirects', import.meta.url), 'utf8');
     const entries = redirects
       .trim()
@@ -102,9 +102,21 @@ describe('SEO route bodies', () => {
         'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_cta&utm_content=collabs_bottom',
         '302',
       ],
+      ['/redirect/contact-whatsapp', 'https://wa.me/447448997200', '302'],
+      [
+        '/redirect/contact-instagram',
+        'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_social&utm_content=instagram',
+        '302',
+      ],
+      [
+        '/redirect/contact-facebook',
+        'https://www.facebook.com/profile.php?id=61596045238215&utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_social&utm_content=facebook',
+        '302',
+      ],
     ];
 
     expect(qrEntries).toEqual(expected);
+    expect(qrEntries.some(([, destination]) => destination.startsWith('mailto:'))).toBe(false);
     expect(new Set(qrEntries.map(([, destination]) => destination)).size).toBe(expected.length);
   });
 
@@ -139,6 +151,7 @@ describe('SEO route bodies', () => {
       expect(body).toContain('/our-story</loc>');
       expect(body).toContain('/delivery</loc>');
       expect(body).toContain('/returns</loc>');
+      expect(body).toContain('/contact</loc>');
       expect(body).not.toContain('paperseal.co.uk');
       if (site) expect(body).not.toContain('paperseal.uk');
       expect(body).not.toContain('/cart</loc>');
