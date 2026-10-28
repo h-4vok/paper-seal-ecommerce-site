@@ -64,9 +64,18 @@ pages:
     description: WhatsApp is our main contact channel. Message us about an order, a refund, bespoke work or a collaboration.
     indexable: true
     social:
-      heading: Follow us on social media
-      instagram: Instagram
-      facebook: Facebook
+      heading: Come say hello on social media
+      channels:
+        - id: instagram
+          label: Instagram
+          heading: A little more from the studio
+          description: Follow along for artwork, studio moments and the places behind our prints.
+          action: Find us on Instagram
+        - id: facebook
+          label: Facebook
+          heading: Keep in touch on Facebook
+          description: Follow the studio and join us for more from the Sussex coast.
+          action: Find us on Facebook
     sections:
       - heading: Order, delivery or refund question?
         paragraphs:

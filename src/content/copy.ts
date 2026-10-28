@@ -251,7 +251,22 @@ const institutionalSchema = z.object({
         description: text,
         status: text.optional(),
         indexable: z.boolean(),
-        social: z.object({ heading: text, instagram: text, facebook: text }).optional(),
+        social: z
+          .object({
+            heading: text,
+            channels: z
+              .array(
+                z.object({
+                  id: z.enum(['instagram', 'facebook']),
+                  label: text,
+                  heading: text,
+                  description: text,
+                  action: text,
+                }),
+              )
+              .length(2),
+          })
+          .optional(),
         sections: z
           .array(z.object({ id: text.optional(), heading: text, paragraphs: z.array(text).min(1) }))
           .min(1),
