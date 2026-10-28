@@ -75,7 +75,7 @@ pages:
           - Planning a project together? See past collaborations, then message the studio with a few details.
       - heading: Prefer email?
         paragraphs:
-          - You can also email us at hello [at] paperseal [dot] uk.
+          - 'You can also email us at:'
   - slug: privacy
     eyebrow: Privacy
     heading: Privacy notice under review.

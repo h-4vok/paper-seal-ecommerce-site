@@ -51,7 +51,7 @@ const { page } = Astro.props;
         <summary>{section.heading}</summary>
         <div class="contact-page__answer">
           {section.paragraphs.map((paragraph) => (
-            <p id={index === 3 ? 'contact-email' : undefined}>{paragraph}</p>
+            <p>{paragraph}</p>
           ))}
           {index === 0 && (
             <nav class="contact-page__links" aria-label="Order information">
@@ -74,8 +74,8 @@ const { page } = Astro.props;
             </a>
           )}
           {index === 3 && (
-            <a class="contact-page__topic-link" href="#contact-email" data-contact-email>
-              Email the studio <span aria-hidden="true">↗</span>
+            <a class="contact-page__topic-link" href="mailto:hello@paperseal.uk">
+              hello@paperseal.uk
             </a>
           )}
         </div>
@@ -90,16 +90,3 @@ const { page } = Astro.props;
     </a>
   </section>
 </main>
-
-<script>
-  document.querySelectorAll<HTMLAnchorElement>('[data-contact-email]').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const address = document
-        .querySelector('#contact-email')
-        ?.textContent?.replace(' [at] ', '@')
-        .replace(' [dot] ', '.');
-      if (address) window.location.href = `mailto:${address}`;
-    });
-  });
-</script>
