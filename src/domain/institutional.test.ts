@@ -28,25 +28,6 @@ describe('institutional route configuration', () => {
     expect(getInstitutionalPage('contact')?.indexable).toBe(true);
     expect(getInstitutionalPage('contact')?.sections).toHaveLength(4);
     expect(getInstitutionalPage('contact')?.sections[3]?.heading).toBe('Prefer email?');
-    expect(getInstitutionalPage('contact')?.social).toEqual({
-      heading: 'Come say hello on social media',
-      channels: [
-        {
-          id: 'instagram',
-          label: 'Instagram',
-          heading: 'A little more from the studio',
-          description: 'Follow along for artwork, studio moments and the places behind our prints.',
-          action: 'Find us on Instagram',
-        },
-        {
-          id: 'facebook',
-          label: 'Facebook',
-          heading: 'Keep in touch on Facebook',
-          description: 'Follow the studio and join us for more from the Sussex coast.',
-          action: 'Find us on Facebook',
-        },
-      ],
-    });
     expect(getInstitutionalPage('privacy')?.indexable).toBe(false);
     expect(getInstitutionalPage('missing')).toBeUndefined();
   });

@@ -103,6 +103,7 @@ describe('SEO route bodies', () => {
         '302',
       ],
       ['/redirect/contact-email', 'mailto:hello@paperseal.uk', '302'],
+      ['/redirect/contact-whatsapp', 'https://wa.me/447448997200', '302'],
       [
         '/redirect/contact-instagram',
         'https://www.instagram.com/thepapersealstudio/?utm_source=paperseal_studio&utm_medium=referral&utm_campaign=contact_social&utm_content=instagram',

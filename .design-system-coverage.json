@@ -86,7 +86,7 @@
       "name": "ContactPage",
       "source": "src/components/ContactPage.astro",
       "level": "Templates",
-      "useFor": "Contact landing page with WhatsApp, tracked email and social redirects, social media cards, order and returns guidance, commissions and collaborations."
+      "useFor": "Contact landing page with WhatsApp, tracked email and social links, order and returns guidance, commissions and collaborations."
     },
     {
       "name": "PaperQuality",

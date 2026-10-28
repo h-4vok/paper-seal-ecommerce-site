@@ -44,72 +44,6 @@ const { page } = Astro.props;
     </span>
   </a>
 
-  {page.social && (
-    <section class="contact-page__social" aria-labelledby="contact-social-heading">
-      <h2 id="contact-social-heading">{page.social.heading}</h2>
-      <div class="contact-page__social-grid">
-        {page.social.channels.map((channel) => (
-          <a
-            class:list={['contact-page__social-card', `contact-page__social-card--${channel.id}`]}
-            href={`/redirect/contact-${channel.id}`}
-            target="_blank"
-            rel="noreferrer"
-            data-umami-event="Contact social click"
-            data-umami-event-channel={channel.id}
-          >
-            <span class="contact-page__social-icon" aria-hidden="true">
-              {channel.id === 'instagram' ? (
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <defs>
-                    <linearGradient id="instagram-gradient" x1="0" x2="1" y1="1" y2="0">
-                      <stop offset="0%" stop-color="#feda75" />
-                      <stop offset="50%" stop-color="#d62976" />
-                      <stop offset="100%" stop-color="#4f5bd5" />
-                    </linearGradient>
-                  </defs>
-                  <rect
-                    x="3.5"
-                    y="3.5"
-                    width="17"
-                    height="17"
-                    rx="5"
-                    fill="none"
-                    stroke="url(#instagram-gradient)"
-                    stroke-width="2"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="4"
-                    fill="none"
-                    stroke="url(#instagram-gradient)"
-                    stroke-width="2"
-                  />
-                  <circle cx="17.5" cy="6.8" r="1.2" fill="#d62976" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path
-                    d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.01 10.13 11.85v-8.38H7.08V12h3.05V9.36c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.69.24 2.69.24v2.95h-1.52c-1.49 0-1.95.93-1.95 1.89V12h3.33l-.53 3.54h-2.8v8.38C19.61 23.08 24 18.09 24 12.07Z"
-                    fill="#1877f2"
-                  />
-                </svg>
-              )}
-            </span>
-            <span class="contact-page__social-card-copy">
-              <span>{channel.label}</span>
-              <strong>{channel.heading}</strong>
-              <span>{channel.description}</span>
-              <span class="contact-page__social-card-action">
-                {channel.action} <span aria-hidden="true">↗</span>
-              </span>
-            </span>
-          </a>
-        ))}
-      </div>
-    </section>
-  )}
-
   <section class="contact-page__faqs" aria-labelledby="contact-faq-heading">
     <h2 id="contact-faq-heading">How can we help?</h2>
     {page.sections.map((section, index) => (
@@ -153,10 +87,70 @@ const { page } = Astro.props;
     ))}
   </section>
 
-  <section class="contact-page__closing" aria-labelledby="contact-closing-heading">
-    <h2 id="contact-closing-heading">Still need a hand?</h2>
-    <a class="contact-page__whatsapp" href="https://wa.me/447448997200">
-      Message us on WhatsApp <span aria-hidden="true">↗</span>
+  <nav class="contact-page__social" aria-label="Social media">
+    <a
+      class="contact-page__social-link"
+      href="/redirect/contact-whatsapp"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="WhatsApp"
+      data-umami-event="Contact social click"
+      data-umami-event-channel="whatsapp"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 3.6a8.1 8.1 0 0 0-6.9 12.4L4 20l4.1-1.1A8.1 8.1 0 1 0 12 3.6Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.6"
+        />
+        <path
+          d="M9.1 8.5c.2-.4.5-.4.8-.4h.4c.2 0 .3.1.4.4l.6 1.4c.1.2.1.4-.1.6l-.5.6c-.2.2-.1.4 0 .6.4.7 1 1.3 1.7 1.7.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.3.6c.2.1.3.2.3.4 0 .4-.2 1-.6 1.3-.5.4-1.1.6-1.7.5-1-.2-2.2-.8-3.3-1.8-1-.9-1.7-2.1-1.9-3.1-.2-.8.1-1.5.7-1.9Z"
+          fill="currentColor"
+        />
+      </svg>
     </a>
-  </section>
+    <a
+      class="contact-page__social-link"
+      href="/redirect/contact-instagram"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Instagram"
+      data-umami-event="Contact social click"
+      data-umami-event-channel="instagram"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <rect
+          x="3.5"
+          y="3.5"
+          width="17"
+          height="17"
+          rx="5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+        <circle cx="17.5" cy="6.8" r="1.2" fill="currentColor" />
+      </svg>
+    </a>
+    <a
+      class="contact-page__social-link"
+      href="/redirect/contact-facebook"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Facebook"
+      data-umami-event="Contact social click"
+      data-umami-event-channel="facebook"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.01 10.13 11.85v-8.38H7.08V12h3.05V9.36c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.69.24 2.69.24v2.95h-1.52c-1.49 0-1.95.93-1.95 1.89V12h3.33l-.53 3.54h-2.8v8.38C19.61 23.08 24 18.09 24 12.07Z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
+  </nav>
 </main>
