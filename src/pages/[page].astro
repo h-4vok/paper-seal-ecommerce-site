@@ -1,8 +1,10 @@
 ---
 import InstitutionalPage from '../components/InstitutionalPage.astro';
+import ContactPage from '../components/ContactPage.astro';
 import { institutionalPages, type InstitutionalPage as Page } from '../domain/institutional';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/institutional.scss';
+import '../styles/contact.scss';
 
 export function getStaticPaths() {
   return institutionalPages.map((page) => ({ params: { page: page.slug }, props: { page } }));
@@ -26,6 +28,17 @@ const structuredData = [
       },
     ],
   },
+  ...(page.slug === 'contact'
+    ? [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          name: title,
+          description: page.description,
+          url: new URL(canonical, siteOrigin).href,
+        },
+      ]
+    : []),
 ];
 ---
 
@@ -36,5 +49,5 @@ const structuredData = [
   indexable={page.indexable}
   {structuredData}
 >
-  <InstitutionalPage {page} />
+  {page.slug === 'contact' ? <ContactPage {page} /> : <InstitutionalPage {page} />}
 </BaseLayout>

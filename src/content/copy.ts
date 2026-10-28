@@ -18,7 +18,6 @@ const navigation = z.object({
   closeMenu: text,
   explore: text,
   mobileLabel: text,
-  contact: text,
   mobileIntro: text,
 });
 const sharedSchema = z.object({

@@ -688,6 +688,21 @@ textarea {
   }
 }
 
+@media (width >= 48rem) and (width < 60rem) {
+  .site-header__inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .site-header__desktop-nav,
+  .site-header__note {
+    display: none;
+  }
+
+  .site-header__menu-toggle {
+    display: grid;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

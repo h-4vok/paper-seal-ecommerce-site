@@ -13,13 +13,13 @@ navigation:
     - { href: /our-story, key: ourStory, label: Our Story }
     - { href: /collabs, key: collabs, label: Collabs }
     - { href: /commissions, key: commissions, label: Commissions }
+    - { href: /contact, key: contact, label: Contact }
   cart:
     label: Open cart
   openMenu: Open menu
   closeMenu: Close menu
   explore: Explore The Paper Seal Studio
   mobileLabel: Mobile navigation
-  contact: Contact the studio
   mobileIntro: Art prints inspired by East Sussex — made for homes with a story.
 footer:
   eyebrow: The Paper Seal Studio · East Sussex

@@ -60,14 +60,19 @@ pages:
           - The final policy will explain what information is needed when an order arrives damaged. A confirmed public email address will be added here when available.
   - slug: contact
     eyebrow: Contact
-    heading: The studio channel is coming soon.
-    description: The Paper Seal Studio is preparing a confirmed public contact channel for the studio.
-    status: No public email address is available yet. The confirmed contact channel will appear here when it is ready.
-    indexable: false
+    heading: Talk to the studio.
+    description: For an order, refund, bespoke commission or collaboration, reach the studio on WhatsApp or email.
+    indexable: true
     sections:
-      - heading: For now
+      - heading: Orders, delivery and returns
         paragraphs:
-          - You can explore the collection and the story behind The Paper Seal Studio without submitting personal information. No contact form has been introduced while the public channel is still being confirmed.
+          - For delivery, returns or refunds, check our policy pages first. Still need a hand? Message us with your order number.
+      - heading: Bespoke commissions
+        paragraphs:
+          - Have an idea for a place you love? See how bespoke commissions work and get in touch.
+      - heading: Collaborations
+        paragraphs:
+          - Planning a project together? See past collaborations, then message the studio with a few details.
   - slug: privacy
     eyebrow: Privacy
     heading: Privacy notice under review.

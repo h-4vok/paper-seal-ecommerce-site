@@ -139,6 +139,7 @@ describe('SEO route bodies', () => {
       expect(body).toContain('/our-story</loc>');
       expect(body).toContain('/delivery</loc>');
       expect(body).toContain('/returns</loc>');
+      expect(body).toContain('/contact</loc>');
       expect(body).not.toContain('paperseal.co.uk');
       if (site) expect(body).not.toContain('paperseal.uk');
       expect(body).not.toContain('/cart</loc>');

@@ -5,14 +5,7 @@ export type InstitutionalPage = (typeof copy.institutional.pages)[number];
 
 export const institutionalPages = copy.institutional.pages;
 
-export const contentNoticeSlugs = [
-  'our-story',
-  'delivery',
-  'returns',
-  'contact',
-  'privacy',
-  'terms',
-] as const;
+export const contentNoticeSlugs = ['our-story', 'delivery', 'returns', 'privacy', 'terms'] as const;
 
 export function hasContentNotice(slug: string): boolean {
   return contentNoticeSlugs.some((noticeSlug) => noticeSlug === slug);

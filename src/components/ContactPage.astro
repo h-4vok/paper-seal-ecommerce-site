@@ -1,0 +1,87 @@
+---
+import type { InstitutionalPage as Page } from '../domain/institutional';
+
+interface Props {
+  page: Page;
+}
+
+const { page } = Astro.props;
+---
+
+<main id="main-content" class="contact-page">
+  <header class="contact-page__intro">
+    <h1>{page.heading}</h1>
+    <p class="contact-page__description">{page.description}</p>
+  </header>
+
+  <section class="contact-page__channels" aria-label="Contact the studio">
+    <a
+      class="contact-page__channel contact-page__channel--whatsapp"
+      href="https://wa.me/447448997200"
+    >
+      <span>WhatsApp</span>
+      <span>
+        Message the studio <span aria-hidden="true">↗</span>
+      </span>
+    </a>
+    <a
+      class="contact-page__channel contact-page__channel--email"
+      href="#contact-email"
+      data-contact-email
+    >
+      <span>Email</span>
+      <span>
+        Email the studio <span aria-hidden="true">↗</span>
+      </span>
+    </a>
+    <p class="contact-page__address" id="contact-email">
+      hello [at] paperseal [dot] uk
+    </p>
+  </section>
+
+  <div class="contact-page__topics">
+    {page.sections.map((section, index) => (
+      <section class="contact-page__topic" aria-labelledby={`contact-topic-${index}`}>
+        <h2 id={`contact-topic-${index}`}>{section.heading}</h2>
+        <div>
+          {section.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+          {index === 0 && (
+            <nav class="contact-page__links" aria-label="Order information">
+              <a href="/delivery">
+                Delivery information <span aria-hidden="true">→</span>
+              </a>
+              <a href="/returns">
+                Returns and refunds <span aria-hidden="true">→</span>
+              </a>
+            </nav>
+          )}
+          {index === 1 && (
+            <a class="contact-page__topic-link" href="/commissions">
+              Explore commissions <span aria-hidden="true">→</span>
+            </a>
+          )}
+          {index === 2 && (
+            <a class="contact-page__topic-link" href="/collabs">
+              Explore collaborations <span aria-hidden="true">→</span>
+            </a>
+          )}
+        </div>
+      </section>
+    ))}
+  </div>
+</main>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('[data-contact-email]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const address = document
+        .querySelector('#contact-email')
+        ?.textContent?.replace(' [at] ', '@')
+        .replace(' [dot] ', '.');
+      if (address) window.location.href = `mailto:${address}`;
+    });
+  });
+</script>
