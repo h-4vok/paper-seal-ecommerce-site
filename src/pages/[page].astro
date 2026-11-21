@@ -3,6 +3,8 @@ import InstitutionalPage from '../components/InstitutionalPage.astro';
 import ContactPage from '../components/ContactPage.astro';
 import { institutionalPages, type InstitutionalPage as Page } from '../domain/institutional';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import heroImage from '../assets/home/hero-eastbourne-flower-bed.jpg';
+import { copy } from '../content/copy';
 import '../styles/institutional.scss';
 import '../styles/contact.scss';
 
@@ -46,6 +48,8 @@ const structuredData = [
   {title}
   description={page.description}
   {canonical}
+  image={heroImage.src}
+  imageAlt={copy.home.hero.imageAlt}
   indexable={page.indexable}
   {structuredData}
 >
