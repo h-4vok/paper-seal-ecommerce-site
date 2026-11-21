@@ -351,6 +351,7 @@ const gallery = productGallery(artwork).map((image) => {
     navigateProductGallery,
     selectProductSize,
   } from '../../lib/productSelection';
+  import { remainingAvailabilityMs } from '../../lib/stockAvailability';
   const productRoot = document.querySelector('[data-product-page]');
   const framingEnabled = productRoot?.getAttribute('data-framing-enabled') === 'true';
   const selectionSuffix = productRoot?.getAttribute('data-selection-suffix') ?? '';
@@ -490,7 +491,10 @@ const gallery = productGallery(artwork).map((image) => {
       if (!response.ok) throw new Error('Stock request failed');
       const data = await response.json();
       const stock = data.products?.[stockSku ?? ''];
-      if (!stock) throw new Error('Product stock missing');
+      const remaining = remainingAvailabilityMs(data.fetchedAt, Date.now());
+      if (!stock || !remaining) {
+        throw new Error('Product stock missing or stale');
+      }
       sizeInputs.forEach((input) => {
         const label = sizeOptions.find((size) => size.id === input.value)?.label ?? '';
         const quantity = stock[label];
@@ -512,7 +516,7 @@ const gallery = productGallery(artwork).map((image) => {
         if (addToCartButton) addToCartButton.disabled = true;
         if (stockStatus) stockStatus.textContent = stockCopy.unavailable;
         if (stockRetry) stockRetry.hidden = false;
-      }, 60_000);
+      }, remaining);
     } catch {
       sizeInputs.forEach((input) => {
         const note = input.closest('label')?.querySelector('[data-stock-size]');

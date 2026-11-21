@@ -1,6 +1,6 @@
 const stockHeaders = {
   'Content-Type': 'application/json',
-  'Cache-Control': 'public, max-age=60',
+  'Cache-Control': 'no-store',
   'Netlify-CDN-Cache-Control': 'public, durable, max-age=60',
 };
 
@@ -55,7 +55,10 @@ export default async () => {
       items.push(...page.items);
       totalItems = page.totalItems;
     } while (items.length < totalItems);
-    return Response.json({ products: mapAvailability(items) }, { headers: stockHeaders });
+    return Response.json(
+      { fetchedAt: Date.now(), products: mapAvailability(items) },
+      { headers: stockHeaders },
+    );
   } catch (error) {
     console.error('Could not load Snipcart availability:', error);
     return Response.json({ error: 'Availability could not be loaded.' }, { status: 502 });

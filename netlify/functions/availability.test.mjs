@@ -50,6 +50,7 @@ describe('Snipcart availability', () => {
     expect(response.headers.get('Netlify-CDN-Cache-Control')).toContain('durable');
     expect(fetchMock.mock.calls[1][0]).toContain('offset=1');
     expect(await response.json()).toEqual({
+      fetchedAt: expect.any(Number),
       products: {
         'PS-PR-001': { Small: 2, Medium: 0, Large: 1 },
         'PS-PR-002': { Small: 2, Medium: 0, Large: 1 },

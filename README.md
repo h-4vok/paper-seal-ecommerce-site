@@ -84,7 +84,8 @@ private key for the same Snipcart mode as the public key on that deploy. Use the
 for staging and Deploy Previews. Keep the secret out of `PUBLIC_` variables, source control,
 and browser code. The `/api/availability` Netlify Function reads per-size stock from Snipcart,
 and artwork pages keep purchase controls disabled until stock is confirmed. Successful
-availability responses are cached for 60 seconds. Missing configuration or API failures
+availability responses are cached for 60 seconds at Netlify's CDN; the page expires them
+from the upstream fetch time. Missing configuration or API failures
 leave purchase controls disabled and show a retry action.
 
 Snipcart's own variant inventory must remain enabled with **Allow out-of-stock purchase**
