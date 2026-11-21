@@ -1,6 +1,6 @@
 statusLabel: Current status
 noticeLabel: Page update
-notice: We’re still improving this page. Some details may change. You can still browse the collection and place an order through the shop.
+notice: We’re preparing these policies for online orders. Please check their current status before relying on planned delivery options.
 next:
   eyebrow: Keep exploring
   copy: See the first The Paper Seal Studio collection and the local places behind it.
@@ -28,36 +28,49 @@ pages:
           - This first collection introduces a local selection. More places and stories will join it as they are ready; the catalogue will remain a considered collection rather than an endless feed.
   - slug: delivery
     eyebrow: Delivery
-    heading: Clear notes on delivery.
-    description: Delivery information for The Paper Seal Studio art prints, with some purchasing details still under review.
-    status: Delivery options, charges and destinations are still being finalised. Check the options shown at checkout before placing an order.
+    heading: Delivery and dispatch.
+    description: How we plan to pack and send in-stock prints within the UK.
+    status: Pre-launch information. Carrier eligibility, packaging and checkout charges must be verified before online payments open.
     indexable: true
     sections:
-      - heading: Dispatch timing
+      - heading: Where we deliver
         paragraphs:
-          - The intended dispatch timeframe for in-stock variants is “Dispatched within 2–3 working days”. This timeframe does not apply to sold-out work; check the confirmed details before ordering.
-      - heading: No invented thresholds
+          - We plan to offer UK home delivery. InPost is our preferred carrier where it accepts the parcel and destination; Royal Mail is the fallback. Locker or shop collection is not currently offered. We do not plan to deliver to Jersey, Guernsey or the Isle of Man, or offer local collection. We will confirm Northern Ireland and postcode restrictions before opening checkout.
+      - heading: When we dispatch
         paragraphs:
-          - The Paper Seal Studio has not approved a delivery fee or free-delivery threshold for the online shop. Those details will appear here only when they are confirmed.
-      - heading: Questions
+          - We aim to dispatch in-stock orders within 2–3 working days of payment, excluding weekends and UK bank holidays. Sold-out prints cannot be ordered. We will announce studio closures and revised dispatch dates before accepting affected orders.
+          - Delivery estimates begin after dispatch and are not guaranteed arrival dates. We will send tracking information for every parcel. If an order needs more than one parcel, we will not charge a second delivery fee.
+      - heading: Packaging and charges
         paragraphs:
-          - A confirmed public contact channel is still being prepared. It will be linked from this page when it is ready.
+          - We pack flat prints with rigid protection suited to their size. The packaging and a test shipment for each size and mixed order still need approval before launch.
+          - Our planned standard home charge is £4.49 for eligible InPost delivery or Royal Mail orders without an A3 print, and £7.49 for Royal Mail orders containing A3. Planned faster Royal Mail home delivery is £5.49 without A3 or £8.49 with A3. We plan free standard delivery from £45 of products after discounts; a qualifying order choosing faster delivery would pay £1.00. These are provisional rates, not active checkout terms. We will verify them against tested packages and show the final total before payment.
+      - heading: Problems with delivery
+        paragraphs:
+          - If tracking stops, your parcel is missing, or a print arrives damaged, contact support@paperseal.uk with your order number. We will investigate with the carrier and resolve the order under your consumer rights; a carrier claim limit does not reduce those rights.
   - slug: returns
     eyebrow: Returns
-    heading: Human help, without a portal.
-    description: The Paper Seal Studio returns and damaged-item information, while the complete shop policy is being prepared.
-    status: The complete returns, refunds and damaged-item policy is still being finalised.
+    heading: Returns and refunds.
+    description: Cancellation, change-of-mind returns and help with faulty or missing prints.
+    status: Pre-launch policy draft for online orders. Final business details and checkout terms must be confirmed before payments open.
     indexable: true
     sections:
-      - heading: How help will work
+      - heading: Cancel an online order
         paragraphs:
-          - Returns, refunds and damaged-item cases will be handled individually through the studio’s confirmed contact channel. The Paper Seal Studio will not use a separate returns portal.
-      - heading: Before sending anything
+          - Email support@paperseal.uk with your order number as soon as possible. If the order has not been dispatched, we can cancel it and refund the amount paid. If it has already been dispatched, the change-of-mind process below applies.
+      - heading: Change your mind after delivery
         paragraphs:
-          - The final return window, eligibility rules and return instructions have not yet been approved. Please check this page again for the confirmed policy.
-      - heading: Damaged items
+          - For an online order, tell us clearly that you wish to cancel within 14 days after receiving the last item. You then have another 14 days to return the item. Email support@paperseal.uk with your order number and the items concerned; we will provide the return address and instructions. You do not need to use a special form or give a reason.
+          - You pay the return postage for a change-of-mind return. Please protect the print for transit. You may inspect it as you would in a shop; handling beyond what is needed to inspect it may reduce the refund by a lawful amount.
+      - heading: Refunds
         paragraphs:
-          - The final policy will explain what information is needed when an order arrives damaged. A confirmed public email address will be added here when available.
+          - For a full-order cancellation we refund the returned goods and the original standard delivery charge. If you chose a more expensive delivery service, the extra charge is not refundable. For a partial return, we refund the returned items without retrospectively charging for delivery that was originally free.
+          - We refund by the original payment method within 14 days of receiving the return or evidence that it was sent, whichever comes first. We may wait for one of those events before issuing the refund.
+      - heading: Faulty, incorrect or missing items
+        paragraphs:
+          - Email support@paperseal.uk with your order number and a description of the problem. Photos can help us investigate damage but are not a condition for help. We will arrange a suitable remedy and cover return postage when the goods are faulty or incorrect. Your statutory rights continue beyond the change-of-mind period.
+      - heading: Cancellation form
+        paragraphs:
+          - 'To: The Paper Seal Studio, support@paperseal.uk. I give notice that I cancel my contract for: [items]. Ordered on: [date]. Received on: [date]. Name: [name]. Address: [address]. Date: [date]. You can send this by email, or use any other clear cancellation statement.'
   - slug: contact
     eyebrow: Contact
     heading: Talk to the studio.
@@ -78,30 +91,50 @@ pages:
           - 'You can also email us at:'
   - slug: privacy
     eyebrow: Privacy
-    heading: Privacy notice under review.
-    description: The final The Paper Seal Studio privacy notice is being prepared for review.
-    status: This page provides a current update while the final legal privacy notice is being prepared.
+    heading: How we use your information.
+    description: A draft explanation of personal data used by The Paper Seal Studio website and shop.
+    status: Pre-launch draft. The proprietor’s legal identity and address, provider settings and retention periods must be verified before online payments open.
     indexable: false
     sections:
-      - heading: Current information
+      - heading: Who handles your data
         paragraphs:
-          - This website does not provide customer accounts, newsletter signup or a contact form. The final notice will document the services and data flows used by the live shop.
-      - heading: Privacy notice in progress
+          - The Paper Seal Studio is the business responsible for deciding how customer and enquiry data is used. The proprietor’s legal name and geographic address will be added before online sales begin. For now, privacy enquiries can be sent to hello@paperseal.uk.
+      - heading: What we collect and why
         paragraphs:
-          - A complete, reviewed privacy notice and confirmed contact channel are still being prepared.
+          - If you contact us by email or WhatsApp, we receive your message, contact details and anything you choose to share. We use them to answer you and manage the enquiry. If you place an order when checkout opens, we use your name, contact details, delivery address, order contents and payment status to fulfil the contract, support you, handle returns and keep legally required business records.
+          - We use website analytics to understand visits and improve the site when Umami is configured. We do not run a newsletter signup or customer account system on this website. We do not ask you to provide full card details to us directly.
+      - heading: Services involved
+        paragraphs:
+          - Netlify hosts the website; Snipcart provides the cart, checkout and order record; Stripe processes payment; Umami may provide website analytics; Gmail handles email; and WhatsApp handles messages sent through that service. These providers may process information under their own terms and in different countries. We will verify their actual settings and safeguards before opening payments.
+      - heading: Legal reasons and retention
+        paragraphs:
+          - We use order data to perform a contract and retain records where law requires it. We handle enquiries and basic site analytics for our legitimate interests in serving customers and improving the shop, subject to your rights and any consent required for optional storage or tracking. We keep information only as long as needed for those purposes or a legal obligation; the final notice will state the applicable periods or criteria after our provider settings are verified.
+      - heading: Your choices and rights
+        paragraphs:
+          - You can ask for access, correction, deletion or restriction of your information, object to certain uses, and ask about transferring it. You can complain to the UK Information Commissioner’s Office. Contact hello@paperseal.uk to exercise your rights or ask about a provider. Some rights depend on the circumstances and legal basis.
   - slug: terms
     eyebrow: Terms
-    heading: Website and shop terms under review.
-    description: The Paper Seal Studio website and shop terms are being prepared.
-    status: Final customer terms are still being prepared.
+    heading: Website and shop terms.
+    description: Draft terms for browsing the collection and future online orders.
+    status: Pre-launch draft. The proprietor’s legal identity, geographic address, final delivery charges and checkout flow must be confirmed before payments open.
     indexable: false
     sections:
-      - heading: Current information
+      - heading: The studio and the shop
         paragraphs:
-          - The catalogue can be browsed and shared, and artworks may be available to order through the shop. Final purchase terms are still being prepared.
-      - heading: Purchase terms in progress
+          - The Paper Seal Studio is a UK sole-trader business. The proprietor’s legal name and geographic address will be published here before online sales begin. Questions can be sent to hello@paperseal.uk; order and return enquiries can be sent to support@paperseal.uk.
+      - heading: Products and orders
         paragraphs:
-          - Final website and purchase terms, business details and the confirmed public contact channel are still being prepared.
+          - The shop offers physical, in-stock products described on their product pages. Prices are in GBP. An order is accepted only when checkout confirms it; an item in a cart is not reserved stock. We will confirm availability, the full price and applicable delivery charge before payment.
+          - Online checkout uses Snipcart, with Stripe processing payment. We do not accept orders for sold-out variants or promise made-to-order prints. Please check the confirmed size, product details and delivery address before placing an order.
+      - heading: Delivery and returns
+        paragraphs:
+          - Our delivery page explains available destinations, dispatch expectations and charges. Our returns page explains cancellation, refunds and what to do if an item is faulty or missing. These pages form part of the information you should review before ordering. Nothing in these terms limits your statutory consumer rights.
+      - heading: The website and artwork
+        paragraphs:
+          - Product images and website content belong to The Paper Seal Studio or their respective rights holders. You may browse and share links to the site, but buying a print does not transfer copyright in the artwork. Please do not copy or reuse the images commercially without permission.
+      - heading: Help
+        paragraphs:
+          - If something goes wrong with an order, contact support@paperseal.uk with your order number. We will work with you to resolve it and provide the applicable cancellation and refund information in your order confirmation once online payments open.
   - slug: east-sussex
     eyebrow: East Sussex
     heading: Places worth another look.

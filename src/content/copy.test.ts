@@ -81,6 +81,22 @@ describe('editorial copy', () => {
     expect(copyText('Hello {missing}')).toBe('Hello {missing}');
   });
 
+  it('keeps pre-launch policies explicit and aligned with the selected commerce flow', () => {
+    const pages = Object.fromEntries(copy.institutional.pages.map((page) => [page.slug, page]));
+    for (const slug of ['delivery', 'returns', 'privacy', 'terms']) {
+      expect(pages[slug]?.status).toContain('Pre-launch');
+      expect(pages[slug]?.sections.length).toBeGreaterThan(2);
+    }
+    expect(JSON.stringify(pages.delivery)).toContain('InPost');
+    expect(JSON.stringify(pages.delivery)).toContain(
+      'Locker or shop collection is not currently offered',
+    );
+    expect(JSON.stringify(pages.returns)).toContain('14 days');
+    expect(JSON.stringify(pages.privacy)).toContain('Snipcart');
+    expect(JSON.stringify(pages.terms)).toContain('geographic address');
+    expect(JSON.stringify(pages)).not.toContain('Shopify');
+  });
+
   it('rejects missing required copy values and invalid navigation paths', () => {
     expect(copySchemas.catalogue.safeParse({}).success).toBe(false);
     expect(
