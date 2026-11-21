@@ -9,6 +9,10 @@ import '../styles/commission-contact.scss';
 
 const commissions = copy.commissions;
 const siteOrigin = Astro.site ?? Astro.url.origin;
+const socialArtwork = commissionArtworks[0];
+const socialImage = socialArtwork
+  ? `/images/artworks/${socialArtwork.assetBase}/flat-1440.jpg`
+  : undefined;
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -32,6 +36,8 @@ const structuredData = [
   title={commissions.seo.title}
   description={commissions.seo.description}
   canonical="/commissions"
+  image={socialImage}
+  imageAlt={socialArtwork?.alt}
   structuredData={structuredData}
 >
   <main id="main-content" class="commissions-page">
