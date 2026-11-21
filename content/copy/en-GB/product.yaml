@@ -2,6 +2,12 @@ labels:
   addToCart: 'Add to cart — £{price}'
   selectSizeCta: Select size
   selectSizePrompt: Choose a print size to see the price and mockup.
+  stockChecking: Checking stock…
+  stockAvailable: Available
+  stockSoldOut: Sold out
+  stockReady: Select an available size. Stock is confirmed at checkout.
+  stockUnavailable: Stock could not be confirmed. Please retry.
+  stockRetry: Retry stock check
   unselectedPrice: '£--'
   breadcrumb: Breadcrumb
   breadcrumbLink: Artworks

@@ -77,6 +77,22 @@ In Snipcart **Test → Domains and URLs**, retain `staging.paperseal.uk` and
 support. Once the integration is deployed, set the Test Redirect URL to
 `https://staging.paperseal.uk/`. No additional order-history route is needed.
 
+### Artwork availability before Live checkout
+
+Set `SNIPCART_SECRET_API_KEY` as a **Functions** environment variable in Netlify, using the
+private key for the same Snipcart mode as the public key on that deploy. Use the Test secret
+for staging and Deploy Previews. Keep the secret out of `PUBLIC_` variables, source control,
+and browser code. The `/api/availability` Netlify Function reads per-size stock from Snipcart,
+and artwork pages keep purchase controls disabled until stock is confirmed. Successful
+availability responses are cached for 60 seconds. Missing configuration or API failures
+leave purchase controls disabled and show a retry action.
+
+Snipcart's own variant inventory must remain enabled with **Allow out-of-stock purchase**
+unchecked for each size. This is the checkout authority when a cached page is stale; the
+JSON crawler validates price-affecting fields and does not replace inventory enforcement.
+Before enabling Live payments, test a last-unit purchase in two carts, quantity edits,
+replenishment, and a physical SumUp sale followed by a prompt manual stock adjustment.
+
 ### Verification
 
 Vitest checks application behavior without requiring Snipcart credentials or external CDN
